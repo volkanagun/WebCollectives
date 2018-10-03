@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_compress_1_18.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -60,13 +56,15 @@
     <session id="-1500876352">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="478" />
+          <entry key="java" value="601" />
+          <entry key="txt" value="16" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="478" />
+          <entry key="JAVA" value="601" />
+          <entry key="PLAIN_TEXT" value="16" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -88,11 +86,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
+            <state relative-caret-position="323">
+              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -112,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="378" column="72" selection-start-line="378" selection-start-column="72" selection-end-line="378" selection-end-column="72" />
+            <state relative-caret-position="1652">
+              <caret line="379" selection-start-line="379" selection-end-line="379" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3916#3917#0" expanded="true" />
@@ -257,9 +255,9 @@
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" />
       </list>
     </option>
   </component>
@@ -313,6 +311,12 @@
               <item name="WebCollectives" type="b2602c69:ProjectViewProjectNode" />
               <item name="WebCollectives" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="WebCollectives" type="b2602c69:ProjectViewProjectNode" />
+              <item name="WebCollectives" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="sikayetvar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -500,12 +504,25 @@
       <option name="project" value="LOCAL" />
       <updated>1538470651827</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Sikayet var xmls">
+      <created>1538589470115</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1538589470115</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Sikayet var xmls">
+      <created>1538589510899</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1538589510899</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1862" height="1096" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14428413" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -514,7 +531,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32917964" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.40809968" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3347779" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.33437175" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -534,28 +551,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="Sikayet var xmls" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sikayet var xmls" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>495</line>
+          <line>497</line>
           <properties />
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java</url>
-          <line>51</line>
-          <properties />
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>377</line>
-          <properties />
-          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -819,16 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebFlow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
@@ -848,12 +844,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="378" column="72" selection-start-line="378" selection-start-column="72" selection-end-line="378" selection-end-column="72" />
+        <state relative-caret-position="1652">
+          <caret line="379" selection-start-line="379" selection-end-line="379" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3916#3917#0" expanded="true" />
             <element signature="e#3951#3952#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
