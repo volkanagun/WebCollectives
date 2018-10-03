@@ -88,6 +88,7 @@ public class WebTemplate implements Serializable {
     private String domain;
     private String folder;
     private String type;
+    private Boolean lookComplete;
 
     private WebSuffixGenerator suffixGenerator;
     private String nextPageSuffix;
@@ -118,6 +119,15 @@ public class WebTemplate implements Serializable {
     public WebTemplate(String folder, String name, String domain, String nextPageSuffix) {
         this(folder, name, domain);
         this.nextPageSuffix = nextPageSuffix;
+    }
+
+    public Boolean getLookComplete() {
+        return lookComplete;
+    }
+
+    public WebTemplate setLookComplete(Boolean lookComplete) {
+        this.lookComplete = lookComplete;
+        return this;
     }
 
     public Long getSleepTime() {
@@ -559,13 +569,14 @@ public class WebTemplate implements Serializable {
                     WebDocument document = new WebDocument(folder, name, url);
                     Boolean returnResult = false;
                     if (!document.filenameExists()) {
-                        goSleep(1000L);
+                        goSleep(100L);
                         String downloadedHTML = downloadFile(url, charset);
                         if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
                             document.setFetchDate(new Date());
                             document.setText(downloadedHTML);
                             document.setDomain(domain);
                             document.setType(type);
+                            document.setLookComplete(lookComplete);
                             if (seedMap.containsKey(url)) {
                                 document.putProperty(LookupOptions.GENRE, seedMap.get(url));
                             }

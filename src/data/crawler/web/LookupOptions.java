@@ -16,6 +16,7 @@ public class LookupOptions implements Serializable {
 
     public static String TEXT = "TEXT";
     public static String DATE = "DATE";
+    public static String TAG = "TAG";
 
     public static String MAINPAGE = "MAINPAGE";
     public static String AUTHOR = "AUTHOR";
@@ -59,6 +60,8 @@ public class LookupOptions implements Serializable {
     public static String TECHDIRECTORY = "resources/technology";
     public static String BLOGDIRECTORY = "resources/blogs-turkish";
     public static String BLOGENGDIRECTORY = "resources/blogs-english";
+    public static String SIKAYETVARGDIRECTORY = "resources/sikayet-var";
+
     public static String BLOGTRYDIRECTORY = "resources/blogs-trial";
     public static String TESTDIRECTORY = "resources/tests";
     public static String ARTICLEDIRECTORY = "resources/articles";

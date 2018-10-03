@@ -21,6 +21,7 @@ public class WebDocument implements Serializable {
     private List<LookupResult> lookupResultList;
     private List<WebDocument> webFlowResultList;
     private Date fetchDate;
+    private Boolean lookComplete = false;
 
     public WebDocument(String folder) {
         this.folder = folder;
@@ -70,6 +71,15 @@ public class WebDocument implements Serializable {
 
         return lookupResults;
 
+    }
+
+    public Boolean getLookComplete() {
+        return lookComplete;
+    }
+
+    public WebDocument setLookComplete(Boolean lookComplete) {
+        this.lookComplete = lookComplete;
+        return this;
     }
 
     private String nameCode() {
@@ -154,13 +164,14 @@ public class WebDocument implements Serializable {
     }
 
     public boolean isComplete(LookupPattern mainPattern){
-        List<String> listLabels = mainPattern.getNonSkipSubpatternLabels();
-        for(LookupResult lookupResult:lookupResultList){
-            Set<String> labelSet = lookupResult.getSubResultLabels(listLabels);
-            if(labelSet.containsAll(listLabels)) continue;
-            else return false;
+        if(lookComplete) {
+            List<String> listLabels = mainPattern.getNonSkipSubpatternLabels();
+            for (LookupResult lookupResult : lookupResultList) {
+                Set<String> labelSet = lookupResult.getSubResultLabels(listLabels);
+                if (labelSet.containsAll(listLabels)) continue;
+                else return false;
+            }
         }
-
         //System.out.println("Save ok...");
         return true;
     }
@@ -230,8 +241,9 @@ public class WebDocument implements Serializable {
         return text;
     }
 
-    public void setText(String text) {
+    public WebDocument setText(String text) {
         this.text = text;
+        return this;
     }
 
     public String getType() {
