@@ -1,5 +1,12 @@
 package data.crawler.web;
 
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.ArchiveException;
+import org.apache.commons.compress.archivers.ArchiveOutputStream;
+import org.apache.commons.compress.archivers.ArchiveStreamFactory;
+import org.apache.commons.compress.compressors.CompressorException;
+import org.apache.commons.compress.compressors.CompressorStreamFactory;
+import org.apache.commons.compress.utils.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -25,6 +32,7 @@ import data.util.TextFile;
 import javax.net.ssl.SSLContext;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -355,6 +363,46 @@ public class WebTemplate implements Serializable {
         return checkedList;
     }
 
+    public void zipXMLs(List<WebDocument> documentList){
+        saveXML(documentList);
+
+        File files[] = new File(folder).listFiles(new FileFilter() {
+            @Override
+            public boolean accept(File pathname) {
+                String filename = pathname.getName();
+                String extention =  filename.substring(filename.lastIndexOf(".")+1);
+                return extention.equals("xml") || extention.equals(filename);
+            }
+        });
+
+        String hashcode = String.valueOf(Arrays.asList(files).hashCode());
+
+        try (ArchiveOutputStream o = new ArchiveStreamFactory().createArchiveOutputStream(ArchiveStreamFactory.ZIP,
+                new FileOutputStream(folder+hashcode+".zip"))) {
+            for (File f : files) {
+                // maybe skip directories for formats like AR that don't store directories
+                ArchiveEntry entry = o.createArchiveEntry(f, f.getName());
+                // potentially add more flags to entry
+                o.putArchiveEntry(entry);
+                if (f.isFile()) {
+                    try (InputStream i = Files.newInputStream(f.toPath())) {
+                        IOUtils.copy(i, o);
+                    }
+                }
+                o.closeArchiveEntry();
+
+                f.delete();
+            }
+            o.finish();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ArchiveException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void saveXML(List<WebDocument> documentList) {
         double sucessRate = 0d;
         if (multipleIdentifier == null) {
@@ -447,7 +495,8 @@ public class WebTemplate implements Serializable {
         if (nextEmpty()) {
             //Leaf template
             mainDocument.addWebFlowResult(documentList);
-            saveXML(documentList);
+            //saveXML(documentList);
+            zipXMLs(documentList);
         } else {
             //Non leaf template
             Collections.shuffle(documentList);
@@ -502,7 +551,8 @@ public class WebTemplate implements Serializable {
                 mainDocument.addWebFlowResult(webFlowResultList);
             }*/
 
-            saveXML(documentList);
+            //saveXML(documentList);
+            zipXMLs(documentList);
         }
 
 
