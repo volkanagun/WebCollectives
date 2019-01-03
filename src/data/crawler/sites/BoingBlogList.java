@@ -6,6 +6,8 @@ import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 
 import java.io.Serializable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class BoingBlogList implements Serializable {
     public static WebFlow build() {
@@ -58,5 +60,11 @@ public class BoingBlogList implements Serializable {
         WebFlow flow = new WebFlow(yazarTemplate);
         return flow;
 
+    }
+
+    public static void main(String[] args){
+        ExecutorService service = Executors.newFixedThreadPool(5);
+        WebFlow.submit(service, build());
+        service.shutdown();
     }
 }

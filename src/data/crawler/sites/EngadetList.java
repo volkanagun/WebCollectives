@@ -6,6 +6,8 @@ import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 
 import java.io.Serializable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class EngadetList implements Serializable {
     public static WebFlow build() {
@@ -17,7 +19,7 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(100)
+                .setNextPageSize(500)
                 .setNextPageStart(1)
                 .setThreadSize(1)
                 .setMainPattern(authorPattern);
@@ -61,5 +63,11 @@ public class EngadetList implements Serializable {
         WebFlow flow = new WebFlow(authorTemplate);
         return flow;
 
+    }
+
+    public static void main(String[] args){
+        ExecutorService service = Executors.newFixedThreadPool(5);
+        WebFlow.submit(service, build());
+        service.shutdown();
     }
 }

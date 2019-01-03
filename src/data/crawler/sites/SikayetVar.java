@@ -41,7 +41,6 @@ public class SikayetVar implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.TAG, "<div class=\"hashtags\">","</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.TAG, "<a(.*?)>","</a>")));
 
-
         WebTemplate mainTemplate = new WebTemplate(folder, "docs", LookupOptions.EMPTYDOMAIN);
         mainTemplate.setMainPattern(mainPattern)
                 .setDomain(domain)

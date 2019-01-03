@@ -5,12 +5,14 @@ import data.crawler.web.*;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class HuffingtonPost implements Serializable {
     public static WebFlow build() {
         //
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2018, 1, 1);
+        calendarStart.set(2017, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
         calendarEnd.set(2018, 9, 24);
 
@@ -48,5 +50,11 @@ public class HuffingtonPost implements Serializable {
         linkTemplate.addNext(mainTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
         return flow;
+    }
+
+    public static void main(String[] args){
+        ExecutorService service = Executors.newFixedThreadPool(5);
+        WebFlow.submit(service, build());
+        service.shutdown();
     }
 }
