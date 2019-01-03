@@ -495,8 +495,8 @@ public class WebTemplate implements Serializable {
         if (nextEmpty()) {
             //Leaf template
             mainDocument.addWebFlowResult(documentList);
-            //saveXML(documentList);
-            zipXMLs(documentList);
+            saveXML(documentList);
+            //zipXMLs(documentList);
         } else {
             //Non leaf template
             Collections.shuffle(documentList);
@@ -551,8 +551,8 @@ public class WebTemplate implements Serializable {
                 mainDocument.addWebFlowResult(webFlowResultList);
             }*/
 
-            //saveXML(documentList);
-            zipXMLs(documentList);
+            saveXML(documentList);
+            //zipXMLs(documentList);
         }
 
 
