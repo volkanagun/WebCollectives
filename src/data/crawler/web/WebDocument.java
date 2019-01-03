@@ -164,7 +164,7 @@ public class WebDocument implements Serializable {
     }
 
     public boolean isComplete(LookupPattern mainPattern){
-        if(lookComplete) {
+        if(lookComplete && true) {
             List<String> listLabels = mainPattern.getNonSkipSubpatternLabels();
             for (LookupResult lookupResult : lookupResultList) {
                 Set<String> labelSet = lookupResult.getSubResultLabels(listLabels);
