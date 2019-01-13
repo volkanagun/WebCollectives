@@ -19,8 +19,8 @@ public class MilliyetBlogList implements Serializable {
                 .setForceWrite(false)
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
-                .setNextPageSize(500)
-                .setThreadSize(1)
+                .setNextPageSize(20)
+                .setThreadSize(12)
                 .addSeed("http://blog.milliyet.com.tr/BlogListe/?Status=&Sort=&KategoriNo=");
         /*.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=2")*/
                 /*.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=3")
@@ -63,8 +63,8 @@ public class MilliyetBlogList implements Serializable {
                 .setDomain("http://blog.milliyet.com.tr/BloggerBloglar/?UyeNo=")
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
-                .setNextPageSize(50)
-                .setThreadSize(2);
+                .setNextPageSize(2)
+                .setThreadSize(6);
 
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div\\sid\\=\"_middle_content_bottom_child2\"\\sclass\\=\"colA\">", "</div>")
@@ -83,7 +83,7 @@ public class MilliyetBlogList implements Serializable {
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN)
                 .setDomain("http://blog.milliyet.com.tr");
-        articleTemplate.setMainPattern(articlePattern).setForceWrite(true)
+        articleTemplate.setMainPattern(articlePattern).setForceWrite(true).setLookComplete(false)
                 .setType(LookupOptions.BLOGDOC);
 
 
