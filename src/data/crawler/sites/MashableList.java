@@ -3,6 +3,8 @@ package data.crawler.sites;
 import data.crawler.web.*;
 
 import java.io.Serializable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MashableList implements Serializable {
     public static WebFlow build() {
@@ -20,11 +22,17 @@ public class MashableList implements Serializable {
         articleTemplate.addSeed("https://mashable.com/stories.json?").setNextPageSuffix("page=")
                 .setType("BLOG-DOC").setMultipleIdentifier(LookupOptions.ARTICLETITLE)
                 .setNextPageSize(5000)
-                .setNextPageStart(1000)
+                .setNextPageStart(1)
                 .setThreadSize(1).setMainPattern(mainPattern);
 
         WebFlow flow = new WebFlow(articleTemplate);
         return flow;
 
+    }
+
+    public static void main(String[] args){
+        ExecutorService service = Executors.newFixedThreadPool(5);
+        WebFlow.submit(service, build());
+        service.shutdown();
     }
 }

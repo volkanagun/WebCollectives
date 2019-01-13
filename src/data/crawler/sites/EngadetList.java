@@ -19,9 +19,9 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(500)
+                .setNextPageSize(1000)
                 .setNextPageStart(1)
-                .setThreadSize(1)
+                .setThreadSize(12)
                 .setMainPattern(authorPattern);
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
@@ -29,7 +29,7 @@ public class EngadetList implements Serializable {
                 .setSingleGroup(1).setSingleRegex("<a\\shref\\=\"(.*?)\"\\sclass\\=\"o-hit\\_\\_link\">");
         linkTemplate.setDomain("https://www.engadget.com/")
                 .setNextPageSuffix("/page/")
-                .setThreadSize(1)
+                .setThreadSize(6)
                 .setNextPageStart(1)
                 .setNextPageSize(80)
                 .setMainPattern(linkPattern);

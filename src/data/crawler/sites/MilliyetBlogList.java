@@ -19,11 +19,11 @@ public class MilliyetBlogList implements Serializable {
                 .setForceWrite(false)
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
-                .setNextPageSize(20)
-                .setThreadSize(12)
-                .addSeed("http://blog.milliyet.com.tr/BlogListe/?Status=&Sort=&KategoriNo=");
-        /*.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=2")*/
-                /*.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=3")
+                .setNextPageSize(100)
+                .setThreadSize(24)
+                //.addSeed("http://blog.milliyet.com.tr/BlogListe/?Status=&Sort=&KategoriNo=");
+        .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=2")
+                .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=3")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=4")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=5")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=6")
@@ -32,24 +32,23 @@ public class MilliyetBlogList implements Serializable {
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=9")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=10")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=11")
-                .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=12")*/
-        //.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=13")
-        /*.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=19")*/
-                /*.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=20")
+                .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=12")
+        .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=13")
+        .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=19")
+                .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=20")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=21")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=22")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=23")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=24")
-                */
-        //.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=25")
-        //.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=281");
-                /*.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=2")
+        .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=25")
+        .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=281")
+                .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=2")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=3")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=4")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=5")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=6")
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=16")
-                .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=102");*/
+                .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=102");
         //.addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=199");
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div\\sclass=\"details\">", "</div>")
@@ -63,8 +62,8 @@ public class MilliyetBlogList implements Serializable {
                 .setDomain("http://blog.milliyet.com.tr/BloggerBloglar/?UyeNo=")
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
-                .setNextPageSize(2)
-                .setThreadSize(6);
+                .setNextPageSize(50)
+                .setThreadSize(24);
 
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div\\sid\\=\"_middle_content_bottom_child2\"\\sclass\\=\"colA\">", "</div>")
