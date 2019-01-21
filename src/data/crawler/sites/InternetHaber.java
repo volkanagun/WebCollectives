@@ -16,11 +16,13 @@ public class InternetHaber {
                 .addSeed("http://www.internethaber.com/politika")
                 .addSeed("http://www.internethaber.com/dunya")
                 .addSeed("http://www.internethaber.com/ekonomi")
+
+                .addSeed("http://www.internethaber.com/spor")
                 .addSeed("http://www.internethaber.com/guncel-haberler")
                 .setNextPageStart(1)
-                .setNextPageSize(1200)
+                .setNextPageSize(24)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(2);
+                .setThreadSize(12);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")

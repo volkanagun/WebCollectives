@@ -12,8 +12,8 @@ public class SikayetVar implements Serializable {
         String folder = "resources/sikayetvar/";
         String domain = "https://www.sikayetvar.com/";
         String seed = "https://www.sikayetvar.com/sikayetler";
-        Integer start = 105000;
-        Integer end = 105545;
+        Integer start = 5000;
+        Integer end = 50000;
 
         LookupPattern urlPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"media-body\">","</div>")
                 .setStartEndMarker("<div","</div>")

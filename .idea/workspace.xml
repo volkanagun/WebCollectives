@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/SiteRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -25,24 +26,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="98" column="5" lean-forward="true" selection-start-line="94" selection-start-column="4" selection-end-line="98" selection-end-column="5" />
+            <state relative-caret-position="220">
+              <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SiteRunner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="5" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#218#219#0" expanded="true" />
-                <element signature="e#245#246#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,22 +38,25 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="647" selection-start-line="647" selection-end-line="647" />
+            <state relative-caret-position="118">
+              <caret line="410" column="53" selection-start-line="410" selection-start-column="53" selection-end-line="410" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#6095#6096#0" expanded="true" />
+                <element signature="e#6130#6131#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebDocument.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+            <state relative-caret-position="73">
+              <caret line="79" column="33" lean-forward="true" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2066#2067#0" expanded="true" />
+                <element signature="e#2101#2102#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="236" selection-start-line="236" selection-end-line="236" />
+            <state relative-caret-position="178">
+              <caret line="272" selection-start-line="272" selection-end-line="272" />
               <folding>
                 <element signature="e#2638#2639#0" expanded="true" />
                 <element signature="e#2664#2665#0" expanded="true" />
@@ -88,28 +78,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupSplit.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="67" column="78" selection-start-line="67" selection-start-column="78" selection-end-line="67" selection-end-column="78" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+            <state relative-caret-position="135">
+              <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -117,8 +89,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="21" column="56" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="21" selection-end-column="56" />
+            <state relative-caret-position="540">
+              <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Ergonomic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MashableList.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -126,8 +128,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="404">
-              <caret line="63" column="20" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="63" selection-end-column="20" />
+            <state relative-caret-position="975">
+              <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -154,13 +156,19 @@
       <find>hashtags</find>
       <find>Success rate:</find>
       <find>isCom</find>
-      <find>Downloading</find>
-      <find>Down</find>
       <find>Dow</find>
-      <find>Downloa</find>
       <find>=7&amp;</find>
       <find>3400031</find>
       <find>Download</find>
+      <find>Downloa</find>
+      <find>Down</find>
+      <find>politika</find>
+      <find>Downloading</find>
+      <find>Downloading...</find>
+      <find>th-title</find>
+      <find>class=&quot;th-title&quot;&gt;</find>
+      <find>&lt;a data-ylk=&quot;</find>
+      <find>about</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,21 +189,21 @@
         <option value="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/Reuters.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/PAN.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/Fotomac.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/SiteRunner.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" />
       </list>
     </option>
   </component>
@@ -218,10 +226,10 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1844" />
-    <option name="height" value="1078" />
+    <option name="x" value="45" />
+    <option name="y" value="24" />
+    <option name="width" value="1319" />
+    <option name="height" value="708" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -232,7 +240,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,10 +277,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547415041155" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548095763688" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../WordEmbeddings" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
   </component>
   <component name="RecentsManager">
@@ -293,7 +302,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.InternetHaber">
+  <component name="RunManager" selected="Application.EngadetList">
+    <configuration name="BoingBlogList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BoingBlogList" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EngadetList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EngadetList" />
       <module name="WebCollectives" />
@@ -309,19 +331,6 @@
     </configuration>
     <configuration name="HuffingtonPost" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.HuffingtonPost" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -360,19 +369,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.EngadetList" />
+      <item itemvalue="Application.BoingBlogList" />
       <item itemvalue="Application.HuffingtonPost" />
       <item itemvalue="Application.MilliyetBlogList" />
+      <item itemvalue="Application.EngadetList" />
       <item itemvalue="Application.MashableList" />
-      <item itemvalue="Application.InternetHaber" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.InternetHaber" />
-        <item itemvalue="Application.HuffingtonPost" />
         <item itemvalue="Application.EngadetList" />
-        <item itemvalue="Application.MilliyetBlogList" />
+        <item itemvalue="Application.BoingBlogList" />
         <item itemvalue="Application.MashableList" />
+        <item itemvalue="Application.HuffingtonPost" />
+        <item itemvalue="Application.MilliyetBlogList" />
       </list>
     </recent_temporary>
   </component>
@@ -422,14 +431,21 @@
       <option name="project" value="LOCAL" />
       <updated>1547397199092</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="InternetHaber web sitesi">
+      <created>1547415244340</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1547415244340</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="27" width="1875" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15582286" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1481684" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -438,7 +454,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4972737" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.391494" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.33369684" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -462,7 +478,38 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Sikayet var xmls" />
     <MESSAGE value="Mıllıyet Blogs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mıllıyet Blogs" />
+    <MESSAGE value="InternetHaber web sitesi" />
+    <option name="LAST_COMMIT_MESSAGE" value="InternetHaber web sitesi" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebDocument.java</url>
+          <line>167</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebDocument.java</url>
+          <line>175</line>
+          <properties />
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebDocument.java</url>
+          <line>166</line>
+          <properties />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
+          <line>410</line>
+          <properties />
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/BesHarfliler.java" />
@@ -482,60 +529,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="61" column="5" selection-start-line="56" selection-start-column="3" selection-end-line="61" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Fotomac.java" />
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" />
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Hayrola.java" />
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Ergonomic.java" />
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/PAN.java" />
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebDocument.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2265">
-          <caret line="165" column="19" selection-start-line="165" selection-start-column="19" selection-end-line="165" selection-end-column="19" />
-          <folding>
-            <element signature="e#2066#2067#0" expanded="true" />
-            <element signature="e#2101#2102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MashableList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="32" column="43" lean-forward="true" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="56" column="36" lean-forward="true" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Reuters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="21" column="56" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="21" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -546,34 +547,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupSplit.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="63" column="20" lean-forward="true" selection-start-line="13" selection-start-column="8" selection-end-line="63" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="98" column="5" lean-forward="true" selection-start-line="94" selection-start-column="4" selection-end-line="98" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SiteRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
+        <state relative-caret-position="195">
+          <caret line="18" column="5" selection-start-line="13" selection-start-column="4" selection-end-line="18" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#218#219#0" expanded="true" />
@@ -582,20 +559,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="647" selection-start-line="647" selection-end-line="647" />
+        <state relative-caret-position="165">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupSplit.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="21" column="35" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Ergonomic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MashableList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebDocument.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="73">
+          <caret line="79" column="33" lean-forward="true" selection-start-line="79" selection-start-column="33" selection-end-line="79" selection-end-column="33" />
+          <folding>
+            <element signature="e#2066#2067#0" expanded="true" />
+            <element signature="e#2101#2102#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="236" selection-start-line="236" selection-end-line="236" />
+        <state relative-caret-position="178">
+          <caret line="272" selection-start-line="272" selection-end-line="272" />
           <folding>
             <element signature="e#2638#2639#0" expanded="true" />
             <element signature="e#2664#2665#0" expanded="true" />
@@ -605,17 +648,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java">
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="33" column="32" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        <state relative-caret-position="118">
+          <caret line="410" column="53" selection-start-line="410" selection-start-column="53" selection-end-line="410" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6095#6096#0" expanded="true" />
+            <element signature="e#6130#6131#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        <state relative-caret-position="540">
+          <caret line="55" column="16" selection-start-line="55" selection-start-column="16" selection-end-line="55" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

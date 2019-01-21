@@ -96,7 +96,7 @@ public class WebTemplate implements Serializable {
     private String domain;
     private String folder;
     private String type;
-    private Boolean lookComplete;
+
 
     private WebSuffixGenerator suffixGenerator;
     private String nextPageSuffix;
@@ -107,6 +107,7 @@ public class WebTemplate implements Serializable {
     private Long sleepTime = 200L;
 
     private Boolean forceWrite = false;
+    private Boolean lookComplete = false;
 
     private String charset = "UTF-8";
     private Map<String, WebTemplate> nextMap;
@@ -565,7 +566,7 @@ public class WebTemplate implements Serializable {
         if (nextPageSuffix != null && !nextPageSuffix.isEmpty()) {
 
             for (String url : seedList) {
-                for (int i = nextPageStart; i <= nextPageSize; i++) {
+                for (int i = nextPageStart; i <= nextPageStart+nextPageSize; i++) {
                     String newUrl = url + nextPageSuffix + i + nextPageSuffixAddition;
                     if (!nextPageSeeds.contains(newUrl)) {
                         nextPageSeeds.add(newUrl);
