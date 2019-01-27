@@ -11,9 +11,9 @@ public class Gizmodo {
     public static WebFlow build(){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2018, 12, 1);
+        calendarStart.set(2017, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2019, 1, 26);
+        calendarEnd.set(2018, 1, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -21,10 +21,26 @@ public class Gizmodo {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTY)
                 .addSeed("https://earther.gizmodo.com/")
+                .addSeed("https://gizmodo.com/c/design")
+                .addSeed("https://paleofuture.gizmodo.com/")
+                .addSeed("https://gizmodo.com/c/field-guide")
+                .addSeed("https://io9.gizmodo.com/")
                 .addSeed("https://gizmodo.com/c/review/cameras")
                 .addSeed("https://gizmodo.com/c/review/smart-home")
                 .addSeed("https://gizmodo.com/c/review/e-readers")
                 .addSeed("https://gizmodo.com/c/review/smartphones")
+                .addSeed("https://gizmodo.com/c/review/computer-components")
+                .addSeed("https://gizmodo.com/c/review/headphones")
+                .addSeed("https://gizmodo.com/c/review/laptops-tablets")
+                .addSeed("https://gizmodo.com/c/review/wearables")
+                .addSeed("https://gizmodo.com/c/review/computer-peripherals")
+                .addSeed("https://gizmodo.com/c/review/home-entertainment")
+                .addSeed("https://gizmodo.com/c/review/other-gadgets")
+                .addSeed("https://gizmodo.com/c/review/uncategorized")
+                .addSeed("https://gizmodo.com/c/review/drones")
+                .addSeed("https://gizmodo.com/c/review/home-audio")
+                .addSeed("https://gizmodo.com/c/review/bags")
+                .addSeed("https://gizmodo.com/c/review/kitchen-gadgets")
                 .setSuffixGenerator(new WebTimeGenerator("?startTime=",startDate, endDate))
                 .setThreadSize(4);
 

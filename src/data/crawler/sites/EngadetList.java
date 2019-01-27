@@ -28,9 +28,9 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(10)
+                .setNextPageSize(200)
                 .setNextPageStart(1)
-                .setThreadSize(4)
+                .setThreadSize(10)
                 .setMainPattern(authorPattern);
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
@@ -41,7 +41,7 @@ public class EngadetList implements Serializable {
                 .setNextPageSuffix("page/")
                 .setThreadSize(48)
                 .setNextPageStart(1)
-                .setNextPageSize(20)
+                .setNextPageSize(200)
                 .setForceWrite(false)
                 .setMainPattern(linkPattern);
 
