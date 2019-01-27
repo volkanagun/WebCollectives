@@ -21,9 +21,9 @@ public class MashableList implements Serializable {
 
         articleTemplate.addSeed("https://mashable.com/stories.json?").setNextPageSuffix("page=")
                 .setType("BLOG-DOC").setMultipleIdentifier(LookupOptions.ARTICLETITLE)
-                .setNextPageSize(8000)
-                .setNextPageStart(1)
-                .setThreadSize(48)
+                .setNextPageSize(500)
+                .setNextPageStart(2)
+                .setThreadSize(4)
                 .setLookComplete(true)
                 .setMainPattern(mainPattern);
 

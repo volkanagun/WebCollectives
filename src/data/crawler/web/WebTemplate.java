@@ -68,15 +68,15 @@ public class WebTemplate implements Serializable {
     }
 
     public abstract class DownloadCallable implements Callable<Boolean> {
-        String url;
+        WebSeed seed;
         int index;
         FailCount sharedCount;
         List<WebDocument> documentList;
 
-        public DownloadCallable(List<WebDocument> documentList, FailCount sharedCount, String url, int index) {
+        public DownloadCallable(List<WebDocument> documentList, FailCount sharedCount, WebSeed seed, int index) {
             super();
             this.index = index;
-            this.url = url;
+            this.seed = seed;
             this.documentList = documentList;
             this.sharedCount = sharedCount;
         }
@@ -89,8 +89,10 @@ public class WebTemplate implements Serializable {
     public static String TEXTPREFIX = "text://";
     private Boolean multipleDocuments = false;
     private String multipleIdentifier = null;
-    private List<String> seedList;
-    private Map<String, String> seedMap;
+    private List<WebSeed> seedList;
+    private Map<WebSeed, String> seedMap;
+
+
     private LookupPattern mainPattern;
     private String name;
     private String domain;
@@ -272,15 +274,23 @@ public class WebTemplate implements Serializable {
         return this.nextMap.isEmpty();
     }
 
-    public WebTemplate addSeed(String seed) {
+    public WebTemplate addSeed(WebSeed seed) {
         if (!seedList.contains(seed))
             seedList.add(seed);
 
         return this;
     }
 
-    public WebTemplate addSeeds(Set<String> seeds) {
-        for (String seed : seeds) {
+    public WebTemplate addSeed(String mainURL) {
+        WebSeed seed = new WebSeed(mainURL, mainURL, seedList.size());
+        if (!seedList.contains(seed))
+            seedList.add(seed);
+
+        return this;
+    }
+
+    public WebTemplate addSeeds(Set<WebSeed> seeds) {
+        for (WebSeed seed : seeds) {
 
             if (!seedList.contains(seed))
                 seedList.add(seed);
@@ -290,15 +300,21 @@ public class WebTemplate implements Serializable {
         return this;
     }
 
-    public WebTemplate addSeed(String genre, String seed) {
+    public WebTemplate addSeed(String genre, WebSeed seed) {
 
         seedMap.put(seed, genre);
         return addSeed(seed);
     }
 
+    public WebTemplate addSeed(String genre, String mainURL) {
+        WebSeed seed = new WebSeed(mainURL, mainURL, seedList.size());
+        seedMap.put(seed, genre);
+        return addSeed(seed);
+    }
 
-    public WebTemplate addSeeds(String genre, Set<String> seeds) {
-        for (String seed : seeds) {
+
+    public WebTemplate addSeeds(String genre, Set<WebSeed> seeds) {
+        for (WebSeed seed : seeds) {
             seedMap.put(seed, genre);
             addSeed(seed);
         }
@@ -308,14 +324,16 @@ public class WebTemplate implements Serializable {
 
     public WebTemplate addFolder(String folder) {
         File[] files = (new File(folder)).listFiles();
-        for (File file : files) {
-            addSeed(FILEPREFIX + file.getPath());
+        for (int i = 0; i < files.length; i++) {
+            File file = files[i];
+            WebSeed webSeed = new WebSeed(FILEPREFIX, FILEPREFIX + file.getPath(), i);
+            addSeed(webSeed);
         }
 
         return this;
     }
 
-    public List<String> getSeedList() {
+    public List<WebSeed> getSeedList() {
         return seedList;
     }
 
@@ -364,14 +382,14 @@ public class WebTemplate implements Serializable {
         return checkedList;
     }
 
-    public void zipXMLs(List<WebDocument> documentList){
+    public void zipXMLs(List<WebDocument> documentList) {
         saveXML(documentList);
 
         File files[] = new File(folder).listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {
                 String filename = pathname.getName();
-                String extention =  filename.substring(filename.lastIndexOf(".")+1);
+                String extention = filename.substring(filename.lastIndexOf(".") + 1);
                 return extention.equals("xml") || extention.equals(filename);
             }
         });
@@ -379,7 +397,7 @@ public class WebTemplate implements Serializable {
         String hashcode = String.valueOf(Arrays.asList(files).hashCode());
 
         try (ArchiveOutputStream o = new ArchiveStreamFactory().createArchiveOutputStream(ArchiveStreamFactory.ZIP,
-                new FileOutputStream(folder+hashcode+".zip"))) {
+                new FileOutputStream(folder + hashcode + ".zip"))) {
             for (File f : files) {
                 // maybe skip directories for formats like AR that don't store directories
                 ArchiveEntry entry = o.createArchiveEntry(f, f.getName());
@@ -422,7 +440,8 @@ public class WebTemplate implements Serializable {
             }
         }
 
-        System.out.println("Success rate: "+sucessRate/documentList.size());
+
+        System.out.println("Success rate: " + sucessRate / (documentList.size()==0?1.0:documentList.size()));
     }
 
     public void saveXMLMultiDocs(List<WebDocument> documentList) {
@@ -461,7 +480,7 @@ public class WebTemplate implements Serializable {
         else return domain + mainUrl;
     }
 
-    public void goSleep(){
+    public void goSleep() {
 
         try {
             Thread.sleep(sleepTime);
@@ -470,7 +489,7 @@ public class WebTemplate implements Serializable {
         }
     }
 
-    public void goSleep(Long waitTime){
+    public void goSleep(Long waitTime) {
 
         try {
             Thread.sleep(waitTime);
@@ -514,13 +533,15 @@ public class WebTemplate implements Serializable {
                     String templateLink = templateIter.next();
                     WebTemplate template = getNextMap(templateLink);
                     String templateDomain = template.domain;
-                    for (LookupResult result : document.getLookupFinalList(templateLink)) {
-
+                    List<LookupResult> subResults = document.getLookupFinalList(templateLink);
+                    for (int k = 0; k < subResults.size(); k++) {
+                        LookupResult result = subResults.get(k);
+                        WebSeed newSeed = new WebSeed(document.getUrl(), url(templateDomain, result.getText()), k);
                         if (genre != null) {
-                            template.addSeed(genre, url(templateDomain, result.getText()));
+                            template.addSeed(genre, newSeed);
                             //addGenreSeed(nextSeedMap, templateLink, genre, templateDomain + result.getText());
                         } else {
-                            template.addSeed(url(templateDomain, result.getText()));
+                            template.addSeed(newSeed);
                             //addSeed(nextSeedList, templateLink, templateDomain + result.getText());
                             //nextSeedList.add(domain + result.getText());
                         }
@@ -560,22 +581,23 @@ public class WebTemplate implements Serializable {
         return mainDocument;
     }
 
-    public void pushGenerateSeeds(List<String> nextPageSeeds, Map<String, String> nextPageSeedGenre) {
+    public void pushGenerateSeeds(List<WebSeed> nextPageSeeds, Map<WebSeed, String> nextPageSeedGenre) {
         Collections.shuffle(seedList);
 
         if (nextPageSuffix != null && !nextPageSuffix.isEmpty()) {
 
-            for (String url : seedList) {
-                for (int i = nextPageStart; i <= nextPageStart+nextPageSize; i++) {
-                    String newUrl = url + nextPageSuffix + i + nextPageSuffixAddition;
-                    if (!nextPageSeeds.contains(newUrl)) {
-                        nextPageSeeds.add(newUrl);
-                        nextPageSeedGenre.put(newUrl, seedMap.get(url));
+            for (WebSeed webSeed : seedList) {
+                for (int i = nextPageStart; i <= nextPageStart + nextPageSize; i++) {
+                    String newUrl = webSeed.getRequestURL() + nextPageSuffix + i + nextPageSuffixAddition;
+                    WebSeed newSeed = new WebSeed(webSeed.getRequestURL(), newUrl, i);
+                    if (!nextPageSeeds.contains(newSeed)) {
+                        nextPageSeeds.add(newSeed);
+                        nextPageSeedGenre.put(newSeed, seedMap.get(webSeed));
                     }
                 }
             }
 
-            for (String url : nextPageSeeds) {
+            for (WebSeed url : nextPageSeeds) {
 
                 if (!seedList.contains(url)) {
                     seedList.add(url);
@@ -587,22 +609,31 @@ public class WebTemplate implements Serializable {
         if (suffixGenerator != null) {
             int size = seedList.size();
             for (int i = 0; i < size; i++) {
-                String url = seedList.get(i);
-                List<String> generatedSeeds = suffixGenerator.apply(url);
-                for (String generatedUrl : generatedSeeds) {
-                    if (!seedList.contains(generatedUrl)) {
-                        seedList.add(generatedUrl);
-                        seedMap.put(generatedUrl, seedMap.get(url));
+                WebSeed webSeed = seedList.get(i);
+                List<String> generatedSeeds = suffixGenerator.apply(webSeed.getRequestURL());
+                for (int j = 0; j < generatedSeeds.size(); j++) {
+                    String generatedUrl = generatedSeeds.get(j);
+                    WebSeed generatedSeed = new WebSeed(webSeed.getRequestURL(), generatedUrl, j);
+                    if (!seedList.contains(generatedSeed)) {
+                        seedList.add(generatedSeed);
+                        seedMap.put(generatedSeed, seedMap.get(webSeed));
                     }
                 }
             }
         }
     }
 
+    private Integer seedNumber(Map<String, Integer> map, String url) {
+        synchronized (map) {
+            return map.get(url);
+        }
+    }
+
     public List<WebDocument> download() {
         List<WebDocument> htmlDocumentList = new ArrayList<>();
-        List<String> nextPageSeeds = new ArrayList<>();
-        Map<String, String> nextPageSeedGenre = new HashMap<>();
+        List<WebSeed> nextPageSeeds = new ArrayList<>();
+        Map<WebSeed, String> nextPageSeedGenre = new HashMap<>();
+        Map<String, Integer> failMap = new HashMap<>();
 
 
         pushGenerateSeeds(nextPageSeeds, nextPageSeedGenre);
@@ -612,24 +643,27 @@ public class WebTemplate implements Serializable {
         Collections.shuffle(seedList);
         for (int i = 0; i < seedList.size(); i++) {
 
-            String url = seedList.get(i);
-            DownloadCallable thread = new DownloadCallable(htmlDocumentList, failCount, url, i) {
+            WebSeed webSeed = seedList.get(i);
+            DownloadCallable thread = new DownloadCallable(htmlDocumentList, failCount, webSeed, i) {
                 @Override
                 public Boolean call() {
 
-                    WebDocument document = new WebDocument(folder, name, url);
+
+                    WebDocument document = new WebDocument(folder, name, webSeed.getRequestURL());
+                    Integer seedNumber = seedNumber(failMap, webSeed.getMainURL());
+
                     Boolean returnResult = false;
-                    if (!document.filenameExists()) {
+                    if (!document.filenameExists() && webSeed.doRequest(seedNumber)) {
                         goSleep(100L);
-                        String downloadedHTML = downloadFile(url, charset);
+                        String downloadedHTML = downloadFile(webSeed.getRequestURL(), charset);
                         if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
                             document.setFetchDate(new Date());
                             document.setText(downloadedHTML);
                             document.setDomain(domain);
                             document.setType(type);
                             document.setLookComplete(lookComplete);
-                            if (seedMap.containsKey(url)) {
-                                document.putProperty(LookupOptions.GENRE, seedMap.get(url));
+                            if (seedMap.containsKey(webSeed)) {
+                                document.putProperty(LookupOptions.GENRE, seedMap.get(webSeed));
                             }
                             document.setIndex(index);
 
@@ -638,6 +672,17 @@ public class WebTemplate implements Serializable {
                             }
 
                             returnResult = extract(document);
+                        } else {
+                            synchronized (failMap) {
+                                String seedUrl = webSeed.getMainURL();
+                                if (failMap.containsKey(seedUrl)) {
+                                    Integer number = Math.min(failMap.get(seedUrl), webSeed.getSeedNumber());
+                                    failMap.put(seedUrl, webSeed.getSeedNumber());
+                                } else {
+                                    failMap.put(seedUrl, webSeed.getSeedNumber());
+                                }
+
+                            }
                         }
 
                     }
@@ -724,7 +769,7 @@ public class WebTemplate implements Serializable {
 
     private String downloadPage(String address, String charset, int tryCount) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
         String text = "";
-        if(tryCount > 2) return text;
+        if (tryCount > 2) return text;
 
         if (address != null && !address.isEmpty()) {
             address = address.replaceAll("\\s", "%20");
@@ -792,7 +837,7 @@ public class WebTemplate implements Serializable {
                 } catch (IOException ex) {
                     System.out.println("Error in url retrying... '" + address + "'");
 
-                    text = downloadPage(address,charset, ++tryCount);
+                    text = downloadPage(address, charset, ++tryCount);
 
                 } catch (InterruptedException ex) {
                     Logger.getLogger(WebTemplate.class.getName()).log(Level.SEVERE, null, ex);

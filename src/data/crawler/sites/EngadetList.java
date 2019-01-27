@@ -28,20 +28,21 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(10)
+                .setNextPageSize(5)
                 .setNextPageStart(1)
-                .setThreadSize(5)
+                .setThreadSize(4)
                 .setMainPattern(authorPattern);
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"th-title\">", "</div>")
-                .setStartEndMarker("<div", "</div>")
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<article class=\"o-hit(.*?)\">", "</article>")
+                .setStartEndMarker("<article", "</article>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a data-ylk=\"pos(.*?)href=\"", "\""));
         linkTemplate.setDomain("https://www.engadget.com/")
                 .setNextPageSuffix("page/")
-                .setThreadSize(4)
+                .setThreadSize(48)
                 .setNextPageStart(1)
-                .setNextPageSize(20)
+                .setNextPageSize(250)
+                .setForceWrite(false)
                 .setMainPattern(linkPattern);
 
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN);
@@ -62,7 +63,7 @@ public class EngadetList implements Serializable {
 
         topPattern.addPattern(mainPattern);
         mainTemplate.setMainPattern(topPattern).setDomain("https://www.engadget.com")
-                .setThreadSize(4)
+                .setThreadSize(1)
                 .setForceWrite(true)
                 .setLookComplete(true)
                 .setType("BLOG-DOC");

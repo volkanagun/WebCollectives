@@ -12,9 +12,9 @@ public class HuffingtonPost implements Serializable {
     public static WebFlow build() {
         //
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2018, 1, 1);
+        calendarStart.set(2006, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2019, 1, 20);
+        calendarEnd.set(2008, 1, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -31,7 +31,8 @@ public class HuffingtonPost implements Serializable {
 
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-text", "https://www.huffingtonpost.com/")
                 .setDomain("https://www.huffingtonpost.com/")
-                .setThreadSize(4).setSleepTime(30000L);
+                .setThreadSize(4)
+                .setSleepTime(30000L);
 
         LookupPattern mainPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div\\sid\\=\"main\"\\srole\\=\"main\">", "</div>")
                 .setStartEndMarker("<div", "</div>")

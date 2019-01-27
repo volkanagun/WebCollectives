@@ -13,16 +13,15 @@ public class InternetHaber {
     public static WebFlow build(){
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
-                .addSeed("http://www.internethaber.com/politika")
-                .addSeed("http://www.internethaber.com/dunya")
-                .addSeed("http://www.internethaber.com/ekonomi")
-
-                .addSeed("http://www.internethaber.com/spor")
+                //.addSeed("http://www.internethaber.com/politika")
+                //.addSeed("http://www.internethaber.com/dunya")
+                //.addSeed("http://www.internethaber.com/ekonomi")
+                //.addSeed("http://www.internethaber.com/spor")
                 .addSeed("http://www.internethaber.com/guncel-haberler")
-                .setNextPageStart(1)
-                .setNextPageSize(24)
+                .setNextPageStart(14000)
+                .setNextPageSize(2000)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(12);
+                .setThreadSize(4);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
@@ -34,7 +33,7 @@ public class InternetHaber {
 
 
         //Article Download
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", LookupOptions.EMPTY)
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(false)
                 .setThreadSize(4)
