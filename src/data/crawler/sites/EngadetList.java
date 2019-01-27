@@ -28,7 +28,7 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(5)
+                .setNextPageSize(10)
                 .setNextPageStart(1)
                 .setThreadSize(4)
                 .setMainPattern(authorPattern);
@@ -41,7 +41,7 @@ public class EngadetList implements Serializable {
                 .setNextPageSuffix("page/")
                 .setThreadSize(48)
                 .setNextPageStart(1)
-                .setNextPageSize(250)
+                .setNextPageSize(20)
                 .setForceWrite(false)
                 .setMainPattern(linkPattern);
 
@@ -49,15 +49,16 @@ public class EngadetList implements Serializable {
         LookupPattern topPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, LookupOptions.EMPTY)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<meta\\sclass\\=\"swiftype\"\\sname\\=\"published_at\"(.*?)content=\"", "\">"));
 
-        LookupPattern mainPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<article\\sclass\\=\"(.*?)\">", "</article>")
-                .setStartEndMarker("<article", "</article>")
+        LookupPattern mainPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "(<main role=\"main\"(.*?)>)", "(</main>)")
+                .setStartEndMarker("(<main)", "(</main>)")
                 .setType(LookupOptions.SKIP)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">", "</h1>"))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, null, null).setSingleRegex("(href\\=\"/about/(.*?))")
-                        .setSingleGroup(2))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">", "</h1>").setNth(0))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, null, null).setSingleRegex("(href\\=\"/about/editors/(.*?)\")")
+                        .setSingleGroup(2).setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, null, null).setSingleRegex("(href\\=\"/tags/(.*?)\")")
-                        .setSingleGroup(2))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div id=\"page_body\">", "</div>")
+                        .setNth(0)
+                        .setSingleGroup(2).setNth(0))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div id=\"page\\_body\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")));
 

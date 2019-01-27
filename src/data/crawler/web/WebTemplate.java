@@ -105,6 +105,7 @@ public class WebTemplate implements Serializable {
     private String nextPageSuffixAddition = "";
     private Integer nextPageSize;
     private Integer nextPageStart;
+    private Integer nextPageJump = 1;
     private Integer threadSize = 2;
     private Long sleepTime = 200L;
 
@@ -211,6 +212,14 @@ public class WebTemplate implements Serializable {
     public WebTemplate setNextPageSize(Integer nextPageSize) {
         this.nextPageSize = nextPageSize;
         return this;
+    }
+
+    public Integer getNextPageJump() {
+        return nextPageJump;
+    }
+
+    public void setNextPageJump(Integer nextPageJump) {
+        this.nextPageJump = nextPageJump;
     }
 
     public WebTemplate setDomain(String domain) {
@@ -587,7 +596,7 @@ public class WebTemplate implements Serializable {
         if (nextPageSuffix != null && !nextPageSuffix.isEmpty()) {
 
             for (WebSeed webSeed : seedList) {
-                for (int i = nextPageStart; i <= nextPageStart + nextPageSize; i++) {
+                for (int i = nextPageStart; i <= nextPageStart + nextPageSize; i+=nextPageJump) {
                     String newUrl = webSeed.getRequestURL() + nextPageSuffix + i + nextPageSuffixAddition;
                     WebSeed newSeed = new WebSeed(webSeed.getRequestURL(), newUrl, i);
                     if (!nextPageSeeds.contains(newSeed)) {

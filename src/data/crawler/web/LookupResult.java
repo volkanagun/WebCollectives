@@ -26,6 +26,7 @@ public class LookupResult implements Serializable {
     public void addSubList(LookupResult lookupResult) {
         //if (!subList.contains(lookupResult))
             subList.add(lookupResult);
+
     }
 
     public void addSubList(List<LookupResult> lookupResults) {
@@ -93,7 +94,7 @@ public class LookupResult implements Serializable {
         this.type = type;
     }
 
-    @Override
+    /*@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -103,6 +104,17 @@ public class LookupResult implements Serializable {
         if (!label.equals(that.label)) return false;
         if (!text.equals(that.text)) return false;
         return type.equals(that.type);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LookupResult that = (LookupResult) o;
+        return label.equals(that.label) &&
+                text.equals(that.text) &&
+                type.equals(that.type) &&
+                subList.equals(that.subList);
     }
 
     @Override

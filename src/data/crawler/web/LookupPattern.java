@@ -40,7 +40,7 @@ public class LookupPattern implements Serializable {
     }
 
     private String regexifier(String regex) {
-        if(regex!=null) {
+        if (regex != null) {
             regex = regex.replaceAll("\\s", "\\\\s");
             regex = regex.replaceAll("\\-", "\\\\-");
         }
@@ -192,17 +192,15 @@ public class LookupPattern implements Serializable {
         return subpatterns;
     }
 
-    public List<String> getNonSkipSubpatternLabels(){
+    public List<String> getNonSkipSubpatternLabels() {
         List<String> labels = new ArrayList<>();
-        for(LookupPattern subPattern:subpatterns){
-            if(subPattern.getSubpatterns().isEmpty()){
+        for (LookupPattern subPattern : subpatterns) {
+            if (subPattern.getSubpatterns().isEmpty()) {
                 labels.add(subPattern.label);
-            }
-            else if(!subPattern.getSubpatterns().isEmpty()) if(!subPattern.getLabel().equals(LookupOptions.SKIP)){
+            } else if (!subPattern.getSubpatterns().isEmpty()) if (!subPattern.getLabel().equals(LookupOptions.SKIP)) {
                 labels.add(subPattern.label);
                 labels.addAll(subPattern.getNonSkipSubpatternLabels());
-            }
-            else {
+            } else {
                 labels.addAll(subPattern.getNonSkipSubpatternLabels());
             }
 
@@ -238,8 +236,10 @@ public class LookupPattern implements Serializable {
 
         if (subpatterns.isEmpty()) {
             for (String partialResult : partialResults) {
-
-                lookupResults.add(new LookupResult(type, label, partialResult));
+                LookupResult subResult = new LookupResult(type, label, partialResult);
+                if (!lookupResults.contains(subResult)) {
+                    lookupResults.add(subResult);
+                }
             }
         } else {
 
@@ -249,6 +249,7 @@ public class LookupPattern implements Serializable {
                 for (LookupPattern partialPattern : subpatterns) {
                     List<LookupResult> subLookupResults = partialPattern.getResult(propertyMap, partialResult);
                     lookupResult.addSubList(subLookupResults);
+
                 }
                 lookupResults.add(lookupResult);
             }
@@ -277,23 +278,18 @@ public class LookupPattern implements Serializable {
             } else if (type.equals(LookupOptions.LOOKUP)) {
                 if (value != null && propertyMap.containsKey(value))
                     resultList.add(propertyMap.get(value));
-            }
-            else if(type.equals(LookupOptions.CONTAINER) && value.isEmpty()){
+            } else if (type.equals(LookupOptions.CONTAINER) && value.isEmpty()) {
                 resultList.add(partial);
             }
-        }
-
-        else if (!type.equals(LookupOptions.TEXT) && startMarker != null && endMarker != null) {
+        } else if (!type.equals(LookupOptions.TEXT) && startMarker != null && endMarker != null) {
             TextPattern.obtainPatterns(startRegex, endRegex, startMarker, endMarker, partial, resultList);
-        } else if(type.equals(LookupOptions.TEXT) && singleRegex!=null){
-            TextPattern.obtainPatterns(singleRegex,singleGroup, false, partial, resultList);
+        } else if (type.equals(LookupOptions.TEXT) && singleRegex != null) {
+            TextPattern.obtainPatterns(singleRegex, singleGroup, false, partial, resultList);
         } else if (!type.equals(LookupOptions.TEXT)) {
             TextPattern.obtainPatterns(startRegex, endRegex, false, partial, resultList);
-        }
-        else if(type.equals(LookupOptions.TEXT) && regex!=null){
+        } else if (type.equals(LookupOptions.TEXT) && regex != null) {
             TextPattern.obtainPatterns(startRegex, endRegex, false, partial, resultList);
-        }
-        else if(type.equals(LookupOptions.TEXT)){
+        } else if (type.equals(LookupOptions.TEXT)) {
             TextPattern.obtainPatterns(startRegex, endRegex, removeTags, partial, resultList);
         }
 
