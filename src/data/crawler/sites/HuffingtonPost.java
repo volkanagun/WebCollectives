@@ -12,7 +12,7 @@ public class HuffingtonPost implements Serializable {
     public static WebFlow build() {
         //
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2006, 1, 1);
+        calendarStart.set(2002, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
         calendarEnd.set(2008, 1, 1);
 

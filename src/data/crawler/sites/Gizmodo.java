@@ -11,9 +11,9 @@ public class Gizmodo {
     public static WebFlow build(){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2017, 1, 1);
+        calendarStart.set(2010, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2018, 1, 1);
+        calendarEnd.set(2010, 12, 31);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -25,7 +25,7 @@ public class Gizmodo {
                 .addSeed("https://paleofuture.gizmodo.com/")
                 .addSeed("https://gizmodo.com/c/field-guide")
                 .addSeed("https://io9.gizmodo.com/")
-                .addSeed("https://gizmodo.com/c/review/cameras")
+                /*.addSeed("https://gizmodo.com/c/review/cameras")
                 .addSeed("https://gizmodo.com/c/review/smart-home")
                 .addSeed("https://gizmodo.com/c/review/e-readers")
                 .addSeed("https://gizmodo.com/c/review/smartphones")
@@ -41,8 +41,9 @@ public class Gizmodo {
                 .addSeed("https://gizmodo.com/c/review/home-audio")
                 .addSeed("https://gizmodo.com/c/review/bags")
                 .addSeed("https://gizmodo.com/c/review/kitchen-gadgets")
+                */
                 .setSuffixGenerator(new WebTimeGenerator("?startTime=",startDate, endDate))
-                .setThreadSize(4);
+                .setThreadSize(20);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<article class(.*?)>", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<h1 class(.*?)>", "</h1>")
@@ -57,10 +58,10 @@ public class Gizmodo {
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.BLOGDOC)
                 .setLookComplete(false)
-                .setThreadSize(4)
+                .setThreadSize(2)
                 .setForceWrite(true);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article class=(.*?)>", "</article>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article class(.*?)>", "</article>")
                 .setStartEndMarker("<article","</article>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE,"Filed to: <span>","</span>"))
                 /*.addPattern(new LookupPattern(LookupOptions.GENRE, LookupOptions.CONTAINER, "<div class=\"storytype(.*?)\">","</div>")
@@ -68,14 +69,14 @@ public class Gizmodo {
                         .setType(LookupOptions.SKIP)
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "<a(.*?)>","</a>")
                                 .setNth(0)))*/
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class(.*?)>","</h1>")
                         .setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.AUTHOR, "<div class=\"meta__byline js_meta-byline author \">","</div>")
                         .setStartEndMarker("<div","</div>")
                         .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<time class=\"(.*?)\" datetime=\"","\">")
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT,"<div class=\"post-content(.*?)>","</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT,"<div class=\"post-content(.*?)\">","</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"<p>","</p>")
                                 .setRemoveTags(true)));

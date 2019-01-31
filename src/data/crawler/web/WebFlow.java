@@ -28,7 +28,16 @@ public class WebFlow implements Serializable, Callable<Boolean> {
         this.mainTemplate = mainTemplate;
         this.folder = folder;
         this.mainTemplate.setFolder(folder + mainTemplate.getFolder());
+    }
 
+    public WebFlow setMainLookComplete(boolean lookComplete){
+        mainTemplate.setLookComplete(lookComplete);
+        return this;
+    }
+
+    public WebFlow setMainDirectory(String directory){
+        mainTemplate.setFolder(directory);
+        return this;
     }
 
     @Override

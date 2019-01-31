@@ -450,7 +450,7 @@ public class WebTemplate implements Serializable {
         }
 
 
-        System.out.println("Success rate: " + sucessRate / (documentList.size()==0?1.0:documentList.size()));
+        System.out.println("Success rate: " + sucessRate / (documentList.size() == 0 ? 1.0 : documentList.size()));
     }
 
     public void saveXMLMultiDocs(List<WebDocument> documentList) {
@@ -596,7 +596,7 @@ public class WebTemplate implements Serializable {
         if (nextPageSuffix != null && !nextPageSuffix.isEmpty()) {
 
             for (WebSeed webSeed : seedList) {
-                for (int i = nextPageStart; i <= nextPageStart + nextPageSize; i+=nextPageJump) {
+                for (int i = nextPageStart; i <= nextPageStart + nextPageSize; i += nextPageJump) {
                     String newUrl = webSeed.getRequestURL() + nextPageSuffix + i + nextPageSuffixAddition;
                     WebSeed newSeed = new WebSeed(webSeed.getRequestURL(), newUrl, i);
                     if (!nextPageSeeds.contains(newSeed)) {
@@ -840,7 +840,7 @@ public class WebTemplate implements Serializable {
                         }
                     };
 
-                    Thread.sleep(1000);
+                    sleep(1000);
                     text = httpClient.execute(request, rh); //request.execute();
 
                 } catch (IOException ex) {
@@ -848,13 +848,19 @@ public class WebTemplate implements Serializable {
 
                     text = downloadPage(address, charset, ++tryCount);
 
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(WebTemplate.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
 
         return text;
+    }
+
+    public void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // restore interrupted status
+        }
     }
 
 

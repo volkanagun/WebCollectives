@@ -18,7 +18,7 @@ public class InternetHaber {
                 //.addSeed("http://www.internethaber.com/ekonomi")
                 //.addSeed("http://www.internethaber.com/spor")
                 .addSeed("http://www.internethaber.com/guncel-haberler")
-                .setNextPageStart(13000)
+                .setNextPageStart(12000)
                 .setNextPageSize(1000)
                 .setNextPageSuffix("?page=")
                 .setThreadSize(4);
@@ -36,7 +36,7 @@ public class InternetHaber {
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(false)
-                .setThreadSize(4)
+                .setThreadSize(6)
                 .setForceWrite(true);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"newsDetail\">", "</div>")

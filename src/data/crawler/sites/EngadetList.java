@@ -28,9 +28,9 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(200)
+                .setNextPageSize(2)
                 .setNextPageStart(1)
-                .setThreadSize(10)
+                .setThreadSize(6)
                 .setMainPattern(authorPattern);
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
@@ -39,9 +39,9 @@ public class EngadetList implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a data-ylk=\"pos(.*?)href=\"", "\""));
         linkTemplate.setDomain("https://www.engadget.com/")
                 .setNextPageSuffix("page/")
-                .setThreadSize(48)
+                .setThreadSize(6)
                 .setNextPageStart(1)
-                .setNextPageSize(200)
+                .setNextPageSize(2)
                 .setForceWrite(false)
                 .setMainPattern(linkPattern);
 
@@ -58,13 +58,13 @@ public class EngadetList implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, null, null).setSingleRegex("(href\\=\"/tags/(.*?)\")")
                         .setNth(0)
                         .setSingleGroup(2).setNth(0))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div id=\"page\\_body\"(.*?)>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div id=\"page_body\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")));
 
         topPattern.addPattern(mainPattern);
         mainTemplate.setMainPattern(topPattern).setDomain("https://www.engadget.com")
-                .setThreadSize(1)
+                .setThreadSize(4)
                 .setForceWrite(true)
                 .setLookComplete(true)
                 .setType("BLOG-DOC");

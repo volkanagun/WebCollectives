@@ -60,6 +60,7 @@ public class LookupOptions implements Serializable {
     public static String TECHDIRECTORY = "resources/technology";
     public static String BLOGDIRECTORY = "resources/blogs-turkish";
     public static String BLOGENGDIRECTORY = "resources/blogs-english";
+    public static String TEXTENGDIRECTORY = "resources/texts-english";
     public static String SIKAYETVARGDIRECTORY = "resources/sikayet-var";
 
     public static String BLOGTRYDIRECTORY = "resources/blogs-trial";

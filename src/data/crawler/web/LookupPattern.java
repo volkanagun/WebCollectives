@@ -43,6 +43,8 @@ public class LookupPattern implements Serializable {
         if (regex != null) {
             regex = regex.replaceAll("\\s", "\\\\s");
             regex = regex.replaceAll("\\-", "\\\\-");
+            regex = regex.replaceAll("\\:", "\\\\:");
+            regex = regex.replaceAll("\\_", "\\\\_");
         }
 
         return regex;
