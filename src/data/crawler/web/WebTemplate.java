@@ -435,14 +435,14 @@ public class WebTemplate implements Serializable {
         double sucessRate = 0d;
         if (multipleIdentifier == null) {
             for (WebDocument document : documentList) {
-                if (document.isComplete(mainPattern)) {
+                if (!lookComplete || document.isComplete(mainPattern)) {
                     document.saveAsFlatXML();
                     sucessRate++;
                 }
             }
         } else {
             for (WebDocument document : documentList) {
-                if (document.isComplete(mainPattern)) {
+                if (!lookComplete || document.isComplete(mainPattern)) {
                     document.saveAsMultiXML(multipleIdentifier);
                     sucessRate++;
                 }

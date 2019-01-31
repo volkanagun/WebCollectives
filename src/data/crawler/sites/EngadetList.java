@@ -14,8 +14,8 @@ import java.util.concurrent.Executors;
  * Should be updated!!!
  */
 public class EngadetList implements Serializable {
-    public static WebFlow build() {
-        WebTemplate authorTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "author-links", LookupOptions.EMPTYDOMAIN);
+    public static WebFlow build(String mainFolder) {
+        WebTemplate authorTemplate = new WebTemplate(mainFolder, "author-links", LookupOptions.EMPTYDOMAIN);
         /*LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<span\\sclass\\=\"block@m-\">", "</span>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a\\shref\\=\"", "\"(.*?)>"));
 */
@@ -28,12 +28,12 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(2)
+                .setNextPageSize(2000)
                 .setNextPageStart(1)
                 .setThreadSize(6)
                 .setMainPattern(authorPattern);
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
+        WebTemplate linkTemplate = new WebTemplate(mainFolder, "blog-links", LookupOptions.EMPTYDOMAIN);
         LookupPattern linkPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<article class=\"o-hit(.*?)\">", "</article>")
                 .setStartEndMarker("<article", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a data-ylk=\"pos(.*?)href=\"", "\""));
@@ -41,11 +41,11 @@ public class EngadetList implements Serializable {
                 .setNextPageSuffix("page/")
                 .setThreadSize(6)
                 .setNextPageStart(1)
-                .setNextPageSize(2)
+                .setNextPageSize(200)
                 .setForceWrite(false)
                 .setMainPattern(linkPattern);
 
-        WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN);
+        WebTemplate mainTemplate = new WebTemplate(mainFolder, "blog-text", LookupOptions.EMPTYDOMAIN);
         LookupPattern topPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, LookupOptions.EMPTY)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<meta\\sclass\\=\"swiftype\"\\sname\\=\"published_at\"(.*?)content=\"", "\">"));
 
@@ -79,7 +79,7 @@ public class EngadetList implements Serializable {
 
     public static void main(String[] args) {
         ExecutorService service = Executors.newFixedThreadPool(5);
-        WebFlow.submit(service, build());
+        WebFlow.submit(service, build(LookupOptions.BLOGENGDIRECTORY));
         service.shutdown();
     }
 }

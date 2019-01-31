@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class HuffingtonPost implements Serializable {
-    public static WebFlow build() {
+    public static WebFlow build(String mainFolder) {
         //
         Calendar calendarStart = Calendar.getInstance();
         calendarStart.set(2002, 1, 1);
@@ -19,7 +19,7 @@ public class HuffingtonPost implements Serializable {
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN)
+        WebTemplate linkTemplate = new WebTemplate(mainFolder, "blog-links", LookupOptions.EMPTYDOMAIN)
                 .setSuffixGenerator(new WebDateGenerator("yyyy-MM-dd", startDate, endDate))
                 .setThreadSize(4)
                 .addSeed("https://www.huffingtonpost.com/archive/");
@@ -29,7 +29,7 @@ public class HuffingtonPost implements Serializable {
 
         linkTemplate.setMainPattern(linkPattern);
 
-        WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-text", "https://www.huffingtonpost.com/")
+        WebTemplate mainTemplate = new WebTemplate(mainFolder, "blog-text", "https://www.huffingtonpost.com/")
                 .setDomain("https://www.huffingtonpost.com/")
                 .setThreadSize(4)
                 .setSleepTime(30000L);
@@ -55,7 +55,7 @@ public class HuffingtonPost implements Serializable {
 
     public static void main(String[] args){
         ExecutorService service = Executors.newFixedThreadPool(5);
-        WebFlow.submit(service, build());
+        WebFlow.submit(service, build(LookupOptions.BLOGENGDIRECTORY));
         service.shutdown();
     }
 }

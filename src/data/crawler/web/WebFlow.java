@@ -94,10 +94,10 @@ public class WebFlow implements Serializable, Callable<Boolean> {
         WebFlow panLargeTest = PAN.buildForPAN2011LargeTest();
         WebFlow panSmallTest = PAN.buildForPAN2011SmallTest();
         WebFlow panSmallTrain = PAN.buildForPAN2011SmallTrain();
-        WebFlow flowBoingBlogList = BoingBlogList.build();
-        WebFlow flowMashableBlogList = MashableList.build();
-        WebFlow flowEngadetList = EngadetList.build();
-        WebFlow flowHuffingtonList = HuffingtonPost.build();
+        WebFlow flowBoingBlogList = BoingBlogList.build(LookupOptions.BLOGENGDIRECTORY);
+        WebFlow flowMashableBlogList = MashableList.build(LookupOptions.BLOGENGDIRECTORY);
+        WebFlow flowEngadetList = EngadetList.build(LookupOptions.BLOGENGDIRECTORY);
+        WebFlow flowHuffingtonList = HuffingtonPost.build(LookupOptions.BLOGENGDIRECTORY);
 
 
         /*submit(service, panSmallTest);

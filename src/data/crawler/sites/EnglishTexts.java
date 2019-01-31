@@ -12,14 +12,13 @@ public class EnglishTexts {
     public static List<WebFlow> build(){
         List<WebFlow> webFlows = new ArrayList<>();
 
-        webFlows.add(EngadetList.build());
-        webFlows.add(Gizmodo.build());
-        webFlows.add(HuffingtonPost.build());
-        webFlows.add(MashableList.build());
-        webFlows.add(BoingBlogList.build());
+        webFlows.add(EngadetList.build(LookupOptions.TEXTENGDIRECTORY));
+        webFlows.add(Gizmodo.build(LookupOptions.TEXTENGDIRECTORY));
+        webFlows.add(HuffingtonPost.build(LookupOptions.TEXTENGDIRECTORY));
+        webFlows.add(MashableList.build(LookupOptions.TEXTENGDIRECTORY));
+        webFlows.add(BoingBlogList.build(LookupOptions.TEXTENGDIRECTORY));
         for(WebFlow webFlow:webFlows){
             webFlow.setMainLookComplete(false);
-            webFlow.setMainDirectory(LookupOptions.TEXTENGDIRECTORY);
         }
 
         return webFlows;

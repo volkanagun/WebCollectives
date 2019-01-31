@@ -8,18 +8,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Gizmodo {
-    public static WebFlow build(){
+    public static WebFlow build(String mainFolder){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2010, 1, 1);
+        calendarStart.set(2005, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2010, 12, 31);
+        calendarEnd.set(2018, 12, 31);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
 
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-links", LookupOptions.EMPTY)
+        WebTemplate linkTemplate = new WebTemplate(mainFolder, "blog-links", LookupOptions.EMPTY)
                 .addSeed("https://earther.gizmodo.com/")
                 .addSeed("https://gizmodo.com/c/design")
                 .addSeed("https://paleofuture.gizmodo.com/")
@@ -43,7 +43,7 @@ public class Gizmodo {
                 .addSeed("https://gizmodo.com/c/review/kitchen-gadgets")
                 */
                 .setSuffixGenerator(new WebTimeGenerator("?startTime=",startDate, endDate))
-                .setThreadSize(20);
+                .setThreadSize(4);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<article class(.*?)>", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<h1 class(.*?)>", "</h1>")
@@ -55,13 +55,13 @@ public class Gizmodo {
 
 
         //Article Download
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGENGDIRECTORY, "blog-text", LookupOptions.EMPTY)
+        WebTemplate articleTemplate = new WebTemplate(mainFolder, "blog-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.BLOGDOC)
                 .setLookComplete(false)
                 .setThreadSize(2)
                 .setForceWrite(true);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article class(.*?)>", "</article>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
                 .setStartEndMarker("<article","</article>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE,"Filed to: <span>","</span>"))
                 /*.addPattern(new LookupPattern(LookupOptions.GENRE, LookupOptions.CONTAINER, "<div class=\"storytype(.*?)\">","</div>")
@@ -93,7 +93,7 @@ public class Gizmodo {
 
     public static void main(String[] args){
         ExecutorService service = Executors.newFixedThreadPool(1);
-        WebFlow.submit(service, build());
+        WebFlow.submit(service, build(LookupOptions.BLOGENGDIRECTORY));
         service.shutdown();
     }
 }

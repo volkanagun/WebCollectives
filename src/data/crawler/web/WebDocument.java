@@ -48,12 +48,15 @@ public class WebDocument implements Serializable {
 
 
     public WebDocument addWebFlowResult(WebDocument webDocument) {
+        //webDocument.setFolder(folder);
         this.webFlowResultList.add(webDocument);
         return this;
     }
 
     public WebDocument addWebFlowResult(List<WebDocument> webDocumentList) {
-        this.webFlowResultList.addAll(webDocumentList);
+        for(WebDocument webDocument:webDocumentList) {
+            addWebFlowResult(webDocument);
+        }
         return this;
     }
 
