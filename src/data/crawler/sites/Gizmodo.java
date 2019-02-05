@@ -11,9 +11,9 @@ public class Gizmodo {
     public static WebFlow build(String mainFolder){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2005, 1, 1);
+        calendarStart.set(2015, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2018, 12, 31);
+        calendarEnd.set(2016, 1, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -43,7 +43,7 @@ public class Gizmodo {
                 .addSeed("https://gizmodo.com/c/review/kitchen-gadgets")
                 */
                 .setSuffixGenerator(new WebTimeGenerator("?startTime=",startDate, endDate))
-                .setThreadSize(4);
+                .setThreadSize(16);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<article class(.*?)>", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<h1 class(.*?)>", "</h1>")
@@ -58,7 +58,8 @@ public class Gizmodo {
         WebTemplate articleTemplate = new WebTemplate(mainFolder, "blog-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.BLOGDOC)
                 .setLookComplete(false)
-                .setThreadSize(2)
+                .setThreadSize(1)
+                .setSleepTime(500L)
                 .setForceWrite(true);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
@@ -69,7 +70,7 @@ public class Gizmodo {
                         .setType(LookupOptions.SKIP)
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "<a(.*?)>","</a>")
                                 .setNth(0)))*/
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class(.*?)>","</h1>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>")
                         .setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.AUTHOR, "<div class=\"meta__byline js_meta-byline author \">","</div>")
                         .setStartEndMarker("<div","</div>")
