@@ -18,8 +18,8 @@ public class InternetHaber {
                 //.addSeed("http://www.internethaber.com/ekonomi")
                 //.addSeed("http://www.internethaber.com/spor")
                 .addSeed("http://www.internethaber.com/guncel-haberler")
-                .setNextPageStart(12000)
-                .setNextPageSize(1000)
+                .setNextPageStart(1000)
+                .setNextPageSize(6000)
                 .setNextPageSuffix("?page=")
                 .setThreadSize(4);
 

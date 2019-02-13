@@ -11,9 +11,9 @@ public class Gizmodo {
     public static WebFlow build(String mainFolder){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2015, 1, 1);
+        calendarStart.set(2010, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2016, 1, 1);
+        calendarEnd.set(2019, 1, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -59,7 +59,7 @@ public class Gizmodo {
                 .setType(LookupOptions.BLOGDOC)
                 .setLookComplete(false)
                 .setThreadSize(1)
-                .setSleepTime(500L)
+                .setSleepTime(1000L)
                 .setForceWrite(true);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
