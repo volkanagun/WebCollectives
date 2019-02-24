@@ -11,9 +11,9 @@ public class Gizmodo {
     public static WebFlow build(String mainFolder){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2010, 1, 1);
+        calendarStart.set(2019, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2019, 1, 1);
+        calendarEnd.set(2019, 2, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -25,7 +25,7 @@ public class Gizmodo {
                 .addSeed("https://paleofuture.gizmodo.com/")
                 .addSeed("https://gizmodo.com/c/field-guide")
                 .addSeed("https://io9.gizmodo.com/")
-                /*.addSeed("https://gizmodo.com/c/review/cameras")
+                .addSeed("https://gizmodo.com/c/review/cameras")
                 .addSeed("https://gizmodo.com/c/review/smart-home")
                 .addSeed("https://gizmodo.com/c/review/e-readers")
                 .addSeed("https://gizmodo.com/c/review/smartphones")
@@ -41,7 +41,7 @@ public class Gizmodo {
                 .addSeed("https://gizmodo.com/c/review/home-audio")
                 .addSeed("https://gizmodo.com/c/review/bags")
                 .addSeed("https://gizmodo.com/c/review/kitchen-gadgets")
-                */
+
                 .setSuffixGenerator(new WebTimeGenerator("?startTime=",startDate, endDate))
                 .setThreadSize(16);
 

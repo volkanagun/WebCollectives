@@ -14,14 +14,14 @@ public class HuffingtonPost implements Serializable {
         Calendar calendarStart = Calendar.getInstance();
         calendarStart.set(2002, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2008, 1, 1);
+        calendarEnd.set(2019, 1, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
 
         WebTemplate linkTemplate = new WebTemplate(mainFolder, "blog-links", LookupOptions.EMPTYDOMAIN)
                 .setSuffixGenerator(new WebDateGenerator("yyyy-MM-dd", startDate, endDate))
-                .setThreadSize(4)
+                .setThreadSize(1)
                 .addSeed("https://www.huffingtonpost.com/archive/");
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, null, null)
@@ -31,7 +31,7 @@ public class HuffingtonPost implements Serializable {
 
         WebTemplate mainTemplate = new WebTemplate(mainFolder, "blog-text", "https://www.huffingtonpost.com/")
                 .setDomain("https://www.huffingtonpost.com/")
-                .setThreadSize(4)
+                .setThreadSize(1)
                 .setSleepTime(30000L);
 
         LookupPattern mainPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div\\sid\\=\"main\"\\srole\\=\"main\">", "</div>")

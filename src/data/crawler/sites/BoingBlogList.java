@@ -13,13 +13,13 @@ public class BoingBlogList implements Serializable {
     public static WebFlow build(String mainFolder) {
 
         WebTemplate yazarTemplate = new WebTemplate(mainFolder, "author-links", LookupOptions.EMPTYDOMAIN);
-        LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a\\sclass\\=\"byline\"\\shref\\=\"https\\://boingboing\\.net/author/", "\"");
+        LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a class=\"byline\" href=\"https://boingboing.net/author/", "\">");
         yazarTemplate.setMainPattern(authorPattern);
         yazarTemplate.setDomain("https://boingboing.net/author/")
                 .setForceWrite(false)
                 .setNextPageSuffix("/page/")
                 .setNextPageStart(1)
-                .setNextPageSize(1000)
+                .setNextPageSize(10)
                 .setThreadSize(2)
                 .addSeed("https://boingboing.net/grid");
 
@@ -30,8 +30,8 @@ public class BoingBlogList implements Serializable {
                 .setDomain("https://boingboing.net/author/")
                 .setForceWrite(false).setNextPageSuffix("/page/")
                 .setNextPageStart(1)
-                .setNextPageSize(200)
-                .setThreadSize(1);
+                .setNextPageSize(10)
+                .setThreadSize(10);
 
         LookupPattern topPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, LookupOptions.EMPTY)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<meta\\sproperty\\=\"article\\:published\\_time\"\\scontent\\=\"", "\"(.*?)/>"));
