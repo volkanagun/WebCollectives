@@ -13,31 +13,49 @@ public class InternetHaber {
     public static WebFlow build(){
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
-                .addSeed("http://www.internethaber.com/politika")
-                .addSeed("http://www.internethaber.com/dunya")
-                .addSeed("http://www.internethaber.com/ekonomi")
-                .addSeed("http://www.internethaber.com/spor")
-                .addSeed("http://www.internethaber.com/guncel-haberler")
+                .addSeed("politics","http://www.internethaber.com/politika")
+                /*.addSeed("world","http://www.internethaber.com/dunya")
+                .addSeed("economics","http://www.internethaber.com/ekonomi")
+                .addSeed("sports","http://www.internethaber.com/spor")
+                .addSeed("education","http://www.internethaber.com/egitim")
+                .addSeed("auto","http://www.internethaber.com/otomobil")
+                .addSeed("housing","http://www.internethaber.com/emlak")
+                .addSeed("local","http://www.internethaber.com/yerel")
+                .addSeed("media","http://www.internethaber.com/medya")
+                .addSeed("health","http://www.internethaber.com/saglik")
+                .addSeed("jobs","http://www.internethaber.com/calisma-hayati")
+                .addSeed("technology","http://www.internethaber.com/bilim-teknoloji")
+                .addSeed("magazine","http://www.internethaber.com/magazin")
+                .addSeed("flash","http://www.internethaber.com/guncel-haberler")
+                .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")*/
                 .setNextPageStart(1)
-                .setNextPageSize(1000)
+                .setNextPageSize(0)
                 .setNextPageSuffix("?page=")
                 .setThreadSize(1);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
+        /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
                         .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\"")
-                                .setNth(0)));
+                                .setNth(0)));*/
+
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container\">", "</div>")
+                .setStartEndMarker("<div","</div>")
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"row\">", "</div>")
+                        .setStartEndMarker("<div","</div>")
+                        .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\"")));
 
         linkTemplate.setMainPattern(linkPattern);
+        linkTemplate.setDomainSame(true);
+        linkTemplate.setLinkPattern("(.*?)\\d+(.*?).htm");
 
 
 
         //Article Download
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.ARTICLEDOC)
-                .setLookComplete(false)
-                .setThreadSize(6)
-                .setForceWrite(true);
+                .setLookComplete(true)
+                .setThreadSize(2)
+                .setForceWrite(false);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"newsDetail\">", "</div>")
                 .setStartEndMarker("<div","</div>")
@@ -49,6 +67,7 @@ public class InternetHaber {
 
 
         articleTemplate.setMainPattern(articleLookup);
+
 
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
 

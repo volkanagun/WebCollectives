@@ -137,7 +137,7 @@ public class WebDocument implements Serializable {
     }
 
 
-    public void saveAsMultiXML(String identifier) {
+    public int saveAsMultiXML(String identifier) {
         (new File(folder)).mkdirs();
         if (!name.isEmpty() && !lookupResultList.isEmpty()) {
             for (LookupResult resultFile : lookupResultList) {
@@ -160,9 +160,12 @@ public class WebDocument implements Serializable {
                     textFile.writeNextLine(resultFile.tagClose());
                     textFile.writeNextLine("</ROOT>");
                     textFile.closeBufferWrite();
+                    return 1;
                 }
             }
         }
+
+        return 0;
 
     }
 
@@ -179,7 +182,7 @@ public class WebDocument implements Serializable {
         return true;
     }
 
-    public void saveAsFlatXML() {
+    public int saveAsFlatXML() {
         (new File(folder)).mkdirs();
         if (!name.isEmpty() && !lookupResultList.isEmpty()) {
             TextFile textFile = new TextFile(filename());
@@ -198,8 +201,11 @@ public class WebDocument implements Serializable {
                 }
                 textFile.writeNextLine("</ROOT>");
                 textFile.closeBufferWrite();
+                return 1;
             }
         }
+
+        return 0;
 
     }
 

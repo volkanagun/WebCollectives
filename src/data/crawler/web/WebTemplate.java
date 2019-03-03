@@ -111,6 +111,8 @@ public class WebTemplate implements Serializable {
 
     private Boolean forceWrite = false;
     private Boolean lookComplete = false;
+    private Boolean domainSame = false;
+    private String linkPattern = null;
 
     private String charset = "UTF-8";
     private Map<String, WebTemplate> nextMap;
@@ -148,6 +150,15 @@ public class WebTemplate implements Serializable {
 
     public WebTemplate setSleepTime(Long sleepTime) {
         this.sleepTime = sleepTime;
+        return this;
+    }
+
+    public String getLinkPattern() {
+        return linkPattern;
+    }
+
+    public WebTemplate setLinkPattern(String linkPattern) {
+        this.linkPattern = linkPattern;
         return this;
     }
 
@@ -269,6 +280,15 @@ public class WebTemplate implements Serializable {
 
     public WebTemplate setType(String type) {
         this.type = type;
+        return this;
+    }
+
+    public Boolean getDomainSame() {
+        return domainSame;
+    }
+
+    public WebTemplate setDomainSame(Boolean domainSame) {
+        this.domainSame = domainSame;
         return this;
     }
 
@@ -436,15 +456,15 @@ public class WebTemplate implements Serializable {
         if (multipleIdentifier == null) {
             for (WebDocument document : documentList) {
                 if (!lookComplete || document.isComplete(mainPattern)) {
-                    document.saveAsFlatXML();
-                    sucessRate++;
+                    sucessRate+=document.saveAsFlatXML();
+
                 }
             }
         } else {
             for (WebDocument document : documentList) {
                 if (!lookComplete || document.isComplete(mainPattern)) {
-                    document.saveAsMultiXML(multipleIdentifier);
-                    sucessRate++;
+                    sucessRate+= document.saveAsMultiXML(multipleIdentifier);
+
                 }
             }
         }
@@ -507,6 +527,18 @@ public class WebTemplate implements Serializable {
         }
     }
 
+    public Boolean linkControl(WebSeed seed, WebTemplate nextTemplate) {
+        if(new WebDocument(folder, nextTemplate.name,seed.getRequestURL()).exists()) return false;
+
+        String templateDomain = nextTemplate.domain;
+        if (domainSame && linkPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern))
+            return true;
+        else if (!domainSame && linkPattern != null && seed.getRequestURL().matches(linkPattern)) return true;
+        else if (domainSame && linkPattern == null && seed.getRequestURL().contains(templateDomain)) return true;
+        else if(!domainSame && linkPattern == null)return true;
+        else return false;
+    }
+
 
     public WebDocument execute() {
         //Download template
@@ -546,13 +578,17 @@ public class WebTemplate implements Serializable {
                     for (int k = 0; k < subResults.size(); k++) {
                         LookupResult result = subResults.get(k);
                         WebSeed newSeed = new WebSeed(document.getUrl(), url(templateDomain, result.getText()), k);
-                        if (genre != null) {
-                            template.addSeed(genre, newSeed);
-                            //addGenreSeed(nextSeedMap, templateLink, genre, templateDomain + result.getText());
-                        } else {
-                            template.addSeed(newSeed);
-                            //addSeed(nextSeedList, templateLink, templateDomain + result.getText());
-                            //nextSeedList.add(domain + result.getText());
+                        if (linkControl(newSeed, template)) {
+
+                            if (genre != null) {
+                                template.addSeed(genre, newSeed);
+                                //addGenreSeed(nextSeedMap, templateLink, genre, templateDomain + result.getText());
+                            } else {
+                                template.addSeed(newSeed);
+                                //addSeed(nextSeedList, templateLink, templateDomain + result.getText());
+                                //nextSeedList.add(domain + result.getText());
+                            }
+
                         }
 
 
