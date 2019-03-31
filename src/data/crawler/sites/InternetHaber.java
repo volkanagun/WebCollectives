@@ -28,10 +28,10 @@ public class InternetHaber {
                 .addSeed("magazine","http://www.internethaber.com/magazin")
                 .addSeed("flash","http://www.internethaber.com/guncel-haberler")
                 .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")*/
-                .setNextPageStart(1)
-                .setNextPageSize(0)
-                .setNextPageSuffix("?page=")
-                .setThreadSize(1);
+               /* .setNextPageStart(1)
+                .setNextPageSize(1)
+                .setNextPageSuffix("?page=")*/
+                .setThreadSize(4);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
@@ -57,11 +57,11 @@ public class InternetHaber {
                 .setThreadSize(2)
                 .setForceWrite(false);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"newsDetail\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail\">", "</div>")
                 .setStartEndMarker("<div","</div>")
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1>","</h1>").setNth(0))
-                .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<meta content=\"","\">Eklenme"))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT,"<div class=\"news-detail-content\">","</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>","</h1>").setNth(0))
+                .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<time datetime=\"","\">"))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT,"<div class=\"content-text\">","</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"<p>","</p>")));
 

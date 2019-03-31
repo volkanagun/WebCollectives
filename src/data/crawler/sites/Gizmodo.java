@@ -11,9 +11,9 @@ public class Gizmodo {
     public static WebFlow build(String mainFolder){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2011, 1, 1);
+        calendarStart.set(2019, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2015, 2, 1);
+        calendarEnd.set(2019, 3, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -43,7 +43,7 @@ public class Gizmodo {
                 .addSeed("https://gizmodo.com/c/review/kitchen-gadgets")
 
                 .setSuffixGenerator(new WebTimeGenerator("?startTime=",startDate, endDate))
-                .setThreadSize(16);
+                .setThreadSize(1);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<article class(.*?)>", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<h1 class(.*?)>", "</h1>")
@@ -59,7 +59,7 @@ public class Gizmodo {
                 .setType(LookupOptions.BLOGDOC)
                 .setLookComplete(false)
                 .setThreadSize(1)
-                .setSleepTime(1000L)
+                .setSleepTime(500L)
                 .setForceWrite(true);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")

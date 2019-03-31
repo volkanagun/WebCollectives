@@ -19,7 +19,7 @@ public class MilliyetBlogList implements Serializable {
                 .setForceWrite(false)
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
-                .setNextPageSize(100)
+                .setNextPageSize(10)
                 .setThreadSize(1)
                 //.addSeed("http://blog.milliyet.com.tr/BlogListe/?Status=&Sort=&KategoriNo=");
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=&KategoriNo=2")

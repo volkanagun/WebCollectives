@@ -14,7 +14,7 @@ public class HuffingtonPost implements Serializable {
         Calendar calendarStart = Calendar.getInstance();
         calendarStart.set(2019, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2019, 2, 1);
+        calendarEnd.set(2019, 3, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();

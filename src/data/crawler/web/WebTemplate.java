@@ -528,7 +528,7 @@ public class WebTemplate implements Serializable {
     }
 
     public Boolean linkControl(WebSeed seed, WebTemplate nextTemplate) {
-        if(new WebDocument(folder, nextTemplate.name,seed.getRequestURL()).exists()) return false;
+        if(new WebDocument(folder, nextTemplate.name,seed.getRequestURL()).filenameExists()) return false;
 
         String templateDomain = nextTemplate.domain;
         if (domainSame && linkPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern))
