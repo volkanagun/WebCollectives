@@ -13,7 +13,7 @@ public class Gizmodo {
         Calendar calendarStart = Calendar.getInstance();
         calendarStart.set(2019, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2019, 3, 1);
+        calendarEnd.set(2019, 4, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -41,7 +41,6 @@ public class Gizmodo {
                 .addSeed("https://gizmodo.com/c/review/home-audio")
                 .addSeed("https://gizmodo.com/c/review/bags")
                 .addSeed("https://gizmodo.com/c/review/kitchen-gadgets")
-
                 .setSuffixGenerator(new WebTimeGenerator("?startTime=",startDate, endDate))
                 .setThreadSize(1);
 

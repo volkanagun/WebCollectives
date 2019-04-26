@@ -41,7 +41,7 @@ public class EngadetList implements Serializable {
                 .setNextPageSuffix("page/")
                 .setThreadSize(6)
                 .setNextPageStart(1)
-                .setNextPageSize(5)
+                .setNextPageSize(20)
                 .setForceWrite(false)
                 .setMainPattern(linkPattern);
 

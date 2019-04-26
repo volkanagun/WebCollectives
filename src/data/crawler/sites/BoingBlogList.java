@@ -19,8 +19,8 @@ public class BoingBlogList implements Serializable {
                 .setForceWrite(false)
                 .setNextPageSuffix("/page/")
                 .setNextPageStart(1)
-                .setNextPageSize(20)
-                .setThreadSize(2)
+                .setNextPageSize(500)
+                .setThreadSize(24)
                 .addSeed("https://boingboing.net/grid");
 
         WebTemplate linkTemplate = new WebTemplate(mainFolder, "blog-links", LookupOptions.EMPTYDOMAIN);
@@ -30,7 +30,7 @@ public class BoingBlogList implements Serializable {
                 .setDomain("https://boingboing.net/author/")
                 .setForceWrite(false).setNextPageSuffix("/page/")
                 .setNextPageStart(1)
-                .setNextPageSize(50)
+                .setNextPageSize(2)
                 .setThreadSize(1);
 
         LookupPattern topPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, LookupOptions.EMPTY)

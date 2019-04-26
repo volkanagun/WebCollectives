@@ -14,7 +14,7 @@ public class InternetHaber {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("politics","http://www.internethaber.com/politika")
-                /*.addSeed("world","http://www.internethaber.com/dunya")
+                .addSeed("world","http://www.internethaber.com/dunya")
                 .addSeed("economics","http://www.internethaber.com/ekonomi")
                 .addSeed("sports","http://www.internethaber.com/spor")
                 .addSeed("education","http://www.internethaber.com/egitim")
@@ -27,11 +27,11 @@ public class InternetHaber {
                 .addSeed("technology","http://www.internethaber.com/bilim-teknoloji")
                 .addSeed("magazine","http://www.internethaber.com/magazin")
                 .addSeed("flash","http://www.internethaber.com/guncel-haberler")
-                .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")*/
-               /* .setNextPageStart(1)
-                .setNextPageSize(1)
-                .setNextPageSuffix("?page=")*/
-                .setThreadSize(4);
+                .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
+                .setNextPageStart(1)
+                .setNextPageSize(1500)
+                .setNextPageSuffix("?page=")
+                .setThreadSize(1);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
@@ -57,11 +57,11 @@ public class InternetHaber {
                 .setThreadSize(2)
                 .setForceWrite(false);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail(.*?)\">", "</div>")
                 .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>","</h1>").setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<time datetime=\"","\">"))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT,"<div class=\"content-text\">","</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT,"<div class=\"content-text(.*?)\">","</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"<p>","</p>")));
 
