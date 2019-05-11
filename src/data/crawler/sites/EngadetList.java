@@ -28,7 +28,7 @@ public class EngadetList implements Serializable {
                 .addSeed("https://www.engadget.com")
                 .setType("BLOG-DOC")
                 .setNextPageSuffix("/all/page/")
-                .setNextPageSize(100)
+                .setNextPageSize(10)
                 .setNextPageStart(1)
                 .setThreadSize(2)
                 .setMainPattern(authorPattern);
@@ -64,7 +64,7 @@ public class EngadetList implements Serializable {
 
         topPattern.addPattern(mainPattern);
         mainTemplate.setMainPattern(topPattern).setDomain("https://www.engadget.com")
-                .setThreadSize(1)
+                .setThreadSize(5)
                 .setForceWrite(true)
                 .setLookComplete(true)
                 .setType("BLOG-DOC");

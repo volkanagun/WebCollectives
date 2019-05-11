@@ -29,9 +29,9 @@ public class InternetHaber {
                 .addSeed("flash","http://www.internethaber.com/guncel-haberler")
                 .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
                 .setNextPageStart(1)
-                .setNextPageSize(1500)
+                .setNextPageSize(30)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(1);
+                .setThreadSize(15);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
