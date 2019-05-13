@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebCountGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebMultiSuffixGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_twitter4j_twitter4j_core_4_0_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterTimeLine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -29,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+              <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -172,7 +168,7 @@
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MashableList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+              <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -181,7 +177,7 @@
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="465">
-              <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -189,7 +185,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -202,10 +198,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/TwitterTimeLine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="151">
+              <caret line="172" column="53" lean-forward="true" selection-start-line="172" selection-start-column="53" selection-end-line="172" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="59" column="31" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebDateGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-210">
-              <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="57" />
+              <caret line="8" column="57" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -235,7 +252,7 @@
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="585">
-              <caret line="67" column="36" lean-forward="true" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
+              <caret line="67" column="36" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -247,7 +264,7 @@
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="133">
-              <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -317,7 +334,6 @@
         <option value="$PROJECT_DIR$/src/data/crawler/sites/Reuters.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/PAN.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/Fotomac.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/SiteRunner.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" />
@@ -339,6 +355,9 @@
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebCountGenerator.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebMultiSuffixGenerator.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/scriptFile.scala" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/TwitterTimeLine.java" />
       </list>
     </option>
   </component>
@@ -671,13 +690,21 @@
       <option name="project" value="LOCAL" />
       <updated>1556292899531</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="MultiSuffixGenerator for MilliyetBlogListe">
+      <created>1557604772047</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1557604772047</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="39" y="27" width="1881" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15476839" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15476839" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -686,7 +713,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.49291167" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.49291167" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3380589" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -717,7 +744,8 @@
     <MESSAGE value="BoingBoing update" />
     <MESSAGE value="Seed control with filename check..." />
     <MESSAGE value="InternetHaber update" />
-    <option name="LAST_COMMIT_MESSAGE" value="InternetHaber update" />
+    <MESSAGE value="MultiSuffixGenerator for MilliyetBlogListe" />
+    <option name="LAST_COMMIT_MESSAGE" value="MultiSuffixGenerator for MilliyetBlogListe" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -781,13 +809,6 @@
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/SonBirseyler.java" />
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/String.java" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="56" column="21" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/Fotomac.java" />
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" />
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/PAN.java" />
@@ -882,7 +903,7 @@
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+          <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -970,14 +991,14 @@
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MashableList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="23" column="37" lean-forward="true" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="585">
-          <caret line="67" column="36" lean-forward="true" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
+          <caret line="67" column="36" selection-start-line="67" selection-start-column="36" selection-end-line="67" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -987,14 +1008,14 @@
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
-          <caret line="32" column="37" lean-forward="true" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebDateGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-210">
-          <caret line="8" column="57" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="57" />
+          <caret line="8" column="57" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -1027,7 +1048,7 @@
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
-          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1056,6 +1077,9 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/scriptFile.scala">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1063,6 +1087,23 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/TwitterTimeLine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="172" column="53" lean-forward="true" selection-start-line="172" selection-start-column="53" selection-end-line="172" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="59" column="31" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="34" />
         </state>
       </provider>
     </entry>
