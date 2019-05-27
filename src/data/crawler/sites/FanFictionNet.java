@@ -18,7 +18,7 @@ public class FanFictionNet {
         bookTemplate.setDomain("https://www.funfiction.net/book/")
                 .setForceWrite(false)
                 .setThreadSize(1)
-                .setSeedSizeLimit(5000L)
+                .setSeedSizeLimit(50L)
                 .addSeed("https://www.fanfiction.net/book");
 
 
@@ -30,7 +30,7 @@ public class FanFictionNet {
         linkTemplate.setMainPattern(linkPattern)
                 .setDomain("https://www.fanfiction.net/book/")
                 .setForceWrite(false)
-                .setSuffixGenerator(new WebCountGenerator(1, 2000, "&p="))
+                .setSuffixGenerator(new WebCountGenerator(1, 100, "?&p="))
                 .setThreadSize(16);
 
 
