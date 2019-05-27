@@ -29,7 +29,7 @@ public class InternetHaber {
                 .addSeed("flash","http://www.internethaber.com/guncel-haberler")
                 .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
                 .setNextPageStart(1)
-                .setNextPageSize(30)
+                .setNextPageSize(200)
                 .setNextPageSuffix("?page=")
                 .setThreadSize(15);
 

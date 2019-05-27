@@ -108,6 +108,7 @@ public class WebTemplate implements Serializable {
     private Integer nextPageJump = 1;
     private Integer threadSize = 2;
     private Long sleepTime = 200L;
+    private Long seedSizeLimit = Long.MAX_VALUE;
 
     private Boolean forceWrite = false;
     private Boolean lookComplete = false;
@@ -133,6 +134,15 @@ public class WebTemplate implements Serializable {
     public WebTemplate(String folder, String name, String domain, String nextPageSuffix) {
         this(folder, name, domain);
         this.nextPageSuffix = nextPageSuffix;
+    }
+
+    public Long getSeedSizeLimit() {
+        return seedSizeLimit;
+    }
+
+    public WebTemplate setSeedSizeLimit(Long seedSizeLimit) {
+        this.seedSizeLimit = seedSizeLimit;
+        return this;
     }
 
     public Boolean getLookComplete() {
@@ -575,7 +585,7 @@ public class WebTemplate implements Serializable {
                     WebTemplate template = getNextMap(templateLink);
                     String templateDomain = template.domain;
                     List<LookupResult> subResults = document.getLookupFinalList(templateLink);
-                    for (int k = 0; k < subResults.size(); k++) {
+                    for (int k = 0; k < Math.min(subResults.size(),seedSizeLimit); k++) {
                         LookupResult result = subResults.get(k);
                         WebSeed newSeed = new WebSeed(document.getUrl(), url(templateDomain, result.getText()), k);
                         if (linkControl(newSeed, template)) {

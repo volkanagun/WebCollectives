@@ -21,6 +21,7 @@ public class LookupOptions implements Serializable {
     public static String MAINPAGE = "MAINPAGE";
     public static String AUTHOR = "AUTHOR";
     public static String AUTHORLINK = "AUTHORLINK";
+    public static String BOOKLINK = "BOOKLINK";
     public static String AUTHORNAME = "AUTHORNAME";
     public static String SKIP = "SKIP";
 
@@ -32,6 +33,7 @@ public class LookupOptions implements Serializable {
 
     public static String ARTICLEDOC = "ARTICLE-DOC";
     public static String BLOGDOC = "BLOG-DOC";
+
     public static String TWEETDOC = "TWEET-DOC";
     public static String REUTERSDOC = "REUTERS-DOC";
     public static String PANDOC = "PAN-DOC";
@@ -47,6 +49,8 @@ public class LookupOptions implements Serializable {
 
     public static String GENRE = "GENRE";
     public static String GENRETEXT = "GENRETEXT";
+    public static String LANGUAGE = "LANGUAGE";
+    public static String FANFIC = "FANFIC";
     public static String TOPIC = "TOPIC";
 
 
@@ -59,6 +63,7 @@ public class LookupOptions implements Serializable {
     public static String RELIGIONDIRECTORY = "resources/religion";
     public static String TECHDIRECTORY = "resources/technology";
     public static String BLOGDIRECTORY = "resources/blogs-turkish";
+    public static String FANFICDIRECTORY = "resources/fanfics";
     public static String BLOGENGDIRECTORY = "resources/blogs-english";
     public static String TEXTENGDIRECTORY = "resources/texts-english";
     public static String SIKAYETVARGDIRECTORY = "resources/sikayet-var";

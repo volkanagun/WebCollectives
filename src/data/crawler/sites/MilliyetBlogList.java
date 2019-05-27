@@ -36,7 +36,7 @@ public class MilliyetBlogList implements Serializable {
                 .setDomain("http://blog.milliyet.com.tr/BloggerBloglar/?UyeNo=")
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
-                .setNextPageSize(12)
+                .setNextPageSize(5)
                 .setThreadSize(16);
 
 

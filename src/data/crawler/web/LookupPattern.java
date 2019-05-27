@@ -23,6 +23,7 @@ public class LookupPattern implements Serializable {
     protected Integer nth, mth;
     protected boolean removeTags = true;
     protected List<LookupPattern> subpatterns;
+    protected LookupFilter lookupFilter;
 
     public LookupPattern(String type, String label, String startRegex, String endRegex) {
         this.label = label;
@@ -50,6 +51,14 @@ public class LookupPattern implements Serializable {
         return regex;
     }
 
+    public LookupFilter getLookupFilter() {
+        return lookupFilter;
+    }
+
+    public LookupPattern setLookupFilter(LookupFilter lookupFilter) {
+        this.lookupFilter = lookupFilter;
+        return this;
+    }
 
     public LookupPattern addPattern(LookupPattern pattern) {
         this.subpatterns.add(pattern);
@@ -238,22 +247,28 @@ public class LookupPattern implements Serializable {
 
         if (subpatterns.isEmpty()) {
             for (String partialResult : partialResults) {
-                LookupResult subResult = new LookupResult(type, label, partialResult);
-                if (!lookupResults.contains(subResult)) {
-                    lookupResults.add(subResult);
+                String finalResult = lookupFilter==null?partialResult : lookupFilter.accept(partialResult);
+                if(finalResult!=null) {
+                    LookupResult subResult = new LookupResult(type, label, finalResult);
+                    if (!lookupResults.contains(subResult)) {
+                        lookupResults.add(subResult);
+                    }
                 }
             }
         } else {
 
             for (String partialResult : partialResults) {
-                //Adding buggy for pasrsing reuters
-                LookupResult lookupResult = new LookupResult(type, label);
-                for (LookupPattern partialPattern : subpatterns) {
-                    List<LookupResult> subLookupResults = partialPattern.getResult(propertyMap, partialResult);
-                    lookupResult.addSubList(subLookupResults);
+                //Adding buggy for parsing reuters
+                String finalResult = lookupFilter==null?partialResult : lookupFilter.accept(partialResult);
+                if(finalResult!=null) {
+                    LookupResult lookupResult = new LookupResult(type, label);
+                    for (LookupPattern partialPattern : subpatterns) {
+                        List<LookupResult> subLookupResults = partialPattern.getResult(propertyMap, finalResult);
+                        lookupResult.addSubList(subLookupResults);
 
+                    }
+                    lookupResults.add(lookupResult);
                 }
-                lookupResults.add(lookupResult);
             }
 
 
