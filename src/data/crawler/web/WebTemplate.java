@@ -40,6 +40,7 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.*;
 import java.util.concurrent.*;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -83,6 +84,20 @@ public class WebTemplate implements Serializable {
 
     }
 
+    public abstract class DownloadCallableFast implements Callable<WebDocument> {
+        WebSeed seed;
+        int index;
+        FailCount sharedCount;
+
+        public DownloadCallableFast(FailCount sharedCount, WebSeed seed, int index) {
+            super();
+            this.index = index;
+            this.seed = seed;
+            this.sharedCount = sharedCount;
+        }
+
+    }
+
 
     //Extraction Template
     public static String FILEPREFIX = "file://";
@@ -111,6 +126,8 @@ public class WebTemplate implements Serializable {
     private Long seedSizeLimit = Long.MAX_VALUE;
 
     private Boolean forceWrite = false;
+    private Boolean doFast = false;
+
     private Boolean lookComplete = false;
     private Boolean domainSame = false;
     private String linkPattern = null;
@@ -128,12 +145,20 @@ public class WebTemplate implements Serializable {
         this.nextMap = new HashMap<>();
         this.nextPageSize = 2;
         this.nextPageStart = 2;
-
     }
 
     public WebTemplate(String folder, String name, String domain, String nextPageSuffix) {
         this(folder, name, domain);
         this.nextPageSuffix = nextPageSuffix;
+    }
+
+    public Boolean getDoFast() {
+        return doFast;
+    }
+
+    public WebTemplate setDoFast(Boolean doFast) {
+        this.doFast = doFast;
+        return this;
     }
 
     public Long getSeedSizeLimit() {
@@ -559,7 +584,7 @@ public class WebTemplate implements Serializable {
         System.out.println("Seed size: " + seedList.size());
         goSleep();
 
-        List<WebDocument> documentList = download();
+        List<WebDocument> documentList = doFast?downloadFast():download();
         WebDocument mainDocument = new WebDocument(folder, name).setType(type);
 
 
@@ -585,6 +610,7 @@ public class WebTemplate implements Serializable {
                     WebTemplate template = getNextMap(templateLink);
                     String templateDomain = template.domain;
                     List<LookupResult> subResults = document.getLookupFinalList(templateLink);
+
                     for (int k = 0; k < Math.min(subResults.size(),seedSizeLimit); k++) {
                         LookupResult result = subResults.get(k);
                         WebSeed newSeed = new WebSeed(document.getUrl(), url(templateDomain, result.getText()), k);
@@ -709,7 +735,7 @@ public class WebTemplate implements Serializable {
 
                     Boolean returnResult = false;
                     if (!document.filenameExists() && webSeed.doRequest(seedNumber)) {
-                        goSleep(100L);
+                        goSleep(2000L);
                         String downloadedHTML = downloadFile(webSeed.getRequestURL(), charset);
                         if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
                             document.setFetchDate(new Date());
@@ -768,6 +794,82 @@ public class WebTemplate implements Serializable {
         return htmlDocumentList;
     }
 
+    public List<WebDocument> downloadFast() {
+        List<WebDocument> htmlDocumentList = new ArrayList<>();
+        List<WebSeed> nextPageSeeds = new ArrayList<>();
+        Map<WebSeed, String> nextPageSeedGenre = new HashMap<>();
+        Map<String, Integer> failMap = new HashMap<>();
+
+
+        pushGenerateSeeds(nextPageSeeds, nextPageSeedGenre);
+
+        List<Callable<WebDocument>> threadList = new ArrayList<>();
+        final FailCount failCount = new FailCount(0, threadSize);
+        Collections.shuffle(seedList);
+        for (int i = 0; i < seedList.size(); i++) {
+
+            WebSeed webSeed = seedList.get(i);
+            DownloadCallableFast thread = new DownloadCallableFast(failCount, webSeed, i) {
+                @Override
+                public WebDocument call() {
+
+
+                    WebDocument document = new WebDocument(folder, name, webSeed.getRequestURL());
+                    Integer seedNumber = seedNumber(failMap, webSeed.getMainURL());
+
+                    Boolean returnResult = false;
+                    if (!document.filenameExists() && webSeed.doRequest(seedNumber)) {
+
+                        String downloadedHTML = downloadFileFast(webSeed.getRequestURL(), charset);
+                        if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
+                            document.setFetchDate(new Date());
+                            document.setText(downloadedHTML);
+                            document.setDomain(domain);
+                            document.setType(type);
+                            document.setLookComplete(lookComplete);
+                            if (seedMap.containsKey(webSeed)) {
+                                document.putProperty(LookupOptions.GENRE, seedMap.get(webSeed));
+                            }
+                            document.setIndex(index);
+
+                            returnResult = extract(document);
+                        }
+
+                    }
+
+                    if (!forceWrite && document.filenameExists()) {
+                        document.deleteOnExit();
+                    }
+
+                    return document;
+                }
+            };
+
+            threadList.add(thread);
+        }
+
+        ExecutorService executor = Executors.newFixedThreadPool(threadSize);
+        try {
+            List<Future<WebDocument>> returnList = executor.invokeAll(threadList);
+            for(Future<WebDocument> fdoc:returnList){
+                try {
+                    htmlDocumentList.add(fdoc.get(500, TimeUnit.MILLISECONDS));
+                } catch (TimeoutException e) {
+
+                }
+
+            }
+
+            executor.shutdown();
+        } catch (InterruptedException ex) {
+            System.out.println(ex.getMessage());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return htmlDocumentList;
+    }
+
     private Boolean checkAnyUnfinished(List<Future<Boolean>> returnList) {
         for (Future<Boolean> task : returnList) {
             try {
@@ -810,6 +912,32 @@ public class WebTemplate implements Serializable {
             String text = "";
             try {
                 text = downloadPage(address, charset, 0);
+
+            } catch (KeyManagementException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (KeyStoreException e) {
+                e.printStackTrace();
+            }
+            return text;
+        }
+    }
+
+    private String downloadFileFast(String address, String charset) {
+
+        if (address.startsWith(TEXTPREFIX)) {
+            String text = address.substring(address.indexOf(TEXTPREFIX) + TEXTPREFIX.length());
+            return text;
+        } else if (address.startsWith(FILEPREFIX)) {
+            String filename = address.substring(address.indexOf(FILEPREFIX) + FILEPREFIX.length());
+            System.out.println("Downloading... '" + address + "'");
+            return new TextFile(filename, charset).readFullText();
+        } else {
+            System.out.println("Downloading... '" + address + "'");
+            String text = "";
+            try {
+                text = downloadPage(address, charset, 2);
 
             } catch (KeyManagementException e) {
                 e.printStackTrace();
@@ -886,8 +1014,9 @@ public class WebTemplate implements Serializable {
                         }
                     };
 
-                    sleep(1000);
+                    sleep(10);
                     text = httpClient.execute(request, rh); //request.execute();
+
 
                 } catch (IOException ex) {
                     System.out.println("Error in url retrying... '" + address + "'");

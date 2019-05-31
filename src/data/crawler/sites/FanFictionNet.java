@@ -17,8 +17,8 @@ public class FanFictionNet {
         bookTemplate.setMainPattern(bookPattern);
         bookTemplate.setDomain("https://www.funfiction.net/book/")
                 .setForceWrite(false)
-                .setThreadSize(1)
-                .setSeedSizeLimit(50L)
+                .setThreadSize(36)
+                .setSeedSizeLimit(200L)
                 .addSeed("https://www.fanfiction.net/book");
 
 
@@ -30,8 +30,8 @@ public class FanFictionNet {
         linkTemplate.setMainPattern(linkPattern)
                 .setDomain("https://www.fanfiction.net/book/")
                 .setForceWrite(false)
-                .setSuffixGenerator(new WebCountGenerator(1, 100, "?&p="))
-                .setThreadSize(16);
+                .setSuffixGenerator(new WebCountGenerator(0, 100, "?&p="))
+                .setThreadSize(512);
 
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div id=content_wrapper_inner(.*?)>", "</div>")
@@ -42,12 +42,14 @@ public class FanFictionNet {
                         .setLookupFilter(new LookupFilterSet(new String[]{"French","English","Italian","Spanish"})))
                 .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class='storytext xcontrast_txt nocopy' id='storytext'>", "</div>")
                         .setStartEndMarker("<div", "</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")));
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p(.*?)>", "</p>")
+                                .setRemoveTags(true)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.FANFICDIRECTORY, "article-text", LookupOptions.EMPTYDOMAIN);
         articleTemplate.setMainPattern(articlePattern).setForceWrite(true)
                 .setDomain("https://www.fanfiction.net")
                 .setLookComplete(true)
+                .setThreadSize(24).setDoFast(true)
                 .setType(LookupOptions.ARTICLEDOC);
 
 

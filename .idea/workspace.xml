@@ -4,6 +4,7 @@
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,8 +31,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebFlow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1305">
-              <caret line="98" column="82" selection-start-line="98" selection-start-column="82" selection-end-line="98" selection-end-column="82" />
+            <state relative-caret-position="195">
+              <caret line="52" column="50" lean-forward="true" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -39,13 +40,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10395">
-              <caret line="788" selection-start-line="788" selection-end-line="788" />
+            <state relative-caret-position="163">
+              <caret line="586" column="74" lean-forward="true" selection-start-line="586" selection-start-column="74" selection-end-line="586" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4572#4573#0" expanded="true" />
-                <element signature="e#4608#4609#0" expanded="true" />
+                <element signature="e#5030#5031#0" expanded="true" />
+                <element signature="e#5059#5060#0" expanded="true" />
+                <element signature="e#25604#25661#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar!/org/apache/http/impl/client/CloseableHttpClient.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/io/Closeable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -74,10 +94,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebSeed.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="90">
+              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#637#638#0" expanded="true" />
+                <element signature="e#711#712#0" expanded="true" />
+                <element signature="e#1326#1327#0" expanded="true" />
                 <element signature="e#1359#1360#0" expanded="true" />
               </folding>
             </state>
@@ -117,8 +140,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3255">
-              <caret line="260" column="37" selection-start-line="260" selection-start-column="37" selection-end-line="260" selection-end-column="37" />
+            <state relative-caret-position="3015">
+              <caret line="244" selection-start-line="244" selection-end-line="244" />
               <folding>
                 <element signature="e#1548#1549#0" expanded="true" />
                 <element signature="e#1583#1584#0" expanded="true" />
@@ -292,8 +315,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="32" column="65" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="65" />
+            <state relative-caret-position="142">
+              <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -331,7 +354,6 @@
       <find>Downloading.</find>
       <find>folder</find>
       <find>webf</find>
-      <find>Download</find>
       <find>author</find>
       <find>Downloading...</find>
       <find>linkC</find>
@@ -342,7 +364,6 @@
       <find>iran</find>
       <find>&lt;a href=&quot;/book/</find>
       <find>content</find>
-      <find>Downloading</find>
       <find>stitle</find>
       <find>middle_con</find>
       <find>colA</find>
@@ -351,6 +372,8 @@
       <find>xcontrast_txt</find>
       <find>xcontrast</find>
       <find>xgray</find>
+      <find>Download</find>
+      <find>Downloading</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/data</dir>
@@ -398,10 +421,10 @@
         <option value="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/FanFiction.scala" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupFilter.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupFilterSet.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" />
       </list>
     </option>
@@ -444,6 +467,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -489,7 +513,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -763,13 +786,20 @@
       <option name="project" value="LOCAL" />
       <updated>1558943281998</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="LookupFilter">
+      <created>1558996957252</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1558996957252</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="39" y="27" width="1881" height="1053" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15749319" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15912807" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -778,7 +808,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32061067" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.39585605" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3380589" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -826,17 +856,41 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="Pattern.compile(&quot;&lt;div id=content_wrapper_inner&quot;).matcher(partial).find()" language="JAVA" custom="java.util.regex.Pattern" />
-        <watch expression="partial.contains(&quot;&lt;a class='xcontrast_txt' href=\&quot;/u/&quot;)" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
-        <expression-string>partial.contains(&quot;&lt;a class='xcontrast_txt' href=\&quot;/u/&quot;)</expression-string>
+        <expression-string>partial.contains(&quot;&lt;div class='storytext xcontrast_txt nocopy' id='storytext'&gt;&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>partial.substring(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;), 50000)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;), 5000)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;), 100)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>partial.contains(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -846,42 +900,12 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>partial.contains(&quot;&lt;a class='xcontrast_txt' href=&quot;)</expression-string>
+        <expression-string>partial.contains(&quot;&lt;a class=xcontrast_txt href=\&quot;/book&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>partial.contains(&quot;&lt;a class='xcontrast_txt'&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class=\&quot;xcontrast_txt\&quot;&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class=xcontrast_txt&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class=xcontrast_txt href=/u&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class=xcontrast_txt href=\&quot;/u&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class=xcontrast_txt href=\&quot;/u/&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class=xcontrast_txt href=/u/&quot;)</expression-string>
+        <expression-string>partial.contains(&quot;&lt;a class='xcontrast_txt' href=\&quot;/book&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -988,22 +1012,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebFlow.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar!/org/apache/http/impl/client/CloseableHttpClient.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1305">
-          <caret line="98" column="82" selection-start-line="98" selection-start-column="82" selection-end-line="98" selection-end-column="82" />
+        <state relative-caret-position="135">
+          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
+    <entry file="jar:///usr/lib/jvm/java-8-oracle/src.zip!/java/io/Closeable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10395">
-          <caret line="788" selection-start-line="788" selection-end-line="788" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4572#4573#0" expanded="true" />
-            <element signature="e#4608#4609#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="420">
+          <caret line="51" column="16" selection-start-line="51" selection-start-column="16" selection-end-line="51" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -1026,10 +1045,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebSeed.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="90">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+            <element signature="e#711#712#0" expanded="true" />
+            <element signature="e#1326#1327#0" expanded="true" />
             <element signature="e#1359#1360#0" expanded="true" />
           </folding>
         </state>
@@ -1063,8 +1085,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3255">
-          <caret line="260" column="37" selection-start-line="260" selection-start-column="37" selection-end-line="260" selection-end-column="37" />
+        <state relative-caret-position="3015">
+          <caret line="244" selection-start-line="244" selection-end-line="244" />
           <folding>
             <element signature="e#1548#1549#0" expanded="true" />
             <element signature="e#1583#1584#0" expanded="true" />
@@ -1211,10 +1233,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebFlow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="52" column="50" lean-forward="true" selection-start-line="52" selection-start-column="50" selection-end-line="52" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="586" column="74" lean-forward="true" selection-start-line="586" selection-start-column="74" selection-end-line="586" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5030#5031#0" expanded="true" />
+            <element signature="e#5059#5060#0" expanded="true" />
+            <element signature="e#25604#25661#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="32" column="65" selection-start-line="32" selection-start-column="65" selection-end-line="32" selection-end-column="65" />
+        <state relative-caret-position="142">
+          <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
