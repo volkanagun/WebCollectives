@@ -4,6 +4,7 @@
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -40,12 +41,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="586" column="74" lean-forward="true" selection-start-line="586" selection-start-column="74" selection-end-line="586" selection-end-column="74" />
+            <state relative-caret-position="118">
+              <caret line="570" selection-start-line="570" selection-end-line="570" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5030#5031#0" expanded="true" />
                 <element signature="e#5059#5060#0" expanded="true" />
+                <element signature="e#5207#5208#0" expanded="true" />
+                <element signature="e#5241#5242#0" expanded="true" />
                 <element signature="e#25604#25661#0" expanded="true" />
               </folding>
             </state>
@@ -216,11 +219,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+            <state relative-caret-position="330">
+              <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -312,11 +315,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
+            <state relative-caret-position="82">
+              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -344,9 +347,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>about</find>
-      <find>rate</find>
-      <find>Downloa</find>
       <find>io9</find>
       <find>Success rate: 0.5</find>
       <find>Seed size</find>
@@ -373,6 +373,9 @@
       <find>xcontrast</find>
       <find>xgray</find>
       <find>Download</find>
+      <find>Downloaded</find>
+      <find>System.out</find>
+      <find>linkPattern</find>
       <find>Downloading</find>
     </findStrings>
     <dirStrings>
@@ -417,7 +420,6 @@
         <option value="$PROJECT_DIR$/src/data/crawler/sites/scriptFile.scala" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/TwitterTimeLine.java" />
-        <option value="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/FanFiction.scala" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" />
@@ -426,6 +428,7 @@
         <option value="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" />
         <option value="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" />
+        <option value="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" />
       </list>
     </option>
   </component>
@@ -538,7 +541,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FanFictionNet">
+  <component name="RunManager" selected="Application.InternetHaber">
     <configuration name="BoingBlogList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BoingBlogList" />
       <module name="WebCollectives" />
@@ -555,6 +558,7 @@
     <configuration name="FanFictionNet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.FanFictionNet" />
       <module name="WebCollectives" />
+      <option name="VM_PARAMETERS" value="-Xmx28G" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="data.crawler.sites.*" />
@@ -567,6 +571,19 @@
     </configuration>
     <configuration name="HuffingtonPost" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.HuffingtonPost" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -591,33 +608,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MilliyetBlogList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.MilliyetBlogList" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.BoingBlogList" />
       <item itemvalue="Application.HuffingtonPost" />
-      <item itemvalue="Application.MilliyetBlogList" />
       <item itemvalue="Application.MashableList" />
       <item itemvalue="Application.FanFictionNet" />
+      <item itemvalue="Application.InternetHaber" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.FanFictionNet" />
         <item itemvalue="Application.BoingBlogList" />
         <item itemvalue="Application.MashableList" />
         <item itemvalue="Application.HuffingtonPost" />
-        <item itemvalue="Application.MilliyetBlogList" />
       </list>
     </recent_temporary>
   </component>
@@ -793,11 +797,26 @@
       <option name="project" value="LOCAL" />
       <updated>1558996957252</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Fast download and extract">
+      <created>1559343951263</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1559343951263</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Fast download and extract">
+      <created>1559775840073</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1559775840073</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="39" y="27" width="1881" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15912807" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -843,7 +862,8 @@
     <MESSAGE value="Twitter API" />
     <MESSAGE value="MilliyetBlogList" />
     <MESSAGE value="LookupFilter" />
-    <option name="LAST_COMMIT_MESSAGE" value="LookupFilter" />
+    <MESSAGE value="Fast download and extract" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fast download and extract" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -854,11 +874,67 @@
           <properties />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
+          <line>570</line>
+          <properties />
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="linkPattern.matches(&quot;http://xyz/foto-galerisi-129.htm&quot;)" language="JAVA" />
+        <watch expression="seed.getRequestURL()" language="JAVA" />
+        <watch expression="seed.getMainURL()" language="JAVA" />
+        <watch expression="newSeed.getRequestURL().matches(linkPattern)" language="JAVA" />
+        <watch expression="newSeed.toString()" language="JAVA" />
+        <watch expression="&quot;https://www.internethaber.com/cumhurbaskani-erdogana-istanbulda-yogun-ilgi-foto-galeri-2027079.htm&quot;.matches(linkRejectPattern)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>&quot;https://www.internethaber.com/cumhurbaskani-erdogana-istanbulda-yogun-ilgi-foto-galeri-2027079.htm&quot;.matches(linkRejectPattern)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>&quot;https://www.internethaber.com/cumhurbaskani-erdogana-istanbulda-yogun-ilgi-foto-galerisi-2027079.htm&quot;.matches(linkRejectPattern)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>newSeed.getRequestURL().matches(linkPattern)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>newSeed.toString()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>seed.getRequestURL().matches(linkPattern)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>seed.getMainURL()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>seed.getRequestURL()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>linkPattern.matches(&quot;http://xyz/foto-galerisi-129.htm&quot;)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>partial.contains(&quot;&lt;div class='storytext xcontrast_txt nocopy' id='storytext'&gt;&quot;)</expression-string>
         <language-id>JAVA</language-id>
@@ -866,46 +942,6 @@
       </expression>
       <expression>
         <expression-string>partial.substring(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;))</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;), 50000)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;), 5000)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(partial.indexOf(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;), 100)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;span class='xgray xcontrast_txt'&gt;&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class='xcontrast_txt' href='/u/&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class=xcontrast_txt href=\&quot;/book&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;a class='xcontrast_txt' href=\&quot;/book&quot;)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -1148,16 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="990">
@@ -1242,12 +1268,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="586" column="74" lean-forward="true" selection-start-line="586" selection-start-column="74" selection-end-line="586" selection-end-column="74" />
+        <state relative-caret-position="118">
+          <caret line="570" selection-start-line="570" selection-end-line="570" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5030#5031#0" expanded="true" />
             <element signature="e#5059#5060#0" expanded="true" />
+            <element signature="e#5207#5208#0" expanded="true" />
+            <element signature="e#5241#5242#0" expanded="true" />
             <element signature="e#25604#25661#0" expanded="true" />
           </folding>
         </state>
@@ -1255,8 +1283,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="51" column="49" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
+        <state relative-caret-position="82">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="31" column="34" selection-start-line="31" selection-start-column="34" selection-end-line="31" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

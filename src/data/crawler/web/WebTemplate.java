@@ -131,6 +131,7 @@ public class WebTemplate implements Serializable {
     private Boolean lookComplete = false;
     private Boolean domainSame = false;
     private String linkPattern = null;
+    private String linkRejectPattern = null;
 
     private String charset = "UTF-8";
     private Map<String, WebTemplate> nextMap;
@@ -192,8 +193,9 @@ public class WebTemplate implements Serializable {
         return linkPattern;
     }
 
-    public WebTemplate setLinkPattern(String linkPattern) {
-        this.linkPattern = linkPattern;
+    public WebTemplate setLinkPattern(String linkAcceptPattern, String linkRejectPattern) {
+        this.linkPattern = linkAcceptPattern;
+        this.linkRejectPattern = linkRejectPattern;
         return this;
     }
 
@@ -566,8 +568,16 @@ public class WebTemplate implements Serializable {
         if(new WebDocument(folder, nextTemplate.name,seed.getRequestURL()).filenameExists()) return false;
 
         String templateDomain = nextTemplate.domain;
-        if (domainSame && linkPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern))
+        if (domainSame && linkPattern != null && linkRejectPattern!=null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
+            return !seed.getRequestURL().matches(linkRejectPattern);
+        }
+        else if (domainSame && linkPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
             return true;
+        }
+
+        else if (!domainSame && linkPattern != null && linkRejectPattern!=null && seed.getRequestURL().matches(linkPattern)) {
+            return !seed.getRequestURL().matches(linkRejectPattern);
+        }
         else if (!domainSame && linkPattern != null && seed.getRequestURL().matches(linkPattern)) return true;
         else if (domainSame && linkPattern == null && seed.getRequestURL().contains(templateDomain)) return true;
         else if(!domainSame && linkPattern == null)return true;
@@ -934,11 +944,11 @@ public class WebTemplate implements Serializable {
             System.out.println("Downloading... '" + address + "'");
             return new TextFile(filename, charset).readFullText();
         } else {
-            System.out.println("Downloading... '" + address + "'");
+
             String text = "";
             try {
                 text = downloadPage(address, charset, 2);
-
+                System.out.println("Downloaded... '" + address + "'");
             } catch (KeyManagementException e) {
                 e.printStackTrace();
             } catch (NoSuchAlgorithmException e) {

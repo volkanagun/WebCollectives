@@ -29,9 +29,9 @@ public class InternetHaber {
                 .addSeed("flash","http://www.internethaber.com/guncel-haberler")
                 .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
                 .setNextPageStart(1)
-                .setNextPageSize(200)
+                .setNextPageSize(500).setDoFast(true)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(15);
+                .setThreadSize(10);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
@@ -46,7 +46,7 @@ public class InternetHaber {
 
         linkTemplate.setMainPattern(linkPattern);
         linkTemplate.setDomainSame(true);
-        linkTemplate.setLinkPattern("(.*?)\\d+(.*?).htm");
+        linkTemplate.setLinkPattern("(.*?)\\-[\\d\\p{L}]+.htm","(.*?)(foto|video)-galerisi\\-\\d+\\.htm)");
 
 
 

@@ -18,7 +18,7 @@ public class FanFictionNet {
         bookTemplate.setDomain("https://www.funfiction.net/book/")
                 .setForceWrite(false)
                 .setThreadSize(20)
-                .setSeedSizeLimit(50L)
+                .setSeedSizeLimit(2000L)
                 .addSeed("https://www.fanfiction.net/book");
 
 
@@ -28,10 +28,11 @@ public class FanFictionNet {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.FANFICDIRECTORY, "book-links", LookupOptions.EMPTYDOMAIN);
         linkTemplate.setMainPattern(linkPattern)
+                .setDoFast(true)
                 .setDomain("https://www.fanfiction.net/book/")
                 .setForceWrite(false)
-                .setSuffixGenerator(new WebCountGenerator(1, 200, "?&p="))
-                .setThreadSize(20);
+                .setSuffixGenerator(new WebCountGenerator(1, 5, "?&p="))
+                .setThreadSize(5);
 
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div id=content_wrapper_inner(.*?)>", "</div>")
