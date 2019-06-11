@@ -43,6 +43,7 @@ import java.util.concurrent.*;
 import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 
 /**
  * Created by wolf on 02.07.2015.
@@ -123,6 +124,9 @@ public class WebTemplate implements Serializable {
     private Integer nextPageJump = 1;
     private Integer threadSize = 2;
     private Long sleepTime = 200L;
+    private Long waitTimeAfter = 60 * 60 * 1000L;
+    private Long lastWaitTime = 0L;
+    private Long waitTime = 10 * 60 * 1000L;
     private Long seedSizeLimit = Long.MAX_VALUE;
 
     private Boolean forceWrite = false;
@@ -151,6 +155,33 @@ public class WebTemplate implements Serializable {
     public WebTemplate(String folder, String name, String domain, String nextPageSuffix) {
         this(folder, name, domain);
         this.nextPageSuffix = nextPageSuffix;
+    }
+
+    public Long getWaitTime() {
+        return waitTime;
+    }
+
+    public WebTemplate setWaitTime(Long waitTime) {
+        this.waitTime = waitTime;
+        return this;
+    }
+
+    public Long getWaitTimeAfter() {
+        return waitTimeAfter;
+    }
+
+    public WebTemplate setWaitTimeAfter(Long waitTimeAfter) {
+        this.waitTimeAfter = waitTimeAfter;
+        return this;
+    }
+
+    public Long getLastWaitTime() {
+        return lastWaitTime;
+    }
+
+    public WebTemplate setLastWaitTime(Long lastWaitTime) {
+        this.lastWaitTime = lastWaitTime;
+        return this;
     }
 
     public Boolean getDoFast() {
@@ -196,6 +227,8 @@ public class WebTemplate implements Serializable {
     public WebTemplate setLinkPattern(String linkAcceptPattern, String linkRejectPattern) {
         this.linkPattern = linkAcceptPattern;
         this.linkRejectPattern = linkRejectPattern;
+        Pattern.compile(linkAcceptPattern);
+        Pattern.compile(linkRejectPattern);
         return this;
     }
 
@@ -493,14 +526,14 @@ public class WebTemplate implements Serializable {
         if (multipleIdentifier == null) {
             for (WebDocument document : documentList) {
                 if (!lookComplete || document.isComplete(mainPattern)) {
-                    sucessRate+=document.saveAsFlatXML();
+                    sucessRate += document.saveAsFlatXML();
 
                 }
             }
         } else {
             for (WebDocument document : documentList) {
                 if (!lookComplete || document.isComplete(mainPattern)) {
-                    sucessRate+= document.saveAsMultiXML(multipleIdentifier);
+                    sucessRate += document.saveAsMultiXML(multipleIdentifier);
 
                 }
             }
@@ -564,23 +597,44 @@ public class WebTemplate implements Serializable {
         }
     }
 
+    public void goWait(Object lock, Long waitTime) {
+
+        try {
+            lock.wait(waitTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void doWait(Object lock) {
+        Long crrTime = new Date().getTime();
+        if (crrTime >= (lastWaitTime + waitTimeAfter)) {
+            synchronized (lock) {
+                lastWaitTime = crrTime;
+                goSleep(waitTime);
+
+            }
+        } else {
+            /*synchronized (lock) {
+                lock.notify();
+            }*/
+        }
+
+    }
+
     public Boolean linkControl(WebSeed seed, WebTemplate nextTemplate) {
-        if(new WebDocument(folder, nextTemplate.name,seed.getRequestURL()).filenameExists()) return false;
+        if (new WebDocument(folder, nextTemplate.name, seed.getRequestURL()).filenameExists()) return false;
 
         String templateDomain = nextTemplate.domain;
-        if (domainSame && linkPattern != null && linkRejectPattern!=null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
+        if (domainSame && linkPattern != null && linkRejectPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
             return !seed.getRequestURL().matches(linkRejectPattern);
-        }
-        else if (domainSame && linkPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
+        } else if (domainSame && linkPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
             return true;
-        }
-
-        else if (!domainSame && linkPattern != null && linkRejectPattern!=null && seed.getRequestURL().matches(linkPattern)) {
+        } else if (!domainSame && linkPattern != null && linkRejectPattern != null && seed.getRequestURL().matches(linkPattern)) {
             return !seed.getRequestURL().matches(linkRejectPattern);
-        }
-        else if (!domainSame && linkPattern != null && seed.getRequestURL().matches(linkPattern)) return true;
+        } else if (!domainSame && linkPattern != null && seed.getRequestURL().matches(linkPattern)) return true;
         else if (domainSame && linkPattern == null && seed.getRequestURL().contains(templateDomain)) return true;
-        else if(!domainSame && linkPattern == null)return true;
+        else if (!domainSame && linkPattern == null) return true;
         else return false;
     }
 
@@ -594,7 +648,8 @@ public class WebTemplate implements Serializable {
         System.out.println("Seed size: " + seedList.size());
         goSleep();
 
-        List<WebDocument> documentList = doFast?downloadFast():download();
+
+        List<WebDocument> documentList = doFast ? downloadFast() : download();
         WebDocument mainDocument = new WebDocument(folder, name).setType(type);
 
 
@@ -621,7 +676,7 @@ public class WebTemplate implements Serializable {
                     String templateDomain = template.domain;
                     List<LookupResult> subResults = document.getLookupFinalList(templateLink);
 
-                    for (int k = 0; k < Math.min(subResults.size(),seedSizeLimit); k++) {
+                    for (int k = 0; k < Math.min(subResults.size(), seedSizeLimit); k++) {
                         LookupResult result = subResults.get(k);
                         WebSeed newSeed = new WebSeed(document.getUrl(), url(templateDomain, result.getText()), k);
                         if (linkControl(newSeed, template)) {
@@ -746,6 +801,7 @@ public class WebTemplate implements Serializable {
                     Boolean returnResult = false;
                     if (!document.filenameExists() && webSeed.doRequest(seedNumber)) {
                         goSleep(2000L);
+                        doWait(folder);
                         String downloadedHTML = downloadFile(webSeed.getRequestURL(), charset);
                         if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
                             document.setFetchDate(new Date());
@@ -824,6 +880,7 @@ public class WebTemplate implements Serializable {
                 public WebDocument call() {
 
 
+                    doWait(folder);
                     WebDocument document = new WebDocument(folder, name, webSeed.getRequestURL());
                     Integer seedNumber = seedNumber(failMap, webSeed.getMainURL());
 
@@ -861,7 +918,7 @@ public class WebTemplate implements Serializable {
         ExecutorService executor = Executors.newFixedThreadPool(threadSize);
         try {
             List<Future<WebDocument>> returnList = executor.invokeAll(threadList);
-            for(Future<WebDocument> fdoc:returnList){
+            for (Future<WebDocument> fdoc : returnList) {
                 try {
                     htmlDocumentList.add(fdoc.get(500, TimeUnit.MILLISECONDS));
                 } catch (TimeoutException e) {
