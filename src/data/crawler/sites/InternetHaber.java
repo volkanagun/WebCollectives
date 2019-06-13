@@ -29,12 +29,12 @@ public class InternetHaber {
                 .addSeed("flash","http://www.internethaber.com/guncel-haberler")
                 .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
                 .setNextPageStart(1)
-                .setNextPageSize(1)
-                .setWaitTimeAfter(600000L)
+                .setNextPageSize(10)
+                .setWaitTimeAfter(10000L)
                 .setWaitTime(5000L)
                 .setDoFast(true)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(10);
+                .setThreadSize(4);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
