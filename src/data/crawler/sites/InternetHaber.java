@@ -10,13 +10,16 @@ import java.util.concurrent.Executors;
 
 public class InternetHaber {
 
-    public static WebFlow build(){
+    public static WebFlow build(int i){
 
+        int maxSize = 500;
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
-                .addSeed("politics","http://www.internethaber.com/politika")
+                .addSeed("magazine","http://www.internethaber.com/haber")
+                /*.addSeed("politics","http://www.internethaber.com/politika")
                 .addSeed("world","http://www.internethaber.com/dunya")
                 .addSeed("economics","http://www.internethaber.com/ekonomi")
                 .addSeed("sports","http://www.internethaber.com/spor")
+                .addSeed("flash","http://www.internethaber.com/guncel-haberler")
                 .addSeed("education","http://www.internethaber.com/egitim")
                 .addSeed("auto","http://www.internethaber.com/otomobil")
                 .addSeed("housing","http://www.internethaber.com/emlak")
@@ -26,13 +29,12 @@ public class InternetHaber {
                 .addSeed("jobs","http://www.internethaber.com/calisma-hayati")
                 .addSeed("technology","http://www.internethaber.com/bilim-teknoloji")
                 .addSeed("magazine","http://www.internethaber.com/magazin")
-                .addSeed("flash","http://www.internethaber.com/guncel-haberler")
-                .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
-                .setNextPageStart(1)
-                .setNextPageSize(10)
-                .setWaitTimeAfter(10000L)
-                .setWaitTime(5000L)
-                .setDoFast(true)
+                .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")*/
+                .setNextPageStart(0+i*maxSize)
+                .setNextPageSize(maxSize)
+                .setWaitTimeAfter(1000000L)
+                .setWaitTime(50L)
+                .setDoFast(false)
                 .setNextPageSuffix("?page=")
                 .setThreadSize(4);
 
@@ -57,7 +59,8 @@ public class InternetHaber {
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(true)
-                .setThreadSize(2)
+                .setThreadSize(8)
+                .setDoFast(true)
                 .setForceWrite(false);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail(.*?)\">", "</div>")
@@ -80,8 +83,9 @@ public class InternetHaber {
 
     public static void main(String[] args) {
 
-        ExecutorService service = Executors.newFixedThreadPool(5);
-        WebFlow.submit(service, build());
-        service.shutdown();
+        for(int i=0; i< 5000; i++) {
+            build(i).execute();
+        }
+
     }
 }

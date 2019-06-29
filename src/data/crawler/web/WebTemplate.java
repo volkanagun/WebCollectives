@@ -26,6 +26,9 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.params.BasicHttpParams;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 import org.apache.http.ssl.SSLContextBuilder;
 import data.util.TextFile;
 
@@ -38,6 +41,9 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.text.DateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
@@ -124,9 +130,9 @@ public class WebTemplate implements Serializable {
     private Integer nextPageJump = 1;
     private Integer threadSize = 2;
     private Long sleepTime = 200L;
-    private Long waitTimeAfter = 60 * 60 * 1000L;
+    private Long waitTimeAfter = 60 * 60 * 10000L;
     private Long lastWaitTime = 0L;
-    private Long waitTime = 10 * 60 * 1000L;
+    private Long waitTime = 1000L;
     private Long seedSizeLimit = Long.MAX_VALUE;
 
     private Boolean forceWrite = false;
@@ -608,11 +614,10 @@ public class WebTemplate implements Serializable {
 
     public void doWait(Object lock) {
         Long crrTime = new Date().getTime();
-        if (crrTime >= (lastWaitTime + waitTimeAfter)) {
+        if (waitTimeAfter!=null && crrTime >= (lastWaitTime + waitTimeAfter)) {
             synchronized (lock) {
                 lastWaitTime = crrTime;
                 goSleep(waitTime);
-
             }
         } else {
             /*synchronized (lock) {
@@ -920,7 +925,7 @@ public class WebTemplate implements Serializable {
             List<Future<WebDocument>> returnList = executor.invokeAll(threadList);
             for (Future<WebDocument> fdoc : returnList) {
                 try {
-                    htmlDocumentList.add(fdoc.get(500, TimeUnit.MILLISECONDS));
+                    htmlDocumentList.add(fdoc.get(50, TimeUnit.MILLISECONDS));
                 } catch (TimeoutException e) {
 
                 }
@@ -965,6 +970,11 @@ public class WebTemplate implements Serializable {
     //////////////////////////////////////////////////////////
     //<editor-fold defaultstate="collapsed" desc="Utilities">
 
+    private String currentDate(){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.now().format(format);
+    }
+
     private String downloadFile(String address, String charset) {
 
         if (address.startsWith(TEXTPREFIX)) {
@@ -972,10 +982,10 @@ public class WebTemplate implements Serializable {
             return text;
         } else if (address.startsWith(FILEPREFIX)) {
             String filename = address.substring(address.indexOf(FILEPREFIX) + FILEPREFIX.length());
-            System.out.println("Downloading... '" + address + "'");
+            System.out.println("Downloading... '" + address + "'"+" Date: "+currentDate());
             return new TextFile(filename, charset).readFullText();
         } else {
-            System.out.println("Downloading... '" + address + "'");
+            System.out.println("Downloading... '" + address + "'"+" Date: "+currentDate());
             String text = "";
             try {
                 text = downloadPage(address, charset, 0);
@@ -998,14 +1008,14 @@ public class WebTemplate implements Serializable {
             return text;
         } else if (address.startsWith(FILEPREFIX)) {
             String filename = address.substring(address.indexOf(FILEPREFIX) + FILEPREFIX.length());
-            System.out.println("Downloading... '" + address + "'");
+            System.out.println("Downloading... '" + address + "'"+" Date: "+currentDate());
             return new TextFile(filename, charset).readFullText();
         } else {
 
             String text = "";
             try {
                 text = downloadPage(address, charset, 2);
-                System.out.println("Downloaded... '" + address + "'");
+                System.out.println("Downloaded... '" + address + "'"+" Date: "+currentDate());
             } catch (KeyManagementException e) {
                 e.printStackTrace();
             } catch (NoSuchAlgorithmException e) {
@@ -1024,7 +1034,7 @@ public class WebTemplate implements Serializable {
         if (address != null && !address.isEmpty()) {
             address = address.replaceAll("\\s", "%20");
             address = (address.startsWith("http://") || address.startsWith("https://")) ? address : "http://" + address;
-            HttpGet request = new HttpGet(address);
+
             SSLContextBuilder builder = new SSLContextBuilder();
 
             builder.loadTrustMaterial(null, new TrustStrategy() {
@@ -1037,20 +1047,23 @@ public class WebTemplate implements Serializable {
             SSLContext sslContext = builder.build();
             SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
             PlainConnectionSocketFactory plainsf = PlainConnectionSocketFactory.getSocketFactory();
+
             Registry<ConnectionSocketFactory> r = RegistryBuilder.<ConnectionSocketFactory>create()
                     .register("http", plainsf)
                     .register("https", sslsf)
                     .build();
 
             HttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(r);
-            CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(cm).build();
+            CloseableHttpClient httpClient = HttpClients.custom().setConnectionTimeToLive(5, TimeUnit.SECONDS).setConnectionManager(cm).build();
 
+
+            HttpGet request = new HttpGet(address);
 
             //Request request = Request.Get(address);
             if (request != null) {
                 try {
-                    //request.socketTimeout(160).connectTimeout(1500);
-                    request.addHeader("user-agent", "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9) Gecko/2008052906 Firefox/3.0");
+
+                    request.addHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36");
                     request.addHeader("accept", "image/gif, image/jpg, */*");
                     request.addHeader("connection", "keep-alive");
                     request.addHeader("accept-encoding", "gzip,deflate,sdch");
@@ -1081,7 +1094,7 @@ public class WebTemplate implements Serializable {
                         }
                     };
 
-                    sleep(10);
+                    sleep(100);
                     text = httpClient.execute(request, rh); //request.execute();
 
 
