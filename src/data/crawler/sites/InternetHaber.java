@@ -12,10 +12,11 @@ public class InternetHaber {
 
     public static WebFlow build(int i){
 
-        int maxSize = 500;
+        int startIndice = 0;
+        int maxSize = 100;
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
-                /*.addSeed("politics","http://www.internethaber.com/politika")
+                .addSeed("politics","http://www.internethaber.com/politika")
                 .addSeed("world","http://www.internethaber.com/dunya")
                 .addSeed("economics","http://www.internethaber.com/ekonomi")
                 .addSeed("sports","http://www.internethaber.com/spor")
@@ -29,8 +30,8 @@ public class InternetHaber {
                 .addSeed("jobs","http://www.internethaber.com/calisma-hayati")
                 .addSeed("technology","http://www.internethaber.com/bilim-teknoloji")
                 .addSeed("magazine","http://www.internethaber.com/magazin")
-                .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")*/
-                .setNextPageStart(0+i*maxSize)
+                .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
+                .setNextPageStart(startIndice+i*maxSize)
                 .setNextPageSize(maxSize)
                 .setWaitTimeAfter(1000000L)
                 .setWaitTime(50L)
@@ -83,7 +84,7 @@ public class InternetHaber {
 
     public static void main(String[] args) {
 
-        for(int i=0; i< 5000; i++) {
+        for(int i=0; i< 500; i++) {
             build(i).execute();
         }
 
