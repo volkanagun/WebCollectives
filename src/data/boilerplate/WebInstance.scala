@@ -19,9 +19,10 @@ class WebInstance(val htmlFile:String, val xmlFile:String) extends Serializable 
 
   protected def matching():this.type ={
     //parse html and map the tree path (including features) to corresponding extraction text
+    this
   }
 
 
 }
 
-class Tag(val attributes:Array[String])
+
