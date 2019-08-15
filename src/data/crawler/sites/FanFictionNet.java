@@ -8,8 +8,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class FanFictionNet {
-    public static WebFlow build() {
 
+    public static WebFlow build() {
 
         WebTemplate bookTemplate = new WebTemplate(LookupOptions.FANFICDIRECTORY, "fanfic", LookupOptions.EMPTYDOMAIN);
         LookupPattern bookPattern = new LookupPattern(LookupOptions.URL, LookupOptions.BOOKLINK, "<a\\shref\\=\"/book/", "\"");
@@ -50,7 +50,8 @@ public class FanFictionNet {
         articleTemplate.setMainPattern(articlePattern).setForceWrite(true)
                 .setDomain("https://www.fanfiction.net")
                 .setLookComplete(true)
-                .setThreadSize(24).setDoFast(true)
+                .setThreadSize(24)
+                .setDoFast(true)
                 .setType(LookupOptions.ARTICLEDOC);
 
 

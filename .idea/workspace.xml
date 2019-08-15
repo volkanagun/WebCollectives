@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="Fast download and extract">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/WebInstance.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +103,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MilliyetBlogList">
+  <component name="RunManager" selected="Application.FanFictionNet">
     <configuration name="BoingBlogList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BoingBlogList" />
       <module name="WebCollectives" />
@@ -119,8 +117,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Gizmodo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Gizmodo" />
+    <configuration name="FanFictionNet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.FanFictionNet" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -132,8 +130,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
+    <configuration name="Gizmodo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Gizmodo" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -173,18 +171,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.BoingBlogList" />
-      <item itemvalue="Application.InternetHaber" />
       <item itemvalue="Application.MilliyetBlogList" />
       <item itemvalue="Application.Gizmodo" />
       <item itemvalue="Application.MashableList" />
+      <item itemvalue="Application.FanFictionNet" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FanFictionNet" />
         <item itemvalue="Application.MilliyetBlogList" />
         <item itemvalue="Application.MashableList" />
         <item itemvalue="Application.BoingBlogList" />
         <item itemvalue="Application.Gizmodo" />
-        <item itemvalue="Application.InternetHaber" />
       </list>
     </recent_temporary>
   </component>
@@ -416,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1562535558624</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Fast download and extract">
+      <created>1565333824637</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1565333824637</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -15,6 +15,7 @@ import java.util.concurrent.Executors;
  */
 public class EngadetList implements Serializable {
     public static WebFlow build(String mainFolder) {
+
         WebTemplate authorTemplate = new WebTemplate(mainFolder, "author-links", LookupOptions.EMPTYDOMAIN);
         /*LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<span\\sclass\\=\"block@m-\">", "</span>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a\\shref\\=\"", "\"(.*?)>"));
@@ -37,6 +38,7 @@ public class EngadetList implements Serializable {
         LookupPattern linkPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<article class=\"o-hit(.*?)\">", "</article>")
                 .setStartEndMarker("<article", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a data-ylk=\"pos(.*?)href=\"", "\""));
+
         linkTemplate.setDomain("https://www.engadget.com/")
                 .setNextPageSuffix("page/")
                 .setThreadSize(6)
