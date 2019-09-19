@@ -17,6 +17,8 @@ public class EnglishTexts {
         webFlows.add(HuffingtonPost.build(LookupOptions.TEXTENGDIRECTORY));
         webFlows.add(MashableList.build(LookupOptions.TEXTENGDIRECTORY));
         webFlows.add(BoingBlogList.build(LookupOptions.TEXTENGDIRECTORY));
+        webFlows.add(FanFictionNet.buildBook(LookupOptions.TEXTENGDIRECTORY));
+        webFlows.add(FanFictionNet.buildCartoon(LookupOptions.TEXTENGDIRECTORY));
         for(WebFlow webFlow:webFlows){
             webFlow.setMainLookComplete(false);
         }
@@ -25,7 +27,7 @@ public class EnglishTexts {
     }
 
     public static void main(String[] args){
-        ExecutorService service = Executors.newFixedThreadPool(1);
+        ExecutorService service = Executors.newFixedThreadPool(5);
         WebFlow.batchSubmit(service, build());
         service.shutdown();
     }

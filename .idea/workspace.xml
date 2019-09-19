@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EnglishTexts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EnglishTexts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,43 +24,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>Seed size</find>
-      <find>&lt;main role</find>
-      <find>Downloading.</find>
-      <find>folder</find>
-      <find>webf</find>
-      <find>author</find>
-      <find>Downloading...</find>
-      <find>linkC</find>
-      <find>linkCo</find>
-      <find>news-de</find>
-      <find>download</find>
-      <find>news-detail</find>
-      <find>iran</find>
-      <find>&lt;a href=&quot;/book/</find>
-      <find>content</find>
-      <find>stitle</find>
-      <find>middle_con</find>
-      <find>colA</find>
-      <find>content_wrapper_inner</find>
-      <find>xconstrast</find>
-      <find>xcontrast_txt</find>
-      <find>xcontrast</find>
-      <find>xgray</find>
-      <find>Download</find>
-      <find>System.out</find>
-      <find>linkPattern</find>
-      <find>Downloading</find>
-      <find>Downloaded...</find>
-      <find>Downloaded</find>
-      <find>waitTimeAfter</find>
-    </findStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/src/data</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -84,7 +46,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553527984036" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -104,8 +66,8 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.FanFictionNet">
-    <configuration name="BoingBlogList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BoingBlogList" />
+    <configuration name="EnglishTexts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EnglishTexts" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -130,8 +92,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Gizmodo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Gizmodo" />
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -170,19 +132,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.BoingBlogList" />
       <item itemvalue="Application.MilliyetBlogList" />
-      <item itemvalue="Application.Gizmodo" />
       <item itemvalue="Application.MashableList" />
       <item itemvalue="Application.FanFictionNet" />
+      <item itemvalue="Application.InternetHaber" />
+      <item itemvalue="Application.EnglishTexts" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.FanFictionNet" />
-        <item itemvalue="Application.MilliyetBlogList" />
+        <item itemvalue="Application.EnglishTexts" />
         <item itemvalue="Application.MashableList" />
-        <item itemvalue="Application.BoingBlogList" />
-        <item itemvalue="Application.Gizmodo" />
+        <item itemvalue="Application.InternetHaber" />
+        <item itemvalue="Application.MilliyetBlogList" />
       </list>
     </recent_temporary>
   </component>
