@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,43 +26,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>Seed size</find>
-      <find>&lt;main role</find>
-      <find>Downloading.</find>
-      <find>folder</find>
-      <find>webf</find>
-      <find>author</find>
-      <find>Downloading...</find>
-      <find>linkC</find>
-      <find>linkCo</find>
-      <find>news-de</find>
-      <find>download</find>
-      <find>news-detail</find>
-      <find>iran</find>
-      <find>&lt;a href=&quot;/book/</find>
-      <find>content</find>
-      <find>stitle</find>
-      <find>middle_con</find>
-      <find>colA</find>
-      <find>content_wrapper_inner</find>
-      <find>xconstrast</find>
-      <find>xcontrast_txt</find>
-      <find>xcontrast</find>
-      <find>xgray</find>
-      <find>Download</find>
-      <find>System.out</find>
-      <find>linkPattern</find>
-      <find>Downloading</find>
-      <find>Downloaded...</find>
-      <find>Downloaded</find>
-      <find>waitTimeAfter</find>
-    </findStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$/src/data</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.FanFictionNet">
+  <component name="RunManager" selected="Application.InternetHaber">
     <configuration name="BoingBlogList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BoingBlogList" />
       <module name="WebCollectives" />
@@ -130,8 +94,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Gizmodo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Gizmodo" />
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -172,17 +136,17 @@
     <list>
       <item itemvalue="Application.BoingBlogList" />
       <item itemvalue="Application.MilliyetBlogList" />
-      <item itemvalue="Application.Gizmodo" />
       <item itemvalue="Application.MashableList" />
       <item itemvalue="Application.FanFictionNet" />
+      <item itemvalue="Application.InternetHaber" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FanFictionNet" />
+        <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.MilliyetBlogList" />
+        <item itemvalue="Application.FanFictionNet" />
         <item itemvalue="Application.MashableList" />
         <item itemvalue="Application.BoingBlogList" />
-        <item itemvalue="Application.Gizmodo" />
       </list>
     </recent_temporary>
   </component>
@@ -421,7 +385,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565333824637</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Fast download and extract">
+      <created>1565882566627</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1565882566627</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -21,7 +21,7 @@ public class MilliyetBlog implements Serializable {
         mainTemplate.setMainPattern(linkPattern);
         mainTemplate.setDomain("http://blog.milliyet.com.tr/");
         mainTemplate.setNextPageSuffix("Page=");
-        mainTemplate.setNextPageSize(59);
+        mainTemplate.setNextPageSize(10);
         mainTemplate.setNextPageStart(1);
         mainTemplate.addSeed("http://blog.milliyet.com.tr/BlogListe/?Status=&Sort=&KategoriNo=&");
 
