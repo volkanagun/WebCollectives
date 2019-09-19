@@ -13,7 +13,7 @@ public class InternetHaber {
     public static WebFlow build(int i){
 
         int startIndice = 0;
-        int maxSize = 100;
+        int maxSize = 2;
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
                 .addSeed("politics","http://www.internethaber.com/politika")
@@ -37,7 +37,7 @@ public class InternetHaber {
                 .setWaitTime(50L)
                 .setDoFast(false)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(4);
+                .setThreadSize(1);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
@@ -60,7 +60,7 @@ public class InternetHaber {
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", LookupOptions.EMPTY)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(true)
-                .setThreadSize(8)
+                .setThreadSize(1)
                 .setDoFast(true)
                 .setForceWrite(false);
 
