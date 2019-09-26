@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -65,7 +65,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.InternetHaber">
+  <component name="RunManager" selected="Application.FanFictionNet">
     <configuration name="EnglishTexts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EnglishTexts" />
       <module name="WebCollectives" />
@@ -140,10 +140,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.FanFictionNet" />
         <item itemvalue="Application.EnglishTexts" />
         <item itemvalue="Application.MashableList" />
+        <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.MilliyetBlogList" />
       </list>
     </recent_temporary>

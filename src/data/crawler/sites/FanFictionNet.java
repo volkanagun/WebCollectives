@@ -83,7 +83,7 @@ public class FanFictionNet {
         cartoonTemplate.setDomain("https://www.funfiction.net/cartoon/")
                 .setForceWrite(false)
                 .setThreadSize(1)
-                .setSeedSizeLimit(100L)
+                .setSeedSizeLimit(10000L)
                 .addSeed("https://www.fanfiction.net/cartoon");
 
 
@@ -97,7 +97,7 @@ public class FanFictionNet {
                 .setDoFast(true)
                 .setDomain("https://www.fanfiction.net/cartoon/")
                 .setForceWrite(false)
-                .setSuffixGenerator(new WebCountGenerator(1, 1, "?&p="))
+                .setSuffixGenerator(new WebCountGenerator(1, 10, "?&p="))
                 .setThreadSize(1);
 
 
