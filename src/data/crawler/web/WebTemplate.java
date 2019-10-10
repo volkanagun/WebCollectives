@@ -137,6 +137,7 @@ public class WebTemplate implements Serializable {
 
     private Boolean forceWrite = false;
     private Boolean doFast = false;
+    private Boolean doDeleteStart = false;
 
     private Boolean lookComplete = false;
     private Boolean domainSame = false;
@@ -472,6 +473,15 @@ public class WebTemplate implements Serializable {
     public WebTemplate setForceWrite(Boolean forceWrite) {
         this.forceWrite = forceWrite;
         return this;
+    }
+
+    public WebTemplate setDoDeleteStart(Boolean doDeleteStart) {
+        this.doDeleteStart = doDeleteStart;
+        return this;
+    }
+
+    public Boolean getDoDeleteStart() {
+        return doDeleteStart;
     }
 
     public List<WebDocument> checkXML(List<WebDocument> documentList) {

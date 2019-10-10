@@ -2,11 +2,10 @@ package data.crawler.web;
 
 import data.crawler.sites.*;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -46,10 +45,41 @@ public class WebFlow implements Serializable, Callable<Boolean> {
         return true;
     }
 
+    public void doDeleteStart(){
+        List<String> deleteFilenamePatterns = new ArrayList<>();
+        WebTemplate crrTemplate = mainTemplate;
+        while(crrTemplate!=null){
+            if(crrTemplate.getDoDeleteStart()){
+                deleteDocuments(crrTemplate);
+            }
+
+            Iterator<String> nextLinks = crrTemplate.getNextIterator();
+            if(nextLinks.hasNext()) crrTemplate = crrTemplate.getNextMap(nextLinks.next());
+            else crrTemplate = null;
+        }
+
+
+    }
+
+    private void deleteDocuments(WebTemplate webTemplate){
+        String pattern = webTemplate.getName();
+        String folder = webTemplate.getFolder();
+        File[] deleteFiles = new File(folder).listFiles(new FilenameFilter() {
+            @Override
+            public boolean accept(File dir, String name) {
+                if(name.contains(pattern)) return true;
+                else return false;
+            }
+        });
+
+        for(File f:deleteFiles) f.delete();
+    }
+
     public WebDocument execute() {
         //Download template
         //Extract patterns
         //Pass seedlist to next template as urls if it is a url
+        doDeleteStart();
         WebDocument mainDocument = mainTemplate.execute();
 
         return mainDocument;
