@@ -36,6 +36,7 @@ public class InternetHaber {
                 .setWaitTimeAfter(1000000L)
                 .setWaitTime(50L)
                 .setDoFast(false)
+                .setDoDeleteStart(true)
                 .setNextPageSuffix("?page=")
                 .setThreadSize(1);
 

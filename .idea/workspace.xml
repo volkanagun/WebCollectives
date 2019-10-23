@@ -2,10 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jsoup_jsoup_1_12_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/HTMLNode.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/HTMLParser.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/HTMLPath.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/WebInstanceReader.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html.html" beforeDir="false" afterPath="$PROJECT_DIR$/html.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/WebInstance.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,20 +74,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MilliyetBlogList">
-    <configuration name="EnglishTexts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EnglishTexts" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.HTMLParser">
     <configuration name="FanFictionNet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.FanFictionNet" />
       <module name="WebCollectives" />
@@ -94,12 +88,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
+    <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="data.boilerplate.HTMLParser" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="PATTERN" value="data.boilerplate.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -107,8 +101,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MashableList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.MashableList" />
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -133,20 +127,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TwitterTimeLine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.TwitterTimeLine" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.MilliyetBlogList" />
-      <item itemvalue="Application.MashableList" />
       <item itemvalue="Application.FanFictionNet" />
       <item itemvalue="Application.InternetHaber" />
-      <item itemvalue="Application.EnglishTexts" />
+      <item itemvalue="Application.TwitterTimeLine" />
+      <item itemvalue="Application.HTMLParser" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MilliyetBlogList" />
+        <item itemvalue="Application.HTMLParser" />
         <item itemvalue="Application.InternetHaber" />
+        <item itemvalue="Application.TwitterTimeLine" />
+        <item itemvalue="Application.MilliyetBlogList" />
         <item itemvalue="Application.FanFictionNet" />
-        <item itemvalue="Application.EnglishTexts" />
-        <item itemvalue="Application.MashableList" />
       </list>
     </recent_temporary>
   </component>
