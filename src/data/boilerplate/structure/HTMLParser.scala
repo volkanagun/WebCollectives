@@ -1,4 +1,4 @@
-package data.boilerplate
+package data.boilerplate.structure
 
 import org.jsoup.Jsoup
 import org.jsoup.nodes.{Node, TextNode}

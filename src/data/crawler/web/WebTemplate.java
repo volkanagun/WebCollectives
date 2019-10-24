@@ -143,6 +143,7 @@ public class WebTemplate implements Serializable {
     private Boolean domainSame = false;
     private String linkPattern = null;
     private String linkRejectPattern = null;
+    private String htmlSaveFolder = null;
 
     private String charset = "UTF-8";
     private Map<String, WebTemplate> nextMap;
@@ -188,6 +189,15 @@ public class WebTemplate implements Serializable {
 
     public WebTemplate setLastWaitTime(Long lastWaitTime) {
         this.lastWaitTime = lastWaitTime;
+        return this;
+    }
+
+    public String getHtmlSaveFolder() {
+        return htmlSaveFolder;
+    }
+
+    public WebTemplate setHtmlSaveFolder(String htmlSaveFolder) {
+        this.htmlSaveFolder = htmlSaveFolder;
         return this;
     }
 
@@ -833,6 +843,7 @@ public class WebTemplate implements Serializable {
                                 documentList.add(document);
                             }
 
+                            saveHTML(document);
                             returnResult = extract(document);
                         } else {
                             synchronized (failMap) {
@@ -914,6 +925,7 @@ public class WebTemplate implements Serializable {
                             }
                             document.setIndex(index);
 
+                            saveHTML(document);
                             returnResult = extract(document);
                         }
 
@@ -975,6 +987,12 @@ public class WebTemplate implements Serializable {
         return !results.isEmpty();
 
     }
+
+    public Boolean saveHTML(WebDocument html){
+        return html.saveHTML(htmlSaveFolder);
+    }
+
+
 
     ///////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////

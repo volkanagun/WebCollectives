@@ -1,10 +1,8 @@
-package data.boilerplate
+package data.boilerplate.structure
 
-import java.util.Locale
 import java.util.regex.Pattern
 
 import scala.io.Source
-import scala.xml.Node
 
 object XMLParser {
 

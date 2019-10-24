@@ -1,4 +1,4 @@
-package data.boilerplate
+package data.boilerplate.structure
 
 import java.io.File
 
@@ -16,4 +16,6 @@ class WebInstanceReader(val htmlFolder:String, val xmlFolders:Array[String], val
       }
     })
   }
+
+
 }

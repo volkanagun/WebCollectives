@@ -1,6 +1,4 @@
-package data.boilerplate
-
-import javax.swing.text.html.parser.DocumentParser
+package data.boilerplate.structure
 
 class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[String]) extends Serializable {
 

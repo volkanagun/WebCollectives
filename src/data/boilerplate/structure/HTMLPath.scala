@@ -1,6 +1,4 @@
-package data.boilerplate
-
-import org.jsoup.nodes.Node
+package data.boilerplate.structure
 
 /**
  * @author Volkan Agun

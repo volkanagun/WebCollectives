@@ -105,6 +105,10 @@ public class WebDocument implements Serializable {
         return folder + "/" + name + nameCode();
     }
 
+    public String htmlFilename(String htmlFolder) {
+        return htmlFolder + "/" + name + nameCode();
+    }
+
     public String filename(String title) {
         return folder + "/" + name + nameCode(title);
     }
@@ -136,7 +140,21 @@ public class WebDocument implements Serializable {
 
     }
 
-
+    public Boolean saveHTML(String htmlFolder) {
+        if(htmlFolder !=null) {
+            (new File(htmlFolder)).mkdirs();
+            if (!name.isEmpty()) {
+                TextFile textFile = new TextFile(htmlFilename(htmlFolder));
+                if (!textFile.exists()) {
+                    textFile.openBufferWrite();
+                    textFile.writeFullText(text);
+                    textFile.closeBufferWrite();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     public int saveAsMultiXML(String identifier) {
         (new File(folder)).mkdirs();
         if (!name.isEmpty() && !lookupResultList.isEmpty()) {

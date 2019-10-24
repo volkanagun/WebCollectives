@@ -2,17 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jsoup_jsoup_1_12_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/HTMLNode.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/HTMLParser.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/HTMLPath.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/WebInstanceReader.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLParser.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLParser.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html.html" beforeDir="false" afterPath="$PROJECT_DIR$/html.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/WebInstance.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/HTMLNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/HTMLParser.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/HTMLPath.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLPath.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/WebInstanceReader.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceReader.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/WebReplaces.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebReplaces.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/XMLParser.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,6 +32,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Scala Class" />
+        <option value="Scala Object" />
       </list>
     </option>
   </component>
@@ -89,11 +93,11 @@
       </method>
     </configuration>
     <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="data.boilerplate.HTMLParser" />
+      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.HTMLParser" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.boilerplate.*" />
+          <option name="PATTERN" value="data.boilerplate.structure.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -443,12 +447,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>951</line>
+          <line>963</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>629</line>
+          <line>639</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

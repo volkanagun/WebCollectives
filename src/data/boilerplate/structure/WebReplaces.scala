@@ -1,6 +1,4 @@
-package data.boilerplate
-
-
+package data.boilerplate.structure
 
 class Replacement(val pattern: String, val replace: String) {
   def replaceAll(text: String): String = {
