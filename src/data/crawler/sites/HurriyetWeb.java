@@ -40,6 +40,7 @@ public class HurriyetWeb implements Serializable {
                                 .setRemoveTags(true)))
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "((<div class=\"rhd-editor-title\">)|(<h6 class=\"rhd-author-name\">))","</div>")
                                 .setNth(0)
+                                .setValue("hurriyet")
                                 .setRemoveTags(true))
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div class=\"rhd-time-box\">","</div>")
                                 .setNth(0)
