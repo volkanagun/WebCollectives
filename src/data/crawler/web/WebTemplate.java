@@ -634,7 +634,7 @@ public class WebTemplate implements Serializable {
 
     public void doWait(Object lock) {
         Long crrTime = new Date().getTime();
-        if (waitTimeAfter!=null && crrTime >= (lastWaitTime + waitTimeAfter)) {
+        if (waitTimeAfter != null && crrTime >= (lastWaitTime + waitTimeAfter)) {
             synchronized (lock) {
                 lastWaitTime = crrTime;
                 goSleep(waitTime);
@@ -827,23 +827,12 @@ public class WebTemplate implements Serializable {
                     if (!document.filenameExists() && webSeed.doRequest(seedNumber)) {
                         goSleep(2000L);
                         doWait(folder);
-                        String downloadedHTML = downloadFile(webSeed.getRequestURL(), charset);
-                        if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
-                            document.setFetchDate(new Date());
-                            document.setText(downloadedHTML);
-                            document.setDomain(domain);
-                            document.setType(type);
-                            document.setLookComplete(lookComplete);
-                            if (seedMap.containsKey(webSeed)) {
-                                document.putProperty(LookupOptions.GENRE, seedMap.get(webSeed));
-                            }
-                            document.setIndex(index);
-
+                        Integer returnValue = loadHTML(document, webSeed, index);
+                        if (returnValue == 1 || returnValue == 0) {
                             synchronized (documentList) {
                                 documentList.add(document);
                             }
-
-                            saveHTML(document);
+                            if (returnValue == 1) saveHTML(document);
                             returnResult = extract(document);
                         } else {
                             synchronized (failMap) {
@@ -909,25 +898,13 @@ public class WebTemplate implements Serializable {
                     doWait(folder);
                     WebDocument document = new WebDocument(folder, name, webSeed.getRequestURL());
                     Integer seedNumber = seedNumber(failMap, webSeed.getMainURL());
-
+                    Integer returnValue = loadHTML(document, webSeed, index);
                     Boolean returnResult = false;
-                    if (!document.filenameExists() && webSeed.doRequest(seedNumber)) {
+                    if (returnValue == 0 || returnValue == 1) {
 
-                        String downloadedHTML = downloadFileFast(webSeed.getRequestURL(), charset);
-                        if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
-                            document.setFetchDate(new Date());
-                            document.setText(downloadedHTML);
-                            document.setDomain(domain);
-                            document.setType(type);
-                            document.setLookComplete(lookComplete);
-                            if (seedMap.containsKey(webSeed)) {
-                                document.putProperty(LookupOptions.GENRE, seedMap.get(webSeed));
-                            }
-                            document.setIndex(index);
+                        if(returnValue == 1) saveHTML(document);
+                        returnResult = extract(document);
 
-                            saveHTML(document);
-                            returnResult = extract(document);
-                        }
 
                     }
 
@@ -988,17 +965,46 @@ public class WebTemplate implements Serializable {
 
     }
 
-    public Boolean saveHTML(WebDocument html){
+    public Boolean saveHTML(WebDocument html) {
         return html.saveHTML(htmlSaveFolder);
     }
 
+    public Integer loadHTML(WebDocument document, WebSeed webSeed, Integer index) {
+        if (document.loadHTML(htmlSaveFolder)) {
+            document.setFetchDate(new Date());
+            document.setDomain(domain);
+            document.setType(type);
+            document.setLookComplete(lookComplete);
+            if (seedMap.containsKey(webSeed)) {
+                document.putProperty(LookupOptions.GENRE, seedMap.get(webSeed));
+            }
+            document.setIndex(index);
+            System.out.println("Loaded ..."+document.htmlFilename(htmlSaveFolder));
+            return 0;
+        } else {
+            String downloadedHTML = doFast ? downloadFileFast(webSeed.getRequestURL(), charset) : downloadFile(webSeed.getRequestURL(), charset);
+            if (downloadedHTML != null && !downloadedHTML.isEmpty()) {
+                document.setFetchDate(new Date());
+                document.setText(downloadedHTML);
+                document.setDomain(domain);
+                document.setType(type);
+                document.setLookComplete(lookComplete);
+                if (seedMap.containsKey(webSeed)) {
+                    document.putProperty(LookupOptions.GENRE, seedMap.get(webSeed));
+                }
+                document.setIndex(index);
+                return 1;
+            }
+        }
+        return -1;
+    }
 
 
     ///////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////
     //<editor-fold defaultstate="collapsed" desc="Utilities">
 
-    private String currentDate(){
+    private String currentDate() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return LocalDateTime.now().format(format);
     }
@@ -1010,10 +1016,10 @@ public class WebTemplate implements Serializable {
             return text;
         } else if (address.startsWith(FILEPREFIX)) {
             String filename = address.substring(address.indexOf(FILEPREFIX) + FILEPREFIX.length());
-            System.out.println("Downloading... '" + address + "'"+" Date: "+currentDate());
+            System.out.println("Downloading... '" + address + "'" + " Date: " + currentDate());
             return new TextFile(filename, charset).readFullText();
         } else {
-            System.out.println("Downloading... '" + address + "'"+" Date: "+currentDate());
+            System.out.println("Downloading... '" + address + "'" + " Date: " + currentDate());
             String text = "";
             try {
                 text = downloadPage(address, charset, 0);
@@ -1036,14 +1042,14 @@ public class WebTemplate implements Serializable {
             return text;
         } else if (address.startsWith(FILEPREFIX)) {
             String filename = address.substring(address.indexOf(FILEPREFIX) + FILEPREFIX.length());
-            System.out.println("Downloading... '" + address + "'"+" Date: "+currentDate());
+            System.out.println("Downloading... '" + address + "'" + " Date: " + currentDate());
             return new TextFile(filename, charset).readFullText();
         } else {
 
             String text = "";
             try {
                 text = downloadPage(address, charset, 2);
-                System.out.println("Downloaded... '" + address + "'"+" Date: "+currentDate());
+                System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
             } catch (KeyManagementException e) {
                 e.printStackTrace();
             } catch (NoSuchAlgorithmException e) {

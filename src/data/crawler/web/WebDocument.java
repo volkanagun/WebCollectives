@@ -155,6 +155,26 @@ public class WebDocument implements Serializable {
         }
         return false;
     }
+
+    public Boolean loadHTML(String htmlFolder) {
+        if(htmlFolder !=null) {
+            (new File(htmlFolder)).mkdirs();
+            String htmlFilename = htmlFilename(htmlFolder);
+            if (!name.isEmpty() && new File(htmlFilename).exists()) {
+                TextFile textFile = new TextFile(htmlFilename);
+                if (!textFile.exists()) {
+                    textFile.openBufferRead();
+                    setText(textFile.readFullText());
+                    textFile.closeBufferRead();
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public int saveAsMultiXML(String identifier) {
         (new File(folder)).mkdirs();
         if (!name.isEmpty() && !lookupResultList.isEmpty()) {

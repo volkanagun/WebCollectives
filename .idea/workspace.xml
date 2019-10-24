@@ -2,27 +2,164 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_clearspring_analytics_stream_2_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_jai_imageio_jai_imageio_core_1_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_oshi_oshi_core_3_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_flatbuffers_flatbuffers_java_1_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_jakewharton_byteunits_byteunits_0_9_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_tdunning_t_digest_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_common_common_image_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_common_common_io_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_common_common_lang_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_imageio_imageio_bmp_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_imageio_imageio_core_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_imageio_imageio_jpeg_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_imageio_imageio_metadata_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_imageio_imageio_psd_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_twelvemonkeys_imageio_imageio_tiff_3_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_net_commons_net_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__it_unimi_dsi_fastutil_6_5_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__joda_time_joda_time_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_ericaro_neoitertools_1_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_dev_jna_jna_4_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_java_dev_jna_jna_platform_4_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_sf_opencsv_opencsv_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math3_3_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_artoolkitplus_2_3_1_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_ffmpeg_4_1_3_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_flandmark_1_07_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_flycapture_2_13_3_31_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_linux_ppc64le_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_linux_x86_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_linux_x86_64_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_macosx_x86_64_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_platform_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_windows_x86_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_hdf5_windows_x86_64_1_10_5_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_javacpp_1_5_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_javacv_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_android_arm64_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_android_arm_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_android_x86_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_android_x86_64_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_linux_arm64_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_linux_armhf_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_linux_ppc64le_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_linux_x86_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_linux_x86_64_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_macosx_x86_64_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_platform_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_windows_x86_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_leptonica_windows_x86_64_1_78_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_libdc1394_2_2_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_libfreenect2_0_2_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_libfreenect_0_5_7_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_librealsense_1_12_1_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_2019_4_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_dnn_0_20_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_dnn_linux_x86_64_0_20_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_dnn_macosx_x86_64_0_20_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_dnn_platform_0_20_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_dnn_windows_x86_64_0_20_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_linux_x86_2019_4_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_linux_x86_64_2019_4_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_macosx_x86_64_2019_4_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_platform_2019_4_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_windows_x86_2019_4_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_mkl_windows_x86_64_2019_4_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_android_arm64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_android_arm_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_android_x86_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_android_x86_64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_ios_arm64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_ios_x86_64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_linux_arm64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_linux_armhf_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_linux_ppc64le_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_linux_x86_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_linux_x86_64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_macosx_x86_64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_platform_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_windows_x86_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_openblas_windows_x86_64_0_3_6_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_android_arm64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_android_arm_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_android_x86_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_android_x86_64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_ios_arm64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_ios_x86_64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_linux_arm64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_linux_armhf_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_linux_ppc64le_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_linux_x86_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_linux_x86_64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_macosx_x86_64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_platform_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_windows_x86_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_opencv_windows_x86_64_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_tesseract_4_1_0_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bytedeco_videoinput_0_200_1_5_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_datavec_datavec_api_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_datavec_datavec_data_image_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_common_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_core_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_datasets_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_datavec_iterators_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_modelimport_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_nn_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_tsne_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_ui_components_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_util_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_deeplearning4j_utility_iterators_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_deeplearning4j_nearestneighbor_core_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_freemarker_freemarker_2_3_23.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_lucee_oswego_concurrent_1_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_guava_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_jackson_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_api_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_buffer_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_common_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_context_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_jackson_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_android_arm64_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_android_arm_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_android_x86_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_android_x86_64_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_api_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_ios_arm64_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_ios_x86_64_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_linux_armhf_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_linux_ppc64le_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_linux_x86_64_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_macosx_x86_64_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_platform_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_nd4j_native_windows_x86_64_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_nd4j_protobuf_1_0_0_beta5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_objenesis_objenesis_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_threeten_threetenbp_1_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AcikEkonomi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AcikEkonomi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EngadetList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Ergonomic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Ergonomic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GezenlerKulubu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GezenlerKulubu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Hayrola.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Hayrola.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MashableList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Reuters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Reuters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SonBirseyler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SonBirseyler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SosyalRadar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SosyalRadar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,9 +176,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Scala Class" />
         <option value="Scala Object" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -86,13 +223,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.HTMLParser">
-    <configuration name="FanFictionNet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.FanFictionNet" />
+  <component name="RunManager" selected="Application.HurriyetWeb">
+    <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.HTMLParser" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="PATTERN" value="data.boilerplate.structure.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,12 +237,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.HTMLParser" />
+    <configuration name="HurriyetWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.HurriyetWeb" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.boilerplate.structure.*" />
+          <option name="PATTERN" value="data.crawler.sites.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -154,18 +291,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.MilliyetBlogList" />
-      <item itemvalue="Application.FanFictionNet" />
       <item itemvalue="Application.InternetHaber" />
       <item itemvalue="Application.TwitterTimeLine" />
       <item itemvalue="Application.HTMLParser" />
+      <item itemvalue="Application.HurriyetWeb" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.HurriyetWeb" />
+        <item itemvalue="Application.MilliyetBlogList" />
         <item itemvalue="Application.HTMLParser" />
         <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.TwitterTimeLine" />
-        <item itemvalue="Application.MilliyetBlogList" />
-        <item itemvalue="Application.FanFictionNet" />
       </list>
     </recent_temporary>
   </component>
@@ -411,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1569154503614</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Fast download and extract">
+      <created>1571917078312</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1571917078312</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,85 +599,25 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>963</line>
-          <option name="timeStamp" value="15" />
+          <line>973</line>
+          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>639</line>
-          <option name="timeStamp" value="35" />
+          <line>683</line>
+          <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebFlow.java</url>
-          <line>81</line>
-          <option name="timeStamp" value="36" />
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
+          <line>746</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="linkPattern.matches(&quot;http://xyz/foto-galerisi-129.htm&quot;)" language="JAVA" />
-        <watch expression="seed.getRequestURL()" language="JAVA" />
-        <watch expression="seed.getMainURL()" language="JAVA" />
-        <watch expression="newSeed.getRequestURL().matches(linkPattern)" language="JAVA" />
-        <watch expression="newSeed.toString()" language="JAVA" />
-        <watch expression="&quot;https://www.internethaber.com/cumhurbaskani-erdogana-istanbulda-yogun-ilgi-foto-galeri-2027079.htm&quot;.matches(linkRejectPattern)" language="JAVA" />
-        <watch expression="seed.getRequestURL().matches(linkRejectPattern)" language="JAVA" />
+        <watch expression="Pattern.compile(regex)" language="JAVA" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="watch">
-      <expression>
-        <expression-string>seed.getRequestURL().matches(linkRejectPattern)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>&quot;https://www.internethaber.com/cumhurbaskani-erdogana-istanbulda-yogun-ilgi-foto-galeri-2027079.htm&quot;.matches(linkRejectPattern)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>&quot;https://www.internethaber.com/cumhurbaskani-erdogana-istanbulda-yogun-ilgi-foto-galerisi-2027079.htm&quot;.matches(linkRejectPattern)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>newSeed.getRequestURL().matches(linkPattern)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>newSeed.toString()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>seed.getRequestURL().matches(linkPattern)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>seed.getMainURL()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>seed.getRequestURL()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>linkPattern.matches(&quot;http://xyz/foto-galerisi-129.htm&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>partial.contains(&quot;&lt;div class='storytext xcontrast_txt nocopy' id='storytext'&gt;&quot;)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>

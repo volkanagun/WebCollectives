@@ -5,10 +5,11 @@ import data.crawler.web.LookupPattern;
 import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 
+import java.io.Serializable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class InternetHaber {
+public class InternetHaber implements Serializable {
 
     public static WebFlow build(int i){
 
