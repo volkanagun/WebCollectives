@@ -325,7 +325,7 @@ public class LookupPattern implements Serializable {
         if (isRegex()) {
             List<String> subList = new ArrayList<>();
             if(resultList.isEmpty() && value!=null && propertyMap.containsKey(value)) resultList.add(propertyMap.get(value));
-            
+
             for (int i = 0; i < resultList.size(); i++) {
                 String result = getReplaces(resultList.get(i));
                 subList.add(result);

@@ -22,6 +22,9 @@ public class HurriyetWeb implements Serializable {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy","http://www.hurriyet.com.tr/ekonomi/")
+                .addSeed("world","http://www.hurriyet.com.tr/dunya/")
+                .addSeed("trending","http://www.hurriyet.com.tr/gundem/")
+                .addSeed("sports","http://www.hurriyet.com.tr/sporarena/")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
                 .setThreadSize(1)
