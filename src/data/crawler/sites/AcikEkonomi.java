@@ -34,8 +34,10 @@ public class AcikEkonomi implements Serializable {
                                 .setMth(100)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN);
-        articleTemplate.setMainPattern(articlePattern);
-        articleTemplate.setType(LookupOptions.BLOGDOC);
+        articleTemplate
+                .setMainPattern(articlePattern)
+                .setType(LookupOptions.BLOGDOC)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow webFlow = new WebFlow(mainTemplate);

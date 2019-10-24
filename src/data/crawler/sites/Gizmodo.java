@@ -83,8 +83,9 @@ public class Gizmodo {
                                 .setRemoveTags(true)));
 
 
-        articleTemplate.setMainPattern(articleLookup);
-        articleTemplate.setLookComplete(true);
+        articleTemplate.setMainPattern(articleLookup)
+                .setLookComplete(true)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
 

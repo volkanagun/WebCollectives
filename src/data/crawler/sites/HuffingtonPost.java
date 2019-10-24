@@ -46,7 +46,8 @@ public class HuffingtonPost implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "<a class=\"tag yr-tag\"(.*?)>", "</a>").setNth(1));
 
         mainTemplate.setType("BLOG-DOC")
-                .setMainPattern(mainPattern).setForceWrite(true);
+                .setMainPattern(mainPattern).setForceWrite(true)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         linkTemplate.addNext(mainTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);

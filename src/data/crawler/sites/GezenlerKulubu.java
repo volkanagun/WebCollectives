@@ -34,8 +34,10 @@ public class GezenlerKulubu implements Serializable {
 
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", "http://www.cokgezenlerkulubu.com/");
-        articleTemplate.setMainPattern(articlePattern);
-        articleTemplate.setType(LookupOptions.BLOGDOC);
+        articleTemplate
+                .setMainPattern(articlePattern)
+                .setType(LookupOptions.BLOGDOC)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow webFlow = new WebFlow(mainTemplate);

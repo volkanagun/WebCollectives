@@ -57,6 +57,7 @@ public class BoingBlogList implements Serializable {
                 .setForceWrite(true)
                 .setDomain("https://boingboing.net")
                 .setThreadSize(6)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setType(LookupOptions.BLOGDOC);
 
         yazarTemplate.addNext(linkTemplate, LookupOptions.AUTHORLINK);

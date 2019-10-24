@@ -38,6 +38,7 @@ public class MilliyetBlog implements Serializable {
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN);
         articleTemplate.setMainPattern(articlePattern);
         articleTemplate.setType(LookupOptions.BLOGDOC);
+        articleTemplate.setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow webFlow = new WebFlow(mainTemplate);

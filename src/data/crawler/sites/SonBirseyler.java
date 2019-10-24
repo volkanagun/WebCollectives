@@ -38,8 +38,9 @@ public class SonBirseyler implements Serializable {
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>").setNth(2).setMth(100)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN);
-        articleTemplate.setMainPattern(articlePattern);
-        articleTemplate.setType(LookupOptions.BLOGDOC);
+        articleTemplate.setMainPattern(articlePattern)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
+                .setType(LookupOptions.BLOGDOC);
 
         mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow webFlow = new WebFlow(mainTemplate);

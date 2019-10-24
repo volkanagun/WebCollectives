@@ -18,8 +18,8 @@ public class Reuters implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<BODY>", "</BODY"));
 
 
-        mainTemplate.addFolder(LookupOptions.REUTERSSOURCEDIRECTORY);
-
+        mainTemplate.addFolder(LookupOptions.REUTERSSOURCEDIRECTORY)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
         mainTemplate.setMainPattern(articlePattern);
         mainTemplate.setType(LookupOptions.REUTERSDOC);
         WebFlow webFlow = new WebFlow(mainTemplate);

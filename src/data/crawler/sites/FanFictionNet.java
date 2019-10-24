@@ -118,6 +118,7 @@ public class FanFictionNet {
                 .setLookComplete(true)
                 .setThreadSize(1)
                 .setDoFast(true)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setType(LookupOptions.ARTICLEDOC);
 
 

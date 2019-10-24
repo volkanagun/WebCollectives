@@ -38,8 +38,9 @@ public class Hayrola implements Serializable {
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", "http://hayro.la");
-        articleTemplate.setMainPattern(articlePattern);
-        articleTemplate.setType(LookupOptions.BLOGDOC);
+        articleTemplate.setMainPattern(articlePattern)
+                .setType(LookupOptions.BLOGDOC)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow webFlow = new WebFlow(mainTemplate);

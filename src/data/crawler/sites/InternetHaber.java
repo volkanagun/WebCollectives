@@ -63,6 +63,7 @@ public class InternetHaber {
                 .setLookComplete(true)
                 .setThreadSize(1)
                 .setDoFast(true)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setForceWrite(false);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail(.*?)\">", "</div>")

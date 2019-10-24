@@ -43,6 +43,7 @@ public class SikayetVar implements Serializable {
 
         WebTemplate mainTemplate = new WebTemplate(folder, "docs", LookupOptions.EMPTYDOMAIN);
         mainTemplate.setMainPattern(mainPattern)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setDomain(domain)
                 .setThreadSize(1).setSleepTime(150L)
                 .setLookComplete(true);

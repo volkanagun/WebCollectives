@@ -57,6 +57,7 @@ public class GazeteOku implements Serializable {
 
         articleTemplate.setMainPattern(articleLookup);
         articleTemplate.setType(LookupOptions.ARTICLEDOC);
+        articleTemplate.setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         mainTemplate.addNext(linkTemplate, LookupOptions.AUTHORLINK);
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);

@@ -58,7 +58,8 @@ public class MilliyetBlogList implements Serializable {
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN)
                 .setDomain("http://blog.milliyet.com.tr");
         articleTemplate.setMainPattern(articlePattern).setForceWrite(true).setLookComplete(false)
-                .setType(LookupOptions.BLOGDOC);
+                .setType(LookupOptions.BLOGDOC)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
 
         yazarTemplate.addNext(linkTemplate, LookupOptions.AUTHORLINK);

@@ -25,6 +25,7 @@ public class MashableList implements Serializable {
                 .setNextPageStart(1)
                 .setThreadSize(4)
                 .setLookComplete(true)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(mainPattern);
 
         WebFlow flow = new WebFlow(articleTemplate);

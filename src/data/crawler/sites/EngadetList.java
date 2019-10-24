@@ -69,7 +69,8 @@ public class EngadetList implements Serializable {
                 .setThreadSize(5)
                 .setForceWrite(true)
                 .setLookComplete(true)
-                .setType("BLOG-DOC");
+                .setType("BLOG-DOC")
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY);
 
         authorTemplate.addNext(linkTemplate, LookupOptions.AUTHORLINK);
         linkTemplate.addNext(mainTemplate, LookupOptions.ARTICLELINK);

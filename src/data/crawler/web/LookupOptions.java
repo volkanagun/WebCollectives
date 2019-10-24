@@ -59,6 +59,7 @@ public class LookupOptions implements Serializable {
 
 
     public static String MAINDIRECTORY = "resources";
+    public static String HTMLDIRECTORY = MAINDIRECTORY + "/htmls/";
     public static String POLITICSDIRECTORY = "resources/politics";
     public static String RELIGIONDIRECTORY = "resources/religion";
     public static String TECHDIRECTORY = "resources/technology";
