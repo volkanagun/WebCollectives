@@ -601,7 +601,8 @@ public class WebTemplate implements Serializable {
     }
 
     public String url(String domain, String mainUrl) {
-        if (mainUrl.startsWith(domain)) return mainUrl;
+        if(domain.startsWith("http") && mainUrl.startsWith("http")) return mainUrl;
+        else if (mainUrl.startsWith(domain)) return mainUrl;
         else return domain + mainUrl;
     }
 
