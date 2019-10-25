@@ -16,8 +16,8 @@ public class HurriyetWeb implements Serializable {
 
         String domain = "http://www.hurriyet.com.tr";
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<li class=(.*?)>", "</li>")
-                .setStartEndMarker("<li","</li>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class(.*?)>", "</div>")
+                .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
@@ -25,6 +25,7 @@ public class HurriyetWeb implements Serializable {
                 .addSeed("world","http://www.hurriyet.com.tr/dunya/")
                 .addSeed("trending","http://www.hurriyet.com.tr/gundem/")
                 .addSeed("sports","http://www.hurriyet.com.tr/sporarena/")
+                .addSeed("travel","http://www.hurriyet.com.tr/seyahat/")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
                 .setThreadSize(1)
