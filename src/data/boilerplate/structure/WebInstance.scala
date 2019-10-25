@@ -8,6 +8,9 @@ class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[S
   var similarityThreshold = 0.5
 
   var labelNONE = "NONE"
+
+
+
   def setLabels(array:Array[String]):this.type ={
     this.xmlLabels = array
     this
@@ -48,6 +51,12 @@ class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[S
     paths = HTMLParser.parseHTML(htmlFile).visit()
     pathLabels = paths.map(path=> (path, labelMatch(path.toTextString())))
       .filter(pair=> pair._2.isDefined).map(pair=> (pair._1, pair._2.get))
+    this
+  }
+
+  def build():this.type={
+    parseXML()
+    matching()
     this
   }
 
