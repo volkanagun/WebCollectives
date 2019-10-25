@@ -1,3 +1,10 @@
-resources/*
+
+resources/articles-turkish/
+resources/blogs-turkish/
+resources/fanfics/
+resources/htmls/
+resources/texts-english/
+resources/tweets-turkish/
+
 lib/*
 target/*

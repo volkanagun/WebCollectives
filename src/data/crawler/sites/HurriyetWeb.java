@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 /**
  * @author Volkan Agun
+ * Do it by json for at least 100 web sites...
  */
 public class HurriyetWeb implements Serializable {
     public static WebFlow build(){
