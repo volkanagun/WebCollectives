@@ -1057,6 +1057,8 @@ public class WebTemplate implements Serializable {
                 e.printStackTrace();
             } catch (KeyStoreException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return text;
         }
@@ -1119,6 +1121,7 @@ public class WebTemplate implements Serializable {
                             }
                             ContentType contentType = ContentType.getOrDefault(entity);
                             Charset charset = contentType.getCharset();
+                            charset = charset == null ? Charset.forName("UTF-8") : charset;
                             BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
                             String txt = "";
                             String line = null;
