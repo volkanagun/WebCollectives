@@ -64,15 +64,18 @@ public class WebFlow implements Serializable, Callable<Boolean> {
     private void deleteDocuments(WebTemplate webTemplate){
         String pattern = webTemplate.getName();
         String folder = webTemplate.getFolder();
-        File[] deleteFiles = new File(folder).listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                if(name.contains(pattern)) return true;
-                else return false;
-            }
-        });
+        File folderFile =  new File(folder);
+        if(folderFile.exists()) {
+            File[] deleteFiles = folderFile.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    if (name.contains(pattern)) return true;
+                    else return false;
+                }
+            });
 
-        for(File f:deleteFiles) f.delete();
+            for (File f : deleteFiles) f.delete();
+        }
     }
 
     public WebDocument execute() {

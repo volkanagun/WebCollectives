@@ -64,6 +64,8 @@ public class LookupOptions implements Serializable {
     public static String RELIGIONDIRECTORY = "resources/religion";
     public static String TECHDIRECTORY = "resources/technology";
     public static String BLOGDIRECTORY = "resources/blogs-turkish";
+    public static String FORUMENDIRECTORY = "resources/forums-english";
+
     public static String FANFICDIRECTORY = "resources/fanfics";
     public static String BLOGENGDIRECTORY = "resources/blogs-english";
     public static String TEXTENGDIRECTORY = "resources/texts-english";
