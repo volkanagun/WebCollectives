@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
+    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="Modifications for CNNTurk">
       <change afterPath="$PROJECT_DIR$/resources/templates/7x24kocaeli.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -30,7 +30,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -50,10 +49,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553527984036" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -72,9 +71,9 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.CNNTurkWeb">
-    <configuration name="CNNTurkWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.CNNTurkWeb" />
+  <component name="RunManager" selected="Application.InternetHaber">
+    <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -86,12 +85,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.HTMLParser" />
+    <configuration name="CNNTurkWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.CNNTurkWeb" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.boilerplate.structure.*" />
+          <option name="PATTERN" value="data.crawler.sites.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -125,8 +124,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MilliyetBlogList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.MilliyetBlogList" />
+    <configuration name="NTV" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.NTV" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -139,19 +138,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MilliyetBlogList" />
-      <item itemvalue="Application.InternetHaber" />
-      <item itemvalue="Application.HTMLParser" />
       <item itemvalue="Application.HurriyetWeb" />
       <item itemvalue="Application.CNNTurkWeb" />
+      <item itemvalue="Application.AnadoluGazete" />
+      <item itemvalue="Application.NTV" />
+      <item itemvalue="Application.InternetHaber" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.InternetHaber" />
+        <item itemvalue="Application.AnadoluGazete" />
+        <item itemvalue="Application.NTV" />
         <item itemvalue="Application.CNNTurkWeb" />
         <item itemvalue="Application.HurriyetWeb" />
-        <item itemvalue="Application.MilliyetBlogList" />
-        <item itemvalue="Application.HTMLParser" />
-        <item itemvalue="Application.InternetHaber" />
       </list>
     </recent_temporary>
   </component>
@@ -449,6 +448,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="First commit" />
     <MESSAGE value="Sikayet var xmls" />
     <MESSAGE value="Mıllıyet Blogs" />
@@ -467,6 +468,8 @@
     <MESSAGE value="Modifications for Hurriyet and loadHTML" />
     <MESSAGE value="Modifications for CNNTurk" />
     <option name="LAST_COMMIT_MESSAGE" value="Modifications for CNNTurk" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -478,18 +481,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>747</line>
+          <line>752</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>941</line>
+          <line>946</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>906</line>
-          <option name="timeStamp" value="63" />
+          <line>911</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

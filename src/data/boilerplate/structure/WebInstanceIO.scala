@@ -21,6 +21,6 @@ class WebInstanceIO(val htmlFolder:String, val xmlFolders:Array[String], val val
   }
 
   def iterator(batchSize:Int):MultiDataSetIterator={
-
+    null
   }
 }

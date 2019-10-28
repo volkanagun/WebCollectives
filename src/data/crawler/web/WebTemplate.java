@@ -11,9 +11,11 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.config.Lookup;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.HttpClientConnectionManager;
@@ -22,6 +24,9 @@ import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustStrategy;
+import org.apache.http.cookie.Cookie;
+import org.apache.http.cookie.CookieSpec;
+import org.apache.http.cookie.CookieSpecProvider;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -1091,7 +1096,11 @@ public class WebTemplate implements Serializable {
                     .build();
 
             HttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(r);
-            CloseableHttpClient httpClient = HttpClients.custom().setConnectionTimeToLive(5, TimeUnit.SECONDS).setConnectionManager(cm).build();
+            CloseableHttpClient httpClient = HttpClients.custom()
+                    .disableCookieManagement()
+                    .setConnectionTimeToLive(5, TimeUnit.SECONDS)
+                    .setConnectionManager(cm).build();
+
 
 
             HttpGet request = new HttpGet(address);
@@ -1104,6 +1113,7 @@ public class WebTemplate implements Serializable {
                     request.addHeader("accept", "image/gif, image/jpg, */*");
                     request.addHeader("connection", "keep-alive");
                     request.addHeader("accept-encoding", "gzip,deflate,sdch");
+
                     ResponseHandler<String> rh = new ResponseHandler<String>() {
 
                         @Override
