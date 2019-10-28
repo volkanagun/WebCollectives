@@ -127,6 +127,9 @@ public class WebTemplate implements Serializable {
     private String type;
 
 
+
+
+    private WebFunctionCall functionCall;
     private WebSuffixGenerator suffixGenerator;
     private String nextPageSuffix;
     private String nextPageSuffixAddition = "";
@@ -168,6 +171,15 @@ public class WebTemplate implements Serializable {
     public WebTemplate(String folder, String name, String domain, String nextPageSuffix) {
         this(folder, name, domain);
         this.nextPageSuffix = nextPageSuffix;
+    }
+
+    public WebFunctionCall getFunctionCall() {
+        return functionCall;
+    }
+
+    public WebTemplate setFunctionCall(WebFunctionCall functionCall) {
+        this.functionCall = functionCall;
+        return this;
     }
 
     public Long getWaitTime() {
@@ -1028,7 +1040,12 @@ public class WebTemplate implements Serializable {
             System.out.println("Downloading... '" + address + "'" + " Date: " + currentDate());
             String text = "";
             try {
-                text = downloadPage(address, charset, 0);
+                if(functionCall == null) {
+                    text = downloadPage(address, charset, 0);
+                }
+                else {
+                    text = functionCall.returnHTML(address);
+                }
 
             } catch (KeyManagementException e) {
                 e.printStackTrace();
@@ -1054,8 +1071,14 @@ public class WebTemplate implements Serializable {
 
             String text = "";
             try {
-                text = downloadPage(address, charset, 2);
-                System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
+                if(functionCall == null) {
+                    text = downloadPage(address, charset, 2);
+                    System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
+                }
+                else{
+                    text = functionCall.returnHTML(address);
+                    System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
+                }
             } catch (KeyManagementException e) {
                 e.printStackTrace();
             } catch (NoSuchAlgorithmException e) {
