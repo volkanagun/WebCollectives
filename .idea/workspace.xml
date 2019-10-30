@@ -4,7 +4,6 @@
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -466,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572421901906</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="EdirneHaber local news;&#10;requiredPattern elimination for extraction...">
+      <created>1572425646527</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1572425646527</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -503,7 +509,8 @@
     <MESSAGE value="Modifications for Stackoverflow" />
     <MESSAGE value="JavaScript calls with Selenium" />
     <MESSAGE value="Modifications for tag lowercase" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modifications for tag lowercase" />
+    <MESSAGE value="EdirneHaber local news;&#10;requiredPattern elimination for extraction..." />
+    <option name="LAST_COMMIT_MESSAGE" value="EdirneHaber local news;&#10;requiredPattern elimination for extraction..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
