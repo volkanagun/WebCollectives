@@ -1,9 +1,6 @@
 package data.crawler.sites;
 
-import data.crawler.web.LookupOptions;
-import data.crawler.web.LookupPattern;
-import data.crawler.web.WebFlow;
-import data.crawler.web.WebTemplate;
+import data.crawler.web.*;
 
 import java.io.Serializable;
 
@@ -13,6 +10,12 @@ import java.io.Serializable;
 public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.cnnturk.com";
+        int pageCount = 1000;
+
+        WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more");
+
+        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(5);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall).initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -35,6 +38,7 @@ public class CNNTurkWeb implements Serializable {
                 .addSeed("realestate", "https://www.cnnturk.com/emlak")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
+                .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);

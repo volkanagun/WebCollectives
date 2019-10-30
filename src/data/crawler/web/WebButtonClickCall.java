@@ -20,7 +20,7 @@ public class WebButtonClickCall extends WebFunctionCall {
     }
 
     @Override
-    public WebFunctionCall initialize() {
+    public WebButtonClickCall initialize() {
         System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
         this.driver = new ChromeDriver();
         this.js = (JavascriptExecutor) driver;
