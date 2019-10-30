@@ -28,6 +28,7 @@ public class LookupPattern implements Serializable {
     protected LookupFilter lookupFilter;
     protected Boolean tagLowercase = false;
     protected Pattern tagPattern = Pattern.compile("<.*?>");
+    protected Boolean requiredNotEmpty = false;
 
     public LookupPattern(String type, String label, String startRegex, String endRegex) {
         this.label = label;
@@ -93,6 +94,15 @@ public class LookupPattern implements Serializable {
         }
 
 
+    }
+
+    public Boolean getRequiredNotEmpty() {
+        return requiredNotEmpty;
+    }
+
+    public LookupPattern setRequiredNotEmpty(Boolean requiredNotEmpty) {
+        this.requiredNotEmpty = requiredNotEmpty;
+        return this;
     }
 
     public Boolean getTagLowercase() {
@@ -315,12 +325,19 @@ public class LookupPattern implements Serializable {
                 String finalResult = lookupFilter==null?partialResult : lookupFilter.accept(partialResult);
                 if(finalResult!=null) {
                     LookupResult lookupResult = new LookupResult(type, label);
+                    boolean requiredNotFound = false;
                     for (LookupPattern partialPattern : subpatterns) {
                         List<LookupResult> subLookupResults = partialPattern.getResult(propertyMap, finalResult);
-                        lookupResult.addSubList(subLookupResults);
-
+                        if(subLookupResults.isEmpty() && partialPattern.getRequiredNotEmpty()) {
+                            requiredNotFound = true;
+                            break;
+                        }
+                        else {
+                            lookupResult.addSubList(subLookupResults);
+                        }
                     }
-                    lookupResults.add(lookupResult);
+
+                    if(!requiredNotFound) lookupResults.add(lookupResult);
                 }
             }
 

@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/Kocaeli724.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_linux_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_11.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_linux_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_11.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -464,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572380641995</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Modifications for tag lowercase">
+      <created>1572421901906</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1572421901906</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -500,7 +502,8 @@
     <MESSAGE value="Modifications for CNNTurk" />
     <MESSAGE value="Modifications for Stackoverflow" />
     <MESSAGE value="JavaScript calls with Selenium" />
-    <option name="LAST_COMMIT_MESSAGE" value="JavaScript calls with Selenium" />
+    <MESSAGE value="Modifications for tag lowercase" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modifications for tag lowercase" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -544,11 +547,6 @@
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java</url>
           <line>40</line>
           <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="87" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -6,6 +6,8 @@ import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 import scala.Serializable;
 
+import java.awt.image.LookupOp;
+
 /**
  * @author Volkan Agun
  */
@@ -37,7 +39,7 @@ public class EdirneHaber implements Serializable {
                 .addSeed("politics","http://www.edirnehaber.org/haberler/politika")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
-                .setNextPageSize(16)
+                .setNextPageSize(4)
                 .setNextPageStart(8)
                 .setNextPageJump(8)
                 .setNextPageSuffix("/")
@@ -45,18 +47,19 @@ public class EdirneHaber implements Serializable {
                 .setDomain(domain).setDomainSame(true)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<table cellspacing=0(.*?)>", "</table>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<table cellspacing=0 cellpadding=0 width=660>", "</table>")
                 .setStartEndMarker("<table","</table>")
                 .setTagLowercase(true)
-                .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<td(.*?)class=date>","</td>")
                         .setNth(0)
                         .setRemoveTags(true))
+                .addPattern(new LookupPattern(LookupOptions.LOOKUP, LookupOptions.GENRE, LookupOptions.GENRE))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<td valign=top width=660 class=mansetspot>","</td>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, LookupOptions.EMPTY)
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"<(b|p>","</(p|b)>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<td valign=top width=660 class=text(.*?)>","</td>")
+                        .setRequiredNotEmpty(true)
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"<(b|p)>","</(p|b)>")
                                 .setRemoveTags(true)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
