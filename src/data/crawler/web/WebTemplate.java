@@ -157,6 +157,7 @@ public class WebTemplate implements Serializable {
     private Map<String, WebTemplate> nextMap;
 
 
+
     public WebTemplate(String folder, String name, String domain) {
         this.name = name;
         this.folder = folder;
@@ -333,8 +334,9 @@ public class WebTemplate implements Serializable {
         return nextPageJump;
     }
 
-    public void setNextPageJump(Integer nextPageJump) {
+    public WebTemplate setNextPageJump(Integer nextPageJump) {
         this.nextPageJump = nextPageJump;
+        return this;
     }
 
     public WebTemplate setDomain(String domain) {
@@ -439,9 +441,9 @@ public class WebTemplate implements Serializable {
         return addSeed(seed);
     }
 
-    public WebTemplate addSeed(String genre, String mainURL) {
+    public WebTemplate addSeed(String topic, String mainURL) {
         WebSeed seed = new WebSeed(mainURL, mainURL, seedList.size());
-        seedMap.put(seed, genre);
+        seedMap.put(seed, topic);
         return addSeed(seed);
     }
 
@@ -977,7 +979,7 @@ public class WebTemplate implements Serializable {
 
     public Boolean extract(WebDocument html) {
 
-        List<LookupResult> results = mainPattern.getResult(html.getProperties(), html.getText());
+        List<LookupResult> results = mainPattern.getResult(html.getProperties(), mainPattern.lowercaseAllTags(html.getText()));
         html.setLookupResultList(results);
         return !results.isEmpty();
 
@@ -1098,6 +1100,7 @@ public class WebTemplate implements Serializable {
 
         if (address != null && !address.isEmpty()) {
             address = address.replaceAll("\\s", "%20");
+            address = address.replaceAll("\"", "");
             address = (address.startsWith("http://") || address.startsWith("https://")) ? address : "http://" + address;
 
             SSLContextBuilder builder = new SSLContextBuilder();

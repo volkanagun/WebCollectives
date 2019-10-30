@@ -7,6 +7,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by wolf on 02.07.2015.
@@ -24,6 +26,8 @@ public class LookupPattern implements Serializable {
     protected boolean removeTags = true;
     protected List<LookupPattern> subpatterns;
     protected LookupFilter lookupFilter;
+    protected Boolean tagLowercase = false;
+    protected Pattern tagPattern = Pattern.compile("<.*?>");
 
     public LookupPattern(String type, String label, String startRegex, String endRegex) {
         this.label = label;
@@ -49,6 +53,55 @@ public class LookupPattern implements Serializable {
         }
 
         return regex;
+    }
+
+    private LookupPattern lowercaseRegexes(){
+        if(startRegex!=null) startRegex = startRegex.toLowerCase();
+        if(endRegex!=null) startRegex = startRegex.toLowerCase();
+        if(startMarker!=null) startMarker = startMarker.toLowerCase();
+        if(endMarker!=null) endMarker = endMarker.toLowerCase();
+        if(singleRegex!=null) singleRegex = singleRegex.toLowerCase();
+        if(regex!=null && regex.length>0) for(int i=0; i<regex.length; i++) regex[i] = regex[i].toLowerCase();
+
+        for(LookupPattern subLookup:subpatterns){
+            subLookup.lowercaseRegexes();
+        }
+
+        return this;
+    }
+
+    public String lowercaseAllTags(String partialText){
+        if(tagLowercase){
+            lowercaseRegexes();
+
+
+            Matcher matcher = tagPattern.matcher(partialText);
+            String resultingText = "";
+            int startingPos = 0;
+            while(matcher.find()){
+                int newStartingPos = matcher.start();
+                int endingPos = matcher.end();
+                resultingText += partialText.substring(startingPos, newStartingPos) + matcher.group().toLowerCase();
+                startingPos = endingPos;
+            }
+
+            resultingText += partialText.substring(startingPos);
+            return resultingText;
+        }
+        else {
+            return partialText;
+        }
+
+
+    }
+
+    public Boolean getTagLowercase() {
+        return tagLowercase;
+    }
+
+    public LookupPattern setTagLowercase(Boolean tagLowercase) {
+        this.tagLowercase = tagLowercase;
+        return this;
     }
 
     public LookupFilter getLookupFilter() {
