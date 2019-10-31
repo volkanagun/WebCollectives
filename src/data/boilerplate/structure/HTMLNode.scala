@@ -8,9 +8,16 @@ import org.jsoup.nodes.{Node, TextNode}
 class HTMLNode(val node:Node) extends Serializable{
 
   var childnodes = Array[HTMLNode]()
+  var parent:HTMLNode = null
+
+  def setParent(p:HTMLNode):HTMLNode={
+    this.parent = p;
+    this
+  }
 
   def setChildNodes(nodes:Array[HTMLNode]):this.type ={
     childnodes = nodes
+    childnodes.foreach(childNode=> childNode.setParent(this))
     this
   }
 
