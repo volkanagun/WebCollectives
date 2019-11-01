@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="" />
+    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +70,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.InternetHaber">
+  <component name="RunManager" selected="Application.OpTester">
     <configuration name="CNNTurkWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.CNNTurkWeb" />
       <module name="WebCollectives" />
@@ -120,12 +123,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Webrazzi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Webrazzi" />
+    <configuration name="OpTester" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="data.boilerplate.learning.pipes.OpTester" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="PATTERN" value="data.boilerplate.learning.pipes.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -134,19 +137,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Webrazzi" />
       <item itemvalue="Application.InternetHaber" />
       <item itemvalue="Application.NTV" />
       <item itemvalue="Application.CNNTurkWeb" />
       <item itemvalue="Application.EdirneHaber" />
+      <item itemvalue="Application.OpTester" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.OpTester" />
         <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.EdirneHaber" />
         <item itemvalue="Application.CNNTurkWeb" />
         <item itemvalue="Application.NTV" />
-        <item itemvalue="Application.Webrazzi" />
       </list>
     </recent_temporary>
   </component>
@@ -483,7 +486,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572512304363</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Template for Feature extractıon">
+      <created>1572512658814</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1572512658814</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -521,7 +531,8 @@
     <MESSAGE value="JavaScript calls with Selenium" />
     <MESSAGE value="Modifications for tag lowercase" />
     <MESSAGE value="EdirneHaber local news;&#10;requiredPattern elimination for extraction..." />
-    <option name="LAST_COMMIT_MESSAGE" value="EdirneHaber local news;&#10;requiredPattern elimination for extraction..." />
+    <MESSAGE value="Template for Feature extractıon" />
+    <option name="LAST_COMMIT_MESSAGE" value="Template for Feature extractıon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
