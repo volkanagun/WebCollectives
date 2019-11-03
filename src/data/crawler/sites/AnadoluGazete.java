@@ -18,10 +18,10 @@ public class AnadoluGazete implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("arts", "http://egazete.anadolu.edu.tr/kultur-sanat")
-                .addSeed("sports", "http://egazete.anadolu.edu.tr/spor")
+                //.addSeed("arts", "http://egazete.anadolu.edu.tr/kultur-sanat")
+                //.addSeed("sports", "http://egazete.anadolu.edu.tr/spor")
                 .addSeed("education", "http://egazete.anadolu.edu.tr/acikogretim")
-                .addSeed("education", "http://egazete.anadolu.edu.tr/kampus")
+                //.addSeed("education", "http://egazete.anadolu.edu.tr/kampus")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
                 .setNextPageSuffix("?p=").setNextPageStart(1).setNextPageSize(5000)

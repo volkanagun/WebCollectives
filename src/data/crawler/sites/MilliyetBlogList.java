@@ -12,8 +12,8 @@ public class MilliyetBlogList implements Serializable {
     public static WebFlow build() {
 
         List<WebSuffixGenerator> suffixGenerators = new ArrayList<>();
-        suffixGenerators.add(new WebCountGenerator(1,3,"&KategoriNo="));
-        suffixGenerators.add(new WebCountGenerator(1,10,"&Page="));
+        suffixGenerators.add(new WebCountGenerator(1,300,"&KategoriNo="));
+        suffixGenerators.add(new WebCountGenerator(1,20,"&Page="));
 
         WebTemplate yazarTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "yazar-links", LookupOptions.EMPTYDOMAIN);
         LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a(.*?)href\\=\"/(.*?)/\\?UyeNo\\=", "\"\\s?(target=\"_blank\"|class=\"flt_left\"?)>");
@@ -21,7 +21,7 @@ public class MilliyetBlogList implements Serializable {
         yazarTemplate.setMainPattern(authorPattern);
         yazarTemplate.setDomain("http://blog.milliyet.com.tr/BloggerBloglar/?UyeNo=")
                 .setForceWrite(false)
-                .setThreadSize(4)
+                .setThreadSize(1)
                 .setDoDeleteStart(true)
                 .setSuffixGenerator(new WebMultiSuffixGenerator(suffixGenerators))
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=");
@@ -38,7 +38,7 @@ public class MilliyetBlogList implements Serializable {
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
                 .setDoFast(true)
-                .setNextPageSize(80)
+                .setNextPageSize(5)
                 .setThreadSize(1);
 
 
