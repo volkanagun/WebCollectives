@@ -12,7 +12,7 @@ public class MilliyetBlogList implements Serializable {
     public static WebFlow build() {
 
         List<WebSuffixGenerator> suffixGenerators = new ArrayList<>();
-        suffixGenerators.add(new WebCountGenerator(1,300,"&KategoriNo="));
+        suffixGenerators.add(new WebCountGenerator(1,3,"&KategoriNo="));
         suffixGenerators.add(new WebCountGenerator(1,10,"&Page="));
 
         WebTemplate yazarTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "yazar-links", LookupOptions.EMPTYDOMAIN);
@@ -37,6 +37,7 @@ public class MilliyetBlogList implements Serializable {
                 .setDomain("http://blog.milliyet.com.tr/BloggerBloglar/?UyeNo=")
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
+                .setDoFast(true)
                 .setNextPageSize(80)
                 .setThreadSize(1);
 

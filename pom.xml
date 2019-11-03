@@ -14,6 +14,8 @@
         <bigdl.version>0.6.0</bigdl.version>
         <spark.version>2.1.0</spark.version>
         <dl4j.version>1.0.0-beta5</dl4j.version>
+        <lucene-core.version>8.3.0</lucene-core.version>
+
     </properties>
 
     <repositories>
@@ -41,6 +43,23 @@
             <artifactId>selenium-server</artifactId>
             <version>3.0.1</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-analyzers-common -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-analyzers-common</artifactId>
+            <version>${lucene-core.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-core -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>${lucene-core.version}</version>
+        </dependency>
+
+
 
         <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
         <dependency>

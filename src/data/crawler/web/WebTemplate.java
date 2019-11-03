@@ -129,6 +129,7 @@ public class WebTemplate implements Serializable {
 
 
 
+    private WebLuceneSink webSink;
     private WebFunctionCall functionCall;
     private WebSuffixGenerator suffixGenerator;
     private String nextPageSuffix;
@@ -172,6 +173,15 @@ public class WebTemplate implements Serializable {
     public WebTemplate(String folder, String name, String domain, String nextPageSuffix) {
         this(folder, name, domain);
         this.nextPageSuffix = nextPageSuffix;
+    }
+
+    public WebLuceneSink getWebSink() {
+        return webSink;
+    }
+
+    public WebTemplate setWebSink(WebLuceneSink webSink) {
+        this.webSink = webSink;
+        return this;
     }
 
     public WebFunctionCall getFunctionCall() {
@@ -568,7 +578,10 @@ public class WebTemplate implements Serializable {
 
     public void saveXML(List<WebDocument> documentList) {
         double sucessRate = 0d;
-        if (multipleIdentifier == null) {
+        if(webSink!=null){
+            webSink.writeDocuments(documentList);
+        }
+        else if (multipleIdentifier == null) {
             for (WebDocument document : documentList) {
                 if (!lookComplete || document.isComplete(mainPattern)) {
                     sucessRate += document.saveAsFlatXML();
@@ -775,7 +788,7 @@ public class WebTemplate implements Serializable {
     public void pushGenerateSeeds(List<WebSeed> nextPageSeeds, Map<WebSeed, String> nextPageSeedGenre) {
         Collections.shuffle(seedList);
 
-        if (nextPageSuffix != null && !nextPageSuffix.isEmpty()) {
+        if (nextPageSuffix != null) {
 
             for (WebSeed webSeed : seedList) {
                 for (int i = nextPageStart; i <= nextPageStart + nextPageSize; i += nextPageJump) {

@@ -24,7 +24,7 @@ public class AnadoluGazete implements Serializable {
                 .addSeed("education", "http://egazete.anadolu.edu.tr/kampus")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
-                .setNextPageSuffix("?p=").setNextPageStart(1).setNextPageSize(300)
+                .setNextPageSuffix("?p=").setNextPageStart(1).setNextPageSize(5000)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);

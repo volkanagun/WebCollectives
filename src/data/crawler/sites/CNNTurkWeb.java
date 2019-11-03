@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.cnnturk.com";
-        int pageCount = 1000;
+        int pageCount = 50000;
 
         WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more");
 
@@ -49,8 +49,6 @@ public class CNNTurkWeb implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"detail-title\">", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-
-
                 .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"row(.*?)\">", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
                         .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"detail-meta(.*?)\">", "</div>")

@@ -12,6 +12,14 @@ public class LookupResult implements Serializable {
     private String type;
     private List<LookupResult> subList;
 
+    public static String LABEL = "LABEL";
+    public static String TYPE = "TYPE";
+    public static String TEXT = "TEXT";
+    public static String DOC = "DOC";
+    public static String ID = "ID";
+    public static String URL = "URL";
+    public static String HTML = "HTML";
+
     public LookupResult(String type, String label, String text) {
         this.type = type;
         this.label = label;
@@ -47,6 +55,22 @@ public class LookupResult implements Serializable {
         }
 
         return subResults;
+    }
+
+    public List<LookupResult> getAllSubLinear() {
+        List<LookupResult> subLinear = new ArrayList<>();
+        if (!subList.isEmpty()) {
+            if (type.equals(LookupOptions.SKIP)) {
+               for(LookupResult subResult:subList){
+                   subLinear.addAll(subResult.getAllSubLinear());
+               }
+            }
+        }
+        else if (!type.equals(LookupOptions.SKIP) && text != null && !text.isEmpty()){
+            subLinear.add(new LookupResult(LookupResult.TEXT, label, WebCleaner.clean(text)));
+        }
+
+        return subLinear;
     }
 
     public List<LookupResult> getSubResults(List<String> labelLook){

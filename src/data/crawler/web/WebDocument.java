@@ -22,6 +22,7 @@ public class WebDocument implements Serializable {
     private List<WebDocument> webFlowResultList;
     private Date fetchDate;
     private Boolean lookComplete = false;
+    private String multiDocumentIdentifier;
 
     public WebDocument(String folder) {
         this.folder = folder;
@@ -54,7 +55,7 @@ public class WebDocument implements Serializable {
     }
 
     public WebDocument addWebFlowResult(List<WebDocument> webDocumentList) {
-        for(WebDocument webDocument:webDocumentList) {
+        for (WebDocument webDocument : webDocumentList) {
             addWebFlowResult(webDocument);
         }
         return this;
@@ -74,6 +75,15 @@ public class WebDocument implements Serializable {
 
         return lookupResults;
 
+    }
+
+    public String getMultiDocumentIdentifier() {
+        return multiDocumentIdentifier;
+    }
+
+    public WebDocument setMultiDocumentIdentifier(String multiDocumentIdentifier) {
+        this.multiDocumentIdentifier = multiDocumentIdentifier;
+        return this;
     }
 
     public Boolean getLookComplete() {
@@ -141,7 +151,7 @@ public class WebDocument implements Serializable {
     }
 
     public Boolean saveHTML(String htmlFolder) {
-        if(htmlFolder !=null) {
+        if (htmlFolder != null) {
             (new File(htmlFolder)).mkdirs();
             if (!name.isEmpty()) {
                 TextFile textFile = new TextFile(htmlFilename(htmlFolder));
@@ -157,7 +167,7 @@ public class WebDocument implements Serializable {
     }
 
     public Boolean loadHTML(String htmlFolder) {
-        if(htmlFolder !=null) {
+        if (htmlFolder != null) {
             (new File(htmlFolder)).mkdirs();
             String htmlFilename = htmlFilename(htmlFolder);
             if (!name.isEmpty() && new File(htmlFilename).exists()) {
@@ -173,6 +183,38 @@ public class WebDocument implements Serializable {
         }
 
         return false;
+    }
+
+    public List<LookupResult> getIndexDocument() {
+        List<LookupResult> lookupFinals = new ArrayList<>();
+        if (multiDocumentIdentifier != null && !name.isEmpty() && !lookupResultList.isEmpty()) {
+            for (LookupResult resultFile : lookupResultList) {
+                lookupFinals.add(getIndexDocument(resultFile));
+            }
+        }
+        else if(!name.isEmpty() && !lookupResultList.isEmpty()){
+            lookupFinals.add(getIndexDocument(lookupResultList.get(0)));
+        }
+
+        return lookupFinals;
+    }
+
+    private LookupResult getIndexDocument(LookupResult resultFile) {
+        String icode = multiDocumentIdentifier != null ?
+                filename(resultFile.getSubResults(multiDocumentIdentifier).get(0).getText()) : filename();
+        LookupResult documentResult = new LookupResult(LookupResult.DOC, LookupResult.DOC);
+
+        LookupResult iResult = new LookupResult(LookupResult.ID, icode);
+        LookupResult tResult = new LookupResult(LookupResult.TYPE, resultFile.getType());
+        LookupResult urlResult = new LookupResult(LookupResult.URL, url);
+        LookupResult htmlResult = new LookupResult(LookupResult.HTML, text);
+        List<LookupResult> contentResult = resultFile.getAllSubLinear();
+
+        documentResult.addSubList(iResult);
+        documentResult.addSubList(urlResult);
+        documentResult.addSubList(htmlResult);
+        documentResult.addSubList(contentResult);
+        return documentResult;
     }
 
     public int saveAsMultiXML(String identifier) {
@@ -207,8 +249,8 @@ public class WebDocument implements Serializable {
 
     }
 
-    public boolean isComplete(LookupPattern mainPattern){
-        if(lookComplete && true) {
+    public boolean isComplete(LookupPattern mainPattern) {
+        if (lookComplete && true) {
             List<String> listLabels = mainPattern.getNonSkipSubpatternLabels();
             for (LookupResult lookupResult : lookupResultList) {
                 Set<String> labelSet = lookupResult.getSubResultLabels(listLabels);

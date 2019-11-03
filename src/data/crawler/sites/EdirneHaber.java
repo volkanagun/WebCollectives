@@ -39,11 +39,11 @@ public class EdirneHaber implements Serializable {
                 .addSeed("politics","http://www.edirnehaber.org/haberler/politika/")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
-                .setNextPageSize(72)
+                .setNextPageSize(36)
                 .setNextPageStart(8)
                 .setNextPageJump(8)
                 .setNextPageSuffix("")
-                .setThreadSize(1).setNextPageSuffixAddition(".html")
+                .setThreadSize(4).setNextPageSuffixAddition(".html")
                 .setDomain(domain).setDomainSame(true)
                 .setMainPattern(linkPattern);
 

@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class NTV implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.ntv.com.tr";
-        Integer pageCount = 100;
+        Integer pageCount = 5000;
         WebButtonClickCall closeCall = new WebButtonClickCall(100, "#instertitial_dfp_close");
         WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(5);
         WebButtonClickCall clickCall = new WebButtonClickCall(1, "a.infinite-link");
