@@ -578,10 +578,12 @@ public class WebTemplate implements Serializable {
 
     public void saveXML(List<WebDocument> documentList) {
         double sucessRate = 0d;
-        if(webSink!=null){
-            webSink.writeDocuments(documentList);
-        }
-        else if (multipleIdentifier == null) {
+
+        if (multipleIdentifier == null) {
+            if(webSink!=null){
+                webSink.writeDocuments(documentList);
+            }
+
             for (WebDocument document : documentList) {
                 if (!lookComplete || document.isComplete(mainPattern)) {
                     sucessRate += document.saveAsFlatXML();
@@ -589,6 +591,10 @@ public class WebTemplate implements Serializable {
                 }
             }
         } else {
+            if(webSink!=null){
+                webSink.writeDocuments(documentList);
+            }
+
             for (WebDocument document : documentList) {
                 if (!lookComplete || document.isComplete(mainPattern)) {
                     sucessRate += document.saveAsMultiXML(multipleIdentifier);

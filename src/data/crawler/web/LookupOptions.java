@@ -67,6 +67,7 @@ public class LookupOptions implements Serializable {
     public static String FORUMENDIRECTORY = "resources/forums-english";
 
     public static String FANFICDIRECTORY = "resources/fanfics";
+
     public static String BLOGENGDIRECTORY = "resources/blogs-english";
     public static String TEXTENGDIRECTORY = "resources/texts-english";
     public static String SIKAYETVARGDIRECTORY = "resources/sikayet-var";
@@ -78,6 +79,7 @@ public class LookupOptions implements Serializable {
     public static String TWEETDIRECTORY = "resources/tweets";
     public static String REUTERSDIRECTORY = "resources/reuters";
     public static String REUTERSSOURCEDIRECTORY = "resources/source/";
+    public static String LUCENEINDEXDIR = "resources/index/";
 
     public static String PANLARGEDIRECTORY = "resources/pan/raw-large/";
     public static String PANLARGETESTDIRECTORY = "resources/pan/raw-large-test/";

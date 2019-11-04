@@ -94,6 +94,7 @@ public class LookupResult implements Serializable {
     }
 
 
+
     public String getLabel() {
         return label;
     }

@@ -204,7 +204,6 @@ case class HTMLPatternOp(regex:String) extends ExistOp(Array(), s"html-regex-op[
     if(matches.length > 0) 1.0 else 0.0
   }
 
-
 }
 
 case class CountOp(pipes:Array[PipeOp]) extends ExecutableOp(pipes, "count-op"){
