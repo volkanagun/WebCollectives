@@ -9,6 +9,7 @@ public abstract class WebFunctionCall implements Serializable {
 
 
     public abstract WebFunctionCall initialize();
+    public abstract WebFunctionCall destroy();
     public abstract String returnHTML(String url);
     public abstract String returnHTML(WebDriver driver);
 

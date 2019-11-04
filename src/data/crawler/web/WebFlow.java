@@ -39,6 +39,14 @@ public class WebFlow implements Serializable, Callable<Boolean> {
         return this;
     }
 
+    public String getFolder() {
+        return folder;
+    }
+
+    public WebTemplate getMainTemplate() {
+        return mainTemplate;
+    }
+
     @Override
     public Boolean call() throws Exception {
         execute();

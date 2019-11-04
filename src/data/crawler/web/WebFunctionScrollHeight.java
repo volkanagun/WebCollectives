@@ -25,6 +25,16 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
     }
 
     @Override
+    public WebFunctionCall destroy() {
+        if(driver!=null){
+            driver.close();
+            driver = null;
+            js = null;
+        }
+        return this;
+    }
+
+    @Override
     public String returnHTML(String url) {
         driver.get(url);
         return returnHTML(driver);
@@ -39,7 +49,9 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
                 ((JavascriptExecutor) existingDriver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
             }
         }
-        catch (Exception ex){}
+        catch (Exception ex){
+            System.out.println("Scroll height error...");
+        }
 
 
         return existingDriver.getPageSource();

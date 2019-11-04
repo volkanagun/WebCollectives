@@ -47,6 +47,15 @@ public class WebButtonClickCall extends WebFunctionCall {
     }
 
     @Override
+    public WebFunctionCall destroy() {
+        if (driver != null) {
+            driver.close();
+            driver = null;
+            js = null;
+        }
+        return this;
+    }
+    @Override
     public WebButtonClickCall initialize() {
 
         if(isUnix()) System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
@@ -74,7 +83,7 @@ public class WebButtonClickCall extends WebFunctionCall {
             }
         }
         catch(Exception ex){
-            System.out.println();
+            System.out.println("Click error for "+cssSelector);
         }
 
 

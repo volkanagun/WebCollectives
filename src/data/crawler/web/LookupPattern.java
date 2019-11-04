@@ -23,7 +23,7 @@ public class LookupPattern implements Serializable {
     protected String value;
     protected String[] regex, replaces;
     protected Integer nth, mth;
-    protected boolean removeTags = true;
+    protected boolean removeTags = false;
     protected List<LookupPattern> subpatterns;
     protected LookupFilter lookupFilter;
     protected Boolean tagLowercase = false;

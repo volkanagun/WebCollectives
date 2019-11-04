@@ -97,8 +97,8 @@ public class TwitterSearch implements Serializable {
         String dateSpan = generateDate();
         String queryStr= query;
 
-        queryStr += "%20" + includeAccount!=null? "%40"+includeAccount: "";
-        queryStr += "%20" + includeTag!=null ? "%23" + includeTag: "";
+        queryStr += (includeAccount!=null? "%20" + "%40"+includeAccount : "");
+        queryStr += (includeTag!=null ? "%20" + "%23" + includeTag : "");
         String url = "https://twitter.com/search?l="+lanStr+"&q="+ queryStr +dateSpan+"&src=typd";
 
         return url;
@@ -112,14 +112,13 @@ public class TwitterSearch implements Serializable {
         else return "";
     }
 
-    public WebFlow build(){
+    public WebFlow build(WebLuceneSink webLuceneSink){
 
-        int pageCount = 10;
+        int pageCount = 100;
+
         String url = generateSeed();
-        WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more");
-
-        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(5);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall).initialize();
+        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(10);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall).initialize();
 
         LookupPattern tweetPattern = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"content\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -133,14 +132,18 @@ public class TwitterSearch implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<div class=\"js-tweet-text-container\">","</div>")
                         .setNth(0)
                         .setStartEndMarker("<div","</div>")
+                        .setRequiredNotEmpty(true)
+                        .setRemoveTags(false)
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH,"<p(.*?)>","</p>")
-                                .setRemoveTags(true)));
+                                .setRemoveTags(true)
+                                .setRequiredNotEmpty(true)));
 
 
         WebTemplate template = new WebTemplate(LookupOptions.TWEETDIRECTORY, "tweet-text",LookupOptions.EMPTYDOMAIN)
                 .setMainPattern(tweetPattern)
-                .setThreadSize(1)
-                .addSeed(url)
+                .setThreadSize(1).setMultipleIdentifier(LookupOptions.ARTICLETEXT)
+                .setForceWrite(false)
+                .addSeed(url).setWebSink(webLuceneSink)
                 .setFunctionCall(sequenceCall);
 
         return new WebFlow(template);
@@ -148,21 +151,31 @@ public class TwitterSearch implements Serializable {
 
     }
 
-    public static List<WebFlow> buildQueries(String[] queryTerms, String language)
+    public static List<WebFlow> buildQueries(WebLuceneSink webLuceneSink, String[] queryTerms, String language)
     {
         List<WebFlow> list = new ArrayList<>();
         for(String queryTerm:queryTerms){
-            list.add(new TwitterSearch(queryTerm).setLanguage(language).build());
+            list.add(new TwitterSearch(queryTerm).setLanguage(language).build(webLuceneSink));
         }
 
         return list;
 
     }
 
+    public static void destroy(List<WebFlow> webFlows){
+        for(WebFlow webFlow:webFlows){
+            webFlow.getMainTemplate().destroy();
+        }
+    }
+
     public static void main(String[] args) {
+        WebLuceneSink luceneSink = new WebLuceneSink("resources/index").openWriter();
         String[] queryTerms = new String[]{"ırak", "fetö", "iran","abd","suriye","pkk","deaş"};
+        List<WebFlow> webFlows = buildQueries(luceneSink, queryTerms, TURKISH);
         ExecutorService service = Executors.newFixedThreadPool(5);
-        WebFlow.batchSubmit(service, buildQueries(queryTerms, TURKISH));
+        WebFlow.batchSubmit(service, webFlows);
         service.shutdown();
+        while(!service.isShutdown() && !service.isTerminated()){}
+        destroy(webFlows);
     }
 }

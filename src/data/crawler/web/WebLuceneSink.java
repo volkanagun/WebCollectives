@@ -35,22 +35,25 @@ public class WebLuceneSink implements Serializable {
 
     }
 
-    public WebLuceneSink openWriter() {
+    public synchronized WebLuceneSink openWriter() {
 
-        try (FSDirectory dir = FSDirectory.open(indexpath)) {
-            IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
-            indexWriter = new IndexWriter(dir, config);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(indexWriter==null) {
+            try (FSDirectory dir = FSDirectory.open(indexpath)) {
+                IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
+                indexWriter = new IndexWriter(dir, config);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         return this;
     }
 
-    public WebLuceneSink closeWriter(){
+    public synchronized WebLuceneSink closeWriter(){
         try {
-            if(indexWriter!=null) {
+            if(indexWriter!=null && indexWriter.isOpen()) {
                 indexWriter.close();
+                indexWriter = null;
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,13 +86,12 @@ public class WebLuceneSink implements Serializable {
     }
 
     public int writeDocuments(List<WebDocument> documents) {
-        openWriter();
+
         int count = 0;
         for(WebDocument webDocument:documents){
             count += writeDocument(webDocument);
         }
 
-        closeWriter();
         return count;
     }
 
@@ -104,7 +106,7 @@ public class WebLuceneSink implements Serializable {
                 }
             }
         } catch (IOException e) {
-
+            System.out.println("Error in indexing");
         }
         return count;
     }

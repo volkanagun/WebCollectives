@@ -219,9 +219,10 @@ public class WebDocument implements Serializable {
 
     public int saveAsMultiXML(String identifier) {
         (new File(folder)).mkdirs();
+        int count = 0;
         if (!name.isEmpty() && !lookupResultList.isEmpty()) {
             for (LookupResult resultFile : lookupResultList) {
-                String code = resultFile.getSubResults(identifier).get(0).getText();
+                String code = resultFile.getSubResults(identifier).get(0).toString();
                 TextFile textFile = new TextFile(filename(code));
                 if (!textFile.exists()) {
                     textFile.openBufferWrite();
@@ -240,12 +241,12 @@ public class WebDocument implements Serializable {
                     textFile.writeNextLine(resultFile.tagClose());
                     textFile.writeNextLine("</ROOT>");
                     textFile.closeBufferWrite();
-                    return 1;
+                    count++;
                 }
             }
         }
 
-        return 0;
+        return count;
 
     }
 

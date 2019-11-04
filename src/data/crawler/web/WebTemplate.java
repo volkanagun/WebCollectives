@@ -127,8 +127,6 @@ public class WebTemplate implements Serializable {
     private String type;
 
 
-
-
     private WebLuceneSink webSink;
     private WebFunctionCall functionCall;
     private WebSuffixGenerator suffixGenerator;
@@ -158,7 +156,6 @@ public class WebTemplate implements Serializable {
     private Map<String, WebTemplate> nextMap;
 
 
-
     public WebTemplate(String folder, String name, String domain) {
         this.name = name;
         this.folder = folder;
@@ -173,6 +170,24 @@ public class WebTemplate implements Serializable {
     public WebTemplate(String folder, String name, String domain, String nextPageSuffix) {
         this(folder, name, domain);
         this.nextPageSuffix = nextPageSuffix;
+    }
+
+    public WebTemplate initialize() {
+        if (webSink != null) webSink.openWriter();
+        if (functionCall != null) functionCall.initialize();
+        return this;
+    }
+
+    public WebTemplate destroy() {
+        if (webSink != null) {
+            webSink.closeWriter();
+            webSink = null;
+        }
+        if (functionCall != null) {
+            functionCall.destroy();
+            functionCall = null;
+        }
+        return this;
     }
 
     public WebLuceneSink getWebSink() {
@@ -580,7 +595,7 @@ public class WebTemplate implements Serializable {
         double sucessRate = 0d;
 
         if (multipleIdentifier == null) {
-            if(webSink!=null){
+            if (webSink != null) {
                 webSink.writeDocuments(documentList);
             }
 
@@ -591,7 +606,7 @@ public class WebTemplate implements Serializable {
                 }
             }
         } else {
-            if(webSink!=null){
+            if (webSink != null) {
                 webSink.writeDocuments(documentList);
             }
 
@@ -639,7 +654,7 @@ public class WebTemplate implements Serializable {
     }
 
     public String url(String domain, String mainUrl) {
-        if(domain.startsWith("http") && mainUrl.startsWith("http")) return mainUrl;
+        if (domain.startsWith("http") && mainUrl.startsWith("http")) return mainUrl;
         else if (mainUrl.startsWith(domain)) return mainUrl;
         else return domain + mainUrl;
     }
@@ -941,7 +956,7 @@ public class WebTemplate implements Serializable {
                     Boolean returnResult = false;
                     if (returnValue == 0 || returnValue == 1) {
 
-                        if(returnValue == 1) saveHTML(document);
+                        if (returnValue == 1) saveHTML(document);
                         returnResult = extract(document);
 
 
@@ -1018,7 +1033,7 @@ public class WebTemplate implements Serializable {
                 document.putProperty(LookupOptions.GENRE, seedMap.get(webSeed));
             }
             document.setIndex(index);
-            System.out.println("Loaded ..."+document.htmlFilename(htmlSaveFolder));
+            System.out.println("Loaded ..." + document.htmlFilename(htmlSaveFolder));
             return 0;
         } else {
             String downloadedHTML = doFast ? downloadFileFast(webSeed.getRequestURL(), charset) : downloadFile(webSeed.getRequestURL(), charset);
@@ -1061,10 +1076,9 @@ public class WebTemplate implements Serializable {
             System.out.println("Downloading... '" + address + "'" + " Date: " + currentDate());
             String text = "";
             try {
-                if(functionCall == null) {
+                if (functionCall == null) {
                     text = downloadPage(address, charset, 0);
-                }
-                else {
+                } else {
                     text = functionCall.returnHTML(address);
                 }
 
@@ -1092,11 +1106,10 @@ public class WebTemplate implements Serializable {
 
             String text = "";
             try {
-                if(functionCall == null) {
+                if (functionCall == null) {
                     text = downloadPage(address, charset, 2);
                     System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
-                }
-                else{
+                } else {
                     text = functionCall.returnHTML(address);
                     System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
                 }
@@ -1145,7 +1158,6 @@ public class WebTemplate implements Serializable {
                     .disableCookieManagement()
                     .setConnectionTimeToLive(5, TimeUnit.SECONDS)
                     .setConnectionManager(cm).build();
-
 
 
             HttpGet request = new HttpGet(address);

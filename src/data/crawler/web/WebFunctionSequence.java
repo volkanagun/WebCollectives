@@ -18,13 +18,23 @@ public class WebFunctionSequence extends WebFunctionCall {
         this.count = count;
     }
 
-    public WebFunctionSequence(WebFunctionCall... webFunctionCalls){
+    public WebFunctionSequence(WebFunctionCall... webFunctionCalls) {
         webFunctionCallList = Arrays.asList(webFunctionCalls);
     }
 
     @Override
+    public WebFunctionCall destroy() {
+        if (driver != null) {
+            driver.close();
+            driver = null;
+            js = null;
+        }
+        return this;
+    }
+
+    @Override
     public WebFunctionCall initialize() {
-        System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
         this.driver = new ChromeDriver();
         this.js = (JavascriptExecutor) driver;
         return this;
@@ -33,7 +43,7 @@ public class WebFunctionSequence extends WebFunctionCall {
     @Override
     public String returnHTML(WebDriver driver) {
         String htmlSource = null;
-        for(int i=0; i<count; i++) {
+        for (int i = 0; i < count; i++) {
             for (WebFunctionCall functionCall : webFunctionCallList) {
                 htmlSource = functionCall.returnHTML(driver);
             }
@@ -43,10 +53,9 @@ public class WebFunctionSequence extends WebFunctionCall {
     }
 
 
-
     @Override
     public String returnHTML(String url) {
         driver.get(url);
-        return  returnHTML(driver);
+        return returnHTML(driver);
     }
 }
