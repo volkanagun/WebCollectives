@@ -7,63 +7,109 @@ import org.jsoup.nodes.{Document, Element, TextNode}
  * @author Volkan Agun
  */
 //The goal is to construct a pipeline feature extractor from tree paths
-class PipeOp(var subpipes:Array[PipeOp], var name:String) extends Serializable {
+class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable {
 
   def this() = {
-    this(Array(),"ROOT")
+    this(Array(), "ROOT")
   }
 
-  def op(pipeOp: PipeOp):this.type ={
+  def op(pipeOp: PipeOp): this.type = {
     subpipes :+= pipeOp
     this
   }
 
-  def sum(item:PipeOp):PipeOp = ???
+  def op(pipeOp: PipeOp, opName:String):PipeOp={
+    (this, pipeOp, opName) match {
+      case (t:ExistsOp, n:ExistsOp, "exists")=>{
+        op(n)
+      }
+      case (t:SumOp, n:SumOp, "sum")=>{
+        op(n)
+      }
+      case (t:AvgOp, n:AvgOp, "avg")=>{
+        op(n)
+      }
+      case (t:PipeOp, n:PipeOp, _)=>{
+        op(n)
+        newName(n)
+      }
+      case (_, _, _) => throw new UnsupportedOperationException()
+    }
+  }
+
+  def charString(charCount: Int): String = {
+
+    name +
+      (if (!subpipes.isEmpty) {
+        val space = Range(0, charCount).toArray.map(i => " ").mkString("")
+        "[" +"\n"+ subpipes.map(oo => space + oo.charString(charCount + name.length)).mkString("\n") + "]"
+      } else {
+        ""
+      })
+  }
+
+  override def toString(): String = {
+    charString(name.length)
+  }
+
+
+  def sum(item: PipeOp): PipeOp = {
+    this match {
+      case SumOp(_, _) => op(item)
+      case _ => SumOp(Array(item))
+    }
+  }
+
+
   //generate a count operations class
   //diverge to different classes for operations build a tree like structure
-  def count(item:PipeOp):PipeOp = {
-    op(CountOp(items(item)).asInstanceOf[PipeOp])
-    this
-  }
-  def max(item:PipeOp):PipeOp= ???
-  def pattern(regexPattern:String):PipeOp= {
+
+  def max(item: PipeOp): PipeOp = ???
+
+  def pattern(regexPattern: String): PipeOp = {
     op(HTMLPatternOp(regexPattern))
   }
-  def ++(pipe: PipeOp):PipeOp= ???
-  def exists(pipeOperations: PipeOp):PipeOp= {
-    op(new ExistOp(items(pipeOperations)))
-  }
-  def operate():PipeResult= ???
 
-  def items(item:PipeOp):Array[PipeOp]={
-    item.newName(this)
-    item.subpipes = item.subpipes.map(innerItem => innerItem.newName(item))
-    Array(item)
+  def pattern(patternOp: PatternOp): PipeOp = {
+    op(patternOp)
   }
 
-  def newName(parent:PipeOp):PipeOp={
+  def ++(pipe: PipeOp): PipeOp = ???
+
+  def exists(pipeOp: PatternOp): PipeOp = {
+   op(ExistsOp(Array(pipeOp)), "exists")
+  }
+
+  def operate(): PipeResult = ???
+
+
+
+  def newName(parent: PipeOp): PipeOp = {
     this.name = parent.name + "#" + this.name
+    this.subpipes = this.subpipes.map(subPipe=> subPipe.newName(this))
     this
   }
 
   //operations
-  def sum(irs:Array[IntermediateResult]):IntermediateResult={
+  def sum(irs: Array[IntermediateResult]): IntermediateResult = {
     var gmap = Map[String, Double]()
-    irs.foreach(ir=>{
-      ir.map.foreach{case(nn, score)=> {
-        gmap = gmap.updated(nn, gmap.getOrElse(nn, 0.0)+score)
-      }}
+    irs.foreach(ir => {
+      ir.map.foreach { case (nn, score) => {
+        gmap = gmap.updated(nn, gmap.getOrElse(nn, 0.0) + score)
+      }
+      }
     })
 
     IntermediateResult(gmap)
   }
 
-  def normalize(irs:Array[IntermediateResult]):IntermediateResult={
+  def normalize(irs: Array[IntermediateResult]): IntermediateResult = {
     var gmap = Map[String, Double]()
-    irs.foreach(ir=>{
-      ir.map.foreach{case(nn, score)=> {
+    irs.foreach(ir => {
+      ir.map.foreach { case (nn, score) => {
         gmap = gmap.updated(nn, score)
-      }}
+      }
+      }
     })
 
     IntermediateResult(gmap)
@@ -71,32 +117,109 @@ class PipeOp(var subpipes:Array[PipeOp], var name:String) extends Serializable {
 
 }
 
-object PipeOp extends PipeOp(){
-  def apply():PipeOp= {
+object PipeOp extends PipeOp() {
+  def apply(): PipeOp = {
     new PipeOp()
   }
 
-  override def count(item:PipeOp)={
-    super.count(item)
+}
+
+
+class PipeResult extends Serializable {
+
+}
+
+case class IntermediateResult(var map: Map[String, Double] = Map()) extends PipeResult {
+
+  def divide(by: Double): IntermediateResult = {
+    val nmap = map.map { case (item, score) => (item, score / by) }
+    IntermediateResult(nmap)
+  }
+
+  def trimPrefix(name: String): String = {
+    val index = name.indexOf("/")
+    if (index > -1) name.substring(index + 1)
+    else name
+
+  }
+
+  def addPefix(name: String): IntermediateResult = {
+    val nmap = map.map { case (item, score) => (name + "/" + item, score) }
+    IntermediateResult(nmap)
+  }
+
+  def add(ii: IntermediateResult): IntermediateResult = {
+    val union = map.keySet ++ ii.map.keySet
+    val nmap = union.map(item => {
+      val fscore = map.getOrElse(item, 0.0) + ii.map.getOrElse(item, 0.0)
+      (item, fscore)
+    }).toMap
+
+    IntermediateResult(nmap)
+  }
+
+  def add(ii: IntermediateResult, prefix: String): IntermediateResult = {
+    val nii = ii.addPefix(prefix)
+    val union = map.keySet ++ nii.map.keySet
+    val nmap = union.map(item => {
+      val fscore = map.getOrElse(item, 0.0) + nii.map.getOrElse(item, 0.0)
+      (item, fscore)
+    }).toMap
+
+    IntermediateResult(nmap)
+  }
+
+
+  def add(iis: Array[IntermediateResult]): IntermediateResult = {
+    val intermediateResult = IntermediateResult()
+    iis.foreach(ii => intermediateResult.add(ii))
+    intermediateResult
+  }
+
+  def add(iis: Array[IntermediateResult], prefix: String): IntermediateResult = {
+    val intermediateResult = IntermediateResult()
+    iis.foreach(ii => intermediateResult.add(ii, prefix))
+    intermediateResult
+  }
+
+  def avgOp(iis: Array[IntermediateResult], prefix: String): IntermediateResult = {
+    add(iis, prefix).avgOp(prefix)
+  }
+
+  def avgOp(prefix: String): IntermediateResult = {
+    val keys = map.keySet.filter(item => item.startsWith(prefix))
+    val nmap = map.filter { case (item, score) => !keys.contains(item) } ++ map.filter { case (item, score) => keys.contains(item) }
+      .map { case (item, score) => (trimPrefix(item), score / keys.size) }
+    IntermediateResult(nmap)
+  }
+
+  def sumOp(iis: Array[IntermediateResult], prefix: String, name: String): IntermediateResult = {
+    add(iis, prefix).sumOp(prefix, name)
+  }
+
+  def sumOp(prefix: String, newName: String): IntermediateResult = {
+    val keys = map.keySet.filter(item => item.startsWith(prefix))
+    val sum = keys.map(item => {
+      map.getOrElse(item, 0.0)
+    }).sum
+
+    val nmap = map.filter { case (item, score) => !keys.contains(item) } + (newName -> sum)
+    IntermediateResult(nmap)
+  }
+
+  def sumAvgOp(prefix: String, newName: String): IntermediateResult = {
+    val keys = map.keySet.filter(item => item.startsWith(prefix))
+    val sum = keys.map(item => {
+      map.getOrElse(item, 0.0)
+    }).sum
+
+    val nmap = map.filter { case (item, _) => !keys.contains(item) } + (newName -> sum / keys.size)
+    IntermediateResult(nmap)
   }
 }
 
+abstract class ExecutableOp(pipes: Array[PipeOp], name: String) extends PipeOp(pipes, name) {
 
-class PipeResult extends Serializable{
-
-}
-
-case class IntermediateResult(var map:Map[String, Double] = Map()) extends PipeResult {
-
-  def divide(by:Double):IntermediateResult={
-    map = map.map{case(item, score)=> (item, score/by)}
-    this
-  }
-}
-
-abstract class ExecutableOp(pipes:Array[PipeOp], name:String) extends PipeOp(pipes, name){
-
-  override def sum(item: PipeOp): PipeOp = ???
 
   override def max(item: PipeOp): PipeOp = ???
 
@@ -104,73 +227,103 @@ abstract class ExecutableOp(pipes:Array[PipeOp], name:String) extends PipeOp(pip
 
   override def ++(pipe: PipeOp): PipeOp = ???
 
-  override def exists(pipeOperations: PipeOp): PipeOp = ???
-
   override def operate(): PipeResult = ???
 
   def sequence(leafSequence: Array[HTMLNode]): Array[IntermediateResult] = {
-    leafSequence.map(leafNode=> execute(leafNode))
+    leafSequence.map(leafNode => execute(leafNode))
   }
 
-  def execute(leaf:HTMLNode):IntermediateResult
+  def execute(leaf: HTMLNode): IntermediateResult
+
 
 }
 
-class ExistOp(subpipes:Array[PipeOp], name:String) extends ExecutableOp(subpipes, name){
+class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subpipes, name) {
 
-  def this(subpipes:Array[PipeOp]) = this(subpipes, "exist-op")
+  def this(subpipes: Array[PipeOp]) = this(subpipes, "exist-op")
 
 
-
-  def exists(leaf:HTMLNode):Double={
-    val boolean = subpipes.map(pipe=> pipe match {
-      case e:ExistOp => (pipe.name , e.exists(leaf))
+  def exists(leaf: HTMLNode): Double = {
+    val boolean = subpipes.map(pipe => pipe match {
+      case e: PatternOp => (pipe.name, e.exists(leaf))
       case _ => (pipe.name, 0.0)
     }).exists(_._2 > 0)
 
-    if(boolean) 1.0 else 0.0
+    if (boolean) 1.0 else 0.0
 
   }
 
-  override def execute(leaf:HTMLNode):IntermediateResult = {
-    val pairs = subpipes.map(pipe=> pipe match {
-      case e:ExistOp => (pipe.name , e.exists(leaf))
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val pairs = subpipes.map(pipe => pipe match {
+      case e: PatternOp => (pipe.name, e.exists(leaf))
       case _ => (pipe.name, 0.0)
     }).toMap
 
     IntermediateResult(pairs)
   }
+
+
 }
 
 
-class AvgOp(subpipes:Array[PipeOp], name:String) extends ExecutableOp(subpipes, name){
+case class ExistsOp(pipes: Array[PipeOp], opname: String = "exist-op") extends ExecutableOp(pipes, opname) {
 
-  def this(subpipes:Array[PipeOp]) = this(subpipes, "exist-op")
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val mapping = subpipes.map(pipe => pipe match {
+      case e: PatternOp => Some((e.name, e.exists(leaf)))
+      case _ => None
+    }).flatten.toMap
+
+    IntermediateResult(mapping)
+
+  }
+
+}
+
+case class AvgOp(pipes: Array[PipeOp], opname: String) extends ExecutableOp(pipes, opname) {
+
+  def this(subpipes: Array[PipeOp]) = this(subpipes, "avg-op")
 
 
-  override def execute(leaf:HTMLNode):IntermediateResult = {
-    val pairs = subpipes.map(pipe=> pipe match {
-      case e:AvgOp => Some((pipe.name , e.execute(leaf)))
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val iirs = subpipes.map(pipe => pipe match {
+      case e: ExecutableOp => Some(e.execute(leaf))
       case _ => None
     }).flatten
 
-    val size = pairs.length
-    val iirss = pairs.map{case(name, ir)=> ir.divide(size)}
-    normalize(iirss)
+    val fiir = IntermediateResult()
+    fiir.avgOp(iirs, name)
   }
+
 }
 
-case class RecursivePatternOp(regex:String, subs:Array[PipeOp]) extends ExistOp(subs, s"recursive-op[${regex}]"){
+case class SumOp(pipes: Array[PipeOp], opname: String = "sum-op") extends ExecutableOp(pipes, opname) {
+
+
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val prefix = "sum-op"
+    val pairs = subpipes.map(pipe => pipe match {
+      case e: ExecutableOp => Some(e.execute(leaf))
+      case _ => None
+    }).flatten
+
+    IntermediateResult().sumOp(pairs, name, toString)
+  }
+
+
+}
+
+case class RecursivePatternOp(regex: String, subs: Array[PipeOp]) extends PatternOp(subs, s"recursive-op[${regex}]") {
 
   //count the frequency inside all regex
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val html = leaf.node.asInstanceOf[Element].html()
     val matches = regex.r.findAllIn(html)
-    val irss = matches.map(matchString=>{
+    val irss = matches.map(matchString => {
       val element = new HTMLNode(new Document(leaf.node.baseUri()).html(matchString))
-      val counts = subs.map(subpipe=> {
+      val counts = subs.map(subpipe => {
         subpipe match {
-          case e:ExistOp=> Some(e.execute(element))
+          case e: PatternOp => Some(e.execute(element))
           case _ => None
         }
       }).flatten
@@ -183,9 +336,9 @@ case class RecursivePatternOp(regex:String, subs:Array[PipeOp]) extends ExistOp(
 }
 
 
-case class HTMLPatternOp(regex:String) extends ExistOp(Array(), s"html-regex-op[${regex}]"){
+case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-op[${regex}]") {
 
-  def exists(regex:String):HTMLPatternOp={
+  def exists(regex: String): HTMLPatternOp = {
     HTMLPatternOp(regex)
   }
 
@@ -197,35 +350,24 @@ case class HTMLPatternOp(regex:String) extends ExistOp(Array(), s"html-regex-op[
     IntermediateResult(map)
   }
 
+
   //boolean contains
   override def exists(leaf: HTMLNode): Double = {
     val html = leaf.node.asInstanceOf[Element].html()
     val matches = regex.r.findAllIn(html)
-    if(matches.length > 0) 1.0 else 0.0
+    if (matches.length > 0) 1.0 else 0.0
   }
 
 }
 
-case class CountOp(pipes:Array[PipeOp]) extends ExecutableOp(pipes, "count-op"){
 
-  override def execute(leaf: HTMLNode): IntermediateResult = {
-    val map = subpipes.map(op=> {
-      op match {
-        case patternOp:ExistOp => {
-          (patternOp.name, patternOp.exists(leaf))
-        }
-        case _ => (op.name, 0.0)
-      }
-    }).groupBy(_._1).map(pair=> (pair._1, pair._2.map(_._2).sum))
-
-    IntermediateResult(map)
-  }
-}
-
-object OpTester{
+object OpTester {
   def main(args: Array[String]): Unit = {
-    PipeOp.count(HTMLPatternOp("[ab]"))
+    val op = PipeOp.pattern(HTMLPatternOp("[ab]"))
       .exists(HTMLPatternOp("[p]"))
       .sum(PipeOp.exists(HTMLPatternOp("[p]")))
+      .sum(PipeOp.exists(HTMLPatternOp("[div]")))
+
+    println(op.toString())
   }
 }
