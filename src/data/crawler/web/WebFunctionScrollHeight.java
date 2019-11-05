@@ -5,8 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebFunctionScrollHeight extends WebFunctionCall {
-    private WebDriver driver;
-    private JavascriptExecutor js;
+
     private Integer count = 1;
 
     public WebFunctionScrollHeight() {
@@ -16,23 +15,7 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
         this.count = count;
     }
 
-    @Override
-    public WebFunctionCall initialize() {
-        System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
-        this.driver = new ChromeDriver();
-        this.js = (JavascriptExecutor) driver;
-        return this;
-    }
 
-    @Override
-    public WebFunctionCall destroy() {
-        if(driver!=null){
-            driver.close();
-            driver = null;
-            js = null;
-        }
-        return this;
-    }
 
     @Override
     public String returnHTML(String url) {

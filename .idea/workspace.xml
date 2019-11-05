@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,7 +73,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.OpTester">
+  <component name="RunManager" selected="Application.TwitterSearch">
     <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
       <module name="WebCollectives" />
@@ -145,8 +148,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.OpTester" />
         <item itemvalue="Application.TwitterSearch" />
+        <item itemvalue="Application.OpTester" />
         <item itemvalue="Application.EskSonHaber" />
         <item itemvalue="Application.MilliyetBlogList" />
         <item itemvalue="Application.AnadoluGazete" />
@@ -500,7 +503,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572894736653</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Bug in operation sequence contruction and toString...">
+      <created>1572944556020</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1572944556020</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -539,7 +549,8 @@
     <MESSAGE value="Modifications for tag lowercase" />
     <MESSAGE value="EdirneHaber local news;&#10;requiredPattern elimination for extraction..." />
     <MESSAGE value="Lucene integration for document storage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Lucene integration for document storage" />
+    <MESSAGE value="Bug in operation sequence contruction and toString..." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug in operation sequence contruction and toString..." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -561,17 +572,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java</url>
-          <line>76</line>
+          <line>44</line>
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java</url>
-          <line>80</line>
+          <line>48</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java</url>
-          <line>73</line>
+          <line>41</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -588,6 +599,11 @@
           <url>file://$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java</url>
           <line>178</line>
           <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="96" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>

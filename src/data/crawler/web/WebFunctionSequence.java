@@ -9,8 +9,7 @@ import java.util.List;
 
 public class WebFunctionSequence extends WebFunctionCall {
     private List<WebFunctionCall> webFunctionCallList;
-    private WebDriver driver;
-    private JavascriptExecutor js;
+
     private Integer count = 1;
 
     public WebFunctionSequence(Integer count, WebFunctionCall... webFunctionCalls) {
@@ -22,23 +21,7 @@ public class WebFunctionSequence extends WebFunctionCall {
         webFunctionCallList = Arrays.asList(webFunctionCalls);
     }
 
-    @Override
-    public WebFunctionCall destroy() {
-        if (driver != null) {
-            driver.close();
-            driver = null;
-            js = null;
-        }
-        return this;
-    }
 
-    @Override
-    public WebFunctionCall initialize() {
-        System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-        this.driver = new ChromeDriver();
-        this.js = (JavascriptExecutor) driver;
-        return this;
-    }
 
     @Override
     public String returnHTML(WebDriver driver) {
