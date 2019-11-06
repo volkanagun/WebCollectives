@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Set;
 
 public class WebTokenSink extends WebSink {
+
+
     private Set<String> tokens = new HashSet<>();
 
     public WebTokenSink() {

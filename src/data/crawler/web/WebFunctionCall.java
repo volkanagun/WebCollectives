@@ -33,7 +33,6 @@ public abstract class WebFunctionCall implements Serializable {
             options.setBinary(new File("resources/selenium/chromedriver.exe").getPath());*/
             this.driver = new ChromeDriver();
             this.js = driver;
-
         }
         return this;
     }

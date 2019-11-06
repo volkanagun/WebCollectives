@@ -377,7 +377,6 @@ object OpTester {
     val op = PipeOp().pattern(HTMLPatternOp("[ab]"))
       .exists(HTMLPatternOp("[p]"))
       .sum(PipeOp.exists(HTMLPatternOp("[p]")), PipeOp.exists(HTMLPatternOp("[div]")))
-
     println(op.toString())
   }
 }

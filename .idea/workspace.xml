@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebSink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTokenSink.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebConceptSink.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebDocument.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTokenSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTokenSink.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +73,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TwitterSearch">
+  <component name="RunManager" selected="Application.OpTester">
     <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
       <module name="WebCollectives" />
@@ -153,8 +149,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TwitterSearch" />
         <item itemvalue="Application.OpTester" />
+        <item itemvalue="Application.TwitterSearch" />
         <item itemvalue="Application.EskSonHaber" />
         <item itemvalue="Application.MilliyetBlogList" />
         <item itemvalue="Application.AnadoluGazete" />
@@ -597,7 +593,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTokenSink.java</url>
-          <line>49</line>
+          <line>51</line>
           <option name="timeStamp" value="130" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
