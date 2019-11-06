@@ -18,20 +18,25 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     this
   }
 
-  def op(pipeOp: PipeOp, opName:String):PipeOp={
+  def op(pipeOps: Array[PipeOp]): this.type = {
+    subpipes ++= pipeOps
+    this
+  }
+
+  def op(pipeOp: PipeOp, opName: String): PipeOp = {
     (this, pipeOp, opName) match {
-      case (t:ExistsOp, n:ExistsOp, "exists")=>{
-        op(n)
+      case (t: ExistsOp, n: ExistsOp, "exists") => {
+        t.op(n.pipes)
       }
-      case (t:SumOp, n:SumOp, "sum")=>{
-        op(n)
+      case (t: SumOp, n: SumOp, "sum") => {
+        t.op(n.pipes)
       }
-      case (t:AvgOp, n:AvgOp, "avg")=>{
-        op(n)
+      case (t: AvgOp, n: AvgOp, "avg") => {
+        t.op(n.pipes)
       }
-      case (t:PipeOp, n:PipeOp, _)=>{
-        op(n)
-        newName(n)
+      case (t: PipeOp, n: PipeOp, _) => {
+        t.op(n)
+        t
       }
       case (_, _, _) => throw new UnsupportedOperationException()
     }
@@ -42,7 +47,7 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     name +
       (if (!subpipes.isEmpty) {
         val space = Range(0, charCount).toArray.map(i => " ").mkString("")
-        "[" +"\n"+ subpipes.map(oo => space + oo.charString(charCount + name.length)).mkString("\n") + "]"
+        "[" + "\n" + subpipes.map(oo => space + oo.charString(charCount + name.length)).mkString("\n") + "]"
       } else {
         ""
       })
@@ -54,10 +59,11 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
 
 
   def sum(item: PipeOp): PipeOp = {
-    this match {
-      case SumOp(_, _) => op(item)
-      case _ => SumOp(Array(item))
-    }
+    op(SumOp(Array(item)), "sum")
+  }
+
+  def sum(items: PipeOp*): PipeOp = {
+    op(SumOp(items.toArray), "sum")
   }
 
 
@@ -77,16 +83,15 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
   def ++(pipe: PipeOp): PipeOp = ???
 
   def exists(pipeOp: PatternOp): PipeOp = {
-   op(ExistsOp(Array(pipeOp)), "exists")
+    op(ExistsOp(Array(pipeOp)), "exists")
   }
 
   def operate(): PipeResult = ???
 
 
-
   def newName(parent: PipeOp): PipeOp = {
     this.name = parent.name + "#" + this.name
-    this.subpipes = this.subpipes.map(subPipe=> subPipe.newName(this))
+    this.subpipes = this.subpipes.map(subPipe => subPipe.newName(this))
     this
   }
 
@@ -122,6 +127,12 @@ object PipeOp extends PipeOp() {
     new PipeOp()
   }
 
+  override def sum(items: PipeOp): PipeOp = {
+    val itemArray = Array(items)
+    SumOp(itemArray)
+  }
+
+  override def exists(pipeOp: PatternOp): PipeOp = ExistsOp(Array(pipeOp))
 }
 
 
@@ -363,10 +374,9 @@ case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-
 
 object OpTester {
   def main(args: Array[String]): Unit = {
-    val op = PipeOp.pattern(HTMLPatternOp("[ab]"))
+    val op = PipeOp().pattern(HTMLPatternOp("[ab]"))
       .exists(HTMLPatternOp("[p]"))
-      .sum(PipeOp.exists(HTMLPatternOp("[p]")))
-      .sum(PipeOp.exists(HTMLPatternOp("[div]")))
+      .sum(PipeOp.exists(HTMLPatternOp("[p]")), PipeOp.exists(HTMLPatternOp("[div]")))
 
     println(op.toString())
   }

@@ -17,6 +17,9 @@ public class WebFlow implements Serializable, Callable<Boolean> {
     private String folder;
     private WebTemplate mainTemplate;
 
+    public WebFlow() {
+    }
+
     public WebFlow(WebTemplate mainTemplate) {
         this.mainTemplate = mainTemplate;
         this.folder = mainTemplate.getFolder();
@@ -36,6 +39,11 @@ public class WebFlow implements Serializable, Callable<Boolean> {
 
     public WebFlow setMainDirectory(String directory){
         mainTemplate.setFolder(directory);
+        return this;
+    }
+
+    public WebFlow setMainTemplate(WebTemplate mainTemplate) {
+        this.mainTemplate = mainTemplate;
         return this;
     }
 

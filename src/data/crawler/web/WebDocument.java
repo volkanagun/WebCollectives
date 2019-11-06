@@ -42,6 +42,10 @@ public class WebDocument implements Serializable {
         this.name = name;
     }
 
+    public List<WebDocument> getWebFlowResultList() {
+        return webFlowResultList;
+    }
+
     public WebDocument putProperty(String label, String value) {
         properties.put(label, value);
         return this;

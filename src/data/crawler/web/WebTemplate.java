@@ -179,10 +179,7 @@ public class WebTemplate implements Serializable {
     }
 
     public WebTemplate destroy() {
-        if (webSink != null) {
-            webSink.closeWriter();
-            webSink = null;
-        }
+
         if (functionCall != null) {
             functionCall.destroy();
             functionCall = null;
@@ -607,6 +604,7 @@ public class WebTemplate implements Serializable {
             }
         } else {
             if (webSink != null) {
+
                 webSink.writeDocuments(documentList);
             }
 

@@ -6,24 +6,22 @@ import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.IndexWriter;
-import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.Term;
+import org.apache.lucene.index.*;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.TermQuery;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
+import org.bytedeco.javacv.FrameFilter;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WebLuceneSink implements Serializable {
+public class WebLuceneSink extends WebSink {
     private Path indexpath;
     private IndexWriter indexWriter;
     private IndexSearcher searcher;
@@ -35,12 +33,23 @@ public class WebLuceneSink implements Serializable {
 
     }
 
+    @Override
+    public WebSink initialize() {
+        openWriter();
+        return this;
+    }
+
     public synchronized WebLuceneSink openWriter() {
 
-        if(indexWriter==null) {
-            try (FSDirectory dir = FSDirectory.open(indexpath)) {
+        if (indexWriter == null) {
+            try {
+                FSDirectory dir = FSDirectory.open(indexpath);
                 IndexWriterConfig config = new IndexWriterConfig(new StandardAnalyzer());
+                config.setOpenMode(IndexWriterConfig.OpenMode.CREATE_OR_APPEND);
+
+
                 indexWriter = new IndexWriter(dir, config);
+                //searcher = new IndexSearcher(DirectoryReader.open(indexWriter));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -49,17 +58,25 @@ public class WebLuceneSink implements Serializable {
         return this;
     }
 
-    public synchronized WebLuceneSink closeWriter(){
-        try {
-            if(indexWriter!=null && indexWriter.isOpen()) {
-                indexWriter.close();
-                indexWriter = null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public synchronized WebLuceneSink closeWriter() {
+
+        if (indexWriter != null && indexWriter.isOpen()) {
+
+            indexWriter = null;
+            searcher = null;
         }
 
         return this;
+    }
+
+    @Override
+    public void addDocuments(List<WebDocument> documents) {
+        writeDocuments(documents);
+    }
+
+    @Override
+    public List<String> getText() {
+        return new ArrayList<>();
     }
 
     public List<Document> createIndexDocument(WebDocument webDocument) {
@@ -78,7 +95,7 @@ public class WebLuceneSink implements Serializable {
                 }
             }
 
-            if(foundID) documents.add(document);
+            if (foundID) documents.add(document);
         }
 
         return documents;
@@ -88,34 +105,42 @@ public class WebLuceneSink implements Serializable {
     public int writeDocuments(List<WebDocument> documents) {
 
         int count = 0;
-        for(WebDocument webDocument:documents){
+        for (WebDocument webDocument : documents) {
             count += writeDocument(webDocument);
         }
 
         return count;
     }
 
-    private int writeDocument(WebDocument webDocument){
+    private int writeDocument(WebDocument webDocument) {
         int count = 0;
-        try {
-            List<Document> luceneDocuments = createIndexDocument(webDocument);
-            for(Document luceneDocument:luceneDocuments) {
-                if(!lookupDocument(luceneDocument)) {
-                    count++;
-                    indexWriter.addDocument(luceneDocument);
-                }
+
+        List<Document> luceneDocuments = createIndexDocument(webDocument);
+           /* for (Document luceneDocument : luceneDocuments) {
+                if (!lookupDocument(luceneDocument)) {
+                    count++;*/
+        synchronized (indexWriter) {
+            try {
+                //openWriter();
+                indexWriter.addDocuments(luceneDocuments);
+                indexWriter.commit();
+                count+= luceneDocuments.size();
+            } catch (Exception ex) {
+                ex.printStackTrace();
             }
-        } catch (IOException e) {
-            System.out.println("Error in indexing");
         }
+             /*   }
+            }*/
+
+
         return count;
     }
 
-    private boolean lookupDocument(Document document){
+    private boolean lookupDocument(Document document) {
         Boolean found = false;
         try {
-            TopDocs docs = searcher.search(new TermQuery(new Term(LookupResult.ID, document.get(LookupResult.ID))),1);
-            if(docs.totalHits.value > 0) found = true;
+            TopDocs docs = searcher.search(new TermQuery(new Term(LookupResult.ID, document.get(LookupResult.ID))), 1);
+            if (docs.totalHits.value > 0) found = true;
         } catch (IOException e) {
 
         }
