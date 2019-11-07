@@ -188,7 +188,7 @@ public class TwitterSearch extends WebFlow {
     public static List<WebFlow> buildQueries(WebLuceneSink luceneSink, String[] queryTerms, String language) {
         List<WebFlow> list = new ArrayList<>();
         for (String queryTerm : queryTerms) {
-            list.add(new TwitterSearch(luceneSink, queryTerm, 2).setLanguage(language));
+            list.add(new TwitterSearch(luceneSink, queryTerm, 10).setLanguage(language));
         }
 
         return list;
@@ -201,9 +201,11 @@ public class TwitterSearch extends WebFlow {
         }
     }
 
+    
+
     public static void main(String[] args) {
         WebLuceneSink luceneSink = new WebLuceneSink("resources/index/").openWriter();
-        String[] queryTerms = new String[]{"menzilci", "uyuşturucu", "fetö"};
+        String[] queryTerms = new String[]{"iran","abd","suriye","avrupa birliği"};
         List<WebFlow> webFlows = buildQueries(luceneSink, queryTerms, TURKISH);
        ExecutorService executorService = Executors.newFixedThreadPool(1);
        batchSubmit(executorService, webFlows);

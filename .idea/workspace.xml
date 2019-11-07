@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebConceptSink.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTokenSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTokenSink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +70,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.OpTester">
+  <component name="RunManager" selected="Application.TwitterSearch">
     <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
       <module name="WebCollectives" />
@@ -149,8 +146,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.OpTester" />
         <item itemvalue="Application.TwitterSearch" />
+        <item itemvalue="Application.OpTester" />
         <item itemvalue="Application.EskSonHaber" />
         <item itemvalue="Application.MilliyetBlogList" />
         <item itemvalue="Application.AnadoluGazete" />
@@ -167,13 +164,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538468368895</updated>
-    </task>
-    <task id="LOCAL-00001" summary="First commit">
-      <created>1538470173019</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1538470173019</updated>
     </task>
     <task id="LOCAL-00002" summary="First commit">
       <created>1538470651827</created>
@@ -511,7 +501,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572944556020</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Bug in operation sequence contruction and toString...">
+      <created>1573031214009</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1573031214009</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
