@@ -201,7 +201,7 @@ public class TwitterSearch extends WebFlow {
         }
     }
 
-    
+
 
     public static void main(String[] args) {
         WebLuceneSink luceneSink = new WebLuceneSink("resources/index/").openWriter();

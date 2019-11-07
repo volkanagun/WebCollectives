@@ -1,6 +1,9 @@
 package data.boilerplate.learning.pipes
 
+import com.sun.xml.internal.bind.api.impl.NameConverter.Standard
 import data.boilerplate.structure.HTMLNode
+import org.apache.lucene.analysis.standard.StandardAnalyzer
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute
 import org.jsoup.nodes.{Document, Element, TextNode}
 
 /**
@@ -253,7 +256,6 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
 
   def this(subpipes: Array[PipeOp]) = this(subpipes, "exist-op")
 
-
   def exists(leaf: HTMLNode): Double = {
     val boolean = subpipes.map(pipe => pipe match {
       case e: PatternOp => (pipe.name, e.exists(leaf))
@@ -261,7 +263,6 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
     }).exists(_._2 > 0)
 
     if (boolean) 1.0 else 0.0
-
   }
 
   override def execute(leaf: HTMLNode): IntermediateResult = {
@@ -369,6 +370,94 @@ case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-
     if (matches.length > 0) 1.0 else 0.0
   }
 
+}
+
+
+case class TextLengthOp() extends PatternOp(Array(), s"text-density-op") {
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val element = leaf.node.asInstanceOf[Element]
+    val html = element.html()
+    val text = element.text()
+    val density = text.length.toDouble / html.length
+    val map = Map(name -> density)
+    IntermediateResult(map)
+  }
+
+}
+
+case class PatternTextRatioOp(regex: String) extends PatternOp(Array(), s"pattern-text-density-op") {
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val element = leaf.node.asInstanceOf[Element]
+    val html = element.html()
+    val patterns = regex.r.findAllIn(html).toArray
+    val textLength = element.text().length
+    val density = textLength.toDouble / patterns.length
+    IntermediateResult(Map(name -> density))
+  }
+
+}
+
+
+case class PatternTokenRatioOp(regex: String) extends PatternOp(Array(), s"pattern-token-density-op") {
+
+  val analyzer = new StandardAnalyzer()
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val element = leaf.node.asInstanceOf[Element]
+    val html = element.html()
+    val patterns = regex.r.findAllIn(html).toArray
+    val tokenLength = tokenize(element.text()).length
+    val density = tokenLength.toDouble / patterns.length
+    IntermediateResult(Map(name -> density))
+  }
+
+  protected def tokenize(text: String): Array[String] = {
+    val tokenStream = analyzer.tokenStream("TEXT", text)
+    val attr = tokenStream.addAttribute(classOf[CharTermAttribute])
+    tokenStream.reset()
+    var array = Array[String]()
+    while (tokenStream.incrementToken)
+      array :+= attr.toString
+
+    array
+  }
+
+}
+
+case class PatternParentRatioOp(regex: String) extends PatternOp(Array(), s"parrent-pattern-ratio-op") {
+
+  val analyzer = new StandardAnalyzer()
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val parent = leaf.parent.node.asInstanceOf[Element]
+    val current = leaf.node.asInstanceOf[Element]
+    val parrentPatterns = regex.r.findAllIn(parent.html()).toArray
+    val currentPatterns = regex.r.findAllIn(parent.html()).toArray
+    val density = currentPatterns.length.toDouble / parrentPatterns.length
+    IntermediateResult(Map(name -> density))
+  }
+
+}
+
+
+case class ParentTextLengthOp() extends PatternOp(Array(), s"parent-text-density-op") {
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val parentElement = leaf.parent.node.asInstanceOf[Element]
+    val currentElement = leaf.node.asInstanceOf[Element]
+    val parentText = parentElement.text()
+    val currentText = currentElement.text()
+    val density = currentText.length.toDouble / parentText.length
+    val map = Map(name -> density)
+    IntermediateResult(map)
+  }
 }
 
 
