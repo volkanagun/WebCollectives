@@ -1,7 +1,7 @@
 package data.boilerplate.learning.pipes
 
 import com.sun.xml.internal.bind.api.impl.NameConverter.Standard
-import data.boilerplate.structure.HTMLNode
+import data.boilerplate.structure.{HTMLNode, HTMLParser}
 import org.apache.lucene.analysis.standard.StandardAnalyzer
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute
 import org.jsoup.nodes.{Document, Element, TextNode}
@@ -24,6 +24,11 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
   def op(pipeOps: Array[PipeOp]): this.type = {
     subpipes ++= pipeOps
     this
+  }
+
+  def execute(leaf: HTMLNode): IntermediateResult={
+    val iirs = subpipes.map(op=> op.execute(leaf))
+    sum(iirs)
   }
 
   def op(pipeOp: PipeOp, opName: String): PipeOp = {
@@ -175,12 +180,12 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
   def add(ii: IntermediateResult, prefix: String): IntermediateResult = {
     val nii = ii.addPefix(prefix)
     val union = map.keySet ++ nii.map.keySet
-    val nmap = union.map(item => {
+    map = union.map(item => {
       val fscore = map.getOrElse(item, 0.0) + nii.map.getOrElse(item, 0.0)
       (item, fscore)
     }).toMap
 
-    IntermediateResult(nmap)
+    this
   }
 
 
@@ -213,8 +218,9 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
 
   def sumOp(prefix: String, newName: String): IntermediateResult = {
     val keys = map.keySet.filter(item => item.startsWith(prefix))
-    val sum = keys.map(item => {
+    val sum = keys.toArray.map(item => {
       map.getOrElse(item, 0.0)
+
     }).sum
 
     val nmap = map.filter { case (item, score) => !keys.contains(item) } + (newName -> sum)
@@ -223,12 +229,16 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
 
   def sumAvgOp(prefix: String, newName: String): IntermediateResult = {
     val keys = map.keySet.filter(item => item.startsWith(prefix))
-    val sum = keys.map(item => {
+    val sum = keys.toArray.map(item => {
       map.getOrElse(item, 0.0)
     }).sum
 
     val nmap = map.filter { case (item, _) => !keys.contains(item) } + (newName -> sum / keys.size)
     IntermediateResult(nmap)
+  }
+
+  override def toString: String = {
+    map.map{case(name, score)=> name + "-->"+score.toString}.mkString("\n")
   }
 }
 
@@ -247,7 +257,7 @@ abstract class ExecutableOp(pipes: Array[PipeOp], name: String) extends PipeOp(p
     leafSequence.map(leafNode => execute(leafNode))
   }
 
-  def execute(leaf: HTMLNode): IntermediateResult
+
 
 
 }
@@ -274,6 +284,12 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
     IntermediateResult(pairs)
   }
 
+
+  def rpatterns(regex:String, text:String):Array[String]={
+    var array = Array[String]()
+    regex.r.findAllMatchIn(text).foreach(matching=> array:+= matching.group(0))
+    array
+  }
 
 }
 
@@ -330,7 +346,7 @@ case class RecursivePatternOp(regex: String, subs: Array[PipeOp]) extends Patter
   //count the frequency inside all regex
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val html = leaf.node.asInstanceOf[Element].html()
-    val matches = regex.r.findAllIn(html)
+    val matches = rpatterns(regex, html)
     val irss = matches.map(matchString => {
       val element = new HTMLNode(new Document(leaf.node.baseUri()).html(matchString))
       val counts = subs.map(subpipe => {
@@ -341,10 +357,13 @@ case class RecursivePatternOp(regex: String, subs: Array[PipeOp]) extends Patter
       }).flatten
 
       normalize(counts)
-    }).toArray
+    })
 
     sum(irss)
   }
+
+
+
 }
 
 
@@ -357,7 +376,7 @@ case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val html = leaf.node.asInstanceOf[Element].html()
-    val matches = regex.r.findAllIn(html)
+    val matches = rpatterns(regex, html)
     val map = Map(name -> matches.length.toDouble)
     IntermediateResult(map)
   }
@@ -366,10 +385,9 @@ case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-
   //boolean contains
   override def exists(leaf: HTMLNode): Double = {
     val html = leaf.node.asInstanceOf[Element].html()
-    val matches = regex.r.findAllIn(html)
+    val matches = rpatterns(regex, html)
     if (matches.length > 0) 1.0 else 0.0
   }
-
 }
 
 
@@ -393,7 +411,7 @@ case class PatternTextRatioOp(regex: String) extends PatternOp(Array(), s"patter
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val element = leaf.node.asInstanceOf[Element]
     val html = element.html()
-    val patterns = regex.r.findAllIn(html).toArray
+    val patterns = rpatterns(regex, html)
     val textLength = element.text().length
     val density = textLength.toDouble / patterns.length
     IntermediateResult(Map(name -> density))
@@ -410,7 +428,7 @@ case class PatternTokenRatioOp(regex: String) extends PatternOp(Array(), s"patte
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val element = leaf.node.asInstanceOf[Element]
     val html = element.html()
-    val patterns = regex.r.findAllIn(html).toArray
+    val patterns = rpatterns(regex, html)
     val tokenLength = tokenize(element.text()).length
     val density = tokenLength.toDouble / patterns.length
     IntermediateResult(Map(name -> density))
@@ -437,8 +455,8 @@ case class PatternParentRatioOp(regex: String) extends PatternOp(Array(), s"parr
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val parent = leaf.parent.node.asInstanceOf[Element]
     val current = leaf.node.asInstanceOf[Element]
-    val parrentPatterns = regex.r.findAllIn(parent.html()).toArray
-    val currentPatterns = regex.r.findAllIn(parent.html()).toArray
+    val parrentPatterns = rpatterns(regex, parent.html())
+    val currentPatterns = rpatterns(regex, current.html())
     val density = currentPatterns.length.toDouble / parrentPatterns.length
     IntermediateResult(Map(name -> density))
   }
@@ -463,9 +481,12 @@ case class ParentTextLengthOp() extends PatternOp(Array(), s"parent-text-density
 
 object OpTester {
   def main(args: Array[String]): Unit = {
-    val op = PipeOp().pattern(HTMLPatternOp("[ab]"))
-      .exists(HTMLPatternOp("[p]"))
-      .sum(PipeOp.exists(HTMLPatternOp("[p]")), PipeOp.exists(HTMLPatternOp("[div]")))
-    println(op.toString())
+    val node = HTMLParser.parseHTML("resources/demo/html.html")
+    val op = PipeOp()
+      .sum(PipeOp.exists(HTMLPatternOp("<p(\\s|>)")), PipeOp.exists(HTMLPatternOp("<div(\\s|>)")))
+
+    println(op.execute(node))
   }
 }
+
+
