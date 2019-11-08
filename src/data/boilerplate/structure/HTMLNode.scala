@@ -15,6 +15,15 @@ class HTMLNode(val node:Node) extends Serializable{
     this
   }
 
+  def getParent():HTMLNode={
+    if(hasParent()) parent
+    else this
+  }
+
+  def hasParent():Boolean={
+    this.parent != null
+  }
+
   def setChildNodes(nodes:Array[HTMLNode]):this.type ={
     childnodes = nodes
     childnodes.foreach(childNode=> childNode.setParent(this))

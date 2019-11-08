@@ -26,6 +26,11 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     this
   }
 
+  def op(pipeOps: PipeOp*): this.type = {
+    subpipes ++= pipeOps
+    this
+  }
+
   def execute(leaf: HTMLNode): IntermediateResult={
     val iirs = subpipes.map(op=> op.execute(leaf))
     sum(iirs)
@@ -291,6 +296,28 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
     array
   }
 
+  def rpatternAvgCharLength(regex:String, text:String):Double = {
+    var totalSize = 0
+    var cnt = 0;
+    rpatterns(regex, text).foreach(matching=>{
+      totalSize += matching.length
+      cnt +=1
+    })
+
+    totalSize.toDouble / cnt
+
+  }
+
+  def rpatternTotalCharLength(regex:String, text:String):Double = {
+    var totalSize = 0
+    rpatterns(regex, text).foreach(matching=>{
+      totalSize += matching.length
+    })
+
+    totalSize.toDouble
+
+  }
+
 }
 
 
@@ -311,7 +338,6 @@ case class ExistsOp(pipes: Array[PipeOp], opname: String = "exist-op") extends E
 case class AvgOp(pipes: Array[PipeOp], opname: String) extends ExecutableOp(pipes, opname) {
 
   def this(subpipes: Array[PipeOp]) = this(subpipes, "avg-op")
-
 
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val iirs = subpipes.map(pipe => pipe match {
@@ -362,8 +388,6 @@ case class RecursivePatternOp(regex: String, subs: Array[PipeOp]) extends Patter
     sum(irss)
   }
 
-
-
 }
 
 
@@ -381,7 +405,6 @@ case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-
     IntermediateResult(map)
   }
 
-
   //boolean contains
   override def exists(leaf: HTMLNode): Double = {
     val html = leaf.node.asInstanceOf[Element].html()
@@ -391,7 +414,7 @@ case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-
 }
 
 
-case class TextLengthOp() extends PatternOp(Array(), s"text-density-op") {
+case class TextDensityOp() extends PatternOp(Array(), s"text-density-op") {
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
@@ -405,16 +428,54 @@ case class TextLengthOp() extends PatternOp(Array(), s"text-density-op") {
 
 }
 
-case class PatternTextRatioOp(regex: String) extends PatternOp(Array(), s"pattern-text-density-op") {
+case class PatternCharAvgOp(regex:String) extends PatternOp(Array(), s"pattern-char-avg-op") {
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val element = leaf.node.asInstanceOf[Element]
+    val average = rpatternAvgCharLength(regex, element.html())
+    val map = Map(name -> average)
+    IntermediateResult(map)
+  }
+
+}
+
+case class TextPatternDensityOp(regex:String) extends PatternOp(Array(), s"text-pattern-density-op") {
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val element = leaf.node.asInstanceOf[Element]
+    val text = element.text()
+    val html = element.html()
+
+    val total = rpatternTotalCharLength(regex, html)
+    val density = text.length.toDouble / total
+    val map = Map(name -> density)
+    IntermediateResult(map)
+  }
+
+}
+
+case class PatternTextDensityOp(regex: String) extends PatternOp(Array(), s"pattern-text-density-op") {
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val element = leaf.node.asInstanceOf[Element]
+    val text = element.text()
     val html = element.html()
     val patterns = rpatterns(regex, html)
-    val textLength = element.text().length
+    val textLength = text.length
     val density = textLength.toDouble / patterns.length
     IntermediateResult(Map(name -> density))
+  }
+
+}
+
+case class TagTextDensityOp() extends PatternOp(Array(), s"tag-text-density-op") {
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    PatternTextDensityOp("<(.*?)>").execute(leaf)
   }
 
 }
@@ -464,11 +525,11 @@ case class PatternParentRatioOp(regex: String) extends PatternOp(Array(), s"parr
 }
 
 
-case class ParentTextLengthOp() extends PatternOp(Array(), s"parent-text-density-op") {
+case class ParentTextDensityOp() extends PatternOp(Array(), s"parent-text-density-op") {
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
-    val parentElement = leaf.parent.node.asInstanceOf[Element]
+    val parentElement = leaf.getParent().node.asInstanceOf[Element]
     val currentElement = leaf.node.asInstanceOf[Element]
     val parentText = parentElement.text()
     val currentText = currentElement.text()
@@ -476,16 +537,21 @@ case class ParentTextLengthOp() extends PatternOp(Array(), s"parent-text-density
     val map = Map(name -> density)
     IntermediateResult(map)
   }
+
 }
 
 
 object OpTester {
   def main(args: Array[String]): Unit = {
-    val node = HTMLParser.parseHTML("resources/demo/html.html")
+
+    val node = HTMLParser.parseHTML("resources/demo/html-1.html")
     val op = PipeOp()
-      .sum(PipeOp.exists(HTMLPatternOp("<p(\\s|>)")), PipeOp.exists(HTMLPatternOp("<div(\\s|>)")))
+      .sum(HTMLPatternOp("<p(\\s|>)"), HTMLPatternOp("<div(\\s|>)"))
+      .op(TextDensityOp(), ParentTextDensityOp(), TagTextDensityOp())
+      .op(HTMLPatternOp("<p(\\s|>)"))
 
     println(op.execute(node))
+
   }
 }
 
