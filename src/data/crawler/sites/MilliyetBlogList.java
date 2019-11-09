@@ -38,7 +38,7 @@ public class MilliyetBlogList implements Serializable {
                 .setNextPageSuffix("&Page=")
                 .setNextPageStart(1)
                 .setDoFast(true)
-                .setNextPageSize(5)
+                .setNextPageSize(50)
                 .setThreadSize(1);
 
 

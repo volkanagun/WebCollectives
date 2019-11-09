@@ -1,10 +1,10 @@
 package data.boilerplate.learning.pipes
 
 import com.sun.xml.internal.bind.api.impl.NameConverter.Standard
-import data.boilerplate.structure.{HTMLNode, HTMLParser}
+import data.boilerplate.structure.{HTMLNode, HTMLParser, HTMLPath}
 import org.apache.lucene.analysis.standard.StandardAnalyzer
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute
-import org.jsoup.nodes.{Document, Element, TextNode}
+import org.jsoup.nodes.{Attribute, Comment, DataNode, Document, Element, TextNode}
 
 /**
  * @author Volkan Agun
@@ -14,6 +14,10 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
 
   def this() = {
     this(Array(), "ROOT")
+  }
+
+  def canApply(htmlNode:HTMLNode):Boolean ={
+    true
   }
 
   def op(pipeOp: PipeOp): this.type = {
@@ -31,9 +35,23 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     this
   }
 
-  def execute(leaf: HTMLNode): IntermediateResult={
-    val iirs = subpipes.map(op=> op.execute(leaf))
+  def execute(leaf: HTMLNode): IntermediateResult = {
+    val iirs = subpipes.filter(op=> op.canApply(leaf)).map(op => op.execute(leaf))
     sum(iirs)
+  }
+
+  def execute(path: HTMLPath): IntermediateResult = {
+    val leaf = path.pathNodes.last
+    val iirs = subpipes.filter(op=> op.canApply(leaf))
+      .map(op => op.execute(leaf))
+
+    sum(iirs)
+  }
+
+  def execute(paths: Array[HTMLPath]): Array[IntermediateResult] = {
+    paths.map(path => {
+      execute(path)
+    })
   }
 
   def op(pipeOp: PipeOp, opName: String): PipeOp = {
@@ -131,6 +149,24 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     })
 
     IntermediateResult(gmap)
+  }
+
+  def extractHTMLorData(htmlNode: HTMLNode):String = {
+    if(isElement(htmlNode)) htmlNode.node.asInstanceOf[Element].html()
+    else if(isData(htmlNode)) htmlNode.node.asInstanceOf[DataNode].getWholeData
+    else if(isComment(htmlNode)) htmlNode.node.asInstanceOf[Comment].getData
+    else ""
+  }
+
+  def isElement(htmlNode: HTMLNode):Boolean={
+    htmlNode.node.isInstanceOf[Element]
+  }
+
+  def isComment(htmlNode: HTMLNode):Boolean={
+    htmlNode.node.isInstanceOf[Comment]
+  }
+  def isData(htmlNode: HTMLNode):Boolean={
+    htmlNode.node.isInstanceOf[DataNode]
   }
 
 }
@@ -243,11 +279,12 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
   }
 
   override def toString: String = {
-    map.map{case(name, score)=> name + "-->"+score.toString}.mkString("\n")
+    map.map { case (name, score) => name + "-->" + score.toString }.mkString("\n")
   }
 }
 
 abstract class ExecutableOp(pipes: Array[PipeOp], name: String) extends PipeOp(pipes, name) {
+
 
 
   override def max(item: PipeOp): PipeOp = ???
@@ -263,13 +300,15 @@ abstract class ExecutableOp(pipes: Array[PipeOp], name: String) extends PipeOp(p
   }
 
 
-
-
 }
 
 class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subpipes, name) {
 
   def this(subpipes: Array[PipeOp]) = this(subpipes, "exist-op")
+
+  override def canApply(htmlNode:HTMLNode):Boolean={
+    isElement(htmlNode)
+  }
 
   def exists(leaf: HTMLNode): Double = {
     val boolean = subpipes.map(pipe => pipe match {
@@ -290,27 +329,27 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
   }
 
 
-  def rpatterns(regex:String, text:String):Array[String]={
+  def rpatterns(regex: String, text: String): Array[String] = {
     var array = Array[String]()
-    regex.r.findAllMatchIn(text).foreach(matching=> array:+= matching.group(0))
+    regex.r.findAllMatchIn(text).foreach(matching => array :+= matching.group(0))
     array
   }
 
-  def rpatternAvgCharLength(regex:String, text:String):Double = {
+  def rpatternAvgCharLength(regex: String, text: String): Double = {
     var totalSize = 0
     var cnt = 0;
-    rpatterns(regex, text).foreach(matching=>{
+    rpatterns(regex, text).foreach(matching => {
       totalSize += matching.length
-      cnt +=1
+      cnt += 1
     })
 
     totalSize.toDouble / cnt
 
   }
 
-  def rpatternTotalCharLength(regex:String, text:String):Double = {
+  def rpatternTotalCharLength(regex: String, text: String): Double = {
     var totalSize = 0
-    rpatterns(regex, text).foreach(matching=>{
+    rpatterns(regex, text).foreach(matching => {
       totalSize += matching.length
     })
 
@@ -323,8 +362,11 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
 
 case class ExistsOp(pipes: Array[PipeOp], opname: String = "exist-op") extends ExecutableOp(pipes, opname) {
 
+
+  override def canApply(htmlNode: HTMLNode): Boolean = true
+
   override def execute(leaf: HTMLNode): IntermediateResult = {
-    val mapping = subpipes.map(pipe => pipe match {
+    val mapping = subpipes.filter(_.canApply(leaf)).map(pipe => pipe match {
       case e: PatternOp => Some((e.name, e.exists(leaf)))
       case _ => None
     }).flatten.toMap
@@ -339,8 +381,11 @@ case class AvgOp(pipes: Array[PipeOp], opname: String) extends ExecutableOp(pipe
 
   def this(subpipes: Array[PipeOp]) = this(subpipes, "avg-op")
 
+
+  override def canApply(htmlNode: HTMLNode): Boolean = true
+
   override def execute(leaf: HTMLNode): IntermediateResult = {
-    val iirs = subpipes.map(pipe => pipe match {
+    val iirs = subpipes.filter(_.canApply(leaf)).map(pipe => pipe match {
       case e: ExecutableOp => Some(e.execute(leaf))
       case _ => None
     }).flatten
@@ -354,9 +399,11 @@ case class AvgOp(pipes: Array[PipeOp], opname: String) extends ExecutableOp(pipe
 case class SumOp(pipes: Array[PipeOp], opname: String = "sum-op") extends ExecutableOp(pipes, opname) {
 
 
+  override def canApply(htmlNode: HTMLNode): Boolean = true
+
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val prefix = "sum-op"
-    val pairs = subpipes.map(pipe => pipe match {
+    val pairs = subpipes.filter(_.canApply(leaf)).map(pipe => pipe match {
       case e: ExecutableOp => Some(e.execute(leaf))
       case _ => None
     }).flatten
@@ -368,6 +415,11 @@ case class SumOp(pipes: Array[PipeOp], opname: String = "sum-op") extends Execut
 }
 
 case class RecursivePatternOp(regex: String, subs: Array[PipeOp]) extends PatternOp(subs, s"recursive-op[${regex}]") {
+
+
+  override def canApply(htmlNode: HTMLNode): Boolean = {
+    isElement(htmlNode)
+  }
 
   //count the frequency inside all regex
   override def execute(leaf: HTMLNode): IntermediateResult = {
@@ -428,7 +480,7 @@ case class TextDensityOp() extends PatternOp(Array(), s"text-density-op") {
 
 }
 
-case class PatternCharAvgOp(regex:String) extends PatternOp(Array(), s"pattern-char-avg-op") {
+case class PatternCharAvgOp(regex: String) extends PatternOp(Array(), s"pattern-char-avg-op") {
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
@@ -440,7 +492,7 @@ case class PatternCharAvgOp(regex:String) extends PatternOp(Array(), s"pattern-c
 
 }
 
-case class TextPatternDensityOp(regex:String) extends PatternOp(Array(), s"text-pattern-density-op") {
+case class TextPatternDensityOp(regex: String) extends PatternOp(Array(), s"text-pattern-density-op") {
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
@@ -508,6 +560,64 @@ case class PatternTokenRatioOp(regex: String) extends PatternOp(Array(), s"patte
 
 }
 
+
+case class TokenHTMLDensityOp() extends ExecutableOp(Array(), s"token-html-density-op") {
+
+  val analyzer = new StandardAnalyzer()
+
+
+  override def canApply(htmlNode: HTMLNode): Boolean = isElement(htmlNode)
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val element = leaf.node.asInstanceOf[Element]
+    val html = element.html()
+    val tokenLength = tokenize(element.text()).length
+    val density = tokenLength.toDouble / html.length
+    IntermediateResult(Map(name -> density))
+  }
+
+  protected def tokenize(text: String): Array[String] = {
+    val tokenStream = analyzer.tokenStream("TEXT", text)
+    val attr = tokenStream.addAttribute(classOf[CharTermAttribute])
+    tokenStream.reset()
+    var array = Array[String]()
+    while (tokenStream.incrementToken)
+      array :+= attr.toString
+
+    array
+  }
+
+}
+
+case class TokenCountOp() extends ExecutableOp(Array(), s"token-count-op") {
+
+  val analyzer = new StandardAnalyzer()
+
+
+  override def canApply(htmlNode: HTMLNode): Boolean = isElement(htmlNode)
+
+  //count the frequency
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val element = leaf.node.asInstanceOf[Element]
+    val tokenLength = tokenize(element.text()).length
+    val count = tokenLength.toDouble
+    IntermediateResult(Map(name -> count))
+  }
+
+  protected def tokenize(text: String): Array[String] = {
+    val tokenStream = analyzer.tokenStream("TEXT", text)
+    val attr = tokenStream.addAttribute(classOf[CharTermAttribute])
+    tokenStream.reset()
+    var array = Array[String]()
+    while (tokenStream.incrementToken)
+      array :+= attr.toString
+
+    array
+  }
+
+}
+
 case class PatternParentRatioOp(regex: String) extends PatternOp(Array(), s"parrent-pattern-ratio-op") {
 
   val analyzer = new StandardAnalyzer()
@@ -540,17 +650,30 @@ case class ParentTextDensityOp() extends PatternOp(Array(), s"parent-text-densit
 
 }
 
+case class CSSAttributeOp() extends ExecutableOp(Array(), "css-attr-op") {
+
+
+  override def canApply(htmlNode: HTMLNode): Boolean = isElement(htmlNode)
+
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    leaf.node.attributes().asList().toArray[Attribute](Array()).foreach(attr => {
+      println(attr.html())
+    })
+    IntermediateResult()
+  }
+}
+
 
 object OpTester {
   def main(args: Array[String]): Unit = {
 
-    val node = HTMLParser.parseHTML("resources/demo/html-1.html")
-    val op = PipeOp()
+    val node = HTMLParser.parseHTML("resources/demo/html.html")
+    val op = PipeOp().op(CSSAttributeOp())
       .sum(HTMLPatternOp("<p(\\s|>)"), HTMLPatternOp("<div(\\s|>)"))
       .op(TextDensityOp(), ParentTextDensityOp(), TagTextDensityOp())
       .op(HTMLPatternOp("<p(\\s|>)"))
 
-    println(op.execute(node))
+    println(op.execute(node.visit()))
 
   }
 }

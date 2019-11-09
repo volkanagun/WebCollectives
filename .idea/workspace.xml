@@ -4,8 +4,9 @@
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,13 +74,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TwitterSearch">
-    <configuration name="EskSonHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EskSonHaber" />
+  <component name="RunManager" selected="Application.OpTester">
+    <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.HTMLParser" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="PATTERN" value="data.boilerplate.structure.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -87,12 +88,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.HTMLParser" />
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.boilerplate.structure.*" />
+          <option name="PATTERN" value="data.crawler.sites.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -141,19 +142,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MilliyetBlogList" />
-      <item itemvalue="Application.EskSonHaber" />
       <item itemvalue="Application.TwitterSearch" />
       <item itemvalue="Application.OpTester" />
       <item itemvalue="Application.HTMLParser" />
+      <item itemvalue="Application.InternetHaber" />
+      <item itemvalue="Application.MilliyetBlogList" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TwitterSearch" />
         <item itemvalue="Application.OpTester" />
-        <item itemvalue="Application.HTMLParser" />
-        <item itemvalue="Application.EskSonHaber" />
         <item itemvalue="Application.MilliyetBlogList" />
+        <item itemvalue="Application.InternetHaber" />
+        <item itemvalue="Application.TwitterSearch" />
+        <item itemvalue="Application.HTMLParser" />
       </list>
     </recent_temporary>
   </component>
@@ -599,43 +600,51 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>92</line>
+          <line>110</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>105</line>
+          <line>123</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>98</line>
+          <line>116</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>364</line>
+          <line>411</line>
           <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>205</line>
+          <line>241</line>
           <option name="timeStamp" value="134" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>35</line>
+          <line>39</line>
           <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>227</line>
+          <line>263</line>
           <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>531</line>
+          <line>641</line>
           <option name="timeStamp" value="137" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
+          <line>655</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="138" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

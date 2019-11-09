@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class EskSonHaber implements Serializable {
     public static WebFlow build(){
 
-        String domain = "http://www.edirnehaber.org";
+        String domain = "http://www.eskisehirsonhaber.com";
 
         WebLuceneSink webLuceneSink = new WebLuceneSink(LookupOptions.LUCENEINDEXDIR);
 
