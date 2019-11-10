@@ -16,7 +16,7 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     this(Array(), "ROOT")
   }
 
-  def canApply(htmlNode:HTMLNode):Boolean ={
+  def canApply(htmlNode: HTMLNode): Boolean = {
     true
   }
 
@@ -36,13 +36,13 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
   }
 
   def execute(leaf: HTMLNode): IntermediateResult = {
-    val iirs = subpipes.filter(op=> op.canApply(leaf)).map(op => op.execute(leaf))
+    val iirs = subpipes.filter(op => op.canApply(leaf)).map(op => op.execute(leaf))
     sum(iirs)
   }
 
   def execute(path: HTMLPath): IntermediateResult = {
     val leaf = path.pathNodes.last
-    val iirs = subpipes.filter(op=> op.canApply(leaf))
+    val iirs = subpipes.filter(op => op.canApply(leaf))
       .map(op => op.execute(leaf))
 
     sum(iirs)
@@ -151,21 +151,22 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     IntermediateResult(gmap)
   }
 
-  def extractHTMLorData(htmlNode: HTMLNode):String = {
-    if(isElement(htmlNode)) htmlNode.node.asInstanceOf[Element].html()
-    else if(isData(htmlNode)) htmlNode.node.asInstanceOf[DataNode].getWholeData
-    else if(isComment(htmlNode)) htmlNode.node.asInstanceOf[Comment].getData
+  def extractHTMLorData(htmlNode: HTMLNode): String = {
+    if (isElement(htmlNode)) htmlNode.node.asInstanceOf[Element].html()
+    else if (isData(htmlNode)) htmlNode.node.asInstanceOf[DataNode].getWholeData
+    else if (isComment(htmlNode)) htmlNode.node.asInstanceOf[Comment].getData
     else ""
   }
 
-  def isElement(htmlNode: HTMLNode):Boolean={
+  def isElement(htmlNode: HTMLNode): Boolean = {
     htmlNode.node.isInstanceOf[Element]
   }
 
-  def isComment(htmlNode: HTMLNode):Boolean={
+  def isComment(htmlNode: HTMLNode): Boolean = {
     htmlNode.node.isInstanceOf[Comment]
   }
-  def isData(htmlNode: HTMLNode):Boolean={
+
+  def isData(htmlNode: HTMLNode): Boolean = {
     htmlNode.node.isInstanceOf[DataNode]
   }
 
@@ -185,11 +186,44 @@ object PipeOp extends PipeOp() {
 }
 
 
-class PipeResult extends Serializable {
+class PipeResult(val vocabSize: Int = 1000, val labelSize:Int=100) extends Serializable {
+  var vocabulary = Array[String]("UNK")
+  var labels = Array[String]("UNK")
+
+  def append(label:String*):Array[Int]={
+    label.foreach(ll=> {
+      val ii = labels.indexOf(ll)
+      if(ii == -1){
+        labels :+= ll
+      }
+
+    })
+
+    label.map(ll=> labels.indexOf(ll)).toArray
+  }
+
+  def append(iir: IntermediateResult): Array[(Int, Double)] = {
+    val items = updateVocabulary(iir.map.keySet)
+    items.map{case (key, indice)=> {
+      (indice, iir.map(key))
+    }}.toArray
+  }
+
+  def updateVocabulary(keySet: Set[String]): Set[(String, Int)] = {
+    keySet.foreach(key => if (!vocabulary.contains(key) && vocabulary.length < vocabSize) vocabulary :+= key)
+    keySet.map(key => {
+      val index = vocabulary.indexOf(key);
+      val nindex = if(index == -1) 0
+      else index
+
+      (key, nindex)
+    })
+  }
 
 }
 
-case class IntermediateResult(var map: Map[String, Double] = Map()) extends PipeResult {
+case class IntermediateResult(var map: Map[String, Double] = Map()) extends PipeResult() {
+
 
   def divide(by: Double): IntermediateResult = {
     val nmap = map.map { case (item, score) => (item, score / by) }
@@ -286,7 +320,6 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
 abstract class ExecutableOp(pipes: Array[PipeOp], name: String) extends PipeOp(pipes, name) {
 
 
-
   override def max(item: PipeOp): PipeOp = ???
 
   override def pattern(regexPattern: String): PipeOp = ???
@@ -306,7 +339,7 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
 
   def this(subpipes: Array[PipeOp]) = this(subpipes, "exist-op")
 
-  override def canApply(htmlNode:HTMLNode):Boolean={
+  override def canApply(htmlNode: HTMLNode): Boolean = {
     isElement(htmlNode)
   }
 
@@ -473,7 +506,7 @@ case class TextDensityOp() extends PatternOp(Array(), s"text-density-op") {
     val element = leaf.node.asInstanceOf[Element]
     val html = element.html()
     val text = element.text()
-    val density = text.length.toDouble / html.length
+    val density = (text.length.toDouble + 1E-12) / (html.length + 1E-12)
     val map = Map(name -> density)
     IntermediateResult(map)
   }
@@ -517,7 +550,7 @@ case class PatternTextDensityOp(regex: String) extends PatternOp(Array(), s"patt
     val html = element.html()
     val patterns = rpatterns(regex, html)
     val textLength = text.length
-    val density = textLength.toDouble / patterns.length
+    val density = (textLength.toDouble + 1E-12) / (patterns.length + 1E-12)
     IntermediateResult(Map(name -> density))
   }
 
@@ -643,7 +676,7 @@ case class ParentTextDensityOp() extends PatternOp(Array(), s"parent-text-densit
     val currentElement = leaf.node.asInstanceOf[Element]
     val parentText = parentElement.text()
     val currentText = currentElement.text()
-    val density = currentText.length.toDouble / parentText.length
+    val density = (currentText.length.toDouble + 1E-12) / (parentText.length + 1E-12)
     val map = Map(name -> density)
     IntermediateResult(map)
   }
@@ -656,24 +689,48 @@ case class CSSAttributeOp() extends ExecutableOp(Array(), "css-attr-op") {
   override def canApply(htmlNode: HTMLNode): Boolean = isElement(htmlNode)
 
   override def execute(leaf: HTMLNode): IntermediateResult = {
-    leaf.node.attributes().asList().toArray[Attribute](Array()).foreach(attr => {
-      println(attr.html())
-    })
-    IntermediateResult()
+    val attr = leaf.node.attributes().getIgnoreCase("style")
+    if (attr != null && !attr.isEmpty) {
+      val mapping = attr.split("\\;\\s?").map(subcss => {
+        val ssf = "style-" + subcss
+        (ssf, 1.0)
+      }).toMap
+      IntermediateResult(mapping)
+    }
+    else IntermediateResult()
+  }
+}
+
+case class TagNameOp() extends ExecutableOp(Array(), "tag-name-op") {
+
+
+  override def canApply(htmlNode: HTMLNode): Boolean = isElement(htmlNode)
+
+  override def execute(leaf: HTMLNode): IntermediateResult = {
+    val name = leaf.node.nodeName()
+    if (name != null) {
+      IntermediateResult(Map(s"tagName-${name}" -> 1.0))
+    }
+    else IntermediateResult()
   }
 }
 
 
 object OpTester {
-  def main(args: Array[String]): Unit = {
 
-    val node = HTMLParser.parseHTML("resources/demo/html.html")
-    val op = PipeOp().op(CSSAttributeOp())
+  def model1():PipeOp={
+    PipeOp().op(CSSAttributeOp()).op(TagNameOp())
       .sum(HTMLPatternOp("<p(\\s|>)"), HTMLPatternOp("<div(\\s|>)"))
       .op(TextDensityOp(), ParentTextDensityOp(), TagTextDensityOp())
       .op(HTMLPatternOp("<p(\\s|>)"))
 
-    println(op.execute(node.visit()))
+  }
+
+  def main(args: Array[String]): Unit = {
+
+    val node = HTMLParser.parseHTML("resources/demo/html.html")
+
+    println(model1().execute(node.visit()).mkString("\n\n--------------------------------------\n"))
 
   }
 }

@@ -5,7 +5,7 @@ class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[S
   var extractionText = Map[String, String]()
   var pathLabels = Array[(HTMLPath, String)]()
   var paths = Array[HTMLPath]()
-  var similarityThreshold = 0.5
+  var similarityThreshold = 0.8d
 
   var labelNONE = "NONE"
 

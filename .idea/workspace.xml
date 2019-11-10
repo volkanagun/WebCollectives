@@ -3,10 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,13 +74,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.OpTester">
-    <configuration name="HTMLParser" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.HTMLParser" />
+  <component name="RunManager" selected="Application.LearningModel">
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.boilerplate.structure.*" />
+          <option name="PATTERN" value="data.crawler.sites.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -88,12 +88,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
+    <configuration name="LearningModel" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="data.boilerplate.learning.LearningModel" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="PATTERN" value="data.boilerplate.learning.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -144,17 +144,17 @@
     <list>
       <item itemvalue="Application.TwitterSearch" />
       <item itemvalue="Application.OpTester" />
-      <item itemvalue="Application.HTMLParser" />
       <item itemvalue="Application.InternetHaber" />
       <item itemvalue="Application.MilliyetBlogList" />
+      <item itemvalue="Application.LearningModel" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.LearningModel" />
         <item itemvalue="Application.OpTester" />
         <item itemvalue="Application.MilliyetBlogList" />
         <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.TwitterSearch" />
-        <item itemvalue="Application.HTMLParser" />
       </list>
     </recent_temporary>
   </component>
@@ -168,13 +168,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538468368895</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Sikayet var xmls">
-      <created>1538589470115</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1538589470115</updated>
     </task>
     <task id="LOCAL-00004" summary="Sikayet var xmls">
       <created>1538589510899</created>
@@ -512,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573106713858</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Bug in operation sequence contruction and toString...">
+      <created>1573298708968</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1573298708969</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -615,13 +615,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>411</line>
+          <line>444</line>
           <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>241</line>
-          <option name="timeStamp" value="134" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
@@ -630,28 +625,35 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>263</line>
+          <line>297</line>
           <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>641</line>
+          <line>694</line>
           <option name="timeStamp" value="137" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>655</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="138" />
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala</url>
+          <line>79</line>
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala</url>
+          <line>45</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala</url>
+          <line>38</line>
+          <option name="timeStamp" value="145" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="map.getOrElse(keys.head,-1)" language="Scala" />
-        <watch expression="map.getOrElse(keys.last, -1)" language="Scala" />
+        <watch expression="htmlFolder" language="Scala" />
+        <watch expression="xmlFolders" language="Scala" />
       </configuration>
     </watches-manager>
   </component>
