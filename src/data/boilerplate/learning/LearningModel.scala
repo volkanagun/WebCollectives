@@ -20,7 +20,7 @@ import org.nd4j.linalg.lossfunctions.LossFunctions
 object LearningModel extends Serializable {
 
   val featureModel = FeatureParams.buildPipeOp()
-  val iterator = new WebInstanceIO(DirectoryParams.htmlFolder,Array(DirectoryParams.blogsTRFolder, DirectoryParams.articleTRFolder), Array())
+  val iterator = new WebInstanceIO(DirectoryParams.htmlFolder,Array(DirectoryParams.blogsTRFolder), Array())
     .iterator(featureModel)
 
   def loadGraph(): ComputationGraph = {

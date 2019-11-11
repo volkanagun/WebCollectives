@@ -60,6 +60,7 @@ class WebInstanceIO(val htmlFolder: String, val xmlFolders: Array[String], val v
         case None => None
       }
     }).flatten.toArray
+      .filter(_.valid)
   }
 
   def iterator(pipeOp: PipeOp): MultiDataSetIterator = {

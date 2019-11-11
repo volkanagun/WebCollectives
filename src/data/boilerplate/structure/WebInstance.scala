@@ -6,6 +6,7 @@ class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[S
   var pathLabels = Array[(HTMLPath, String)]()
   var paths = Array[HTMLPath]()
   var similarityThreshold = 0.8d
+  var valid = true
 
   var labelNONE = "NONE"
 
@@ -55,8 +56,15 @@ class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[S
   }
 
   def build():this.type={
-    parseXML()
-    matching()
+    try {
+      parseXML()
+      matching()
+    }
+    catch {
+      case _ => {
+        valid = false
+      }
+    }
     this
   }
 

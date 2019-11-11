@@ -188,7 +188,7 @@ public class TwitterSearch extends WebFlow {
     public static List<WebFlow> buildQueries(WebLuceneSink luceneSink, String[] queryTerms, String language) {
         List<WebFlow> list = new ArrayList<>();
         for (String queryTerm : queryTerms) {
-            list.add(new TwitterSearch(luceneSink, queryTerm, 7).setLanguage(language));
+            list.add(new TwitterSearch(luceneSink, queryTerm, 3).setLanguage(language));
         }
         
         return list;
