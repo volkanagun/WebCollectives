@@ -10,13 +10,13 @@ import java.io.Serializable;
 public class EskSonHaber implements Serializable {
     public static WebFlow build(){
 
-        String domain = "http://www.eskisehirsonhaber.com";
+        String domain = "https://www.eskisehirsonhaber.com";
 
-        WebLuceneSink webLuceneSink = new WebLuceneSink(LookupOptions.LUCENEINDEXDIR);
+        WebLuceneSink webLuceneSink = new WebLuceneSink(LookupOptions.LUCENEINDEXDIR).openWriter();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div id=\"main\"(.*?)>", "</div>")
                 .setStartEndMarker("<div","</div>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\" title"));
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\"\\s(title|target)"));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy","https://www.eskisehirsonhaber.com/ekonomi/")
@@ -33,10 +33,10 @@ public class EskSonHaber implements Serializable {
                 .addSeed("education","https://www.eskisehirsonhaber.com/egitim/")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setNextPageSize(36)
+                .setNextPageSize(1)
                 .setNextPageStart(1)
                 .setNextPageSuffix("")
-                .setThreadSize(1)
+                .setThreadSize(2)
                 .setNextPageSuffixAddition("#horizontal_news")
                 .setDomain(domain).setDomainSame(true)
                 .setMainPattern(linkPattern);
@@ -66,7 +66,7 @@ public class EskSonHaber implements Serializable {
                 .setDomain(domain)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
-                .setForceWrite(false);
+                .setForceWrite(true);
 
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);

@@ -1087,6 +1087,9 @@ public class WebTemplate implements Serializable {
             } catch (KeyStoreException e) {
                 e.printStackTrace();
             }
+            catch (Exception e){
+                e.printStackTrace();
+            }
             return text;
         }
     }
@@ -1124,7 +1127,7 @@ public class WebTemplate implements Serializable {
         }
     }
 
-    private String downloadPage(String address, String charset, int tryCount) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException {
+    private String downloadPage(String address, String charset, int tryCount) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, Exception {
         String text = "";
         if (tryCount > 2) return text;
 
@@ -1201,10 +1204,15 @@ public class WebTemplate implements Serializable {
                     text = httpClient.execute(request, rh); //request.execute();
 
 
-                } catch (IOException ex) {
+                } catch (Exception ex1) {
                     System.out.println("Error in url retrying... '" + address + "'");
 
-                    text = downloadPage(address, charset, ++tryCount);
+                    try {
+                        text = downloadPage(address, charset, ++tryCount);
+                    }
+                    catch(Exception ex2){
+
+                    }
 
                 }
             }

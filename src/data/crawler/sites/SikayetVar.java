@@ -12,8 +12,8 @@ public class SikayetVar implements Serializable {
         String folder = "resources/sikayetvar/";
         String domain = "https://www.sikayetvar.com/";
         String seed = "https://www.sikayetvar.com/sikayetler";
-        Integer start = 1;
-        Integer end = 500;
+        Integer start = 1000;
+        Integer end = 5000;
 
         LookupPattern urlPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"media-body\">","</div>")
                 .setStartEndMarker("<div","</div>")
@@ -22,11 +22,11 @@ public class SikayetVar implements Serializable {
         WebTemplate linkTemplate = new WebTemplate(folder, "links", LookupOptions.EMPTYDOMAIN);
 
         linkTemplate = linkTemplate.setMainPattern(urlPattern)
-                .setThreadSize(2)
-                .setSleepTime(10L)
+                .setThreadSize(1)
+                .setSleepTime(500L)
                 .setNextPageStart(start)
                 .setNextPageSize(end)
-                .setNextPageSuffix("?page=")
+                .setNextPageSuffix("?page=").setDoDeleteStart(true)
                 .addSeed(seed)
                 .setDomain(domain);
 
