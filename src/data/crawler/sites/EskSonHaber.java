@@ -21,19 +21,19 @@ public class EskSonHaber implements Serializable {
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy","https://www.eskisehirsonhaber.com/ekonomi/")
                 .addSeed("politics","https://www.eskisehirsonhaber.com/siyaset/")
-                .addSeed("world","https://www.eskisehirsonhaber.com/dunya/")
+                /*.addSeed("world","https://www.eskisehirsonhaber.com/dunya/")
                 .addSeed("technology","https://www.eskisehirsonhaber.com/teknoloji/")
                 .addSeed("sports","https://www.eskisehirsonhaber.com/spor/")
                 .addSeed("magazine","https://www.eskisehirsonhaber.com/yasam/")
                 .addSeed("magazine","https://www.eskisehirsonhaber.com/magazin/")
-                .addSeed("news","https://www.eskisehirsonhaber.com/gundem/")
+                .addSeed("news","https://www.eskisehirsonhaber.com/gundem/")*/
                 .addSeed("arts","https://www.eskisehirsonhaber.com/kultur-sanat/")
-                .addSeed("local-news","https://www.eskisehirsonhaber.com/eskisehir-haber/")
+         /*       .addSeed("local-news","https://www.eskisehirsonhaber.com/eskisehir-haber/")
                 .addSeed("health","https://www.eskisehirsonhaber.com/saglik/")
-                .addSeed("education","https://www.eskisehirsonhaber.com/egitim/")
+                .addSeed("education","https://www.eskisehirsonhaber.com/egitim/")*/
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setNextPageSize(1)
+                .setNextPageSize(1000)
                 .setNextPageStart(1)
                 .setNextPageSuffix("")
                 .setThreadSize(2)
@@ -66,7 +66,7 @@ public class EskSonHaber implements Serializable {
                 .setDomain(domain)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
-                .setForceWrite(true);
+                .setForceWrite(false);
 
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);

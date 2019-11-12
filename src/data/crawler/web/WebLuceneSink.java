@@ -119,7 +119,7 @@ public class WebLuceneSink extends WebSink {
            /* for (Document luceneDocument : luceneDocuments) {
                 if (!lookupDocument(luceneDocument)) {
                     count++;*/
-        synchronized (indexWriter) {
+
             try {
                 //openWriter();
                 indexWriter.addDocuments(luceneDocuments);
@@ -128,9 +128,6 @@ public class WebLuceneSink extends WebSink {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-        }
-             /*   }
-            }*/
 
 
         return count;

@@ -5,8 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +73,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.SikayetVar">
+  <component name="RunManager" selected="Application.InternetHaber">
     <configuration name="EskSonHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EskSonHaber" />
       <module name="WebCollectives" />
@@ -150,10 +149,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.EskSonHaber" />
         <item itemvalue="Application.SikayetVar" />
         <item itemvalue="Application.HurriyetWeb" />
-        <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.LearningModel" />
       </list>
     </recent_temporary>
@@ -168,13 +167,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538468368895</updated>
-    </task>
-    <task id="LOCAL-00006" summary="InternetHaber web sitesi">
-      <created>1547415244340</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1547415244340</updated>
     </task>
     <task id="LOCAL-00007" summary="Engadget Update">
       <created>1548095805523</created>
@@ -512,7 +504,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573450185549</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Learning model...">
+      <created>1573500949547</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1573500949547</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -591,7 +590,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java</url>
-          <line>147</line>
+          <line>144</line>
           <option name="timeStamp" value="119" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -606,8 +605,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>758</line>
-          <option name="timeStamp" value="152" />
+          <line>1090</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
+          <line>603</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java</url>
+          <line>139</line>
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebLuceneSink.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="160" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
@@ -670,6 +689,7 @@
       <configuration name="Application">
         <watch expression="seed.getRequestURL().contains(templateDomain)" language="JAVA" />
         <watch expression="seed.getRequestURL()" language="JAVA" />
+        <watch expression="this.lookupDocument(luceneDocuments.get(0))" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
