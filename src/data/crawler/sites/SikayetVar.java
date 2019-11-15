@@ -45,7 +45,7 @@ public class SikayetVar implements Serializable {
         mainTemplate.setMainPattern(mainPattern)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setDomain(domain)
-                .setThreadSize(1).setSleepTime(150L)
+                .setThreadSize(1).setSleepTime(500L)
                 .setLookComplete(true);
 
 

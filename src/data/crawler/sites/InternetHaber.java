@@ -14,7 +14,7 @@ public class InternetHaber implements Serializable {
     public static WebFlow build(int i){
 
         int startIndice = 0;
-        int maxSize = 200;
+        int maxSize = 1;
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
                 .addSeed("politics","http://www.internethaber.com/politika")
@@ -36,6 +36,7 @@ public class InternetHaber implements Serializable {
                 .setNextPageSize(maxSize)
                 .setWaitTimeAfter(1000000L)
                 .setWaitTime(500L)
+                .setSleepTime(500L)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setNextPageSuffix("?page=")
@@ -68,6 +69,7 @@ public class InternetHaber implements Serializable {
                 .setForceWrite(false);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail(.*?)\">", "</div>")
+                .setNth(0)
                 .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>","</h1>").setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<time datetime=\"","\">"))

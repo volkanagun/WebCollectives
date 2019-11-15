@@ -7,11 +7,11 @@ import java.io.Serializable;
 public class NTV implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.ntv.com.tr";
-        Integer pageCount = 5000;
-        WebButtonClickCall closeCall = new WebButtonClickCall(100, "#instertitial_dfp_close");
+        Integer pageCount = 100;
+        //WebButtonClickCall closeCall = new WebButtonClickCall(100, "#instertitial_dfp_close");
         WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(5);
         WebButtonClickCall clickCall = new WebButtonClickCall(1, "a.infinite-link");
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, closeCall, scrollCall, clickCall).initialize();
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall,*/ scrollCall, clickCall).initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<p class=\"card-text\">", "</p>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
@@ -29,7 +29,7 @@ public class NTV implements Serializable {
                 .addSeed("auto", "https://www.ntv.com.tr/otomobil?sayfa=1")
                 .addSeed("education", "https://www.ntv.com.tr/egitim?sayfa=1")
                 .setDoFast(true)
-                .setWaitTime(5000L).setWaitTimeAfter(20000L)
+                .setSleepTime(500L)
                 .setDoDeleteStart(true)
                 .setThreadSize(1)
                 .setDomain(domain)
@@ -57,7 +57,7 @@ public class NTV implements Serializable {
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
-                .setLookComplete(false)
+                .setLookComplete(false).setSleepTime(500L)
                 .setThreadSize(1)
                 .setDoFast(true)
                 .setDomain(domain)

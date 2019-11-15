@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.cnnturk.com";
-        int pageCount = 50000;
+        int pageCount = 100;
 
         WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more");
 
@@ -36,8 +36,9 @@ public class CNNTurkWeb implements Serializable {
                 .addSeed("local-news", "https://www.cnnturk.com/yerel-haberler")
                 .addSeed("auto", "https://www.cnnturk.com/otomobil-haberleri")
                 .addSeed("realestate", "https://www.cnnturk.com/emlak")
-                .setDoFast(true)
+                .setDoFast(false)
                 .setDoDeleteStart(true)
+                .setSleepTime(500L)
                 .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
                 .setDomain(domain)
