@@ -2,27 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/CSSAttributeOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/HTMLPatternOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/ParentTextDensityOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PatternCharAvgOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PatternParentRatioOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PatternTextDensityOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PatternTokenRatioOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/RecursivePatternOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TagNameOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextPatternDensityOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenCountOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenHTMLDensityOp.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -183,13 +165,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538468368895</updated>
-    </task>
-    <task id="LOCAL-00008" summary="WebSeed stop downloading if the previous seed is unavailable.">
-      <created>1548578749658</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1548578749658</updated>
     </task>
     <task id="LOCAL-00009" summary="Gizmodo and Engadet update">
       <created>1548608619800</created>
@@ -527,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573525209730</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Learning model...">
+      <created>1573821936346</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1573821936346</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -646,42 +628,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>110</line>
+          <line>111</line>
           <option name="timeStamp" value="97" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>123</line>
+          <line>124</line>
           <option name="timeStamp" value="99" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>116</line>
+          <line>117</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>444</line>
+          <line>445</line>
           <option name="timeStamp" value="133" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>39</line>
+          <line>40</line>
           <option name="timeStamp" value="135" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>297</line>
+          <line>298</line>
           <option name="timeStamp" value="136" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala</url>
-          <line>630</line>
-          <option name="timeStamp" value="137" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala</url>
-          <line>79</line>
+          <line>80</line>
           <option name="timeStamp" value="141" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">

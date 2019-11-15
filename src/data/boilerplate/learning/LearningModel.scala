@@ -2,7 +2,8 @@ package data.boilerplate.learning
 
 import java.io.File
 
-import data.boilerplate.learning.pipes.{CSSAttributeOp, PipeOp, TagNameOp, TextDensityOp, TokenCountOp, TokenHTMLDensityOp}
+import data.boilerplate.learning.features.{CSSAttributeOp, TagNameOp, TextDensityOp, TokenCountOp, TokenHTMLDensityOp}
+import data.boilerplate.learning.pipes.PipeOp
 import data.boilerplate.structure.WebInstanceIO
 import data.crawler.web.LookupOptions
 import org.bytedeco.opencv.opencv_dnn.ConvolutionLayer
