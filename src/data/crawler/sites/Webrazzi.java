@@ -14,11 +14,12 @@ public class Webrazzi implements Serializable {
         LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE, "<div class=\"post-title\">", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "href=\"", "\"\\s"));
 
-        mainTemplate.setMainPattern(linkPattern);
-        mainTemplate.setNextPageSuffix("page/");
-        mainTemplate.setNextPageSize(1931);
-        mainTemplate.setNextPageStart(1);
-        mainTemplate.addSeed("http://webrazzi.com/");
+        mainTemplate.setMainPattern(linkPattern)
+                .setNextPageSuffix("page/")
+                .setNextPageSize(5000)
+                .setNextPageStart(1)
+                .setSleepTime(500L)
+                .addSeed("http://webrazzi.com/");
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"post(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")

@@ -14,7 +14,7 @@ public class InternetHaber implements Serializable {
     public static WebFlow build(int i){
 
         int startIndice = 0;
-        int maxSize = 100;
+        int maxSize = 200;
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
                 .addSeed("politics","http://www.internethaber.com/politika")
@@ -64,7 +64,7 @@ public class InternetHaber implements Serializable {
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(true)
                 .setThreadSize(1)
-                .setDoFast(true)
+                .setDoFast(Boolean.FALSE)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setForceWrite(false);
 
