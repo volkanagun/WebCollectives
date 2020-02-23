@@ -7,11 +7,11 @@ import java.io.Serializable;
 public class NTV implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.ntv.com.tr";
-        Integer pageCount = 100;
+        Integer pageCount = 1000;
         //WebButtonClickCall closeCall = new WebButtonClickCall(100, "#instertitial_dfp_close");
-        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(5);
+        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(2);
         WebButtonClickCall clickCall = new WebButtonClickCall(1, "a.infinite-link");
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall,*/ scrollCall, clickCall).initialize();
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall,*/ scrollCall/*, clickCall*/).initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<p class=\"card-text\">", "</p>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));

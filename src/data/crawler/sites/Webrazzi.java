@@ -8,6 +8,7 @@ import data.crawler.web.WebTemplate;
 import java.io.Serializable;
 
 public class Webrazzi implements Serializable {
+
     public static WebFlow build() {
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGTRYDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 
@@ -16,7 +17,7 @@ public class Webrazzi implements Serializable {
 
         mainTemplate.setMainPattern(linkPattern)
                 .setNextPageSuffix("page/")
-                .setNextPageSize(5000)
+                .setNextPageSize(1000)
                 .setNextPageStart(1)
                 .setSleepTime(500L)
                 .addSeed("http://webrazzi.com/");

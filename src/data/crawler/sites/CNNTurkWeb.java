@@ -10,12 +10,12 @@ import java.io.Serializable;
 public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.cnnturk.com";
-        int pageCount = 100;
+        int pageCount = 1000;
 
         WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more");
 
-        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(5);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall).initialize();
+        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(2);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/).initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")

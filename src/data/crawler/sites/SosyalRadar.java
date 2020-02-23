@@ -6,6 +6,8 @@ import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 
 import java.io.Serializable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SosyalRadar implements Serializable {
 
@@ -47,5 +49,10 @@ public class SosyalRadar implements Serializable {
         WebFlow webFlow = new WebFlow(mainTemplate);
         return webFlow;
 
+    }
+
+    public static void main(String[] args) {
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        WebFlow.submit(executorService, build());
     }
 }

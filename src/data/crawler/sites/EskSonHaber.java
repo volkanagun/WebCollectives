@@ -77,4 +77,6 @@ public class EskSonHaber implements Serializable {
     public static void main(String[] args) {
         build().execute();
     }
+
+
 }

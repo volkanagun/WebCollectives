@@ -11,10 +11,10 @@ import java.util.concurrent.Executors;
 
 public class InternetHaber implements Serializable {
 
-    public static WebFlow build(int i){
+    public static WebFlow build(int i) {
 
         int startIndice = 0;
-        int maxSize = 200;
+        int maxSize = 500;
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
                 .addSeed("politics","http://www.internethaber.com/politika")
@@ -56,8 +56,6 @@ public class InternetHaber implements Serializable {
         linkTemplate.setMainPattern(linkPattern);
         linkTemplate.setDomainSame(true);
         linkTemplate.setLinkPattern("(.*?)\\-\\d+\\p{L}\\.htm","(.*?)(foto|video)-galerisi\\-\\d+\\.htm");
-
-
 
         //Article Download
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", LookupOptions.EMPTY)

@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="Learning model...">
+    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_linux_11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_linux_11.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SosyalRadar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SosyalRadar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,6 +54,10 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -61,18 +73,6 @@
       <recent name="F:\java-projects\WebCollectives\resources" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.Webrazzi">
     <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
@@ -87,8 +87,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EskSonHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EskSonHaber" />
+    <configuration name="EdirneHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EdirneHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -100,8 +100,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
+    <configuration name="EskSonHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EskSonHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -140,21 +140,33 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.EskSonHaber" />
-      <item itemvalue="Application.InternetHaber" />
-      <item itemvalue="Application.AnadoluGazete" />
       <item itemvalue="Application.MilliyetBlogList" />
+      <item itemvalue="Application.EdirneHaber" />
+      <item itemvalue="Application.AnadoluGazete" />
+      <item itemvalue="Application.EskSonHaber" />
       <item itemvalue="Application.Webrazzi" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Webrazzi" />
-        <item itemvalue="Application.MilliyetBlogList" />
-        <item itemvalue="Application.AnadoluGazete" />
-        <item itemvalue="Application.InternetHaber" />
         <item itemvalue="Application.EskSonHaber" />
+        <item itemvalue="Application.AnadoluGazete" />
+        <item itemvalue="Application.EdirneHaber" />
+        <item itemvalue="Application.MilliyetBlogList" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -166,13 +178,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538468368895</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Gizmodo and Engadet update">
-      <created>1548623336099</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1548623336099</updated>
     </task>
     <task id="LOCAL-00011" summary="Gizmodo and Engadet update">
       <created>1548959641329</created>
@@ -510,7 +515,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573846798347</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Learning model...">
+      <created>1574584730802</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1574584730802</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -553,6 +565,40 @@
     <MESSAGE value="Bug in operation sequence contruction and toString..." />
     <MESSAGE value="Learning model..." />
     <option name="LAST_COMMIT_MESSAGE" value="Learning model..." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="663" y="281" width="624" height="551" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1582308086055">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state x="663" y="281" width="624" height="551" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/41.27.1879.1053@41.27.1879.1053" timestamp="1582308086055" />
+    <state x="763" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1576320008494">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state x="763" y="311" width="424" height="491" key="FileChooserDialogImpl/41.27.1879.1053@41.27.1879.1053" timestamp="1576320008494" />
+    <state width="1833" height="333" key="GridCell.Tab.0.bottom" timestamp="1582485158596">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state width="1833" height="333" key="GridCell.Tab.0.bottom/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158596" />
+    <state width="1833" height="333" key="GridCell.Tab.0.center" timestamp="1582485158594">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state width="1833" height="333" key="GridCell.Tab.0.center/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158594" />
+    <state width="1833" height="333" key="GridCell.Tab.0.left" timestamp="1582485158594">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state width="1833" height="333" key="GridCell.Tab.0.left/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158594" />
+    <state width="1833" height="333" key="GridCell.Tab.0.right" timestamp="1582485158595">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state width="1833" height="333" key="GridCell.Tab.0.right/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158595" />
+    <state x="748" y="473" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582044237246">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state x="748" y="473" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/41.27.1879.1053@41.27.1879.1053" timestamp="1582044237246" />
+    <state x="289" y="155" width="1372" height="803" key="new project wizard" timestamp="1581001174442">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state x="289" y="155" width="1372" height="803" key="new project wizard/41.27.1879.1053@41.27.1879.1053" timestamp="1581001174442" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

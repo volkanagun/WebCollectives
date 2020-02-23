@@ -13,6 +13,7 @@ import java.io.Serializable;
  * Do it by json for at least 100 web sites...
  */
 public class HurriyetWeb implements Serializable {
+
     public static WebFlow build(){
 
         String domain = "http://www.hurriyet.com.tr";
