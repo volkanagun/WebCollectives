@@ -461,7 +461,6 @@ object OpTester {
       .sum(HTMLPatternOp("<p(\\s|>)"), HTMLPatternOp("<div(\\s|>)"))
       .op(TextDensityOp(), ParentTextDensityOp(), TagTextDensityOp())
       .op(HTMLPatternOp("<p(\\s|>)"))
-
   }
 
   def main(args: Array[String]): Unit = {
