@@ -4,7 +4,6 @@ import data.crawler.web.LookupOptions;
 import data.crawler.web.LookupPattern;
 import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
-import org.apache.commons.logging.impl.LogKitLogger;
 
 import java.io.Serializable;
 
@@ -18,14 +17,14 @@ public class AnadoluGazete implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                //.addSeed("arts", "http://egazete.anadolu.edu.tr/kultur-sanat")
-                //.addSeed("sports", "http://egazete.anadolu.edu.tr/spor")
+                .addSeed("arts", "http://egazete.anadolu.edu.tr/kultur-sanat")
+                .addSeed("sports", "http://egazete.anadolu.edu.tr/spor")
                 .addSeed("education", "http://egazete.anadolu.edu.tr/acikogretim")
-                //.addSeed("education", "http://egazete.anadolu.edu.tr/kampus")
-                .setDoFast(true)
+                .addSeed("education", "http://egazete.anadolu.edu.tr/kampus")
+                .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setNextPageSuffix("?p=").setNextPageStart(1).setNextPageSize(10)
-                .setThreadSize(1)
+                .setThreadSize(1).setSleepTime(100L)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
@@ -54,7 +53,8 @@ public class AnadoluGazete implements Serializable {
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(true)
                 .setThreadSize(1)
-                .setDoFast(true)
+                .setDoFast(false)
+                .setSleepTime(500L)
                 .setDomain(domain)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)

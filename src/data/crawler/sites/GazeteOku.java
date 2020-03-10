@@ -17,7 +17,7 @@ public class GazeteOku implements Serializable {
         String mainSeed = "http://www.gazeteoku.com/tum-yazarlar.html";
         mainTemplate.addSeed(mainSeed);
 
-        LookupPattern yazarPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<li class=\"clearfix\">", "</li>")
+        LookupPattern yazarPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"widget-author\">", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHORLINK, "<a\\shref\\=\"", "\" title").setNth(1));
 
         mainTemplate.setMainPattern(yazarPattern);
@@ -26,7 +26,7 @@ public class GazeteOku implements Serializable {
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
                 .setNextPageStart(1)
                 .setNextPageSize(10);
-        LookupPattern patternLinkArticle = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div\\sclass=\"syList\">", "</div>");
+        LookupPattern patternLinkArticle = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div class=\"article-others bordered-top\">", "</div>");
         LookupPattern patternLink = new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\"\\s");
 
         patternLinkArticle.addPattern(patternLink);
@@ -35,19 +35,20 @@ public class GazeteOku implements Serializable {
         //Article Download
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", "http://www.gazeteoku.com")
                 .setType(LookupOptions.ARTICLEDOC);
-        LookupPattern nameLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.AUTHORNAME, "<span\\sclass=\"yiyName\">", "</span>")
-                .setStartMarker("<span")
-                .setEndMarker("</span>");
+        LookupPattern nameLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"widget-author\">", "</div>")
+                .setStartMarker("<div")
+                .setEndMarker("</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.AUTHORNAME,"<span class=\"name\">","</span>"));
 
-        LookupPattern titleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETITLE, "<div\\sclass=\"quotesEnd\">", "</div>");
+        LookupPattern titleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETITLE, "<h1>", "</h1>");
         LookupPattern genreeLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, LookupOptions.GENREPOLITICS);
         LookupPattern paragraphLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>");
-        LookupPattern contentLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div\\sclass=\"articleBlock\\sclearfix\">", "</div>")
+        LookupPattern contentLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"content-text\">", "</div>")
                 .setStartMarker("<div")
                 .setEndMarker("</div>")
                 .addPattern(paragraphLookup);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div\\sclass=\"ydbLert\\s\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article class=\"news-detail\">", "</div>")
                 .setStartMarker("<div")
                 .setEndMarker("</div")
                 .addPattern(nameLookup)

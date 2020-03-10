@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class BoingBlogList implements Serializable {
+
     public static WebFlow build(String mainFolder) {
 
         WebTemplate yazarTemplate = new WebTemplate(mainFolder, "author-links", LookupOptions.EMPTYDOMAIN);

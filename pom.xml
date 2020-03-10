@@ -102,11 +102,13 @@
             <version>3.6.1</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.twitter4j/twitter4j-core -->
         <dependency>
             <groupId>org.twitter4j</groupId>
             <artifactId>twitter4j-core</artifactId>
-            <version>[4.0,)</version>
+            <version>4.0.7</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-compress -->
         <dependency>

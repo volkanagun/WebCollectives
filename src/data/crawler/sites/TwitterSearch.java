@@ -25,7 +25,7 @@ public class TwitterSearch extends WebFlow {
     private int recursiveCount;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
     public static String TURKISH = "tr";
-    public static String RNGLISH = "en";
+    public static String ENGLISH = "en";
 
     private WebTokenSink webTokenSink = new WebTokenSink();
     private WebLuceneSink webLuceneSink;

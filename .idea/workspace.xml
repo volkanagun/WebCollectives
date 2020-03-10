@@ -2,19 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_win_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_linux_11.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_linux_11.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EskSonHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SosyalRadar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SosyalRadar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,12 +55,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553527984036" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="scala_project_settings_configurable.last_selected_tab_index" value="2" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -73,9 +70,9 @@
       <recent name="F:\java-projects\WebCollectives\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Webrazzi">
-    <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
+  <component name="RunManager" selected="Application.GazeteOku">
+    <configuration name="BasedIstanbul" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BasedIstanbul" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -87,8 +84,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EdirneHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EdirneHaber" />
+    <configuration name="GazeteOku" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.GazeteOku" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -100,8 +97,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EskSonHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EskSonHaber" />
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -141,20 +138,27 @@
     </configuration>
     <list>
       <item itemvalue="Application.MilliyetBlogList" />
-      <item itemvalue="Application.EdirneHaber" />
-      <item itemvalue="Application.AnadoluGazete" />
-      <item itemvalue="Application.EskSonHaber" />
+      <item itemvalue="Application.InternetHaber" />
       <item itemvalue="Application.Webrazzi" />
+      <item itemvalue="Application.BasedIstanbul" />
+      <item itemvalue="Application.GazeteOku" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GazeteOku" />
+        <item itemvalue="Application.BasedIstanbul" />
         <item itemvalue="Application.Webrazzi" />
-        <item itemvalue="Application.EskSonHaber" />
-        <item itemvalue="Application.AnadoluGazete" />
-        <item itemvalue="Application.EdirneHaber" />
         <item itemvalue="Application.MilliyetBlogList" />
+        <item itemvalue="Application.InternetHaber" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ScalaProjectSettings">
+    <option name="intInjectionMapping">
+      <map>
+        <entry key="xml" value="XML" />
+      </map>
+    </option>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -178,13 +182,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538468368895</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Gizmodo and Engadet update">
-      <created>1548959641329</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1548959641330</updated>
     </task>
     <task id="LOCAL-00012" summary="Gizmodo and Engadet update">
       <created>1548971868191</created>
@@ -522,7 +519,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574584730802</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Learning model...">
+      <created>1582485892529</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1582485892530</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -567,34 +571,58 @@
     <option name="LAST_COMMIT_MESSAGE" value="Learning model..." />
   </component>
   <component name="WindowStateProjectService">
+    <state x="801" y="424" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1583762638741">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="801" y="424" width="308" height="216" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.27.1920.1012@0.27.1920.1012" timestamp="1583762638741" />
     <state x="663" y="281" width="624" height="551" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1582308086055">
       <screen x="41" y="27" width="1879" height="1053" />
     </state>
     <state x="663" y="281" width="624" height="551" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/41.27.1879.1053@41.27.1879.1053" timestamp="1582308086055" />
+    <state x="358" y="97" width="1235" height="919" key="CommitChangelistDialog2" timestamp="1582485892383">
+      <screen x="41" y="27" width="1879" height="1053" />
+    </state>
+    <state x="358" y="97" width="1235" height="919" key="CommitChangelistDialog2/41.27.1879.1053@41.27.1879.1053" timestamp="1582485892383" />
     <state x="763" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1576320008494">
       <screen x="41" y="27" width="1879" height="1053" />
     </state>
     <state x="763" y="311" width="424" height="491" key="FileChooserDialogImpl/41.27.1879.1053@41.27.1879.1053" timestamp="1576320008494" />
-    <state width="1833" height="333" key="GridCell.Tab.0.bottom" timestamp="1582485158596">
+    <state width="1825" height="336" key="GridCell.Tab.0.bottom" timestamp="1583881056953">
+      <screen x="49" y="27" width="1871" height="1053" />
+    </state>
+    <state width="1854" height="336" key="GridCell.Tab.0.bottom/0.27.1920.1012@0.27.1920.1012" timestamp="1583780112767" />
+    <state width="1833" height="247" key="GridCell.Tab.0.bottom/41.27.1879.1053@41.27.1879.1053" timestamp="1582752398611" />
+    <state width="1825" height="336" key="GridCell.Tab.0.bottom/49.27.1871.1053@49.27.1871.1053" timestamp="1583881056953" />
+    <state width="1825" height="336" key="GridCell.Tab.0.center" timestamp="1583881056953">
+      <screen x="49" y="27" width="1871" height="1053" />
+    </state>
+    <state width="1854" height="336" key="GridCell.Tab.0.center/0.27.1920.1012@0.27.1920.1012" timestamp="1583780112765" />
+    <state width="1833" height="247" key="GridCell.Tab.0.center/41.27.1879.1053@41.27.1879.1053" timestamp="1582752398610" />
+    <state width="1825" height="336" key="GridCell.Tab.0.center/49.27.1871.1053@49.27.1871.1053" timestamp="1583881056953" />
+    <state width="1825" height="336" key="GridCell.Tab.0.left" timestamp="1583881056952">
+      <screen x="49" y="27" width="1871" height="1053" />
+    </state>
+    <state width="1854" height="336" key="GridCell.Tab.0.left/0.27.1920.1012@0.27.1920.1012" timestamp="1583780112765" />
+    <state width="1833" height="247" key="GridCell.Tab.0.left/41.27.1879.1053@41.27.1879.1053" timestamp="1582752398610" />
+    <state width="1825" height="336" key="GridCell.Tab.0.left/49.27.1871.1053@49.27.1871.1053" timestamp="1583881056952" />
+    <state width="1825" height="336" key="GridCell.Tab.0.right" timestamp="1583881056953">
+      <screen x="49" y="27" width="1871" height="1053" />
+    </state>
+    <state width="1854" height="336" key="GridCell.Tab.0.right/0.27.1920.1012@0.27.1920.1012" timestamp="1583780112765" />
+    <state width="1833" height="247" key="GridCell.Tab.0.right/41.27.1879.1053@41.27.1879.1053" timestamp="1582752398611" />
+    <state width="1825" height="336" key="GridCell.Tab.0.right/49.27.1871.1053@49.27.1871.1053" timestamp="1583881056953" />
+    <state x="449" y="167" key="SettingsEditor" timestamp="1583780111362">
+      <screen x="0" y="27" width="1920" height="1012" />
+    </state>
+    <state x="449" y="167" key="SettingsEditor/0.27.1920.1012@0.27.1920.1012" timestamp="1583780111362" />
+    <state x="575" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582485894530">
       <screen x="41" y="27" width="1879" height="1053" />
     </state>
-    <state width="1833" height="333" key="GridCell.Tab.0.bottom/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158596" />
-    <state width="1833" height="333" key="GridCell.Tab.0.center" timestamp="1582485158594">
+    <state x="575" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/41.27.1879.1053@41.27.1879.1053" timestamp="1582485894530" />
+    <state x="748" y="473" width="454" height="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582666767448">
       <screen x="41" y="27" width="1879" height="1053" />
     </state>
-    <state width="1833" height="333" key="GridCell.Tab.0.center/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158594" />
-    <state width="1833" height="333" key="GridCell.Tab.0.left" timestamp="1582485158594">
-      <screen x="41" y="27" width="1879" height="1053" />
-    </state>
-    <state width="1833" height="333" key="GridCell.Tab.0.left/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158594" />
-    <state width="1833" height="333" key="GridCell.Tab.0.right" timestamp="1582485158595">
-      <screen x="41" y="27" width="1879" height="1053" />
-    </state>
-    <state width="1833" height="333" key="GridCell.Tab.0.right/41.27.1879.1053@41.27.1879.1053" timestamp="1582485158595" />
-    <state x="748" y="473" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1582044237246">
-      <screen x="41" y="27" width="1879" height="1053" />
-    </state>
-    <state x="748" y="473" width="454" height="167" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/41.27.1879.1053@41.27.1879.1053" timestamp="1582044237246" />
+    <state x="748" y="473" width="454" height="174" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/41.27.1879.1053@41.27.1879.1053" timestamp="1582666767448" />
     <state x="289" y="155" width="1372" height="803" key="new project wizard" timestamp="1581001174442">
       <screen x="41" y="27" width="1879" height="1053" />
     </state>
