@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class EnglishTexts {
+
     public static List<WebFlow> build(){
         List<WebFlow> webFlows = new ArrayList<>();
 

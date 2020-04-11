@@ -2,7 +2,6 @@ package data.crawler.web;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class WebFunctionScrollHeight extends WebFunctionCall {
 
@@ -14,13 +13,10 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
     public WebFunctionScrollHeight(Integer count) {
         this.count = count;
     }
-
-
-
     @Override
     public String returnHTML(String url) {
-        driver.get(url);
-        return returnHTML(driver);
+        chromeDriver.get(url);
+        return returnHTML(chromeDriver);
     }
 
 

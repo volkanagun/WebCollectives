@@ -1,14 +1,8 @@
 package data.crawler.web;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-
-import java.io.File;
 
 public class WebButtonClickCall extends WebFunctionCall {
 
@@ -24,9 +18,9 @@ public class WebButtonClickCall extends WebFunctionCall {
 
     @Override
     public WebFunctionCall destroy() {
-        if (driver != null) {
-            driver.close();
-            driver = null;
+        if (chromeDriver != null) {
+            chromeDriver.close();
+            chromeDriver = null;
             js = null;
         }
         return this;
@@ -35,8 +29,8 @@ public class WebButtonClickCall extends WebFunctionCall {
 
     @Override
     public String returnHTML(String url) {
-        driver.get(url);
-        return returnHTML(driver);
+        chromeDriver.get(url);
+        return returnHTML(chromeDriver);
     }
 
     @Override

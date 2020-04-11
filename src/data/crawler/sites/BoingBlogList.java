@@ -27,6 +27,7 @@ public class BoingBlogList implements Serializable {
         WebTemplate linkTemplate = new WebTemplate(mainFolder, "blog-links", LookupOptions.EMPTYDOMAIN);
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<h2\\sclass\\=\"entry-title\">", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a\\shref\\=\"", "\"\\s"));
+
         linkTemplate.setMainPattern(linkPattern)
                 .setDomain("https://boingboing.net/author/")
                 .setForceWrite(false).setNextPageSuffix("/page/")
@@ -36,6 +37,7 @@ public class BoingBlogList implements Serializable {
 
         LookupPattern topPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, LookupOptions.EMPTY)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<meta\\sproperty\\=\"article\\:published\\_time\"\\scontent\\=\"", "\"(.*?)/>"));
+
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div\\sid\\=\"container\">", "</div>")
                 .setType(LookupOptions.SKIP)
                 .setStartEndMarker("<div", "</div>")
@@ -50,7 +52,6 @@ public class BoingBlogList implements Serializable {
                                 .setNth(0)))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "<h3\\sclass\\=\"thetags\"(.*?)>", "</h3>")
                         .setRemoveTags(true));
-
 
         WebTemplate articleTemplate = new WebTemplate(mainFolder, "boing-text", LookupOptions.EMPTYDOMAIN);
         topPattern.addPattern(articlePattern);

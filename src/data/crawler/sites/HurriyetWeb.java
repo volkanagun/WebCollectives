@@ -36,8 +36,9 @@ public class HurriyetWeb implements Serializable {
                 .addSeed("health","http://www.hurriyet.com.tr/saglik/")
                 .addSeed("accident-news","http://www.hurriyet.com.tr/yoldurumu/")
                 .addSeed("arts","http://www.hurriyet.com.tr/kitap-sanat/")
-                .setDoFast(true)
+                .setDoFast(false)
                 .setDoDeleteStart(true)
+                .setSleepTime(500L)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);

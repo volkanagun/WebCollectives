@@ -11,7 +11,6 @@ import java.util.concurrent.Executors;
 
 public class SosyalRadar implements Serializable {
 
-
     public static WebFlow build() {
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 

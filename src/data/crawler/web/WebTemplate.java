@@ -1078,6 +1078,7 @@ public class WebTemplate implements Serializable {
                     text = downloadPage(address, charset, 0);
                 } else {
                     text = functionCall.returnHTML(address);
+
                 }
 
             } catch (KeyManagementException e) {
@@ -1112,6 +1113,7 @@ public class WebTemplate implements Serializable {
                     System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
                 } else {
                     text = functionCall.returnHTML(address);
+
                     System.out.println("Downloaded... '" + address + "'" + " Date: " + currentDate());
                 }
             } catch (KeyManagementException e) {

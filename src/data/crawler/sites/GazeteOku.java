@@ -15,17 +15,21 @@ public class GazeteOku implements Serializable {
         //Main Download
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", "http://www.gazeteoku.com");
         String mainSeed = "http://www.gazeteoku.com/tum-yazarlar.html";
-        mainTemplate.addSeed(mainSeed);
+        mainTemplate.addSeed(mainSeed)
+                .setDoDeleteStart(true);
 
         LookupPattern yazarPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"widget-author\">", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHORLINK, "<a\\shref\\=\"", "\" title").setNth(1));
 
-        mainTemplate.setMainPattern(yazarPattern);
+
+        mainTemplate.setMainPattern(yazarPattern).setDoDeleteStart(true);
 
         //Link Download
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
                 .setNextPageStart(1)
-                .setNextPageSize(10);
+                .setNextPageSize(10)
+                .setDoDeleteStart(true);
+
         LookupPattern patternLinkArticle = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div class=\"article-others bordered-top\">", "</div>");
         LookupPattern patternLink = new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\"\\s");
 

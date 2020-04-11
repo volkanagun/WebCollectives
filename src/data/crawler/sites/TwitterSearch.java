@@ -42,16 +42,15 @@ public class TwitterSearch extends WebFlow {
     public WebDocument execute() {
         WebDocument document = super.execute();
         getMainTemplate().destroy();
-        if(recursiveCount > 0) {
+
+        if (recursiveCount > 0) {
             webTokenSink.addDocuments(document.getWebFlowResultList());
             List<String> newQueries = webTokenSink.getText();
-            for(String newQuery:newQueries){
-                document.addWebFlowResult(new TwitterSearch(webLuceneSink, newQuery, recursiveCount-1)
+            for (String newQuery : newQueries) {
+                document.addWebFlowResult(new TwitterSearch(webLuceneSink, newQuery, recursiveCount - 1)
                         .execute());
             }
         }
-
-
 
 
         return document;
@@ -150,11 +149,13 @@ public class TwitterSearch extends WebFlow {
 
     public WebTemplate build() {
 
-        int pageCount = 2;
+        int pageCount = 200;
 
         String url = generateSeed();
-        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(1);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall).initialize();
+        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(pageCount);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall)
+                .setWaitBetweenCalls(3000L).doDestroy().setDoFirefox(true)
+                .initialize();
 
         LookupPattern tweetPattern = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"content\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -189,10 +190,9 @@ public class TwitterSearch extends WebFlow {
 
         List<WebFlow> list = new ArrayList<>();
         for (String queryTerm : queryTerms) {
-            list.add(new TwitterSearch(luceneSink, queryTerm, 3).setLanguage(language));
+            list.add(new TwitterSearch(luceneSink, queryTerm, 0).setLanguage(language));
         }
         return list;
-
     }
 
     public static void destroy(List<WebFlow> webFlows) {
@@ -201,13 +201,12 @@ public class TwitterSearch extends WebFlow {
         }
     }
 
-
-
     public static void main(String[] args) {
         WebLuceneSink luceneSink = new WebLuceneSink("resources/index/").openWriter();
-        String[] queryTerms = new String[]{"iran","abd","suriye","avrupa birliği"};
+        String[] queryTerms = new String[]{"türkiye","iran","avrupa","çin", "abd"};
+
         List<WebFlow> webFlows = buildQueries(luceneSink, queryTerms, TURKISH);
-       ExecutorService executorService = Executors.newFixedThreadPool(1);
-       batchSubmit(executorService, webFlows);
+        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        batchSubmit(executorService, webFlows);
     }
 }

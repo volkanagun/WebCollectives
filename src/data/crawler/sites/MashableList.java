@@ -7,6 +7,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class MashableList implements Serializable {
+
     public static WebFlow build(String mainFolder) {
         WebTemplate articleTemplate = new WebTemplate(mainFolder, "blog-text", LookupOptions.EMPTYDOMAIN);
         LookupPattern mainPattern = new LookupJSON(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "new")

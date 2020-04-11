@@ -3,45 +3,75 @@ package data.crawler.web;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.File;
 import java.io.Serializable;
-import java.util.List;
 
 public abstract class WebFunctionCall implements Serializable {
 
     private static String OS = System.getProperty("os.name").toLowerCase();
-    protected ChromeDriver driver;
+    protected ChromeDriver chromeDriver;
+    protected FirefoxDriver firefoxDriver;
+
     protected JavascriptExecutor js;
+    protected Boolean doDestroy = false;
+    protected Boolean doFirefox = false;
 
 
     public abstract String returnHTML(String url);
 
     public abstract String returnHTML(WebDriver driver);
 
+    public Boolean getDoFirefox() {
+        return doFirefox;
+    }
+
+    public WebFunctionCall setDoFirefox(Boolean doFirefox) {
+        this.doFirefox = doFirefox;
+        return this;
+    }
+
+    public WebFunctionCall doDestroy(){
+        doDestroy = true;
+        return this;
+    }
+
     public WebFunctionCall initialize() {
 
-        if (isUnix()) {
+        if(doFirefox && isUnix()){
+            System.setProperty("webdriver.gecko.driver", "/usr/bin/geckodriver");
+            this.firefoxDriver = new FirefoxDriver();
+            this.js = firefoxDriver;
+        }
+        else if(doFirefox){
+            System.setProperty("webdriver.gecko.driver", new File("resources/selenium/geckodriver.exe").getPath());
+            this.firefoxDriver = new FirefoxDriver();
+            this.js = firefoxDriver;
+        }
+        else if (isUnix()) {
             System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-            this.driver = new ChromeDriver();
-            this.js = driver;
+            this.chromeDriver = new ChromeDriver();
+            this.js = chromeDriver;
 
         } else {
             System.setProperty("webdriver.chrome.driver", new File("resources/selenium/chromedriver.exe").getPath());
-            /*ChromeOptions options = new ChromeOptions();
-            options.setBinary(new File("resources/selenium/chromedriver.exe").getPath());*/
-            this.driver = new ChromeDriver();
-            this.js = driver;
+            this.chromeDriver = new ChromeDriver();
+            this.js = chromeDriver;
         }
         return this;
     }
 
 
     public WebFunctionCall destroy() {
-        if (driver != null) {
-            driver.close();
-            driver = null;
+        if(doFirefox && firefoxDriver!=null){
+            firefoxDriver.close();
+            firefoxDriver = null;
+            js = null;
+        }
+        else if (chromeDriver != null) {
+            chromeDriver.close();
+            chromeDriver = null;
             js = null;
         }
         return this;

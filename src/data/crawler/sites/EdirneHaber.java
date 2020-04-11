@@ -17,8 +17,6 @@ public class EdirneHaber implements Serializable {
 
         String domain = "http://www.edirnehaber.org";
 
-
-
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<TD valign=center(.*?)>", "</TD>")
                 .setStartEndMarker("<TD","</TD>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a class=mansetspot2 href=", ">"));
