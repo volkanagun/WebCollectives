@@ -1,6 +1,13 @@
 package data.crawler.sites;
 
 import data.crawler.web.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -37,6 +44,7 @@ public class TwitterSearch extends WebFlow {
         this.webLuceneSink = webLuceneSink;
         setMainTemplate(build());
     }
+
 
     @Override
     public WebDocument execute() {
@@ -147,6 +155,22 @@ public class TwitterSearch extends WebFlow {
         else return "";
     }
 
+    public static void testChrome() {
+
+        WebDriver driver2 = 	new ChromeDriver();
+        driver2.manage().window().maximize();
+        driver2.get("https://www.duckduckgo.com/");
+        //search for a string in duckduckgo
+        WebDriverWait wait5 = new WebDriverWait(driver2,30);
+        WebElement textBox1 = wait5.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[id=search_form_input_homepage]")));
+        textBox1.clear();
+        textBox1.sendKeys("Buy a new PC  India");
+        WebDriverWait wait6 = new WebDriverWait(driver2,30);
+        WebElement btn4=wait6.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='search_button_homepage']")));
+        btn4.click();
+        driver2.quit();
+    }
+
     public WebTemplate build() {
 
         int pageCount = 200;
@@ -154,7 +178,7 @@ public class TwitterSearch extends WebFlow {
         String url = generateSeed();
         WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(pageCount);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall)
-                .setWaitBetweenCalls(3000L).doDestroy().setDoFirefox(true)
+                .setWaitBetweenCalls(3000L).doDestroy().setDoFirefox(false).setWaitTime(6000)
                 .initialize();
 
         LookupPattern tweetPattern = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"content\">", "</div>")
@@ -202,8 +226,11 @@ public class TwitterSearch extends WebFlow {
     }
 
     public static void main(String[] args) {
+
+        testChrome();
+
         WebLuceneSink luceneSink = new WebLuceneSink("resources/index/").openWriter();
-        String[] queryTerms = new String[]{"türkiye","iran","avrupa","çin", "abd"};
+        String[] queryTerms = new String[]{"türkiye","iran","avrupa","çin", "amerika","japonya","koronovirüs","almanya", "fransa"};
 
         List<WebFlow> webFlows = buildQueries(luceneSink, queryTerms, TURKISH);
         ExecutorService executorService = Executors.newFixedThreadPool(1);

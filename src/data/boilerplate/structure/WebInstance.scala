@@ -10,8 +10,6 @@ class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[S
 
   var labelNONE = "NONE"
 
-
-
   def setLabels(array:Array[String]):this.type ={
     this.xmlLabels = array
     this

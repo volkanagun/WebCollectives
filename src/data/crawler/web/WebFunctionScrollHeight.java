@@ -1,5 +1,6 @@
 package data.crawler.web;
 
+import com.google.common.collect.Maps;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
@@ -15,7 +16,12 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
     }
     @Override
     public String returnHTML(String url) {
-        chromeDriver.get(url);
+        try {
+            chromeDriver.get(url);
+            chromeDriver.wait(waitTime);
+        }
+        catch(InterruptedException ex){}
+
         return returnHTML(chromeDriver);
     }
 
@@ -23,16 +29,24 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
 
     @Override
     public String returnHTML(WebDriver existingDriver) {
+        String htmlText = null;
         try {
             for (int i = 0; i < count; i++) {
                 ((JavascriptExecutor) existingDriver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
             }
+
+            htmlText = existingDriver.getPageSource();
+
+        }
+        catch (ClassCastException ex){
+            ex.printStackTrace();
         }
         catch (Exception ex){
             System.out.println("Scroll height error...");
         }
 
 
-        return existingDriver.getPageSource();
+
+        return htmlText;
     }
 }

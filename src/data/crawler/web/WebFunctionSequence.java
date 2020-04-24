@@ -39,15 +39,11 @@ public class WebFunctionSequence extends WebFunctionCall {
                 htmlSource = functionCall.returnHTML(driver);
             }
         }
-
-
-        if(doDestroy) destroy();
-
-
+        if (doDestroy) destroy();
         return htmlSource;
     }
 
-    public void sleep(){
+    public void sleep() {
         try {
             Thread.sleep(waitBetweenCalls);
         } catch (InterruptedException e) {
@@ -58,9 +54,15 @@ public class WebFunctionSequence extends WebFunctionCall {
 
     @Override
     public String returnHTML(String url) {
+        try {
+            chromeDriver.getSessionId();
+            chromeDriver.get(url);
+            Thread.sleep(waitTime);
+            //chromeDriver.wait(waitTime);
+        }
+        catch(InterruptedException ex){
 
-        chromeDriver.get(url);
-
+        }
         return returnHTML(chromeDriver);
     }
 }

@@ -17,11 +17,21 @@ public abstract class WebFunctionCall implements Serializable {
     protected JavascriptExecutor js;
     protected Boolean doDestroy = false;
     protected Boolean doFirefox = false;
+    protected int waitTime;
 
 
     public abstract String returnHTML(String url);
 
     public abstract String returnHTML(WebDriver driver);
+
+    public int getWaitTime() {
+        return waitTime;
+    }
+
+    public WebFunctionCall setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+        return this;
+    }
 
     public Boolean getDoFirefox() {
         return doFirefox;

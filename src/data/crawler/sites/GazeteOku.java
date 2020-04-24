@@ -27,7 +27,7 @@ public class GazeteOku implements Serializable {
         //Link Download
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
                 .setNextPageStart(1)
-                .setNextPageSize(10)
+                .setNextPageSize(2)
                 .setDoDeleteStart(true);
 
         LookupPattern patternLinkArticle = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div class=\"article-others bordered-top\">", "</div>");

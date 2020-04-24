@@ -12,7 +12,7 @@ public class MilliyetBlogList implements Serializable {
     public static WebFlow build() {
 
         List<WebSuffixGenerator> suffixGenerators = new ArrayList<>();
-        suffixGenerators.add(new WebCountGenerator(1,300,"&KategoriNo="));
+        suffixGenerators.add(new WebCountGenerator(2,3,"&KategoriNo="));
         suffixGenerators.add(new WebCountGenerator(1,2,"&Page="));
 
         WebTemplate yazarTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "yazar-links", LookupOptions.EMPTYDOMAIN);
@@ -28,6 +28,7 @@ public class MilliyetBlogList implements Serializable {
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=");
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div\\sclass=\"details\">", "</div>")
+                .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<h6>", "</h6>")
                         .setStartEndMarker("<h6", "</h6")
                         .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a\\shref\\=\"", "\"")));
@@ -40,7 +41,7 @@ public class MilliyetBlogList implements Serializable {
                 .setNextPageStart(1)
                 .setDoFast(false)
                 .setSleepTime(500L)
-                .setNextPageSize(5)
+                .setNextPageSize(2)
                 .setThreadSize(1);
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div\\sid\\=\"_middle_content_bottom_child2\"\\sclass\\=\"colA\">", "</div>")

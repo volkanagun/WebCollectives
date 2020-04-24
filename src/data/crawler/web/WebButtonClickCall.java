@@ -15,7 +15,6 @@ public class WebButtonClickCall extends WebFunctionCall {
         this.cssSelector = cssSelector;
     }
 
-
     @Override
     public WebFunctionCall destroy() {
         if (chromeDriver != null) {
@@ -29,23 +28,25 @@ public class WebButtonClickCall extends WebFunctionCall {
 
     @Override
     public String returnHTML(String url) {
-        chromeDriver.get(url);
+        try {
+            chromeDriver.getSessionId();
+            chromeDriver.get(url);
+            Thread.sleep(waitTime);
+        } catch (InterruptedException ex) {
+
+        }
         return returnHTML(chromeDriver);
     }
 
     @Override
     public String returnHTML(WebDriver existingDriver) {
-
-
         try {
             WebElement element = existingDriver.findElement(By.cssSelector(cssSelector));
             for (int i = 0; i < count; i++) {
-
                 element.click();
             }
-        }
-        catch(Exception ex){
-            System.out.println("Click error for "+cssSelector);
+        } catch (Exception ex) {
+            System.out.println("Click error for " + cssSelector);
         }
 
 
