@@ -30,6 +30,7 @@ public class CNNTurkWeb implements Serializable {
                 .addSeed("world", "https://www.cnnturk.com/dunya-haberleri")
                 .addSeed("trending", "http://www.cnnturk.com.tr/gundem/")
                 .addSeed("sports", "https://www.cnnturk.com/spor-haberleri")
+                .addSeed("sports", "https://www.cnnturk.com/spor-haberleri")
                 .addSeed("travel", "https://www.cnnturk.com/seyahat-haberleri")
                 .addSeed("magazine", "https://www.cnnturk.com/magazin-haberleri")
                 .addSeed("technology", "https://www.cnnturk.com/teknoloji-haberleri")
