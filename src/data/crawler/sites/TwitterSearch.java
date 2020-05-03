@@ -173,12 +173,12 @@ public class TwitterSearch extends WebFlow {
 
     public WebTemplate build() {
 
-        int pageCount = 200;
+        int pageCount = 50;
 
         String url = generateSeed();
         WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(pageCount);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall)
-                .setWaitBetweenCalls(3000L).doDestroy().setDoFirefox(false).setWaitTime(6000)
+                .setWaitBetweenCalls(5000L).doDestroy().setDoFirefox(false).setWaitTime(3000)
                 .initialize();
 
         LookupPattern tweetPattern = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"content\">", "</div>")
@@ -227,10 +227,8 @@ public class TwitterSearch extends WebFlow {
 
     public static void main(String[] args) {
 
-        testChrome();
-
         WebLuceneSink luceneSink = new WebLuceneSink("resources/index/").openWriter();
-        String[] queryTerms = new String[]{"türkiye","iran","avrupa","çin", "amerika","japonya","koronovirüs","almanya", "fransa"};
+        String[] queryTerms = new String[]{"korona","türkiye","iran","avrupa","çin", "amerika","japonya","koronovirüs","almanya", "fransa", "kovid"};
 
         List<WebFlow> webFlows = buildQueries(luceneSink, queryTerms, TURKISH);
         ExecutorService executorService = Executors.newFixedThreadPool(1);

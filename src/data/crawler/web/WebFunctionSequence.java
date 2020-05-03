@@ -7,7 +7,7 @@ import java.util.List;
 
 public class WebFunctionSequence extends WebFunctionCall {
     private List<WebFunctionCall> webFunctionCallList;
-    private Long waitBetweenCalls = 500L;
+    private Long waitBetweenCalls = 1500L;
 
     private Integer count = 1;
 
@@ -35,7 +35,7 @@ public class WebFunctionSequence extends WebFunctionCall {
         String htmlSource = null;
         for (int i = 0; i < count; i++) {
             for (WebFunctionCall functionCall : webFunctionCallList) {
-                sleep();
+                waitForNext();
                 htmlSource = functionCall.returnHTML(driver);
             }
         }
@@ -43,7 +43,7 @@ public class WebFunctionSequence extends WebFunctionCall {
         return htmlSource;
     }
 
-    public void sleep() {
+    public void waitForNext() {
         try {
             Thread.sleep(waitBetweenCalls);
         } catch (InterruptedException e) {

@@ -23,6 +23,15 @@ public class WebSeed {
 
     }
 
+    public static String url(String domain, String mainUrl) {
+        if (domain.startsWith("http") && mainUrl.startsWith("http")) return mainUrl;
+        else if (mainUrl.startsWith(domain)) return mainUrl;
+        else if(domain.startsWith("http") && !mainUrl.startsWith("http") && mainUrl.startsWith(domain.substring(5))){
+            return "http:"+mainUrl;
+        }
+        else return domain + mainUrl;
+    }
+
     public Boolean doRequest(Integer failSeedNumber){
         return failSeedNumber==null || seedNumber < failSeedNumber;
     }

@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class GazeteOku implements Serializable {
+
     public static WebFlow build() {
 
         //Main Download
@@ -21,13 +22,12 @@ public class GazeteOku implements Serializable {
         LookupPattern yazarPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"widget-author\">", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHORLINK, "<a\\shref\\=\"", "\" title").setNth(1));
 
-
         mainTemplate.setMainPattern(yazarPattern).setDoDeleteStart(true);
 
         //Link Download
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
                 .setNextPageStart(1)
-                .setNextPageSize(2)
+                .setNextPageSize(1)
                 .setDoDeleteStart(true);
 
         LookupPattern patternLinkArticle = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div class=\"article-others bordered-top\">", "</div>");
@@ -67,7 +67,6 @@ public class GazeteOku implements Serializable {
         mainTemplate.addNext(linkTemplate, LookupOptions.AUTHORLINK);
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
 
-
         WebFlow flow = new WebFlow(mainTemplate);
         return flow;
     }
@@ -77,4 +76,5 @@ public class GazeteOku implements Serializable {
         WebFlow.submit(service, build());
         service.shutdown();
     }
+
 }

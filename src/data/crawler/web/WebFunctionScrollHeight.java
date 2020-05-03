@@ -32,9 +32,12 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
         String htmlText = null;
         try {
             for (int i = 0; i < count; i++) {
+                waitFor();
                 ((JavascriptExecutor) existingDriver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+                ((JavascriptExecutor) existingDriver).executeScript("window.scrollBy(0, -70)");
             }
 
+            waitFor();
             htmlText = existingDriver.getPageSource();
 
         }

@@ -41,9 +41,11 @@ public class WebButtonClickCall extends WebFunctionCall {
     @Override
     public String returnHTML(WebDriver existingDriver) {
         try {
+            waitFor();
             WebElement element = existingDriver.findElement(By.cssSelector(cssSelector));
             for (int i = 0; i < count; i++) {
                 element.click();
+
             }
         } catch (Exception ex) {
             System.out.println("Click error for " + cssSelector);

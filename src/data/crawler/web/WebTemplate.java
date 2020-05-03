@@ -651,11 +651,7 @@ public class WebTemplate implements Serializable {
         }
     }
 
-    public String url(String domain, String mainUrl) {
-        if (domain.startsWith("http") && mainUrl.startsWith("http")) return mainUrl;
-        else if (mainUrl.startsWith(domain)) return mainUrl;
-        else return domain + mainUrl;
-    }
+
 
     public void goSleep() {
 
@@ -755,7 +751,7 @@ public class WebTemplate implements Serializable {
 
                     for (int k = 0; k < Math.min(subResults.size(), seedSizeLimit); k++) {
                         LookupResult result = subResults.get(k);
-                        WebSeed newSeed = new WebSeed(document.getUrl(), url(templateDomain, result.getText()), k);
+                        WebSeed newSeed = new WebSeed(document.getUrl(), WebSeed.url(templateDomain, result.getText()), k);
                         if (linkControl(newSeed, template)) {
 
                             if (genre != null) {

@@ -5,13 +5,16 @@ import data.crawler.web.*;
 import java.io.Serializable;
 
 public class NTV implements Serializable {
+
     public static WebFlow build() {
         String domain = "https://www.ntv.com.tr";
-        Integer pageCount = 1000;
-        //WebButtonClickCall closeCall = new WebButtonClickCall(100, "#instertitial_dfp_close");
-        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(2);
-        WebButtonClickCall clickCall = new WebButtonClickCall(1, "a.infinite-link");
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall,*/ scrollCall/*, clickCall*/).initialize();
+        Integer pageCount = 100;
+        WebFunctionCall closeCall = new WebButtonClickCall(5, "#instertitial_dfp_close");
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2).setWaitTime(1500);
+        WebFunctionCall clickCall = new WebButtonClickCall(1, "a.infinite-link").setWaitTime(500);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, closeCall, scrollCall, clickCall).setWaitBetweenCalls(2000L)
+                .initialize()
+                .setWaitTime(1000);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<p class=\"card-text\">", "</p>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
@@ -29,7 +32,7 @@ public class NTV implements Serializable {
                 .addSeed("auto", "https://www.ntv.com.tr/otomobil?sayfa=1")
                 .addSeed("education", "https://www.ntv.com.tr/egitim?sayfa=1")
                 .setDoFast(true)
-                .setSleepTime(500L)
+                .setSleepTime(1500L)
                 .setDoDeleteStart(true)
                 .setThreadSize(1)
                 .setDomain(domain)

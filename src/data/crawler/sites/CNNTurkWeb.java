@@ -10,12 +10,16 @@ import java.io.Serializable;
 public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
         String domain = "https://www.cnnturk.com";
-        int pageCount = 1000;
+        int pageCount = 100;
 
-        WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more");
+        WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
+                .setWaitTime(1000);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2)
+                .setWaitTime(1000);
 
-        WebFunctionScrollHeight scrollCall = new WebFunctionScrollHeight(2);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/).initialize();
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall)
+                .setWaitBetweenCalls(2000L)
+                .initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -24,7 +28,7 @@ public class CNNTurkWeb implements Serializable {
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy", "https://www.cnnturk.com/ekonomi-haberleri")
                 .addSeed("world", "https://www.cnnturk.com/dunya-haberleri")
-                .addSeed("trending", "http://www.hurriyet.com.tr/gundem/")
+                .addSeed("trending", "http://www.cnnturk.com.tr/gundem/")
                 .addSeed("sports", "https://www.cnnturk.com/spor-haberleri")
                 .addSeed("travel", "https://www.cnnturk.com/seyahat-haberleri")
                 .addSeed("magazine", "https://www.cnnturk.com/magazin-haberleri")

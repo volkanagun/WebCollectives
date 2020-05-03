@@ -47,6 +47,16 @@ public abstract class WebFunctionCall implements Serializable {
         return this;
     }
 
+    public WebFunctionCall waitFor(){
+        try {
+            Thread.sleep(waitTime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return this;
+    }
+
     public WebFunctionCall initialize() {
 
         if(doFirefox && isUnix()){
