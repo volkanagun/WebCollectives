@@ -7,13 +7,17 @@ import org.openqa.selenium.WebDriver;
 public class WebFunctionScrollHeight extends WebFunctionCall {
 
     private Integer count = 1;
-
-    public WebFunctionScrollHeight() {
-    }
+    private Integer minusHeight = 60;
 
     public WebFunctionScrollHeight(Integer count) {
         this.count = count;
     }
+
+    public WebFunctionScrollHeight(Integer count, Integer minusHeight) {
+        this(count);
+        this.minusHeight = minusHeight;
+    }
+
     @Override
     public String returnHTML(String url) {
         try {
@@ -34,7 +38,7 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
             for (int i = 0; i < count; i++) {
                 waitFor();
                 ((JavascriptExecutor) existingDriver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-                ((JavascriptExecutor) existingDriver).executeScript("window.scrollBy(0, -70)");
+                ((JavascriptExecutor) existingDriver).executeScript("window.scrollBy(0, -"+minusHeight.toString()+")");
             }
 
             waitFor();

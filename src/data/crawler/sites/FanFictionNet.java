@@ -28,8 +28,10 @@ public class FanFictionNet {
         bookTemplate.setMainPattern(bookPattern);
         bookTemplate.setDomain("https://www.funfiction.net/book/")
                 .setForceWrite(false)
+                .setDoDeleteStart(true)
                 .setThreadSize(1)
-                .setSeedSizeLimit(2L)
+                .setSeedSizeLimit(20L)
+                .setSleepTime(500L)
                 .addSeed("https://www.fanfiction.net/book");
 
 
@@ -41,9 +43,10 @@ public class FanFictionNet {
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.FANFICDIRECTORY, "book-links", LookupOptions.EMPTYDOMAIN);
         linkTemplate.setMainPattern(linkPattern)
                 .setDoFast(true)
+                .setDoDeleteStart(true)
                 .setDomain("https://www.fanfiction.net/book/")
                 .setForceWrite(false)
-                .setSuffixGenerator(new WebCountGenerator(1, 5, "?&p="))
+                .setSuffixGenerator(new WebCountGenerator(1, 50, "?&p="))
                 .setThreadSize(1);
 
 
@@ -86,8 +89,6 @@ public class FanFictionNet {
                 .setSeedSizeLimit(10000L)
                 .addSeed("https://www.fanfiction.net/cartoon");
 
-
-
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div id=content_wrapper_inner(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a\\s+class=stitle\\s+href=\"", "\""));
@@ -97,7 +98,7 @@ public class FanFictionNet {
                 .setDoFast(true)
                 .setDomain("https://www.fanfiction.net/cartoon/")
                 .setForceWrite(false)
-                .setSuffixGenerator(new WebCountGenerator(1, 10, "?&p="))
+                .setSuffixGenerator(new WebCountGenerator(1, 50, "?&p="))
                 .setThreadSize(1);
 
 

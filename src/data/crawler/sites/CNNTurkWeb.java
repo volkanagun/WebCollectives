@@ -8,16 +8,20 @@ import java.io.Serializable;
  * @author Volkan Agun
  */
 public class CNNTurkWeb implements Serializable {
-    public static WebFlow build() {
-        String domain = "https://www.cnnturk.com";
-        int pageCount = 100;
 
+    public static WebFlow build() {
+
+        String domain = "https://www.cnnturk.com";
+        int pageCount = 1000;
+
+        //btn btn-load-more
         WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
                 .setWaitTime(1000);
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2)
-                .setWaitTime(1000);
 
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall)
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2, 85)
+                .setWaitTime(2000);
+
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/)
                 .setWaitBetweenCalls(2000L)
                 .initialize();
 
@@ -29,7 +33,6 @@ public class CNNTurkWeb implements Serializable {
                 .addSeed("economy", "https://www.cnnturk.com/ekonomi-haberleri")
                 .addSeed("world", "https://www.cnnturk.com/dunya-haberleri")
                 .addSeed("trending", "http://www.cnnturk.com.tr/gundem/")
-                .addSeed("sports", "https://www.cnnturk.com/spor-haberleri")
                 .addSeed("sports", "https://www.cnnturk.com/spor-haberleri")
                 .addSeed("travel", "https://www.cnnturk.com/seyahat-haberleri")
                 .addSeed("magazine", "https://www.cnnturk.com/magazin-haberleri")

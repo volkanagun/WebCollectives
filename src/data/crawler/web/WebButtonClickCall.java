@@ -10,6 +10,7 @@ public class WebButtonClickCall extends WebFunctionCall {
     private String cssSelector;
 
 
+
     public WebButtonClickCall(Integer count, String cssSelector) {
         this.count = count;
         this.cssSelector = cssSelector;
@@ -40,15 +41,16 @@ public class WebButtonClickCall extends WebFunctionCall {
 
     @Override
     public String returnHTML(WebDriver existingDriver) {
+
         try {
             waitFor();
             WebElement element = existingDriver.findElement(By.cssSelector(cssSelector));
             for (int i = 0; i < count; i++) {
                 element.click();
-
             }
         } catch (Exception ex) {
             System.out.println("Click error for " + cssSelector);
+            isError = true;
         }
 
 

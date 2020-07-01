@@ -762,14 +762,12 @@ public class WebTemplate implements Serializable {
                                 //addSeed(nextSeedList, templateLink, templateDomain + result.getText());
                                 //nextSeedList.add(domain + result.getText());
                             }
-
                         }
-
-
                     }
 
                     WebDocument webFlowResultList = template.execute();
                     mainDocument.addWebFlowResult(webFlowResultList);
+
                 }
             }
 
@@ -816,6 +814,9 @@ public class WebTemplate implements Serializable {
                 }
             }
 
+            seedList.clear();
+            seedMap.clear();
+
             for (WebSeed url : nextPageSeeds) {
 
                 if (!seedList.contains(url)) {
@@ -826,9 +827,16 @@ public class WebTemplate implements Serializable {
         }
 
         if (suffixGenerator != null) {
-            int size = seedList.size();
+
+            List<WebSeed> generateSeedList = new ArrayList<>();
+            generateSeedList.addAll(seedList);
+            seedList.clear();
+            seedMap.clear();
+
+            int size = generateSeedList.size();
+
             for (int i = 0; i < size; i++) {
-                WebSeed webSeed = seedList.get(i);
+                WebSeed webSeed = generateSeedList.get(i);
                 List<String> generatedSeeds = suffixGenerator.apply(webSeed.getRequestURL());
                 for (int j = 0; j < generatedSeeds.size(); j++) {
                     String generatedUrl = generatedSeeds.get(j);

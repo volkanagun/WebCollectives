@@ -37,8 +37,18 @@ public class WebFunctionSequence extends WebFunctionCall {
             for (WebFunctionCall functionCall : webFunctionCallList) {
                 waitForNext();
                 htmlSource = functionCall.returnHTML(driver);
+                if (functionCall.isError() && functionCall.isDoStopOnError()) {
+                    isError = true;
+                    break;
+                }
+            }
+
+            if (isError) {
+                System.out.println("Sequence error occurred...");
+                break;
             }
         }
+
         if (doDestroy) destroy();
         return htmlSource;
     }
@@ -59,8 +69,7 @@ public class WebFunctionSequence extends WebFunctionCall {
             chromeDriver.get(url);
             Thread.sleep(waitTime);
             //chromeDriver.wait(waitTime);
-        }
-        catch(InterruptedException ex){
+        } catch (InterruptedException ex) {
 
         }
         return returnHTML(chromeDriver);

@@ -8,7 +8,9 @@ import data.crawler.web.WebTemplate;
 import java.io.Serializable;
 
 public class SonBirseyler implements Serializable {
+
     public static WebFlow build() {
+
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<div class=\"td-pb-span8 td-main-content\">", "</div>")

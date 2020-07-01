@@ -231,7 +231,7 @@ public class TwitterSearch extends WebFlow {
         String[] queryTerms = new String[]{"korona","türkiye","iran","avrupa","çin", "amerika","japonya","koronovirüs","almanya", "fransa", "kovid"};
 
         List<WebFlow> webFlows = buildQueries(luceneSink, queryTerms, TURKISH);
-        ExecutorService executorService = Executors.newFixedThreadPool(1);
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
         batchSubmit(executorService, webFlows);
     }
 }

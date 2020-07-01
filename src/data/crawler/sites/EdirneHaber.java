@@ -38,7 +38,7 @@ public class EdirneHaber implements Serializable {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(true)
-                .setNextPageSize(2)
+                .setNextPageSize(3)
                 .setNextPageStart(1)
                 .setNextPageJump(1)
                 .setNextPageSuffix("")

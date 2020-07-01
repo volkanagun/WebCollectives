@@ -87,4 +87,9 @@ public class WebSeed {
     public int hashCode() {
         return Objects.hash(requestURL);
     }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new WebSeed(mainURL, requestURL, seedNumber);
+    }
 }

@@ -18,6 +18,8 @@ public abstract class WebFunctionCall implements Serializable {
     protected Boolean doDestroy = false;
     protected Boolean doFirefox = false;
     protected int waitTime;
+    protected boolean isError;
+    protected boolean doStopOnError;
 
 
     public abstract String returnHTML(String url);
@@ -26,6 +28,19 @@ public abstract class WebFunctionCall implements Serializable {
 
     public int getWaitTime() {
         return waitTime;
+    }
+
+    public boolean isError() {
+        return isError;
+    }
+
+    public boolean isDoStopOnError() {
+        return doStopOnError;
+    }
+
+    public WebFunctionCall setDoStopOnError(boolean doStopOnError) {
+        this.doStopOnError = doStopOnError;
+        return this;
     }
 
     public WebFunctionCall setWaitTime(int waitTime) {

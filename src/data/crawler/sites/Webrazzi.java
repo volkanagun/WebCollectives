@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class Webrazzi implements Serializable {
 
     public static WebFlow build() {
+
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGTRYDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE, "<div class=\"post-title\">", "</div>")
@@ -17,9 +18,9 @@ public class Webrazzi implements Serializable {
 
         mainTemplate.setMainPattern(linkPattern)
                 .setNextPageSuffix("page/")
-                .setNextPageSize(1000)
+                .setNextPageSize(500)
                 .setNextPageStart(1)
-                .setSleepTime(500L)
+                .setSleepTime(1500L)
                 .addSeed("http://webrazzi.com/");
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"post(.*?)>", "</div>")
@@ -39,6 +40,7 @@ public class Webrazzi implements Serializable {
         mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow webFlow = new WebFlow(mainTemplate);
         return webFlow;
+
     }
 
     public static void main(String[] args) {

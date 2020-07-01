@@ -38,8 +38,8 @@ public class HurriyetWeb implements Serializable {
                 .addSeed("arts", "http://www.hurriyet.com.tr/kitap-sanat/")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setSleepTime(500L)
-                .setThreadSize(4)
+                .setSleepTime(1000L)
+                .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
@@ -68,7 +68,7 @@ public class HurriyetWeb implements Serializable {
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(true)
                 .setThreadSize(1)
-                .setDoFast(true)
+                .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDomain(domain)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
@@ -82,7 +82,7 @@ public class HurriyetWeb implements Serializable {
     }
 
     public static void main(String[] args) {
-        for(int i=0; i<2; i++) {
+        for(int i=0; i<5; i++) {
             build().execute();
         }
     }

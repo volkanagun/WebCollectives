@@ -27,7 +27,7 @@ public class SikayetVar implements Serializable {
                 .setNextPageStart(start)
                 .setNextPageSize(end)
                 .setNextPageSuffix("?page=").setDoDeleteStart(true)
-                .addSeed(seed)
+                .addSeed(seed).setDoDeleteStart(true)
                 .setDomain(domain);
 
         LookupPattern mainPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.URL, "<div class=\"quickPreviewContainer\"","</div>")

@@ -16,12 +16,14 @@ public class BoingBlogList implements Serializable {
         WebTemplate yazarTemplate = new WebTemplate(mainFolder, "author-links", LookupOptions.EMPTYDOMAIN);
         LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a class=\"byline\" href=\"https://boingboing.net/author/", "\">");
         yazarTemplate.setMainPattern(authorPattern);
+
         yazarTemplate.setDomain("https://boingboing.net/author/")
                 .setForceWrite(false)
                 .setNextPageSuffix("/page/")
                 .setNextPageStart(1)
                 .setNextPageSize(24)
-                .setThreadSize(6)
+                .setSleepTime(500L)
+                .setThreadSize(2)
                 .addSeed("https://boingboing.net/grid");
 
         WebTemplate linkTemplate = new WebTemplate(mainFolder, "blog-links", LookupOptions.EMPTYDOMAIN);
@@ -33,7 +35,8 @@ public class BoingBlogList implements Serializable {
                 .setForceWrite(false).setNextPageSuffix("/page/")
                 .setNextPageStart(1)
                 .setNextPageSize(100)
-                .setThreadSize(12);
+                .setSleepTime(500L)
+                .setThreadSize(2);
 
         LookupPattern topPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, LookupOptions.EMPTY)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<meta\\sproperty\\=\"article\\:published\\_time\"\\scontent\\=\"", "\"(.*?)/>"));
@@ -58,7 +61,8 @@ public class BoingBlogList implements Serializable {
         articleTemplate.setMainPattern(topPattern)
                 .setForceWrite(true)
                 .setDomain("https://boingboing.net")
-                .setThreadSize(6)
+                .setThreadSize(2)
+                .setSleepTime(1000L)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setType(LookupOptions.BLOGDOC);
 
@@ -70,8 +74,10 @@ public class BoingBlogList implements Serializable {
     }
 
     public static void main(String[] args){
+
         ExecutorService service = Executors.newFixedThreadPool(5);
         WebFlow.submit(service, build(LookupOptions.BLOGENGDIRECTORY));
         service.shutdown();
+
     }
 }

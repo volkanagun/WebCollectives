@@ -6,6 +6,8 @@ import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 
 import java.io.Serializable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class GezenlerKulubu implements Serializable {
     public static WebFlow build() {
@@ -42,5 +44,10 @@ public class GezenlerKulubu implements Serializable {
         mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow webFlow = new WebFlow(mainTemplate);
         return webFlow;
+    }
+
+    public static void main(String[] args) {
+        ExecutorService service = Executors.newCachedThreadPool();
+        service.submit(build());
     }
 }
