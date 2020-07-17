@@ -19,24 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="Learning model...">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_modules_scala_xml_2_11_1_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_library_2_11_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLParser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLParser.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" afterDir="false" />
-    </list>
+    <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="Learning model..." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -214,13 +197,7 @@
       <workItem from="1594372277243" duration="10000" />
       <workItem from="1594372291176" duration="1277000" />
       <workItem from="1594497492714" duration="24348000" />
-    </task>
-    <task id="LOCAL-00019" summary="MultiSuffixGenerator for MilliyetBlogListe">
-      <created>1557604772047</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1557604772047</updated>
+      <workItem from="1594984001920" duration="628000" />
     </task>
     <task id="LOCAL-00020" summary="Twitter API">
       <created>1557780358031</created>
@@ -558,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1593637478429</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Learning model...">
+      <created>1594984014730</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1594984014731</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -705,11 +689,11 @@
     <state x="487" y="173" key="SettingsEditor/49.27.1871.1053@49.27.1871.1053" timestamp="1588529203018" />
     <state x="640" y="223" key="SettingsEditor/52.27.2508.1413@52.27.2508.1413" timestamp="1592482052880" />
     <state x="505" y="173" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1588904766023" />
-    <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1593639385831">
+    <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1594984016189">
       <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state x="581" y="289" width="800" height="528" key="Vcs.Push.Dialog.v2/49.27.1871.1053@49.27.1871.1053" timestamp="1588529114558" />
-    <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2/50.27.2510.1413@50.27.2510.1413" timestamp="1593639385831" />
+    <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2/50.27.2510.1413@50.27.2510.1413" timestamp="1594984016189" />
     <state width="934" height="527" key="XDebugger.FullValuePopup" timestamp="1590527599868">
       <screen x="52" y="27" width="1868" height="1053" />
     </state>
