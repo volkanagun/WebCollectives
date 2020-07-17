@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class AnadoluGazete implements Serializable {
 
     public static WebFlow build() {
+
         String domain = "http://egazete.anadolu.edu.tr";
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"title\">", "</div>")

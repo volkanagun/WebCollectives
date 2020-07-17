@@ -12,14 +12,14 @@ public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.cnnturk.com";
-        int pageCount = 1000;
+        int pageCount = 5;
 
         //btn btn-load-more
         WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
                 .setWaitTime(1000);
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(2, 85)
-                .setWaitTime(2000);
+                .setWaitTime(200);
 
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/)
                 .setWaitBetweenCalls(2000L)

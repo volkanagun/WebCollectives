@@ -8,6 +8,7 @@ object XMLParser {
 
 
   def parse(filename: String): Map[String, String] = {
+
     val text = Source.fromFile(filename, "UTF-8").getLines().mkString("\n")
     val cleanedText = cleanText(text)
     val xmlMain = scala.xml.XML.loadString(cleanedText);

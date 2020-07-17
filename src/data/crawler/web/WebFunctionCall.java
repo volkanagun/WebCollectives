@@ -20,7 +20,16 @@ public abstract class WebFunctionCall implements Serializable {
     protected int waitTime;
     protected boolean isError;
     protected boolean doStopOnError;
+    protected boolean doInform = true;
 
+    public boolean isDoInform() {
+        return doInform;
+    }
+
+    public WebFunctionCall setDoInform(boolean doInform) {
+        this.doInform = doInform;
+        return this;
+    }
 
     public abstract String returnHTML(String url);
 

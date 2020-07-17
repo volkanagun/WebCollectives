@@ -20,55 +20,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="Learning model...">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_beust_jcommander_1_72.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_25_0_jre.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okhttp3_okhttp_3_11_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_squareup_okio_okio_1_14_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_8_15.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_compat_qual_2_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_jetty_repacked_9_4_12_v20180830.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_api_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_chrome_driver_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_edge_driver_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_firefox_driver_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_ie_driver_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_java_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_opera_driver_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_remote_driver_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_safari_driver_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_server_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_seleniumhq_selenium_selenium_support_3_141_59.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_yaml_snakeyaml_1_19.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_modules_scala_xml_2_11_1_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_scala_lang_scala_library_2_11_12.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLParser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLParser.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BoingBlogList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Ergonomic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Ergonomic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/FanFictionNet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GezenlerKulubu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GezenlerKulubu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HuffingtonPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SikayetVar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SonBirseyler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SonBirseyler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebSeed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebSeed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +103,20 @@
       <recent name="F:\java-projects\WebCollectives\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GazeteOku">
+  <component name="RunManager" selected="Application.AHaberWeb">
+    <configuration name="AHaberWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AHaberWeb" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
       <module name="WebCollectives" />
@@ -150,21 +130,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EdirneHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EdirneHaber" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EskSonHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EskSonHaber" />
+    <configuration name="CNNTurkWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.CNNTurkWeb" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -189,8 +156,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
+    <configuration name="HurriyetWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.HurriyetWeb" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -203,19 +170,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.EdirneHaber" />
-      <item itemvalue="Application.InternetHaber" />
-      <item itemvalue="Application.GazeteOku" />
       <item itemvalue="Application.AnadoluGazete" />
-      <item itemvalue="Application.EskSonHaber" />
+      <item itemvalue="Application.GazeteOku" />
+      <item itemvalue="Application.HurriyetWeb" />
+      <item itemvalue="Application.CNNTurkWeb" />
+      <item itemvalue="Application.AHaberWeb" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.AHaberWeb" />
+        <item itemvalue="Application.CNNTurkWeb" />
+        <item itemvalue="Application.HurriyetWeb" />
         <item itemvalue="Application.GazeteOku" />
-        <item itemvalue="Application.EskSonHaber" />
         <item itemvalue="Application.AnadoluGazete" />
-        <item itemvalue="Application.InternetHaber" />
-        <item itemvalue="Application.EdirneHaber" />
       </list>
     </recent_temporary>
   </component>
@@ -236,14 +203,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538468368895</updated>
-      <workItem from="1593542739616" duration="1907000" />
-    </task>
-    <task id="LOCAL-00018" summary="InternetHaber update">
-      <created>1556292899531</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1556292899531</updated>
+      <workItem from="1593542739616" duration="2945000" />
+      <workItem from="1593639374169" duration="1066000" />
+      <workItem from="1593725698543" duration="401000" />
+      <workItem from="1593875848138" duration="2960000" />
+      <workItem from="1593936431981" duration="1635000" />
+      <workItem from="1593946702251" duration="641000" />
+      <workItem from="1594037085035" duration="1537000" />
+      <workItem from="1594061426814" duration="3446000" />
+      <workItem from="1594372277243" duration="10000" />
+      <workItem from="1594372291176" duration="1277000" />
+      <workItem from="1594497492714" duration="24348000" />
     </task>
     <task id="LOCAL-00019" summary="MultiSuffixGenerator for MilliyetBlogListe">
       <created>1557604772047</created>
@@ -581,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1588529112626</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Learning model...">
+      <created>1593637478428</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1593637478429</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,10 +623,11 @@
       <screen x="49" y="27" width="1871" height="1053" />
     </state>
     <state x="442" y="210" key="#com.intellij.execution.impl.EditConfigurationsDialog/49.27.1871.1053@49.27.1871.1053" timestamp="1588848237718" />
-    <state x="794" y="239" width="374" height="626" key="#com.intellij.ide.util.MemberChooser" timestamp="1590527677519">
-      <screen x="52" y="27" width="1868" height="1053" />
+    <state x="1047" y="311" width="374" height="626" key="#com.intellij.ide.util.MemberChooser" timestamp="1594751667827">
+      <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state x="792" y="239" width="374" height="626" key="#com.intellij.ide.util.MemberChooser/49.27.1871.1053@49.27.1871.1053" timestamp="1588591128260" />
+    <state x="1047" y="311" key="#com.intellij.ide.util.MemberChooser/50.27.2510.1413@50.27.2510.1413" timestamp="1594751667827" />
     <state x="794" y="239" key="#com.intellij.ide.util.MemberChooser/52.27.1868.1053@52.27.1868.1053" timestamp="1590527677519" />
     <state x="703" y="222" width="575" height="675" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1588904867509">
       <screen x="72" y="27" width="1848" height="1053" />
@@ -669,35 +647,35 @@
       <screen x="49" y="27" width="1871" height="1053" />
     </state>
     <state x="815" y="476" key="Github.Dialog.Accounts.Choose/49.27.1871.1053@49.27.1871.1053" timestamp="1588529052217" />
-    <state width="2464" height="246" key="GridCell.Tab.0.bottom" timestamp="1593637243869">
+    <state width="2464" height="417" key="GridCell.Tab.0.bottom" timestamp="1594838539196">
       <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state width="1328" height="359" key="GridCell.Tab.0.bottom/49.27.1871.1053@49.27.1871.1053" timestamp="1588885697614" />
-    <state width="2464" height="246" key="GridCell.Tab.0.bottom/50.27.2510.1413@50.27.2510.1413" timestamp="1593637243869" />
+    <state width="2464" height="417" key="GridCell.Tab.0.bottom/50.27.2510.1413@50.27.2510.1413" timestamp="1594838539196" />
     <state width="1822" height="246" key="GridCell.Tab.0.bottom/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161885" />
     <state width="2462" height="246" key="GridCell.Tab.0.bottom/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440210" />
     <state width="1354" height="258" key="GridCell.Tab.0.bottom/72.27.1848.1053@72.27.1848.1053" timestamp="1588905117690" />
-    <state width="2464" height="246" key="GridCell.Tab.0.center" timestamp="1593637243869">
+    <state width="2464" height="417" key="GridCell.Tab.0.center" timestamp="1594838539196">
       <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state width="1328" height="359" key="GridCell.Tab.0.center/49.27.1871.1053@49.27.1871.1053" timestamp="1588885697614" />
-    <state width="2464" height="246" key="GridCell.Tab.0.center/50.27.2510.1413@50.27.2510.1413" timestamp="1593637243869" />
+    <state width="2464" height="417" key="GridCell.Tab.0.center/50.27.2510.1413@50.27.2510.1413" timestamp="1594838539196" />
     <state width="1822" height="246" key="GridCell.Tab.0.center/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161883" />
     <state width="2462" height="246" key="GridCell.Tab.0.center/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440210" />
     <state width="1354" height="258" key="GridCell.Tab.0.center/72.27.1848.1053@72.27.1848.1053" timestamp="1588905117690" />
-    <state width="2464" height="246" key="GridCell.Tab.0.left" timestamp="1593637243868">
+    <state width="2464" height="417" key="GridCell.Tab.0.left" timestamp="1594838539196">
       <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state width="1328" height="359" key="GridCell.Tab.0.left/49.27.1871.1053@49.27.1871.1053" timestamp="1588885697614" />
-    <state width="2464" height="246" key="GridCell.Tab.0.left/50.27.2510.1413@50.27.2510.1413" timestamp="1593637243868" />
+    <state width="2464" height="417" key="GridCell.Tab.0.left/50.27.2510.1413@50.27.2510.1413" timestamp="1594838539196" />
     <state width="1822" height="246" key="GridCell.Tab.0.left/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161883" />
     <state width="2462" height="246" key="GridCell.Tab.0.left/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440209" />
     <state width="1354" height="258" key="GridCell.Tab.0.left/72.27.1848.1053@72.27.1848.1053" timestamp="1588905117689" />
-    <state width="2464" height="246" key="GridCell.Tab.0.right" timestamp="1593637243869">
+    <state width="2464" height="417" key="GridCell.Tab.0.right" timestamp="1594838539196">
       <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state width="1328" height="359" key="GridCell.Tab.0.right/49.27.1871.1053@49.27.1871.1053" timestamp="1588885697614" />
-    <state width="2464" height="246" key="GridCell.Tab.0.right/50.27.2510.1413@50.27.2510.1413" timestamp="1593637243869" />
+    <state width="2464" height="417" key="GridCell.Tab.0.right/50.27.2510.1413@50.27.2510.1413" timestamp="1594838539196" />
     <state width="1822" height="246" key="GridCell.Tab.0.right/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161884" />
     <state width="2462" height="246" key="GridCell.Tab.0.right/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440210" />
     <state width="1354" height="258" key="GridCell.Tab.0.right/72.27.1848.1053@72.27.1848.1053" timestamp="1588905117690" />
@@ -727,10 +705,11 @@
     <state x="487" y="173" key="SettingsEditor/49.27.1871.1053@49.27.1871.1053" timestamp="1588529203018" />
     <state x="640" y="223" key="SettingsEditor/52.27.2508.1413@52.27.2508.1413" timestamp="1592482052880" />
     <state x="505" y="173" width="1022" height="737" key="SettingsEditor/72.27.1848.1053@72.27.1848.1053" timestamp="1588904766023" />
-    <state x="581" y="289" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1588529114558">
-      <screen x="49" y="27" width="1871" height="1053" />
+    <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1593639385831">
+      <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state x="581" y="289" width="800" height="528" key="Vcs.Push.Dialog.v2/49.27.1871.1053@49.27.1871.1053" timestamp="1588529114558" />
+    <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2/50.27.2510.1413@50.27.2510.1413" timestamp="1593639385831" />
     <state width="934" height="527" key="XDebugger.FullValuePopup" timestamp="1590527599868">
       <screen x="52" y="27" width="1868" height="1053" />
     </state>
@@ -745,10 +724,11 @@
     </state>
     <state x="296" y="155" key="new project wizard/49.27.1871.1053@49.27.1871.1053" timestamp="1586640367647" />
     <state x="299" y="155" width="1372" height="599" key="new project wizard/52.27.1868.1053@52.27.1868.1053" timestamp="1591902845086" />
-    <state x="649" y="257" width="672" height="678" key="search.everywhere.popup" timestamp="1590527664282">
-      <screen x="52" y="27" width="1868" height="1053" />
+    <state x="852" y="336" width="903" height="910" key="search.everywhere.popup" timestamp="1594105173968">
+      <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state x="647" y="257" width="672" height="678" key="search.everywhere.popup/49.27.1871.1053@49.27.1871.1053" timestamp="1588423568478" />
+    <state x="852" y="336" width="903" height="910" key="search.everywhere.popup/50.27.2510.1413@50.27.2510.1413" timestamp="1594105173968" />
     <state x="649" y="257" width="672" height="678" key="search.everywhere.popup/52.27.1868.1053@52.27.1868.1053" timestamp="1590527664282" />
   </component>
   <component name="XDebuggerManager">

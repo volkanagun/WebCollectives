@@ -21,6 +21,8 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
     @Override
     public String returnHTML(String url) {
         try {
+
+            log();
             chromeDriver.get(url);
             chromeDriver.wait(waitTime);
         }
@@ -29,6 +31,10 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
         return returnHTML(chromeDriver);
     }
 
+    public WebFunctionScrollHeight log(){
+        if(doInform) System.out.println("Calling Scroll Height");
+        return this;
+    }
 
 
     @Override
@@ -37,6 +43,7 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
         try {
             for (int i = 0; i < count; i++) {
                 waitFor();
+                log();
                 ((JavascriptExecutor) existingDriver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
                 ((JavascriptExecutor) existingDriver).executeScript("window.scrollBy(0, -"+minusHeight.toString()+")");
             }

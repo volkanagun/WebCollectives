@@ -9,8 +9,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class HuffingtonPost implements Serializable {
+
     public static WebFlow build(String mainFolder) {
-        //
+
+
         Calendar calendarStart = Calendar.getInstance();
         calendarStart.set(2019, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();

@@ -18,7 +18,7 @@ public class Webrazzi implements Serializable {
 
         mainTemplate.setMainPattern(linkPattern)
                 .setNextPageSuffix("page/")
-                .setNextPageSize(500)
+                .setNextPageSize(5)
                 .setNextPageStart(1)
                 .setSleepTime(1500L)
                 .addSeed("http://webrazzi.com/");

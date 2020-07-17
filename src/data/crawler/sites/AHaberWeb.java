@@ -13,12 +13,12 @@ public class AHaberWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 30;
+        int pageCount = 50;
 
         WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
                 .setWaitTime(1000);
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1)
-                .setWaitTime(500);
+                .setWaitTime(1000);
 
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/)
                 .setWaitBetweenCalls(2000L)
@@ -41,7 +41,7 @@ public class AHaberWeb implements Serializable {
                 .addSeed("auto", "https://www.ahaber.com.tr/arama?category=otomobil")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setSleepTime(1500L)
+                .setSleepTime(2500L)
                 .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
                 .setDomain(domain)

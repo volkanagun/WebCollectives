@@ -13,7 +13,7 @@ public class NTV implements Serializable {
                 .setDoStopOnError(false);
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(2).setWaitTime(1500);
         WebFunctionCall clickCall = new WebButtonClickCall(1, "a.infinite-link").setWaitTime(500);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall,*/ scrollCall, clickCall).setWaitBetweenCalls(2000L)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall,*/ scrollCall/*, clickCall*/).setWaitBetweenCalls(2000L)
                 .initialize()
                 .setWaitTime(1000);
 
