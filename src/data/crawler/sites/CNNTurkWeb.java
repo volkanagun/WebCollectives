@@ -14,7 +14,6 @@ public class CNNTurkWeb implements Serializable {
         String domain = "https://www.cnnturk.com";
         int pageCount = 5;
 
-        //btn btn-load-more
         WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
                 .setWaitTime(1000);
 

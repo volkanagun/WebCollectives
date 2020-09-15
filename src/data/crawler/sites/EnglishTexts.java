@@ -11,6 +11,7 @@ import java.util.concurrent.Executors;
 public class EnglishTexts {
 
     public static List<WebFlow> build(){
+
         List<WebFlow> webFlows = new ArrayList<>();
 
         webFlows.add(EngadetList.build(LookupOptions.TEXTENGDIRECTORY));
@@ -20,6 +21,7 @@ public class EnglishTexts {
         webFlows.add(BoingBlogList.build(LookupOptions.TEXTENGDIRECTORY));
         webFlows.add(FanFictionNet.buildBook(LookupOptions.TEXTENGDIRECTORY));
         webFlows.add(FanFictionNet.buildCartoon(LookupOptions.TEXTENGDIRECTORY));
+
         for(WebFlow webFlow:webFlows){
             webFlow.setMainLookComplete(false);
         }

@@ -14,7 +14,7 @@ public class InternetHaber implements Serializable {
     public static WebFlow build(int i) {
 
         int startIndice = 0;
-        int maxSize = 200;
+        int maxSize = 500;
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
@@ -35,7 +35,7 @@ public class InternetHaber implements Serializable {
                 .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
                 .setNextPageStart(startIndice+i*maxSize)
                 .setNextPageSize(maxSize)
-                .setWaitTimeAfter(1000000L)
+                .setWaitTimeAfter(100000L)
                 .setWaitTime(1500L)
                 .setSleepTime(500L)
                 .setDoFast(false)
@@ -63,7 +63,7 @@ public class InternetHaber implements Serializable {
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(true)
                 .setThreadSize(1)
-                .setSleepTime(500L)
+                .setSleepTime(1500L)
                 .setDoFast(Boolean.FALSE)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setForceWrite(false);
@@ -78,9 +78,9 @@ public class InternetHaber implements Serializable {
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"(<p>|\")","(</p>|\")")));
 
         articleTemplate.setMainPattern(articleLookup);
-
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
+
         return flow;
 
     }

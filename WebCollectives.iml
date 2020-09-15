@@ -172,10 +172,6 @@
     <orderEntry type="library" name="Maven: org.bytedeco:flandmark:1.07-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:leptonica:1.78.0-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:tesseract:4.1.0-1.5.1" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:11" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:linux:11" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:11" level="project" />
-    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:linux:11" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:opencv-platform:4.1.0-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:opencv:android-arm:4.1.0-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:opencv:android-arm64:4.1.0-1.5.1" level="project" />
@@ -206,5 +202,6 @@
     <orderEntry type="library" name="Maven: org.bytedeco:leptonica:windows-x86_64:1.78.0-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.deeplearning4j:deeplearning4j-ui-components:1.0.0-beta5" level="project" />
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.11.8" level="project" />
+    <orderEntry type="library" name="scala-sdk-2.11.8" level="application" />
   </component>
 </module>

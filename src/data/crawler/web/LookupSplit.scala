@@ -3,6 +3,7 @@ package data.crawler.web
 import java.util
 
 class LookupSplit(ttype: String, llabal: String, splitRegex: String) extends LookupPattern(ttype, llabal, null) {
+
   override protected def getResults(propertyMap: util.Map[String, String], partial: String): util.List[String] = {
 
     val array = partial.split(splitRegex)

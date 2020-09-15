@@ -284,8 +284,8 @@ public class WebTemplate implements Serializable {
     public WebTemplate setLinkPattern(String linkAcceptPattern, String linkRejectPattern) {
         this.linkPattern = linkAcceptPattern;
         this.linkRejectPattern = linkRejectPattern;
-        Pattern.compile(linkAcceptPattern);
-        Pattern.compile(linkRejectPattern);
+        if(linkPattern!=null) Pattern.compile(linkAcceptPattern);
+        if(linkRejectPattern!=null) Pattern.compile(linkRejectPattern);
         return this;
     }
 
@@ -874,8 +874,6 @@ public class WebTemplate implements Serializable {
             DownloadCallable thread = new DownloadCallable(htmlDocumentList, failCount, webSeed, i) {
                 @Override
                 public Boolean call() {
-
-
                     WebDocument document = new WebDocument(folder, name, webSeed.getRequestURL());
                     Integer seedNumber = seedNumber(failMap, webSeed.getMainURL());
 
@@ -1133,6 +1131,20 @@ public class WebTemplate implements Serializable {
         }
     }
 
+    private String randomUserAgent(){
+        String userAgent1 = "Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19";
+        String userAgent2 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
+        String userAgent3 = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12";
+        String userAgent4 = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36 RuxitSynthetic/1.0 v6296917904 t38550 ath9b965f92 altpub";
+        String userAgent5 = "Mozilla/5.0 (Linux; <Android Version>; <Build Tag etc.>) AppleWebKit/<WebKit Rev>(KHTML, like Gecko) Chrome/<Chrome Rev> Safari/<WebKit Rev>";
+        String userAgent6 = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1";
+        String userAgent7 = "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36";
+        Integer i = new Random().nextInt(7);
+        String[] agents = new String[]{userAgent1, userAgent2, userAgent3, userAgent4, userAgent5, userAgent6, userAgent7};
+
+        return agents[i];
+    }
+
     private String downloadPage(String address, String charset, int tryCount) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, Exception {
         String text = "";
         if (tryCount > 2) return text;
@@ -1173,7 +1185,8 @@ public class WebTemplate implements Serializable {
             if (request != null) {
                 try {
 
-                    request.addHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36");
+                    //request.addHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36");
+                    request.addHeader("user-agent", randomUserAgent());
                     request.addHeader("accept", "image/gif, image/jpg, */*");
                     request.addHeader("connection", "keep-alive");
                     request.addHeader("accept-encoding", "gzip,deflate,sdch");
@@ -1211,14 +1224,13 @@ public class WebTemplate implements Serializable {
 
 
                 } catch (Exception ex1) {
+
                     System.out.println("Error in url retrying... '" + address + "'");
+                    sleep(200);
 
-                    try {
-                        text = downloadPage(address, charset, ++tryCount);
-                    }
-                    catch(Exception ex2){
+                    try { text = downloadPage(address, charset, ++tryCount); }
+                    catch(Exception ex2){}
 
-                    }
 
                 }
             }

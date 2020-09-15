@@ -27,7 +27,7 @@ public class GazeteOku implements Serializable {
         //Link Download
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
                 .setNextPageStart(1)
-                .setNextPageSize(20)
+                .setNextPageSize(30)
                 .setDoDeleteStart(true);
 
         LookupPattern patternLinkArticle = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div class=\"article-others bordered-top\">", "</div>");
@@ -71,12 +71,11 @@ public class GazeteOku implements Serializable {
         return flow;
     }
 
-    public static void main(String[] args){
-
+    public static void main(String[] args)
+    {
         ExecutorService service = Executors.newFixedThreadPool(5);
         WebFlow.submit(service, build());
         service.shutdown();
-
     }
 
 }

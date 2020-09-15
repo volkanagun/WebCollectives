@@ -60,7 +60,6 @@ public class TwitterSearch extends WebFlow {
             }
         }
 
-
         return document;
     }
 

@@ -38,7 +38,7 @@ public class EdirneHaber implements Serializable {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(true)
-                .setNextPageSize(3)
+                .setNextPageSize(10)
                 .setNextPageStart(1)
                 .setNextPageJump(1)
                 .setNextPageSuffix("")
@@ -74,7 +74,6 @@ public class EdirneHaber implements Serializable {
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
         return flow;
-
     }
 
     public static void main(String[] args) {

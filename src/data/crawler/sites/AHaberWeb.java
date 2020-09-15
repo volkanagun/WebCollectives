@@ -13,7 +13,7 @@ public class AHaberWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 50;
+        int pageCount = 10;
 
         WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
                 .setWaitTime(1000);
@@ -45,6 +45,7 @@ public class AHaberWeb implements Serializable {
                 .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
                 .setDomain(domain)
+                .setLinkPattern(null,"(.*?)galeri(.+)")
                 .setMainPattern(linkPattern);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"container\">", "</div>")

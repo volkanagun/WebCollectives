@@ -7,8 +7,10 @@ import java.io.Serializable;
 public class NTV implements Serializable {
 
     public static WebFlow build() {
+
         String domain = "https://www.ntv.com.tr";
-        Integer pageCount = 1000;
+        Integer pageCount = 10;
+
         WebFunctionCall closeCall = new WebButtonClickCall(5, "#instertitial_dfp_close")
                 .setDoStopOnError(false);
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(2).setWaitTime(1500);

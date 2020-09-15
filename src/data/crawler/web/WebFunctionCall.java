@@ -94,10 +94,9 @@ public abstract class WebFunctionCall implements Serializable {
             this.js = firefoxDriver;
         }
         else if (isUnix()) {
-            System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
+            System.setProperty("webdriver.chrome.driver", new File("resources/selenium/chromedriver").getPath());
             this.chromeDriver = new ChromeDriver();
             this.js = chromeDriver;
-
         } else {
             System.setProperty("webdriver.chrome.driver", new File("resources/selenium/chromedriver.exe").getPath());
             this.chromeDriver = new ChromeDriver();
