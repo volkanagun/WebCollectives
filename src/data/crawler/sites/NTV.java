@@ -74,6 +74,7 @@ public class NTV implements Serializable {
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
         return flow;
+
     }
 
     public static void main(String[] args) {

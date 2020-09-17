@@ -11,12 +11,13 @@ public class Webrazzi implements Serializable {
 
     public static WebFlow build() {
 
-        WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGTRYDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
+        WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGTRYDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN)
+                .setDoDeleteStart(true);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE, "<div class=\"post-title\">", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "href=\"", "\"\\s"));
 
-        mainTemplate.setMainPattern(linkPattern)
+        linkTemplate.setMainPattern(linkPattern)
                 .setSleepTime(1500L)
                 .addSeed("http://webrazzi.com/");
 
@@ -34,8 +35,8 @@ public class Webrazzi implements Serializable {
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setType(LookupOptions.BLOGDOC);
 
-        mainTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
-        WebFlow webFlow = new WebFlow(mainTemplate);
+        linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
+        WebFlow webFlow = new WebFlow(linkTemplate);
         return webFlow;
 
     }

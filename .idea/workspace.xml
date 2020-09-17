@@ -23,30 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2b77fc9f-9f22-4f57-9b6c-658361d6e612" name="Default Changelist" comment="Learning model...">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/GZTBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_base_linux_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_graphics_linux_11.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluGazete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EdirneHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/EnglishTexts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/EnglishTexts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TwitterSearch.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupSplit.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupSplit.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +102,7 @@
       <recent name="F:\java-projects\WebCollectives\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AnadoluAjansi">
+  <component name="RunManager" selected="Application.InternetHaber">
     <configuration name="AHaberWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AHaberWeb" />
       <module name="WebCollectives" />
@@ -148,19 +129,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AnadoluGazete" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluGazete" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="EdirneHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.EdirneHaber" />
       <module name="WebCollectives" />
@@ -174,8 +142,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GazeteOku" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.GazeteOku" />
+    <configuration name="InternetHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.InternetHaber" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Webrazzi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Webrazzi" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -188,19 +169,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.EdirneHaber" />
-      <item itemvalue="Application.AnadoluGazete" />
-      <item itemvalue="Application.GazeteOku" />
       <item itemvalue="Application.AHaberWeb" />
       <item itemvalue="Application.AnadoluAjansi" />
+      <item itemvalue="Application.Webrazzi" />
+      <item itemvalue="Application.EdirneHaber" />
+      <item itemvalue="Application.InternetHaber" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.InternetHaber" />
+        <item itemvalue="Application.EdirneHaber" />
+        <item itemvalue="Application.Webrazzi" />
         <item itemvalue="Application.AnadoluAjansi" />
         <item itemvalue="Application.AHaberWeb" />
-        <item itemvalue="Application.GazeteOku" />
-        <item itemvalue="Application.AnadoluGazete" />
-        <item itemvalue="Application.EdirneHaber" />
       </list>
     </recent_temporary>
   </component>
@@ -250,14 +231,9 @@
       <workItem from="1599281430009" duration="15584000" />
       <workItem from="1599763306828" duration="3587000" />
       <workItem from="1600093588287" duration="5957000" />
-      <workItem from="1600196704601" duration="3787000" />
-    </task>
-    <task id="LOCAL-00021" summary="MilliyetBlogList">
-      <created>1558523040994</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1558523040994</updated>
+      <workItem from="1600196704601" duration="5465000" />
+      <workItem from="1600284200786" duration="1084000" />
+      <workItem from="1600381297836" duration="17000" />
     </task>
     <task id="LOCAL-00022" summary="LookupFilter">
       <created>1558943281998</created>
@@ -595,7 +571,14 @@
       <option name="project" value="LOCAL" />
       <updated>1594991657396</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Learning model...">
+      <created>1600200942161</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1600200942161</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -655,57 +638,62 @@
       <screen x="50" y="27" width="2510" height="1413" />
     </state>
     <state x="1047" y="311" key="#com.intellij.ide.util.MemberChooser/50.27.2510.1413@50.27.2510.1413" timestamp="1594751667827" />
-    <state width="2510" height="577" key="GridCell.Tab.0.bottom" timestamp="1600199991338">
+    <state x="808" y="281" width="983" height="911" key="CommitChangelistDialog2" timestamp="1600201371157">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="577" key="GridCell.Tab.0.bottom/50.26.2510.1414@50.26.2510.1414" timestamp="1600199991338" />
+    <state x="808" y="281" width="983" height="911" key="CommitChangelistDialog2/50.26.2510.1414@50.26.2510.1414" timestamp="1600201371157" />
+    <state width="2510" height="434" key="GridCell.Tab.0.bottom" timestamp="1600351721429">
+      <screen x="50" y="26" width="2510" height="1414" />
+    </state>
+    <state width="2510" height="434" key="GridCell.Tab.0.bottom/50.26.2510.1414@50.26.2510.1414" timestamp="1600351721429" />
     <state width="2464" height="424" key="GridCell.Tab.0.bottom/50.27.2510.1413@50.27.2510.1413" timestamp="1598278761513" />
     <state width="1822" height="246" key="GridCell.Tab.0.bottom/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161885" />
     <state width="2462" height="246" key="GridCell.Tab.0.bottom/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440210" />
-    <state width="2510" height="577" key="GridCell.Tab.0.center" timestamp="1600199991337">
+    <state width="2510" height="434" key="GridCell.Tab.0.center" timestamp="1600351721429">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="577" key="GridCell.Tab.0.center/50.26.2510.1414@50.26.2510.1414" timestamp="1600199991337" />
+    <state width="2510" height="434" key="GridCell.Tab.0.center/50.26.2510.1414@50.26.2510.1414" timestamp="1600351721429" />
     <state width="2464" height="424" key="GridCell.Tab.0.center/50.27.2510.1413@50.27.2510.1413" timestamp="1598278761513" />
     <state width="1822" height="246" key="GridCell.Tab.0.center/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161883" />
     <state width="2462" height="246" key="GridCell.Tab.0.center/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440210" />
-    <state width="2510" height="577" key="GridCell.Tab.0.left" timestamp="1600199991337">
+    <state width="2510" height="434" key="GridCell.Tab.0.left" timestamp="1600351721429">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="577" key="GridCell.Tab.0.left/50.26.2510.1414@50.26.2510.1414" timestamp="1600199991337" />
+    <state width="2510" height="434" key="GridCell.Tab.0.left/50.26.2510.1414@50.26.2510.1414" timestamp="1600351721429" />
     <state width="2464" height="424" key="GridCell.Tab.0.left/50.27.2510.1413@50.27.2510.1413" timestamp="1598278761512" />
     <state width="1822" height="246" key="GridCell.Tab.0.left/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161883" />
     <state width="2462" height="246" key="GridCell.Tab.0.left/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440209" />
-    <state width="2510" height="577" key="GridCell.Tab.0.right" timestamp="1600199991337">
+    <state width="2510" height="434" key="GridCell.Tab.0.right" timestamp="1600351721429">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="577" key="GridCell.Tab.0.right/50.26.2510.1414@50.26.2510.1414" timestamp="1600199991337" />
+    <state width="2510" height="434" key="GridCell.Tab.0.right/50.26.2510.1414@50.26.2510.1414" timestamp="1600351721429" />
     <state width="2464" height="424" key="GridCell.Tab.0.right/50.27.2510.1413@50.27.2510.1413" timestamp="1598278761513" />
     <state width="1822" height="246" key="GridCell.Tab.0.right/52.27.1868.1053@52.27.1868.1053" timestamp="1592306161884" />
     <state width="2462" height="246" key="GridCell.Tab.0.right/52.27.2508.1413@52.27.2508.1413" timestamp="1592928440210" />
-    <state width="2510" height="493" key="GridCell.Tab.1.bottom" timestamp="1600198330442">
+    <state width="2510" height="493" key="GridCell.Tab.1.bottom" timestamp="1600203788434">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="493" key="GridCell.Tab.1.bottom/50.26.2510.1414@50.26.2510.1414" timestamp="1600198330442" />
-    <state width="2510" height="493" key="GridCell.Tab.1.center" timestamp="1600198330442">
+    <state width="2510" height="493" key="GridCell.Tab.1.bottom/50.26.2510.1414@50.26.2510.1414" timestamp="1600203788434" />
+    <state width="2510" height="493" key="GridCell.Tab.1.center" timestamp="1600203788433">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="493" key="GridCell.Tab.1.center/50.26.2510.1414@50.26.2510.1414" timestamp="1600198330442" />
-    <state width="2510" height="493" key="GridCell.Tab.1.left" timestamp="1600198330442">
+    <state width="2510" height="493" key="GridCell.Tab.1.center/50.26.2510.1414@50.26.2510.1414" timestamp="1600203788433" />
+    <state width="2510" height="493" key="GridCell.Tab.1.left" timestamp="1600203788433">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="493" key="GridCell.Tab.1.left/50.26.2510.1414@50.26.2510.1414" timestamp="1600198330442" />
-    <state width="2510" height="493" key="GridCell.Tab.1.right" timestamp="1600198330442">
+    <state width="2510" height="493" key="GridCell.Tab.1.left/50.26.2510.1414@50.26.2510.1414" timestamp="1600203788433" />
+    <state width="2510" height="493" key="GridCell.Tab.1.right" timestamp="1600203788433">
       <screen x="50" y="26" width="2510" height="1414" />
     </state>
-    <state width="2510" height="493" key="GridCell.Tab.1.right/50.26.2510.1414@50.26.2510.1414" timestamp="1600198330442" />
+    <state width="2510" height="493" key="GridCell.Tab.1.right/50.26.2510.1414@50.26.2510.1414" timestamp="1600203788433" />
     <state x="640" y="223" width="1022" height="737" key="SettingsEditor" timestamp="1592482052880">
       <screen x="52" y="27" width="2508" height="1413" />
     </state>
     <state x="640" y="223" key="SettingsEditor/52.27.2508.1413@52.27.2508.1413" timestamp="1592482052880" />
-    <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1594991659365">
-      <screen x="50" y="27" width="2510" height="1413" />
+    <state x="764" y="378" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1600200947620">
+      <screen x="50" y="26" width="2510" height="1414" />
     </state>
+    <state x="764" y="378" key="Vcs.Push.Dialog.v2/50.26.2510.1414@50.26.2510.1414" timestamp="1600200947620" />
     <state x="764" y="379" width="800" height="535" key="Vcs.Push.Dialog.v2/50.27.2510.1413@50.27.2510.1413" timestamp="1594991659365" />
     <state x="299" y="155" width="1372" height="599" key="new project wizard" timestamp="1591902845086">
       <screen x="52" y="27" width="1868" height="1053" />

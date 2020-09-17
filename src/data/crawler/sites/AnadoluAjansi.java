@@ -5,15 +5,16 @@ import data.crawler.web.*;
 import java.io.Serializable;
 
 public class AnadoluAjansi implements Serializable {
+
     public static WebFlow build() {
 
         String domain = "https://www.aa.com.tr/tr";
-        Integer pageCount = 1;
+        Integer pageCount = 3;
 
         //<a href="#!" class="button-daha text-center">
         //                Devam
         //            </a>
-        WebFunctionCall clickCall = new WebButtonClickCall(5, ".button-daha.text-center").setWaitTime(1500);
+        WebFunctionCall clickCall = new WebButtonClickCall(1, ".button-daha.text-center").setWaitTime(1500);
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(1500);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, clickCall, scrollCall)
                 .setWaitBetweenCalls(2000L)
