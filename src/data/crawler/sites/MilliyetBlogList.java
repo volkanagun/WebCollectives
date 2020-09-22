@@ -13,7 +13,7 @@ public class MilliyetBlogList implements Serializable {
 
         List<WebSuffixGenerator> suffixGenerators = new ArrayList<>();
         suffixGenerators.add(new WebCountGenerator(1,300,"&KategoriNo="));
-        suffixGenerators.add(new WebCountGenerator(1,20,"&Page="));
+        suffixGenerators.add(new WebCountGenerator(1,2,"&Page="));
 
         WebTemplate yazarTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "yazar-links", LookupOptions.EMPTYDOMAIN);
         LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a(.*?)href\\=\"/(.*?)/\\?UyeNo\\=", "\"\\s?(target=\"_blank\"|class=\"flt_left\"?)>");
@@ -69,7 +69,6 @@ public class MilliyetBlogList implements Serializable {
         yazarTemplate.addNext(linkTemplate, LookupOptions.AUTHORLINK);
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(yazarTemplate);
-
         return flow;
     }
 

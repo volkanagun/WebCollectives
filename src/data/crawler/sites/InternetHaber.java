@@ -14,7 +14,7 @@ public class InternetHaber implements Serializable {
     public static WebFlow build(int i) {
 
         int startIndice = 0;
-        int maxSize = 500;
+        int maxSize = 2;
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
@@ -86,7 +86,7 @@ public class InternetHaber implements Serializable {
     }
 
     public static void main(String[] args) {
-        for(int i=0; i< 1; i++) {
+        for(int i=0; i< 10; i++) {
             build(i).execute();
         }
     }

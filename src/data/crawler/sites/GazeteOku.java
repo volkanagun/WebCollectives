@@ -1,21 +1,24 @@
 package data.crawler.sites;
 
-import data.crawler.web.LookupOptions;
-import data.crawler.web.LookupPattern;
-import data.crawler.web.WebFlow;
-import data.crawler.web.WebTemplate;
+import data.crawler.web.*;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class GazeteOku implements Serializable {
 
     public static WebFlow build() {
-
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2020, 1, 1);
+        Date startDate = calendar.getTime();
+        Date endDate = new Date();
         //Main Download
-        WebTemplate mainTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", "http://www.gazeteoku.com");
-        String mainSeed = "http://www.gazeteoku.com/tum-yazarlar.html";
+        WebTemplate mainTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", "http://www.gazeteoku.com").setSleepTime(2000L).setDoDeleteStart(true)
+                .setSuffixGenerator(new WebDateGenerator("dd.MM.yyyy",startDate, endDate));
+        String mainSeed = "http://www.gazeteoku.com/tum-yazarlar.html?site=&date=";
         mainTemplate.addSeed(mainSeed)
                 .setDoDeleteStart(true);
 
@@ -27,7 +30,7 @@ public class GazeteOku implements Serializable {
         //Link Download
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
                 .setNextPageStart(1)
-                .setNextPageSize(3)
+                .setNextPageSize(10).setSleepTime(2000L)
                 .setDoDeleteStart(true);
 
         LookupPattern patternLinkArticle = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div class=\"article-others bordered-top\">", "</div>");
@@ -38,6 +41,7 @@ public class GazeteOku implements Serializable {
 
         //Article Download
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", "http://www.gazeteoku.com")
+                .setSleepTime(2000L)
                 .setType(LookupOptions.ARTICLEDOC);
         LookupPattern nameLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"widget-author\">", "</div>")
                 .setStartMarker("<div")

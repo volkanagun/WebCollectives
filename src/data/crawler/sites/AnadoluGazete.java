@@ -12,7 +12,6 @@ public class AnadoluGazete implements Serializable {
     public static WebFlow build() {
 
         String domain = "http://egazete.anadolu.edu.tr";
-
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"title\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));

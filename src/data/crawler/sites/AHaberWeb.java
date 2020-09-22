@@ -9,7 +9,6 @@ import java.io.Serializable;
  */
 public class AHaberWeb implements Serializable {
 
-
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
