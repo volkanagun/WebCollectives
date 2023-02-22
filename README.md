@@ -50,9 +50,11 @@ In the above examples the following urls are generated and traversed by the temp
 Each template contains a regex tree pattern. The regex tree pattern extracts and labels all the sub-patterns that it contains. The subpatterns are defined as a tree structure and should not contain recursions. 
 
 ```java
-LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<div class="justify-center(.*?)>","</div>")
+LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, 
+                                                                 "<div class=\"justify-center(.*?)>","</div>")
                   .setStartEndMarker("<div","</div>")
-                  .add(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a class="block(.*?)href=\"","\""));
+                  .add(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, 
+                                                            "<a class="block(.*?)href=\"","\""));
 
 template.setMainPattern(linkPattern);
 ```
