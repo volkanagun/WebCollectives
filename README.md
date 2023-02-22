@@ -39,13 +39,40 @@ WebTemplate sets the content directory, seeds and the domain. Seets are the url 
 WebTemplate template = new WebTemplate("resources/blogs/", "blog-links", "mashable.com");
 template.addSeed("https://mashable.com/review");
 template.setNextPageSuffix("?page=");
-template.setNextPageStart(2);
-template.setNextPageSize(5);
+template.setNextPageStart(3);
+template.setNextPageSize(2);
 ```
+
+In the above examples the following urls are generated and traversed by the template
+- https://mashable.com/review?page=3
+- https://mashable.com/review?page=4
+
+Each template contains a regex tree pattern. The regex tree pattern extracts and labels all the sub-patterns that it contains. The subpatterns are defined as a tree structure and should not contain recursions. 
+
+```java
+LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<div class="justify-center(.*?)>","</div>")
+                  .setStartEndMarker("<div","</div>")
+                  .add(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a class="block(.*?)href=\"","\""));
+
+template.setMainPattern(linkPattern);
+```
+In the above code block each pattern states the starting and ending boundaries. In this respect, the pattern given above has the `<div` start marker. The pattern captures the first starting point of the <div class=justify-center block and inside the element it searchers all the `<a class=block` patterns. The text content of this block contains all the links.     
 
 Each template can be linked by addNext method. This method must state the label that holds the links to be followed by the next template.
 
-Each template contains a LookupPattern. Lookup pattern is a hierarchical  
+```java
+template.addNext(articleTemplate, LookupOptions.ARTICLELINK);
+
+```
+In the above code block addNext methods forwards the extracted template content which is labelled by the ARTICLELINK String to the articleTemplate. All the links are downleded and the HTML content is forwareded to the articleTemplate. The lookup pattern of the articleTemplate is used to extract the new content.
+
+In the final stage, a WebFlow object is generated and executed by defining the starting template.
+
+```java
+WebFlow webFlow = new WebFlow(template);
+webFlow.execute();
+```
+
 
 
 
