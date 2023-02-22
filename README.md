@@ -64,7 +64,7 @@ Each template can be linked by addNext method. This method must state the label 
 template.addNext(articleTemplate, LookupOptions.ARTICLELINK);
 
 ```
-In the above code block addNext methods forwards the extracted template content which is labelled by the ARTICLELINK String to the articleTemplate. All the links are downleded and the HTML content is forwareded to the articleTemplate. The lookup pattern of the articleTemplate is used to extract the new content.
+In the above code block addNext methods forwards the extracted template content which is labelled by the ARTICLELINK String to the articleTemplate. All the links are downleded and the HTML content is forwarded to the articleTemplate. The lookup pattern of the articleTemplate is used to extract the new content.
 
 In the final stage, a WebFlow object is generated and executed by defining the starting template.
 
