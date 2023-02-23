@@ -75,7 +75,7 @@ WebFlow webFlow = new WebFlow(template);
 webFlow.execute();
 ```
 
-# Propoerties of WebTemplate
+# Properties of WebTemplate
 
 WebTemplate is responsible from traversing/crawling the links and applying the regex tree to the HTML. In order to control the crawling process thread size, sleeping time in between url requests, radomly selecting the subset of links from the generated urls can be controlled.
 
