@@ -75,6 +75,27 @@ WebFlow webFlow = new WebFlow(template);
 webFlow.execute();
 ```
 
+# Propoerties of WebTemplate
+
+WebTemplate is responsible from traversing/crawling the links and applying the regex tree to the HTML. In order to control the crawling process thread size, sleeping time in between url requests, radomly selecting the subset of links from the generated urls can be controlled.
+
+```java
+//Creates an instance of the WebTemplate: sets the directory, prefix of downloaded content, and the web domain url.
+WebTemplate template = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", "mashable.com");
+//Thread size: the number of threads to download the generated urls.
+template.setThreadSize(3); 
+//Sleep time in milliseconds between each content download.
+template.setSleepTime(1000L);
+//The url request will be made in parallel.
+template.setDoFast(true);
+//It overrides the previously downloaded content. 
+//If it is false, then the downloaded content would not be requested or downloaded again. 
+template.setForceWrite(true);
+//Random count to download from generated urls.
+//In this case 100 web request will be made even though 
+//the number of generated content is larger than this number. 
+template.setDoRandomSeed(100);
+```
 
 
 
