@@ -176,7 +176,8 @@ In this example the links inside the div HTML element of `<div class="row">` are
   ```
  In this example, the values of the LookupResult having ARTICLELINK label extracted by the linkTemplate is used to crawl the links in the main article content. This approach creates an inifinite loop. It only finishes when there aren't any new urls left in the main article content.
  
-  
+ #### Questions and Answers
+ 
 
 
 
