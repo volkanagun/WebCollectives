@@ -15,7 +15,7 @@ The base and core libraries are located in web folder.
   - crawler
     -web
 
-The examples are located at sites folder (i.e. link: [a relative link](src/data/crawler/sites/)). Each example contains a main method and runs separetely. 
+The examples are located at sites folder (i.e. link: [examples](src/data/crawler/sites/)). Each example contains a main method and runs separetely. 
 
 - data
   -crawler
@@ -28,7 +28,7 @@ Other than codes a resources folder is required to run the program. The required
   - htmls
 
 Selenium is not required for all examples. But some examples traverse the web domain through javascript calls. These repeated calls are necessary in 
-navigating through pages and finding the necessary HTML content. Selenium must be compatible to either chrome or firefox depends on the example. It sets  firefox by doFirefox(true) method in some examples otherwise the Chrome compatible version is called. 
+navigating through pages and finding the necessary HTML content. Selenium must be compatible to either chrome or firefox depends on these example. It sets  firefox by doFirefox(true) method in some examples otherwise the Chrome compatible version is called. 
 
 
 # Quick Examples
