@@ -176,6 +176,66 @@ In this example the links inside the div HTML element of `<div class="row">` are
   ```
  In this example, the values of the LookupResult having ARTICLELINK label extracted by the linkTemplate is used to crawl the links in the main article content. This approach creates an inifinite loop. It only finishes when there aren't any new urls left in the main article content.
  
+ # Skip and Value types
+ 
+ Sometimes the defined LookupPattern for extracting the content may not be useful for the output. In such cases, the SKIP type is used in the type definition of the LookupPattern. An example is given as follows.
+ 
+ ```java
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"container\">", "</div>")
+                .setStartEndMarker("<div", "</div>")
+                .setNth(0)
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<div class=\"news-profile\">", "</div>")
+                        .setStartEndMarker("<div","/div")
+                        .setNth(0)
+                        .setRemoveTags(true))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<span class=\"news-date\">", "</span>")
+                        .setNth(0)
+                        .setRemoveTags(true))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
+                        .setNth(0)
+                        .setRemoveTags(true))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"news-content(.*?)>", "</div>")
+                        .setStartEndMarker("<div", "</div>").setNth(0)
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"news-tags\">", "</div>").setNth(0)
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "NEWS")
+                                        .setNth(0)
+                                        .setRemoveTags(true)));
+ ```
+ 
+ The output of the above definition is given in XML.
+ 
+ ```xml
+<ROOT LABEL="ARTICLE-DOC">
+<RESULT TYPE="ARTICLE" LABEL="CONTAINER">
+<RESULT TYPE="TEXT" LABEL="AUTHOR">
+....
+</RESULT>
+<RESULT TYPE="TEXT" LABEL="DATE">
+....
+</RESULT>
+<RESULT TYPE="TEXT" LABEL="ARTICLETITLE">
+....
+</RESULT>
+<RESULT TYPE="ARTICLE" LABEL="ARTICLETEXT">
+<RESULT TYPE="ARTICLE" LABEL="ARTICLEPARAGRAPH">
+....
+</RESULT>
+<RESULT TYPE="ARTICLE" LABEL="ARTICLEPARAGRAPH">
+....
+</RESULT>
+</RESULT>
+
+<RESULT TYPE="TEXT" LABEL="GENRE">
+NEWS
+</RESULT>
+</RESULT>
+</ROOT>
+
+```
+
+The SKIP LookupPatterns are not placed in the output XML file. On the other hand, the GENRE LookupPattern value is staticaly defined in the output.  
+ 
  # Questions and Answers
  
  ####
