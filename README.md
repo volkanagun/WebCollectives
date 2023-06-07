@@ -1,11 +1,11 @@
 # WebCollectives
 
-Web collectives is a web content extraction and crawler libray focused on simplicity and ease of use. The majority of the code is compatible to Java 11 syntax. Only, the JSONLookup is written in Scala.
+WebCollectives is a web content extraction and crawler libray focused on simplicity and ease of use. The majority of the code is compatible to Java 11 syntax. Only, the JSONLookup is written in Scala.
 
 The crawler is integrated into the content extraction process. The user specify the rules to extract the links and later the rule templates are used to
 extract structured XML document from the HTML content without using DOM. Each domain has its own set of rules. These rules can be extracted
-through statistical inference without any supervision. In terms of simlicity, the tool uses file system for storing the contents, and 
-it can not be compared with large scale models such as Nutch, Lucene or Solr. The WebCollectives library can be integrated as a data gathering process for different tools. It depends on Scala 2.11, Apache FluentHC, HTTPClient, Lucene and JSON4s libraries.   
+through HTML analysis. In terms of simlicity, the tool uses file system for storing the contents, and 
+it can not be compared with large scale models such as Nutch, Lucene or Solr. In general, the WebCollectives library is a data gathering approach for different tools. It depends on Scala 2.11, Apache FluentHC, HTTPClient, Lucene and JSON4s libraries.   
 
 # Directory Structure
 
