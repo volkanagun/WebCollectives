@@ -122,7 +122,7 @@ exampleTemplate.setSuffixGenerator(multiGenerator);
 
 # Crawling the links of the target content 
 
-Generally a Web page  contains a useful relevant content to be extracted by LookupPattern is the final web page of the crawling process. For example, a link pattern is first extracts the links, and the links are followed as given in the following example.
+Generally a Web page contains a relevant content. This content is extracted by LookupPattern and with the extraction the crawling process finishes. For example, a link pattern is first extracts the links, and the links are followed as given in the following example.
 
 ```java
 LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\"(.*?)>", "</div>")
@@ -134,7 +134,8 @@ WebTemplate linkTemplate = new WebTemplate(LookupOptions.HURRIYETDIRECTORY, "art
                 //If a links ends with a ; reject this link.
                 .setLinkPattern("(.*)","(.*?);")
                 .setDoFast(false)
-                .setDoDeleteStart(true)
+                //Do not delete the previously downloaded results
+                .setDoDeleteStart(false)
                 .setSleepTime(1000L)
                 .setDoRandomSeed(randomCount)
                 .setThreadSize(1)
@@ -168,12 +169,14 @@ In this example the links inside the div marker of <div class="row"> html elemen
   
 ```  
 
-  Sometimes the main content can have also links to be extracted and used for crawling. In such cases the following definition must be used.
+  Sometimes the main content can have also links to be extracted and used for crawling. In such cases, the following definition must be used.
   
   ```java
    articleTemplate.addExtraTemplate(linkTemplate, LookupOptions.ARTICLELINK);
   ```
- In this example, the values of the LookupResult having ARTICLELINK label extracted by the linkTemplate is used to crawl the links in the main article content.   
+ In this example, the values of the LookupResult having ARTICLELINK label extracted by the linkTemplate is used to crawl the links in the main article content. This approach creates and inifinite loop. It only finishes when there aren't any urls left in the main article content.
+ 
+  
 
 
 
