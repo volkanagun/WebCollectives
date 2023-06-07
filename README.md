@@ -176,7 +176,16 @@ In this example the links inside the div HTML element of `<div class="row">` are
   ```
  In this example, the values of the LookupResult having ARTICLELINK label extracted by the linkTemplate is used to crawl the links in the main article content. This approach creates an inifinite loop. It only finishes when there aren't any new urls left in the main article content.
  
- #### Questions and Answers
+ # Questions and Answers
+ 
+ ####
+ 1. The lookup pattern do not find any links in the given url seeds!
+
+  One of the reason why the defined patterns do not match anything is that the content of the Web page displayed in the browser is different from the downloaded content in the program. Unfortunately this happens in some of the Web sites, because dynamic content generation may be applied in the Web page design.
+ 
+ 2. The lookup pattern do not retrieve correct content defined by start and end regular expressions!
+
+To be able to retrieve the correct boundary, lookup pattern uses a stack based parsing approach. When there are multiple matching HTML tags such as <div elements, they must be defined by `.setStartEndMarker("<div","/div")` so that the parser knows which tags are repeating.
  
 
 
