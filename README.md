@@ -1,6 +1,6 @@
 # WebCollectives
 
-Web collectives is a web content extraction and crawler libray focused on simplicity and ease of use. The majoirty of the code is written in Java 11 syntax, the inference package contains Scala codes.
+Web collectives is a web content extraction and crawler libray focused on simplicity and ease of use. The majority of the code is compatible to Java 11 syntax. Only, the JSONLookup is written in Scala.
 
 The crawler is integrated into the content extraction process. The user specify the rules to extract the links and later the rule templates are used to
 extract structured XML document from the HTML content without using DOM. Each domain has its own set of rules. These rules can be extracted
@@ -43,7 +43,7 @@ template.setNextPageStart(3);
 template.setNextPageSize(2);
 ```
 
-In the above examples the following urls are generated and traversed by the template
+In the above examples, the following urls are generated and traversed by the template
 - https://mashable.com/review?page=3
 - https://mashable.com/review?page=4
 
@@ -58,7 +58,7 @@ LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.C
 
 template.setMainPattern(linkPattern);
 ```
-In the above code block each pattern states the starting and ending boundaries. In this respect, the pattern given above has the `<div` start marker. The pattern captures the first starting point of the <div class=justify-center block and inside the element it searchers all the `<a class=block` patterns. The text content of this block contains all the links.     
+In the above code block, each pattern states the starting and ending boundaries. In this respect, the pattern given above has the `<div` start marker. The pattern captures the first starting point of the <div class=justify-center block and inside the element it searchers all the `<a class=block` patterns. The text content of this block contains all the links.     
 
 Each template can be linked by addNext method. This method must state the label that holds the links to be followed by the next template.
 
