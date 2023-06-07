@@ -143,7 +143,7 @@ WebTemplate linkTemplate = new WebTemplate(LookupOptions.HURRIYETDIRECTORY, "art
                 .setMainPattern(linkPattern);
 
 ```
-In this example the links inside the div marker of <div class="row"> html element are extracted. All the links except the one ends with semi colon (;) are accepted and used to be followed. To follow these links the article templete is defined and added to the next element of the linkTemplate.
+In this example the links inside the div marker of `<div class="row">` html element are extracted. All the links except the one ends with semi colon (;) are accepted and used to be followed. To follow these links the article templete is defined and added to the next element of the linkTemplate.
   
 ```java
   WebTemplate articleTemplate = new WebTemplate(LookupOptions.HURRIYETDIRECTORY, "article-text", domain)
