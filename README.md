@@ -147,12 +147,17 @@ In this example the links inside the div marker of <div class="row"> html elemen
 ```java
   WebTemplate articleTemplate = new WebTemplate(LookupOptions.HURRIYETDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
+                //Extract and save this content
                 .setMainContent(true)
-                .setLookComplete(true).setDoDeleteStart(false)
+                //All the defined LookupPatterns must exists in the extracted text
+                .setLookComplete(true)
+                .setDoDeleteStart(false)
                 .setThreadSize(1)
                 .setDoFast(false)
+                //wait between each HTTP call
                 .setSleepTime(1000L)
                 .setDomain(domain)
+                //Download random urls from all the set
                 .setDoRandomSeed(randomCount)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
@@ -162,8 +167,13 @@ In this example the links inside the div marker of <div class="row"> html elemen
   linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
   
 ```  
-  
 
+  Sometimes the main content can have also links to be extracted and used for crawling. In such cases the following definition must be used.
+  
+  ```java
+   articleTemplate.addExtraTemplate(linkTemplate, LookupOptions.ARTICLELINK);
+  ```
+ In this example, the values of the LookupResult having ARTICLELINK label extracted by the linkTemplate is used to crawl the links in the main article content.   
 
 
 
