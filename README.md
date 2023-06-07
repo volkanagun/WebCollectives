@@ -15,7 +15,7 @@ The base and core libraries are located in web folder.
   - crawler
     -web
 
-The examples are located at sites folder. Each example contains a main method and runs separetely. 
+The examples are located at sites folder (i.e. link: [a relative link](src/data/crawler/sites/)). Each example contains a main method and runs separetely. 
 
 - data
   -crawler
