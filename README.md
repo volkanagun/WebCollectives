@@ -234,7 +234,7 @@ NEWS
 
 ```
 
-The SKIP LookupPatterns are not placed in the output XML file. On the other hand, the GENRE LookupPattern value is staticaly defined in the output.  
+The SKIP LookupPatterns are not placed in the output XML file. On the other hand, a static value is defined in the output for the GENRE LookupPattern.  
  
  # Questions and Answers
  
