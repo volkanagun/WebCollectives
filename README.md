@@ -120,6 +120,50 @@ exampleTemplate.setSuffixGenerator(multiGenerator);
 
 ```
 
+# Crawling the links of the target content 
+
+Generally a Web page  contains a useful relevant content to be extracted by LookupPattern is the final web page of the crawling process. For example, a link pattern is first extracts the links, and the links are followed as given in the following example.
+
+```java
+LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\"(.*?)>", "</div>")
+                .setStartEndMarker("<div", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
+
+WebTemplate linkTemplate = new WebTemplate(LookupOptions.HURRIYETDIRECTORY, "article-links", domain)
+                .addSeed("economy", "http://www.hurriyet.com.tr/ekonomi/")
+                //If a links ends with a ; reject this link.
+                .setLinkPattern("(.*)","(.*?);")
+                .setDoFast(false)
+                .setDoDeleteStart(true)
+                .setSleepTime(1000L)
+                .setDoRandomSeed(randomCount)
+                .setThreadSize(1)
+                .setDomain(domain)
+                .setMainPattern(linkPattern);
+
+```
+In this example the links inside the div marker of <div class="row"> html element are extracted. All the links except the one ends with semi colon (;) are accepted and used to be followed. To follow these links the article templete is defined and added to the next element of the linkTemplate.
+  
+```java
+  WebTemplate articleTemplate = new WebTemplate(LookupOptions.HURRIYETDIRECTORY, "article-text", domain)
+                .setType(LookupOptions.ARTICLEDOC)
+                .setMainContent(true)
+                .setLookComplete(true).setDoDeleteStart(false)
+                .setThreadSize(1)
+                .setDoFast(false)
+                .setSleepTime(1000L)
+                .setDomain(domain)
+                .setDoRandomSeed(randomCount)
+                .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
+                .setMainPattern(articleLookup)
+                .setForceWrite(true);
+  
+  //apply the article template to extract the content from the downloaded and extracted links of the linkTemplate
+  linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
+  
+```  
+  
+
 
 
 
