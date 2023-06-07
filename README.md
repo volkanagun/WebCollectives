@@ -181,11 +181,17 @@ In this example the links inside the div HTML element of `<div class="row">` are
  ####
  1. The lookup pattern do not find any links in the given url seeds!
 
-  One of the reason why the defined patterns do not match anything is that the content of the Web page displayed in the browser is different from the downloaded content in the program. Unfortunately this happens in some of the Web sites, because dynamic content generation may be applied in the Web page design.
+  One of the reason why the defined patterns do not match anything is that the content of the Web page displayed in the browser is different from the downloaded content in the program. Unfortunately this happens in some of the Web sites, because dynamic content generation may change the HTML elements according to the browser.
  
- 2. The lookup pattern do not retrieve correct content defined by start and end regular expressions!
+ 2. The LookupPattern do not retrieve correct content defined by start and end regular expressions!
 
 To be able to retrieve the correct boundary, lookup pattern uses a stack based parsing approach. When there are multiple matching HTML tags such as <div elements, they must be defined by `.setStartEndMarker("<div","/div")` so that the parser knows which tags are repeating.
+
+ 3. The program downloads links but it is not saving them to disk.
+
+The LookupPattern may not extract all the defined content. This may be because of the design changes in pages. In order to save the results partially to disk `setLookComplete` must be set false. In cases where all the content is necessary for saving the content then `setLookComplete` must be set to true.
+
+
  
 
 
