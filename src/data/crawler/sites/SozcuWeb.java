@@ -5,6 +5,7 @@ import data.crawler.web.LookupPattern;
 import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 
+
 import java.io.Serializable;
 
 /**

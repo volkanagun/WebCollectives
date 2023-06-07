@@ -18,13 +18,36 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
         this.minusHeight = minusHeight;
     }
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public Integer getMinusHeight() {
+        return minusHeight;
+    }
+
+    public WebFunctionScrollHeight setMinusHeight(Integer minusHeight) {
+        this.minusHeight = minusHeight;
+        return this;
+    }
+
     @Override
     public String returnHTML(String url) {
         try {
 
             log();
-            chromeDriver.get(url);
-            chromeDriver.wait(waitTime);
+            if(chromeDriver !=null) {
+                chromeDriver.get(url);
+                chromeDriver.wait(waitTime);
+            }
+            else{
+                firefoxDriver.get(url);
+                firefoxDriver.wait(waitTime);
+            }
         }
         catch(InterruptedException ex){}
 

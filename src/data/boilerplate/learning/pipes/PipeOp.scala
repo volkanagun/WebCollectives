@@ -1,11 +1,11 @@
 package data.boilerplate.learning.pipes
 
-import com.sun.xml.internal.bind.api.impl.NameConverter.Standard
-import data.boilerplate.learning.features.{CSSAttributeOp, HTMLPatternOp, ParentTextDensityOp, TagNameOp, TagTextDensityOp, TextDensityOp}
+
+import data.boilerplate.learning.features._
 import data.boilerplate.structure.{HTMLNode, HTMLParser, HTMLPath}
-import org.apache.lucene.analysis.standard.StandardAnalyzer
-import org.apache.lucene.analysis.tokenattributes.CharTermAttribute
-import org.jsoup.nodes.{Attribute, Comment, DataNode, Document, Element, TextNode}
+import org.jsoup.nodes.{Comment, DataNode, Element, Node}
+
+import scala.jdk.CollectionConverters.ListHasAsScala
 
 /**
  * @author Volkan Agun
@@ -35,6 +35,7 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     subpipes ++= pipeOps
     this
   }
+
 
   def execute(leaf: HTMLNode): IntermediateResult = {
     val iirs = subpipes.filter(op => op.canApply(leaf)).map(op => op.execute(leaf))
@@ -127,9 +128,20 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     this
   }
 
+  def depthFirst(node:Node, nameRegex:String): Double = {
+    if(node.childNodes().isEmpty) 0d
+    else{
+      val count = node.childNodes().asScala.filter(subnode=> subnode.nodeName().matches(name)).length
+      val others = node.childNodes().asScala.filter(subnode=> !subnode.nodeName().matches(name))
+        .map(subnode=> depthFirst(subnode, name)).sum
+      count + others
+    }
+  }
+
   //operations
   def sum(irs: Array[IntermediateResult]): IntermediateResult = {
     var gmap = Map[String, Double]()
+    val idNode = irs.headOption.getOrElse(IntermediateResult(new HTMLNode(0, null))).node
     irs.foreach(ir => {
       ir.map.foreach { case (nn, score) => {
         gmap = gmap.updated(nn, gmap.getOrElse(nn, 0.0) + score)
@@ -137,11 +149,12 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
       }
     })
 
-    IntermediateResult(gmap)
+    IntermediateResult(idNode, gmap)
   }
 
   def normalize(irs: Array[IntermediateResult]): IntermediateResult = {
     var gmap = Map[String, Double]()
+    val id = irs.headOption.getOrElse(IntermediateResult(new HTMLNode(0, null))).node
     irs.foreach(ir => {
       ir.map.foreach { case (nn, score) => {
         gmap = gmap.updated(nn, score)
@@ -149,18 +162,18 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
       }
     })
 
-    IntermediateResult(gmap)
+    IntermediateResult(id, gmap)
   }
 
   def extractHTMLorData(htmlNode: HTMLNode): String = {
-    if (isElement(htmlNode)) htmlNode.node.asInstanceOf[Element].html()
+    if (isElement(htmlNode)) htmlNode.getFullHTML()
     else if (isData(htmlNode)) htmlNode.node.asInstanceOf[DataNode].getWholeData
     else if (isComment(htmlNode)) htmlNode.node.asInstanceOf[Comment].getData
     else ""
   }
 
   def isElement(htmlNode: HTMLNode): Boolean = {
-    htmlNode.node.isInstanceOf[Element]
+    htmlNode.isElement()
   }
 
   def isComment(htmlNode: HTMLNode): Boolean = {
@@ -223,12 +236,17 @@ class PipeResult(val vocabSize: Int = 1000, val labelSize:Int=100) extends Seria
 
 }
 
-case class IntermediateResult(var map: Map[String, Double] = Map()) extends PipeResult() {
+case class IntermediateResult(var node:HTMLNode, var map: Map[String, Double] = Map()) extends PipeResult() {
 
+  def id = node.htmlID()
+
+  def get(name:String):Double={
+    map.getOrElse(name, 0d)
+  }
 
   def divide(by: Double): IntermediateResult = {
     val nmap = map.map { case (item, score) => (item, score / by) }
-    IntermediateResult(nmap)
+    IntermediateResult(node, nmap)
   }
 
   def trimPrefix(name: String): String = {
@@ -240,7 +258,7 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
 
   def addPefix(name: String): IntermediateResult = {
     val nmap = map.map { case (item, score) => (name + "/" + item, score) }
-    IntermediateResult(nmap)
+    IntermediateResult(node, nmap)
   }
 
   def add(ii: IntermediateResult): IntermediateResult = {
@@ -250,7 +268,7 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
       (item, fscore)
     }).toMap
 
-    IntermediateResult(nmap)
+    IntermediateResult(node, nmap)
   }
 
   def add(ii: IntermediateResult, prefix: String): IntermediateResult = {
@@ -266,13 +284,13 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
 
 
   def add(iis: Array[IntermediateResult]): IntermediateResult = {
-    val intermediateResult = IntermediateResult()
+    val intermediateResult = IntermediateResult(node)
     iis.foreach(ii => intermediateResult.add(ii))
     intermediateResult
   }
 
   def add(iis: Array[IntermediateResult], prefix: String): IntermediateResult = {
-    val intermediateResult = IntermediateResult()
+    val intermediateResult = IntermediateResult(node)
     iis.foreach(ii => intermediateResult.add(ii, prefix))
     intermediateResult
   }
@@ -285,7 +303,7 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
     val keys = map.keySet.filter(item => item.startsWith(prefix))
     val nmap = map.filter { case (item, score) => !keys.contains(item) } ++ map.filter { case (item, score) => keys.contains(item) }
       .map { case (item, score) => (trimPrefix(item), score / keys.size) }
-    IntermediateResult(nmap)
+    IntermediateResult(node, nmap)
   }
 
   def sumOp(iis: Array[IntermediateResult], prefix: String, name: String): IntermediateResult = {
@@ -300,7 +318,7 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
     }).sum
 
     val nmap = map.filter { case (item, score) => !keys.contains(item) } + (newName -> sum)
-    IntermediateResult(nmap)
+    IntermediateResult(node, nmap)
   }
 
   def sumAvgOp(prefix: String, newName: String): IntermediateResult = {
@@ -310,7 +328,7 @@ case class IntermediateResult(var map: Map[String, Double] = Map()) extends Pipe
     }).sum
 
     val nmap = map.filter { case (item, _) => !keys.contains(item) } + (newName -> sum / keys.size)
-    IntermediateResult(nmap)
+    IntermediateResult(node, nmap)
   }
 
   override def toString: String = {
@@ -359,7 +377,7 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
       case _ => (pipe.name, 0.0)
     }).toMap
 
-    IntermediateResult(pairs)
+    IntermediateResult(leaf, pairs)
   }
 
 
@@ -405,8 +423,7 @@ case class ExistsOp(pipes: Array[PipeOp], opname: String = "exist-op") extends E
       case _ => None
     }).flatten.toMap
 
-    IntermediateResult(mapping)
-
+    IntermediateResult(leaf, mapping)
   }
 
 }
@@ -424,14 +441,13 @@ case class AvgOp(pipes: Array[PipeOp], opname: String) extends ExecutableOp(pipe
       case _ => None
     }).flatten
 
-    val fiir = IntermediateResult()
+    val fiir = IntermediateResult(leaf)
     fiir.avgOp(iirs, name)
   }
 
 }
 
 case class SumOp(pipes: Array[PipeOp], opname: String = "sum-op") extends ExecutableOp(pipes, opname) {
-
 
   override def canApply(htmlNode: HTMLNode): Boolean = true
 
@@ -442,7 +458,7 @@ case class SumOp(pipes: Array[PipeOp], opname: String = "sum-op") extends Execut
       case _ => None
     }).flatten
 
-    IntermediateResult().sumOp(pairs, name, toString)
+    IntermediateResult(leaf).sumOp(pairs, name, toString)
   }
 
 
@@ -456,18 +472,25 @@ case class SumOp(pipes: Array[PipeOp], opname: String = "sum-op") extends Execut
 
 object OpTester {
 
-  def model1():PipeOp={
+  def model1():PipeOp = {
     PipeOp().op(CSSAttributeOp()).op(TagNameOp())
       .sum(HTMLPatternOp("<p(\\s|>)"), HTMLPatternOp("<div(\\s|>)"))
       .op(TextDensityOp(), ParentTextDensityOp(), TagTextDensityOp())
       .op(HTMLPatternOp("<p(\\s|>)"))
   }
 
+  def model2():PipeOp = {
+    PipeOp().op(TagNameOp())
+      .op(HTMLPatternOp("<p(\\s|>)"))
+      .op(SiblingSameTag())
+  }
+
   def main(args: Array[String]): Unit = {
 
     val node = HTMLParser.parseHTML("resources/demo/html.html")
+    val paths = node.visit()
 
-    println(model1().execute(node.visit()).mkString("\n\n--------------------------------------\n"))
+    println(model2().execute(paths).mkString("\n\n--------------------------------------\n"))
 
   }
 }

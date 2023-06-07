@@ -59,7 +59,7 @@ class WebInstance(val htmlFile:String, val xmlFile:String, var xmlLabels:Array[S
       matching()
     }
     catch {
-      case _ => {
+      case e:Throwable => {
         valid = false
       }
     }

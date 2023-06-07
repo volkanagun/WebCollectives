@@ -1,6 +1,6 @@
 package data.boilerplate.learning.features
 
-import data.boilerplate.learning.pipes.{IntermediateResult, PatternOp}
+import data.boilerplate.learning.pipes.{IntermediateResult, PatternOp, PipeOp}
 import data.boilerplate.structure.{HTMLNode, HTMLPath}
 
 case class SiblingSameTag() extends PatternOp(Array(), "same-tag") {

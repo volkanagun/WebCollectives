@@ -1,6 +1,6 @@
 package data.boilerplate.learning.features
 
-import data.boilerplate.learning.pipes.{IntermediateResult, PatternOp}
+import data.boilerplate.learning.pipes.{IntermediateResult, PatternOp, PipeOp}
 import data.boilerplate.structure.{HTMLNode, HTMLPath}
 
 case class PreviousHasTagOp(tagNameRegex:String) extends PatternOp(Array(), "previous-has-"+tagNameRegex){

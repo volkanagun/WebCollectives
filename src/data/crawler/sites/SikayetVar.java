@@ -9,6 +9,7 @@ import java.util.concurrent.Executors;
 public class SikayetVar implements Serializable {
 
     public static WebFlow build(){
+
         String folder = "resources/sikayetvar/";
         String domain = "https://www.sikayetvar.com/";
         String seed = "https://www.sikayetvar.com/sikayetler";
@@ -53,6 +54,7 @@ public class SikayetVar implements Serializable {
 
         WebFlow mainFlow = new WebFlow(linkTemplate);
         return mainFlow;
+
     }
 
     public static void main(String[] args) {

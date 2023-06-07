@@ -3,6 +3,7 @@ package data.boilerplate.learning.graph
 import data.boilerplate.learning.pipes.{IntermediateResult, PipeOp}
 import data.boilerplate.structure.HTMLPath
 
+import scala.collection.parallel.CollectionConverters.ArrayIsParallelizable
 
 case class Processes(val label: String, val model: PipeOp) {
 

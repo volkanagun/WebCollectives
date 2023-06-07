@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebLuceneSink extends WebSink {
-    private Path indexpath;
+    private final Path indexpath;
     private IndexWriter indexWriter;
     private IndexSearcher searcher;
 

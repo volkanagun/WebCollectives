@@ -332,8 +332,8 @@ public class TextPattern {
             String beforeText = text.substring(0, startIndex[0]);
             String afterText = text.substring(endIndex[0] + endIndex[1]);
             String newText = beforeText + "\n"
-                    + startBuffer.toString() + innerText + "\n"
-                    + endBuffer.toString() + "\n" + afterText;
+                    + startBuffer + innerText + "\n"
+                    + endBuffer + "\n" + afterText;
             return newText;
         } else {
             return text;
@@ -488,6 +488,44 @@ public class TextPattern {
 
         return patternList;
 
+    }
+
+    public static int countPattern(String pattern, String text){
+        int si=0;
+        int fi = 0;
+        int count = 0;
+        while(si > 0){
+            si = text.indexOf(pattern, fi);
+            fi = si + pattern.length();
+            count++;
+        }
+
+        return count;
+    }
+
+    public static int stateIndex(int maxCount, String pattern, String text){
+        int si=0;
+        int fi = 0;
+        int count= 0;
+        while(si > 0 && count < maxCount){
+            si = text.indexOf(pattern, fi);
+            fi = si + pattern.length();
+            count++;
+        }
+
+        return fi;
+    }
+
+    public static void containPatterns(String regex,String startRegex, String endRegex, int groupID, String text, List<String> patternList) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            int mstart = matcher.start();
+            int mend = matcher.end();
+            String rest = text.substring(mend);
+            String group = matcher.group(groupID);
+            patternList.add(clearExtra(group).trim());
+        }
     }
 
     public static void obtainPatterns(String regex, int groupID, boolean clearTags, String text, List<String> patternList) {
@@ -664,9 +702,7 @@ public class TextPattern {
     }
 
     public static void obtainPatterns(String start, String end, String startMarker, String endMarker, String text, List<String> patternList) {
-        if (startMarker.startsWith("<div")) {
-            int debug = 0;
-        }
+
         int[] theIndex = indexOfStartEnd(0, start, end, startMarker, endMarker, text);
         int startIndex = theIndex[0];
         int endIndex = theIndex[1];
@@ -804,8 +840,8 @@ public class TextPattern {
     public static class ProduceThread implements Callable<Set<String>> {
 
         private Set<String> results;
-        private String[] text;
-        private int limit;
+        private final String[] text;
+        private final int limit;
 
         public ProduceThread(String[] text, int limit) {
 

@@ -12,7 +12,7 @@ case class PatternCharAvgOp(regex: String) extends PatternOp(Array(), s"pattern-
     val element = leaf.node.asInstanceOf[Element]
     val average = rpatternAvgCharLength(regex, element.html())
     val map = Map(name -> average)
-    IntermediateResult(map)
+    IntermediateResult(leaf, map)
   }
 
 }

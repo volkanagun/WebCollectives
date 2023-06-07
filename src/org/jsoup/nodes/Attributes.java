@@ -130,7 +130,7 @@ public class Attributes implements Iterable<Attribute>, Cloneable, Serializable 
 
     public Attributes put(String key, boolean value) {
         if (value) {
-            this.putIgnoreCase(key, (String)null);
+            this.putIgnoreCase(key, null);
         } else {
             this.remove(key);
         }
@@ -274,7 +274,7 @@ public class Attributes implements Iterable<Attribute>, Cloneable, Serializable 
             if (this.size != that.size) {
                 return false;
             } else {
-                return !Arrays.equals(this.keys, that.keys) ? false : Arrays.equals(this.vals, that.vals);
+                return Arrays.equals(this.keys, that.keys) && Arrays.equals(this.vals, that.vals);
             }
         } else {
             return false;
@@ -332,7 +332,7 @@ public class Attributes implements Iterable<Attribute>, Cloneable, Serializable 
         }
 
         private class DatasetIterator implements Iterator<Entry<String, String>> {
-            private Iterator<Attribute> attrIter;
+            private final Iterator<Attribute> attrIter;
             private Attribute attr;
 
             private DatasetIterator() {
@@ -342,7 +342,7 @@ public class Attributes implements Iterable<Attribute>, Cloneable, Serializable 
             public boolean hasNext() {
                 while(true) {
                     if (this.attrIter.hasNext()) {
-                        this.attr = (Attribute)this.attrIter.next();
+                        this.attr = this.attrIter.next();
                         if (!this.attr.isDataAttribute()) {
                             continue;
                         }

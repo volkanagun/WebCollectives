@@ -61,10 +61,18 @@ public class WebFlow implements Serializable, Callable<Boolean> {
         return true;
     }
 
-    public void doDeleteStart(){
+
+
+    public void doDeleteStart(int maxDepth){
+
         List<String> deleteFilenamePatterns = new ArrayList<>();
         WebTemplate crrTemplate = mainTemplate;
-        while(crrTemplate!=null){
+        int depth = 0;
+
+        while(crrTemplate!=null && depth < maxDepth){
+
+            depth++;
+
             if(crrTemplate.getDoDeleteStart()){
                 deleteDocuments(crrTemplate);
             }
@@ -77,7 +85,7 @@ public class WebFlow implements Serializable, Callable<Boolean> {
 
     }
 
-    private void deleteDocuments(WebTemplate webTemplate){
+    public void deleteDocuments(WebTemplate webTemplate){
         String pattern = webTemplate.getName();
         String folder = webTemplate.getFolder();
         File folderFile =  new File(folder);
@@ -85,8 +93,7 @@ public class WebFlow implements Serializable, Callable<Boolean> {
             File[] deleteFiles = folderFile.listFiles(new FilenameFilter() {
                 @Override
                 public boolean accept(File dir, String name) {
-                    if (name.contains(pattern)) return true;
-                    else return false;
+                    return name.contains(pattern);
                 }
             });
 
@@ -95,10 +102,9 @@ public class WebFlow implements Serializable, Callable<Boolean> {
     }
 
     public WebDocument execute() {
-        //Download template
-        //Extract patterns
-        //Pass seedlist to next template as urls if it is a url
-        doDeleteStart();
+
+
+        //doDeleteStart(2);
         WebDocument mainDocument = mainTemplate.execute();
 
         return mainDocument;
@@ -115,10 +121,21 @@ public class WebFlow implements Serializable, Callable<Boolean> {
         });
     }
 
+    public static void waiting(ExecutorService service){
+        while(!service.isTerminated() && !service.isShutdown()){
+            try {
+                Thread.sleep(10000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void batchSubmit(ExecutorService service, List<WebFlow> webFlows) {
         try {
             service.invokeAll(webFlows);
             service.shutdown();
+            waiting(service);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

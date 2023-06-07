@@ -12,16 +12,17 @@ public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.cnnturk.com";
-        int pageCount = 5;
+        int pageCount = 1;
 
         WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
-                .setWaitTime(1000);
+                .setWaitTime(500);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2, 85)
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 85)
                 .setWaitTime(200);
 
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/)
-                .setWaitBetweenCalls(2000L)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall)
+                .setWaitBetweenCalls(1500L)
+                .setDoFirefox(true)
                 .initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class(.*?)>", "</div>")
@@ -45,7 +46,7 @@ public class CNNTurkWeb implements Serializable {
                 .addSeed("realestate", "https://www.cnnturk.com/emlak")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setSleepTime(500L)
+                .setSleepTime(1500L)
                 .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
                 .setDomain(domain)
@@ -70,10 +71,11 @@ public class CNNTurkWeb implements Serializable {
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));
 
+
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(false)
-                .setThreadSize(1)
+                .setThreadSize(1).setSleepTime(1000L)
                 .setDoFast(true)
                 .setDomain(domain)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
@@ -86,6 +88,7 @@ public class CNNTurkWeb implements Serializable {
     }
 
     public static void main(String[] args) {
+
         build().execute();
     }
 }

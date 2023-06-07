@@ -14,7 +14,7 @@ case class TextDensityOp() extends PatternOp(Array(), s"text-density-op") {
     val text = element.text()
     val density = (text.length.toDouble + 1E-12) / (html.length + 1E-12)
     val map = Map(name -> density)
-    IntermediateResult(map)
+    IntermediateResult(leaf, map)
   }
 
 }

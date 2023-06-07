@@ -4,9 +4,8 @@ import data.crawler.web.LookupOptions;
 import data.crawler.web.LookupPattern;
 import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
-import scala.Serializable;
 
-import java.awt.image.LookupOp;
+import java.io.Serializable;
 
 /**
  * @author Volkan Agun
@@ -38,11 +37,8 @@ public class EdirneHaber implements Serializable {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(true)
-                .setNextPageSize(10)
-                .setNextPageStart(1)
-                .setNextPageJump(1)
                 .setNextPageSuffix("")
-                .setThreadSize(1).setNextPageSuffixAddition(".html")
+                .setThreadSize(1)
                 .setDomain(domain).setDomainSame(true)
                 .setMainPattern(linkPattern);
 
@@ -74,6 +70,7 @@ public class EdirneHaber implements Serializable {
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
         return flow;
+
     }
 
     public static void main(String[] args) {

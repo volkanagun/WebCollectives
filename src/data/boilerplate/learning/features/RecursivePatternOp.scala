@@ -17,7 +17,7 @@ case class RecursivePatternOp(regex: String, subs: Array[PipeOp]) extends Patter
     val html = leaf.node.asInstanceOf[Element].html()
     val matches = rpatterns(regex, html)
     val irss = matches.map(matchString => {
-      val element = new HTMLNode(new Document(leaf.node.baseUri()).html(matchString))
+      val element = new HTMLNode(leaf.htmlID(), new Document(leaf.node.baseUri()).html(matchString))
       val counts = subs.map(subpipe => {
         subpipe match {
           case e: PatternOp => Some(e.execute(element))

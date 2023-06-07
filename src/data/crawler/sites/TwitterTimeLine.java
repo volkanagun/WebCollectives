@@ -1,26 +1,25 @@
 package data.crawler.sites;
 
-import scala.collection.JavaConversions;
-import scala.collection.Seq;
 import twitter4j.*;
 import twitter4j.auth.AccessToken;
 import twitter4j.conf.Configuration;
 import twitter4j.conf.ConfigurationBuilder;
 
 import java.io.*;
-import java.util.*;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * Created by wolf on 05.07.2015.
  */
 public class TwitterTimeLine implements Serializable {
 
-    private String filename = "conf/twitter.properties";
-    private Properties properties = new Properties();
+    private final String filename = "conf/twitter.properties";
+    private final Properties properties = new Properties();
     private Twitter twitter;
     private Integer pageStart = 1, pageLength = 15, numPages = 100;
     private Integer sessionMax = 200;
-    private String folder;
+    private final String folder;
 
     public TwitterTimeLine(String folder) {
         load();

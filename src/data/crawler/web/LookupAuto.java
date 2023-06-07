@@ -2,10 +2,12 @@ package data.crawler.web;
 
 import data.util.TextPattern;
 
+import java.awt.image.LookupOp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LookupAuto extends LookupPattern {

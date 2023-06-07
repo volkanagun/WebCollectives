@@ -1,6 +1,8 @@
 package data.crawler.web;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class WebEmptyFunctionCall extends WebFunctionCall{
     @Override

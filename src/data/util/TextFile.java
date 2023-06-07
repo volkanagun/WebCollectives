@@ -2,6 +2,7 @@ package data.util;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -170,13 +171,13 @@ public class TextFile extends File {
 
         if (extensionIndex == -1) {
             Integer number = getFileNumber(parent, name) + 1;
-            name = name + "-" + number.toString();
+            name = name + "-" + number;
         } else if (seperatingIndex != -1 && extensionIndex != -1) {
             Integer number = getFileNumber(parent, name.substring(0, seperatingIndex)) + 1;
-            name = name.substring(0, seperatingIndex) + "-" + number.toString() + name.substring(extensionIndex);
+            name = name.substring(0, seperatingIndex) + "-" + number + name.substring(extensionIndex);
         } else if (extensionIndex != -1) {
             Integer number = getFileNumber(parent, name.substring(0, extensionIndex)) + 1;
-            name = name.substring(0, extensionIndex) + "-" + number.toString() + name.substring(extensionIndex);
+            name = name.substring(0, extensionIndex) + "-" + number + name.substring(extensionIndex);
         }
 
         String newName = parent + "/" + name;
@@ -408,7 +409,7 @@ public class TextFile extends File {
 
     public static String readText(File f) {
         String text = null;
-        Charset charset = Charset.forName("UTF-8");
+        Charset charset = StandardCharsets.UTF_8;
         try (BufferedReader reader = Files.newBufferedReader(f.toPath(), charset)) {
             String line = null;
             String value = "";
@@ -606,12 +607,8 @@ public class TextFile extends File {
 
     public void openBufferReadUTF8() {
         try {
-            try {
-                reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(TextFile.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (UnsupportedEncodingException ex) {
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
+        } catch (FileNotFoundException ex) {
             Logger.getLogger(TextFile.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -655,7 +652,7 @@ public class TextFile extends File {
 
     public void openBufferWriteUTF8() {
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8));
         } catch (IOException ex) {
             Logger.getLogger(TextFile.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -824,7 +821,7 @@ public class TextFile extends File {
 
             line = line.trim();
 
-            if (lineList.indexOf(line) == -1) {
+            if (!lineList.contains(line)) {
                 lineList.add(line);
             }
         }
@@ -839,7 +836,7 @@ public class TextFile extends File {
         String line = null;
 
         while ((line = readNextLine()) != null) {
-            if (lineList.indexOf(line) == -1) {
+            if (!lineList.contains(line)) {
                 lineList.add(line);
             }
         }
@@ -1073,7 +1070,7 @@ public class TextFile extends File {
     public void writeNextUiqueLine(String line) {
         try {
 
-            if (uniqueList.indexOf(line) == -1) {
+            if (!uniqueList.contains(line)) {
                 writer.write(line);
                 writer.newLine();
                 uniqueList.add(line);
@@ -1084,7 +1081,7 @@ public class TextFile extends File {
     }
 
     public synchronized void writeNextUniqueLine(String line, int maxLines) {
-        if (uniqueList.indexOf(line) == -1) {
+        if (!uniqueList.contains(line)) {
             uniqueList.add(line);
 
             if (uniqueList.size() >= maxLines) {
@@ -1562,7 +1559,7 @@ public class TextFile extends File {
     public String readFullTextUTF8() {
 
         try {
-            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
             String line;
             String text = "";
             while ((line = reader.readLine()) != null) {
@@ -1590,7 +1587,7 @@ public class TextFile extends File {
     public void writeFullTextUTF8(String text) {
 
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8));
             writer.write(text);
             writer.close();
         } catch (IOException ex) {
@@ -1608,7 +1605,7 @@ public class TextFile extends File {
     public void writeFullTextUTF8(List<String> lineList) {
 
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), "UTF8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, false), StandardCharsets.UTF_8));
             for (String line : lineList) {
                 writer.write(line);
                 writer.newLine();
@@ -1629,7 +1626,7 @@ public class TextFile extends File {
     public void writeFullTextUTF8(List<String> lineList, boolean append) {
 
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), "UTF8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), StandardCharsets.UTF_8));
             for (String line : lineList) {
                 writer.write(line);
                 writer.newLine();
@@ -1651,7 +1648,7 @@ public class TextFile extends File {
 
         try {
 
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), "UTF8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), StandardCharsets.UTF_8));
             writer.newLine();
             writer.write(startMarker + "\n");
             for (String line : lineList) {
@@ -1675,7 +1672,7 @@ public class TextFile extends File {
     public void writeFullTextUTF8(List<String> lineList, List<String[]> corrections, boolean append) {
 
         try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), "UTF8"));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file, append), StandardCharsets.UTF_8));
             for (String line : lineList) {
                 String correctLine = TextPattern.replaceAllWith(line, corrections);
 
@@ -1962,7 +1959,7 @@ public class TextFile extends File {
                 }
 
                 if (number != null && nm.equals(prefix)) {
-                    numberList.add(new Integer(number));
+                    numberList.add(Integer.valueOf(number));
                 }
             }
         }

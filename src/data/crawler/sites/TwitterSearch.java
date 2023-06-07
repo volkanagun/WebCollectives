@@ -29,12 +29,12 @@ public class TwitterSearch extends WebFlow {
     private String includeTag;
     private Calendar since, until;
     private int scrollCount;
-    private int recursiveCount;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+    private final int recursiveCount;
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-mm-dd");
     public static String TURKISH = "tr";
     public static String ENGLISH = "en";
 
-    private WebTokenSink webTokenSink = new WebTokenSink();
+    private final WebTokenSink webTokenSink = new WebTokenSink();
     private WebLuceneSink webLuceneSink;
 
     public TwitterSearch(WebLuceneSink webLuceneSink, String query, int recursiveCount) {

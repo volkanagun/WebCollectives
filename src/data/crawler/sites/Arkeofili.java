@@ -9,6 +9,7 @@ public class Arkeofili {
         String domain = "https://arkeofili.com/";
         int pageCount = 50;
 
+
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<h2>", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
@@ -39,7 +40,7 @@ public class Arkeofili {
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern)
-                .addNext(articleTemplate, articleTemplate.getName());
+                .addExtraTemplate(articleTemplate, articleTemplate.getName());
 
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);

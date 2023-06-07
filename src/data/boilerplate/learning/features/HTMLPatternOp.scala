@@ -13,10 +13,10 @@ case class HTMLPatternOp(regex: String) extends PatternOp(Array(), s"html-regex-
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
-    val html = leaf.node.asInstanceOf[Element].html()
+    val html = leaf.getFullHTML()
     val matches = rpatterns(regex, html)
     val map = Map(name -> matches.length.toDouble)
-    IntermediateResult(map)
+    IntermediateResult(leaf,map)
   }
 
   //boolean contains

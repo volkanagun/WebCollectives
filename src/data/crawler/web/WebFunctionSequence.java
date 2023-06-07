@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WebFunctionSequence extends WebFunctionCall {
-    private List<WebFunctionCall> webFunctionCallList;
+    private final List<WebFunctionCall> webFunctionCallList;
     private Long waitBetweenCalls = 1500L;
 
     private Integer count = 1;
@@ -14,6 +14,15 @@ public class WebFunctionSequence extends WebFunctionCall {
     public WebFunctionSequence(Integer count, WebFunctionCall... webFunctionCalls) {
         this(webFunctionCalls);
         this.count = count;
+    }
+
+    @Override
+    public WebFunctionSequence setDoFirefox(Boolean doFirefox) {
+        this.doFirefox = doFirefox;
+        for(WebFunctionCall call:webFunctionCallList){
+            call.setDoFirefox(doFirefox);
+        }
+        return this;
     }
 
     public WebFunctionSequence(WebFunctionCall... webFunctionCalls) {
@@ -34,6 +43,7 @@ public class WebFunctionSequence extends WebFunctionCall {
     public String returnHTML(WebDriver driver) {
         String htmlSource = null;
         for (int i = 0; i < count; i++) {
+
             for (WebFunctionCall functionCall : webFunctionCallList) {
                 waitForNext();
                 htmlSource = functionCall.returnHTML(driver);
@@ -62,16 +72,24 @@ public class WebFunctionSequence extends WebFunctionCall {
     }
 
 
+
     @Override
     public String returnHTML(String url) {
         try {
-            chromeDriver.getSessionId();
-            chromeDriver.get(url);
+            if(chromeDriver != null) {
+                chromeDriver.getSessionId();
+                chromeDriver.get(url);
+            }
+            else{
+                firefoxDriver.getSessionId();
+                firefoxDriver.get(url);
+            }
             Thread.sleep(waitTime);
             //chromeDriver.wait(waitTime);
         } catch (InterruptedException ex) {
 
         }
-        return returnHTML(chromeDriver);
+        if(chromeDriver != null) return returnHTML(chromeDriver);
+        else return returnHTML(firefoxDriver);
     }
 }

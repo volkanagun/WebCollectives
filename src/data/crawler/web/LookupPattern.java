@@ -14,6 +14,7 @@ import java.util.regex.Pattern;
  * Created by wolf on 02.07.2015.
  */
 public class LookupPattern implements Serializable {
+
     protected String label, type;
     protected String startRegex, endRegex;
     protected String singleRegex;
@@ -24,6 +25,7 @@ public class LookupPattern implements Serializable {
     protected String[] regex, replaces;
     protected Integer nth, mth;
     protected boolean removeTags = false;
+    protected boolean containsRegex = false;
     protected List<LookupPattern> subpatterns;
     protected LookupFilter lookupFilter;
     protected Boolean tagLowercase = false;
@@ -46,6 +48,7 @@ public class LookupPattern implements Serializable {
     }
 
     private String regexifier(String regex) {
+
         if (regex != null) {
             regex = regex.replaceAll("\\s", "\\\\s");
             regex = regex.replaceAll("\\-", "\\\\-");
@@ -57,28 +60,32 @@ public class LookupPattern implements Serializable {
     }
 
     private LookupPattern lowercaseRegexes(){
+
         if(startRegex!=null) startRegex = startRegex.toLowerCase();
         if(endRegex!=null) startRegex = startRegex.toLowerCase();
         if(startMarker!=null) startMarker = startMarker.toLowerCase();
         if(endMarker!=null) endMarker = endMarker.toLowerCase();
         if(singleRegex!=null) singleRegex = singleRegex.toLowerCase();
-        if(regex!=null && regex.length>0) for(int i=0; i<regex.length; i++) regex[i] = regex[i].toLowerCase();
+        if(regex!=null && regex.length>0) for(int i=0; i < regex.length; i++) regex[i] = regex[i].toLowerCase();
 
         for(LookupPattern subLookup:subpatterns){
             subLookup.lowercaseRegexes();
         }
 
         return this;
+
     }
 
     public String lowercaseAllTags(String partialText){
+
         if(tagLowercase){
+
             lowercaseRegexes();
-
-
             Matcher matcher = tagPattern.matcher(partialText);
+
             String resultingText = "";
             int startingPos = 0;
+
             while(matcher.find()){
                 int newStartingPos = matcher.start();
                 int endingPos = matcher.end();
@@ -88,6 +95,7 @@ public class LookupPattern implements Serializable {
 
             resultingText += partialText.substring(startingPos);
             return resultingText;
+
         }
         else {
             return partialText;
@@ -169,6 +177,11 @@ public class LookupPattern implements Serializable {
     }
 
     public LookupPattern setReplaces(String[] replaces) {
+        this.replaces = replaces;
+        return this;
+    }
+    public LookupPattern setReplaces(String[] regex, String[] replaces) {
+        this.regex = regex;
         this.replaces = replaces;
         return this;
     }
@@ -290,6 +303,9 @@ public class LookupPattern implements Serializable {
     public boolean isRegex() {
         return replaces != null && regex != null;
     }
+    public boolean hasReplaces() {
+        return replaces != null && regex != null;
+    }
 
     public boolean isNth() {
         return nth != null;
@@ -304,6 +320,7 @@ public class LookupPattern implements Serializable {
                 '}';
     }
 
+    //Modify for contains
     public List<LookupResult> getResult(Map<String, String> propertyMap, String partial) {
         List<LookupResult> lookupResults = new ArrayList<>();
         List<String> partialResults = getResults(propertyMap, partial);
@@ -357,6 +374,10 @@ public class LookupPattern implements Serializable {
         return result;
     }
 
+    /*
+    Can't do hierachy search <div <div and etc.
+
+     */
     protected List<String> getResults(Map<String, String> propertyMap, String partial) {
         ArrayList<String> resultList = new ArrayList<>();
         if (isValue()) {
@@ -370,12 +391,17 @@ public class LookupPattern implements Serializable {
             }
         } else if (!type.equals(LookupOptions.TEXT) && startMarker != null && endMarker != null) {
             TextPattern.obtainPatterns(startRegex, endRegex, startMarker, endMarker, partial, resultList);
-        } else if (type.equals(LookupOptions.TEXT) && singleRegex != null) {
+        } else if (type.equals(LookupOptions.TEXT) && singleRegex != null && !containsRegex) {
             TextPattern.obtainPatterns(singleRegex, singleGroup, false, partial, resultList);
-        } else if (!type.equals(LookupOptions.TEXT)) {
+        }
+        else if (type.equals(LookupOptions.TEXT) && singleRegex != null && containsRegex) {
+            TextPattern.obtainPatterns(singleRegex, singleGroup, false, partial, resultList);
+        }
+        else if (!type.equals(LookupOptions.TEXT)) {
             TextPattern.obtainPatterns(startRegex, endRegex, false, partial, resultList);
         } else if (type.equals(LookupOptions.TEXT) && regex != null) {
-            TextPattern.obtainPatterns(startRegex, endRegex, false, partial, resultList);
+            TextPattern.obtainPatterns(startRegex, endRegex, removeTags, partial, resultList);
+
         } else if (type.equals(LookupOptions.TEXT)) {
             TextPattern.obtainPatterns(startRegex, endRegex, removeTags, partial, resultList);
         }

@@ -13,17 +13,19 @@ public class NTV implements Serializable {
 
         WebFunctionCall closeCall = new WebButtonClickCall(5, "#instertitial_dfp_close")
                 .setDoStopOnError(false);
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2).setWaitTime(1500);
+
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setMinusHeight(5).setWaitTime(1500);
         WebFunctionCall clickCall = new WebButtonClickCall(1, "a.infinite-link").setWaitTime(500);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall,*/ scrollCall/*, clickCall*/).setWaitBetweenCalls(2000L)
+
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, /*closeCall, */scrollCall, clickCall).setDoFirefox(true).setWaitBetweenCalls(2000L)
                 .initialize()
                 .setWaitTime(1000);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<p class=\"card-text\">", "</p>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<(p|h3) class=\"card-text\">", "</(p|h3)>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("economy", "https://www.ntv.com.tr/ekonomi?sayfa=1")
+                //.addSeed("economy", "https://www.ntv.com.tr/ekonomi")
                 .addSeed("world", "https://www.ntv.com.tr/dunya?sayfa=1")
                 .addSeed("trending", "https://www.ntv.com.tr/son-dakika?sayfa=1")
                 .addSeed("travel", "https://www.ntv.com.tr/seyahat?sayfa=1")
@@ -34,7 +36,7 @@ public class NTV implements Serializable {
                 .addSeed("news", "https://www.ntv.com.tr/turkiye?sayfa=1")
                 .addSeed("auto", "https://www.ntv.com.tr/otomobil?sayfa=1")
                 .addSeed("education", "https://www.ntv.com.tr/egitim?sayfa=1")
-                .setDoFast(true)
+                .setDoFast(false)
                 .setSleepTime(1500L)
                 .setDoDeleteStart(true)
                 .setThreadSize(1)
@@ -65,7 +67,7 @@ public class NTV implements Serializable {
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(false).setSleepTime(500L)
                 .setThreadSize(1)
-                .setDoFast(true)
+                .setDoFast(false)
                 .setDomain(domain)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)

@@ -1,7 +1,8 @@
 package data.boilerplate.learning.graph
 
-import data.boilerplate.learning.features._
-import data.boilerplate.learning.pipes.PipeOp
+import data.boilerplate.learning.features.{ChildTagCountOp, ParentTextDensityOp, PatternTextDensityOp, PatternTokenRatioOp, PreviousByPattern, PreviousHasTagOp, TagNameOp, TagTextDensityOp}
+import data.boilerplate.learning.pipes.{IntermediateResult, PipeOp}
+import data.boilerplate.structure.{HTMLNode, HTMLPath}
 
 
 

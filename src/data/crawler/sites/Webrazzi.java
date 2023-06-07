@@ -14,12 +14,20 @@ public class Webrazzi implements Serializable {
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGTRYDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN)
                 .setDoDeleteStart(true);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE, "<div class=\"post-title\">", "</div>")
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "href=\"", "\"\\s"));
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE, "<div class=\"post(.*?)\">", "</div>")
+                .setStartMarker("<div")
+                .setEndMarker("</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
 
         linkTemplate.setMainPattern(linkPattern)
                 .setSleepTime(1500L)
-                .addSeed("http://webrazzi.com/");
+                .addSeed("https://webrazzi.com/haberler/")
+                .addSeed("https://webrazzi.com/kategori/dijital/")
+                .addSeed("https://webrazzi.com/kategori/yatirim/")
+                .addSeed("https://webrazzi.com/kategori/e-ticaret/")
+                .addSeed("https://webrazzi.com/kategori/mobil/")
+                .addSeed("https://webrazzi.com/kategori/teknoloji/")
+                .addSeed("https://webrazzi.com/kategori/girisimler/");
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"post(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")

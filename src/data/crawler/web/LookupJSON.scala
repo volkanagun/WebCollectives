@@ -7,13 +7,7 @@ import org.json4s._
 import org.json4s.native.JsonMethods._
 import org.json4s.jackson.Serialization.{read,write}
 
-class UNAPPLY[T] {
-  def unapply(a: Any): Option[T] = Some(a.asInstanceOf[T])
-}
 
-object M extends UNAPPLY[Map[String, List[String]]]
-
-object L extends UNAPPLY[List[String]]
 
 //May be a xquery fashion implemented dynamically
 class LookupJSON(val ttype: String, val llabel: String, val jsonTag: String) extends LookupPattern(ttype, llabel, null) {
@@ -62,3 +56,10 @@ class LookupJSON(val ttype: String, val llabel: String, val jsonTag: String) ext
   }
 }
 
+class UNAPPLY[T] {
+  def unapply(a: Any): Option[T] = Some(a.asInstanceOf[T])
+}
+
+object M extends UNAPPLY[Map[String, List[String]]]
+
+object L extends UNAPPLY[List[String]]

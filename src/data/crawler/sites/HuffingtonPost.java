@@ -12,11 +12,10 @@ public class HuffingtonPost implements Serializable {
 
     public static WebFlow build(String mainFolder) {
 
-
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2019, 1, 1);
+        calendarStart.set(2021, 3, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2020, 5, 1);
+        calendarEnd.set(2023, 1, 30);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
@@ -44,7 +43,8 @@ public class HuffingtonPost implements Serializable {
                         .setRemoveTags(true).setNth(1))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span\\sclass\\=\"timestamp__date--published\">", "</span>"))
                 .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class\\=\"entry__text js-entry-text yr-entry-text\"(.*?)>", "</div>")
-                        .setStartEndMarker("<div", "</div>").addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")))
+                        .setStartEndMarker("<div", "</div>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "<a class=\"tag yr-tag\"(.*?)>", "</a>").setNth(1));
 
         mainTemplate.setType("BLOG-DOC")
@@ -54,6 +54,7 @@ public class HuffingtonPost implements Serializable {
         linkTemplate.addNext(mainTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
         return flow;
+
     }
 
     public static void main(String[] args){

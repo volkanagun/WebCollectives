@@ -6,17 +6,18 @@ public class GZTBlog {
 
     public static WebFlow build() {
 
-        int pageCount = 20;
+        int pageCount = 200;
         String domain = "https://www.gzt.com/";
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 85)
-                .setWaitTime(2500);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 20)
+                .setWaitTime(1000);
 
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall).setDoFirefox(true)
                 .setWaitBetweenCalls(1000L)
                 .initialize();
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"feed-card(.*?)>","</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"lazy\"(.*?)>","</div>")
+                .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\"").setRemoveTags(true));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
@@ -73,6 +74,7 @@ public class GZTBlog {
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
         return flow;
+
     }
 
     public static void main(String[] args) {

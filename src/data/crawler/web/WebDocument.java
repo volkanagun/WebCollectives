@@ -19,7 +19,7 @@ public class WebDocument implements Serializable {
     private String domain;
     private int index = 1;
     private List<LookupResult> lookupResultList;
-    private List<WebDocument> webFlowResultList;
+    private final List<WebDocument> webFlowResultList;
     private Date fetchDate;
     private Boolean lookComplete = false;
     private String multiDocumentIdentifier;
@@ -76,7 +76,6 @@ public class WebDocument implements Serializable {
             List<LookupResult> allSubList = aresult.getSubResults(labelLook);
             lookupResults.addAll(allSubList);
         }
-
         return lookupResults;
 
     }
@@ -149,8 +148,7 @@ public class WebDocument implements Serializable {
     public Boolean exists() {
 
         TextFile textFile = new TextFile(filename());
-        if (textFile.exists()) return true;
-        else return false;
+        return textFile.exists();
 
     }
 
@@ -255,7 +253,7 @@ public class WebDocument implements Serializable {
     }
 
     public boolean isComplete(LookupPattern mainPattern) {
-        if (lookComplete && true) {
+        if (lookComplete) {
             List<String> listLabels = mainPattern.getNonSkipSubpatternLabels();
             for (LookupResult lookupResult : lookupResultList) {
                 Set<String> labelSet = lookupResult.getSubResultLabels(listLabels);
@@ -265,6 +263,11 @@ public class WebDocument implements Serializable {
         }
         //System.out.println("Save ok...");
         return true;
+    }
+
+
+    public boolean isEmpty(){
+        return lookupResultList.isEmpty();
     }
 
     public int saveAsFlatXML() {
@@ -372,6 +375,10 @@ public class WebDocument implements Serializable {
 
     public void setLookupResultList(List<LookupResult> lookupResultList) {
         this.lookupResultList = lookupResultList;
+    }
+
+    public void addLookupResultList(List<LookupResult> lookupResultList) {
+        this.lookupResultList.addAll(lookupResultList);
     }
 
     public String getFolder() {

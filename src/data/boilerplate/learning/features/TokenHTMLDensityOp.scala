@@ -20,7 +20,7 @@ case class TokenHTMLDensityOp() extends ExecutableOp(Array(), s"token-html-densi
     val html = element.html()
     val tokenLength = tokenize(element.text()).length
     val density = tokenLength.toDouble / html.length
-    IntermediateResult(Map(name -> density))
+    IntermediateResult(leaf, Map(name -> density))
   }
 
   protected def tokenize(text: String): Array[String] = {

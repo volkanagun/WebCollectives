@@ -21,7 +21,7 @@ public class BoingBlogList implements Serializable {
                 .setForceWrite(false)
                 .setNextPageSuffix("/page/")
                 .setNextPageStart(1)
-                .setNextPageSize(24)
+                .setNextPageSize(50)
                 .setSleepTime(500L)
                 .setThreadSize(2)
                 .addSeed("https://boingboing.net/grid");
@@ -32,7 +32,7 @@ public class BoingBlogList implements Serializable {
 
         linkTemplate.setMainPattern(linkPattern)
                 .setDomain("https://boingboing.net/author/")
-                .setForceWrite(false).setNextPageSuffix("/page/")
+                .setForceWrite(false).setNextPageSuffix("/page/").setDoDeleteStart(true)
                 .setNextPageStart(1)
                 .setNextPageSize(100)
                 .setSleepTime(500L)

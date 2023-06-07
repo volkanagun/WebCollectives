@@ -4,23 +4,23 @@ import data.crawler.web.*;
 
 import java.io.Serializable;
 
-/**
- * @author Volkan Agun
- */
+
 public class AHaberWeb implements Serializable {
 
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 10;
+        int pageCount = 100;
+        int randomCount = 100;
 
-        WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
+        WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more").setDoFirefox(true)
                 .setWaitTime(1000);
+
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1)
                 .setWaitTime(1000);
 
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/)
-                .setWaitBetweenCalls(2000L)
+                .setWaitBetweenCalls(2000L).setDoFirefox(true)
                 .initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div data-search-item(.*?)>", "</div>")
@@ -40,37 +40,35 @@ public class AHaberWeb implements Serializable {
                 .addSeed("auto", "https://www.ahaber.com.tr/arama?category=otomobil")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setSleepTime(2500L)
+                .setSleepTime(3500L)
                 .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
+                .setDoRandomSeed(randomCount)
                 .setDomain(domain)
-                .setLinkPattern(null,"(.*?)galeri(.+)")
+                .setLinkPattern(null,"^https://www.ahaber.com.tr/galeri(.*?)$")
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"container\">", "</div>")
-                .setStartEndMarker("<div", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<section class=\"item\">", "</section>")
+                .setStartEndMarker("<section", "</section>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"textFrame\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"detailSpot(.*?)\">", "</div>")
+                        .setStartEndMarker("<div", "</div>")
+                        .setNth(0).addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span>","</span>").setNth(0)
+                                .setRemoveTags(true).setReplaces(new String[]{"\"\\s", "Giri(.*?)\\:\\s?"}, new String[]{"",""})))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "AHABER"))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<div class=\"textFrame\">", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
-                        .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"playerLitle\">", "</div>")
-                                .setStartEndMarker("<div", "</div>")
-                                .setNth(0)
-                                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div class=\"date\">", "<span|/div>")
-                                        .setStartEndMarker("<div", "</div>")
-                                        .setNth(0)
-                                        .setRemoveTags(true))
-                                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "AHABER")))
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(false)
                 .setThreadSize(1)
-                .setDoFast(true)
+                .setDoFast(false).setSleepTime(2000L)
                 .setDomain(domain)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)

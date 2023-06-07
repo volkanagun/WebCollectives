@@ -5,7 +5,7 @@ import java.util.List;
 
 public class WebMultiSuffixGenerator extends WebSuffixGenerator{
 
-    private List<WebSuffixGenerator> generators;
+    private final List<WebSuffixGenerator> generators;
 
     public WebMultiSuffixGenerator(List<WebSuffixGenerator> generators) {
         this.generators = generators;
