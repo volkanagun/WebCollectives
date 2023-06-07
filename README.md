@@ -120,7 +120,7 @@ exampleTemplate.setSuffixGenerator(multiGenerator);
 
 ```
 
-# Crawling the links of the target content 
+# Crawling the Links of the Target Content 
 
 Generally a Web page contains a relevant content. This content is extracted by LookupPattern and with the extraction the crawling process finishes. For example, a link pattern is first extracts the links, and the links are followed as given in the following example.
 
@@ -155,7 +155,7 @@ In this example the links inside the div HTML element of `<div class="row">` are
                 .setDoDeleteStart(false)
                 .setThreadSize(1)
                 .setDoFast(false)
-                //wait between each HTTP call
+                //Wait between each HTTP request
                 .setSleepTime(1000L)
                 .setDomain(domain)
                 //Download random urls from all the set
@@ -176,7 +176,7 @@ In this example the links inside the div HTML element of `<div class="row">` are
   ```
  In this example, the values of the LookupResult having ARTICLELINK label extracted by the linkTemplate is used to crawl the links in the main article content. This approach creates an inifinite loop. It only finishes when there aren't any new urls left in the main article content.
  
- # Skip and Value types
+ # Skip and Value Types
  
  Sometimes the defined LookupPattern for extracting the content may not be useful for the output. In such cases, the SKIP type is used in the type definition of the LookupPattern. An example is given as follows.
  
