@@ -39,7 +39,7 @@ public class Arkeofili {
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern)
-                .addExtraTemplate(articleTemplate, articleTemplate.getName());
+                .addNext(articleTemplate, articleTemplate.getName());
 
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
