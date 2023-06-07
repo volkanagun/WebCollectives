@@ -97,6 +97,31 @@ template.setForceWrite(true);
 template.setDoRandomSeed(100);
 ```
 
+# Properties of URL Generators
+WebSuffixGenerator is the main class that is responsible from generating formatted URL strings. These URL are later converted to  WebSeed and can be traced according to the domain. There are several WebSuffixGenerators.
+
+```java
+//Generates date patterns incremented by the day of the year and represented by miliseconds after the suffix (i.e. ?startDate=).
+WebSuffixGenerator generator1 = new WebDayGenerator("?startTime=",startDate, endDate);
+//Generates date patterns incremented by the day of the year and represented based on the defined formatted text.
+WebSuffixGenerator generator2 = new WebDateGenerator("yyyy-MM-dd", startDate, endDate);
+//Page count generator which generates 10 URL strings (i.e. http://skynews.com?Page=10, http://skynews.com?Page=11, ...)
+WebSuffixGenerator generator3 = new WebCountGenerator(10, 20, "?Page="); 
+WebSuffixGenerator generator4 = new WebCountGenerator(5, 10, "&Category=");
+//Multiple suffix generators can be combined based on the defined order.
+List<WebSuffixGenerator> suffixGenerators = new ArrayList<>();
+suffixGenerators.add(generator3);
+suffixGenerators.add(generator4);
+//Generators URL strings based on the ordered combinations: (i.e. http://skynews.com?Page=10&Category=5, http://skynews.com?Page=10&Category=6,...) 
+WebSuffixGenerator multiGenerator = new WebMultiSuffixGenerator(suffixGenerators);
+
+WebTemplate exampleTemplate = new WebTemplate("resources/sky-news/", "skynews-links", "skynews.com");
+exampleTemplate.setSuffixGenerator(multiGenerator);
+
+```
+
+
+
 
 
     
