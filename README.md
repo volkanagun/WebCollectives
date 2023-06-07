@@ -189,7 +189,7 @@ To be able to retrieve the correct boundary, lookup pattern uses a stack based p
 
  3. The program downloads links but it is not saving them to disk.
 
-The LookupPattern may not extract all the defined content. This may be because of the design changes in pages. In order to save the results partially to disk `setLookComplete` must be set false. In cases where all the content is necessary for saving the content then `setLookComplete` must be set to true.
+The LookupPattern may not extract all the defined content. This may be because of the design changes in pages. In order to save the results partially to disk `setLookComplete(false)` must be set. In cases where all the content is necessary for saving the content then `setLookComplete(true)` must be set.
 
 
  
