@@ -21,7 +21,7 @@ The examples are located at sites folder (i.e. link: [examples](src/data/crawler
   -crawler
     -sites
 
-Other than codes a resources folder is required to run the program. The required folders in resources folder are as follows.
+Other than codes a resources folder (i.e. link: [resources](resources/)) is required to run the program. The required folders in resources folder are as follows.
 
 - resources
   - selenium
