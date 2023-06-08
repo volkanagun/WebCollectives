@@ -239,7 +239,7 @@ The SKIP LookupPatterns are not placed in the output XML file. On the other hand
  # Issues and Answers
  
  ####
- 1. The lookup pattern do not find any links in the given url seeds!
+ 1. The lookup pattern does not find any links in the given url seeds!
 
   One of the reason why the defined patterns do not match anything is that the content of the Web page displayed in the browser is different from the downloaded content in the program. Unfortunately this happens in some of the Web sites, because dynamic content generation may change the HTML elements according to the browser.
  
