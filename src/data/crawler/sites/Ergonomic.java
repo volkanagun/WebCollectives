@@ -10,7 +10,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Ergonomic implements Serializable {
+
     public static WebFlow build() {
+
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<div\\sclass\\=\"thumbnail\\soverlay\">", "</div>")
@@ -47,8 +49,6 @@ public class Ergonomic implements Serializable {
 
         WebFlow webFlow = new WebFlow(mainTemplate);
         return webFlow;
-
-
     }
 
     public static void main(String[] args) {

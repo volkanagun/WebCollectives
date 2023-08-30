@@ -10,7 +10,7 @@ public class LookupResult implements Serializable {
     private String label;
     private String text;
     private String type;
-    private List<LookupResult> subList;
+    private final List<LookupResult> subList;
 
     public static String LABEL = "LABEL";
     public static String TYPE = "TYPE";

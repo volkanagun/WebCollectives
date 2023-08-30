@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class WebButtonClickCall extends WebFunctionCall {
 
     private Integer count = 0;
-    private String cssSelector;
+    private final String cssSelector;
 
 
 
@@ -23,6 +23,11 @@ public class WebButtonClickCall extends WebFunctionCall {
             chromeDriver = null;
             js = null;
         }
+        else{
+            firefoxDriver.close();
+            firefoxDriver = null;
+            js = null;
+        }
         return this;
     }
 
@@ -30,9 +35,19 @@ public class WebButtonClickCall extends WebFunctionCall {
     @Override
     public String returnHTML(String url) {
         try {
-            chromeDriver.getSessionId();
-            chromeDriver.get(url);
+            if(chromeDriver != null) {
+                chromeDriver.getSessionId();
+                chromeDriver.get(url);
+
+            }
+            else{
+                firefoxDriver.getSessionId();
+                firefoxDriver.get(url);
+
+            }
+
             Thread.sleep(waitTime);
+
         } catch (InterruptedException ex) {
 
         }
@@ -45,6 +60,7 @@ public class WebButtonClickCall extends WebFunctionCall {
         try {
             waitFor();
             WebElement element = existingDriver.findElement(By.cssSelector(cssSelector));
+            System.out.println("Calling click for " + cssSelector + " with "+count + " count");
             for (int i = 0; i < count; i++) {
                 element.click();
             }
@@ -55,5 +71,13 @@ public class WebButtonClickCall extends WebFunctionCall {
 
 
         return existingDriver.getPageSource();
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public String getCssSelector() {
+        return cssSelector;
     }
 }

@@ -6,7 +6,6 @@ import data.boilerplate.structure.HTMLNode
 
 case class CSSAttributeOp() extends ExecutableOp(Array(), "css-attr-op") {
 
-
   override def canApply(htmlNode: HTMLNode): Boolean = isElement(htmlNode)
 
   override def execute(leaf: HTMLNode): IntermediateResult = {
@@ -16,8 +15,8 @@ case class CSSAttributeOp() extends ExecutableOp(Array(), "css-attr-op") {
         val ssf = "style-" + subcss
         (ssf, 1.0)
       }).toMap
-      IntermediateResult(mapping)
+      IntermediateResult(leaf, mapping)
     }
-    else IntermediateResult()
+    else IntermediateResult(leaf)
   }
 }

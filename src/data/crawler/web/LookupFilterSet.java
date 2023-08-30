@@ -1,15 +1,14 @@
 package data.crawler.web;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
 public class LookupFilterSet extends LookupFilter{
-    private Set<String> acceptSet = new HashSet<>();
+    private final Set<String> acceptSet = new HashSet<>();
 
     public LookupFilterSet(String[] setMembers) {
-        for(String item:setMembers){
-            acceptSet.add(item);
-        }
+        Collections.addAll(acceptSet, setMembers);
     }
 
     @Override

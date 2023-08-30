@@ -16,7 +16,7 @@ case class TextPatternDensityOp(regex: String) extends PatternOp(Array(), s"text
     val total = rpatternTotalCharLength(regex, html)
     val density = text.length.toDouble / total
     val map = Map(name -> density)
-    IntermediateResult(map)
+    IntermediateResult(leaf, map)
   }
 
 }

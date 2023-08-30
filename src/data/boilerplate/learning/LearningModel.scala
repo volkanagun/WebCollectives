@@ -1,12 +1,9 @@
 package data.boilerplate.learning
 
 import java.io.File
-
 import data.boilerplate.learning.features.{CSSAttributeOp, TagNameOp, TextDensityOp, TokenCountOp, TokenHTMLDensityOp}
 import data.boilerplate.learning.pipes.PipeOp
 import data.boilerplate.structure.WebInstanceIO
-import data.crawler.web.LookupOptions
-import org.bytedeco.opencv.opencv_dnn.ConvolutionLayer
 import org.deeplearning4j.nn.conf.{ComputationGraphConfiguration, NeuralNetConfiguration, layers}
 import org.deeplearning4j.nn.conf.layers.recurrent.Bidirectional
 import org.deeplearning4j.nn.conf.layers.{LSTM, RnnOutputLayer}
@@ -15,13 +12,14 @@ import org.deeplearning4j.nn.weights.WeightInit
 import org.deeplearning4j.optimize.listeners.PerformanceListener
 import org.deeplearning4j.util.ModelSerializer
 import org.nd4j.linalg.activations.Activation
+import org.nd4j.linalg.dataset.api.iterator.MultiDataSetIterator
 import org.nd4j.linalg.learning.config.{AdaGrad, Adam}
 import org.nd4j.linalg.lossfunctions.LossFunctions
 
 object LearningModel extends Serializable {
 
   val featureModel = FeatureParams.buildPipeOp()
-  val iterator = new WebInstanceIO(DirectoryParams.htmlFolder,Array(DirectoryParams.blogsTRFolder), Array())
+  val iterator: MultiDataSetIterator = new WebInstanceIO(DirectoryParams.htmlFolder, Array[String](DirectoryParams.blogsTRFolder), Array[String]())
     .iterator(featureModel)
 
   def loadGraph(): ComputationGraph = {

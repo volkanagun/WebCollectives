@@ -15,7 +15,7 @@ case class ParentTextDensityOp() extends PatternOp(Array(), s"parent-text-densit
     val currentText = currentElement.text()
     val density = (currentText.length.toDouble + 1E-12) / (parentText.length + 1E-12)
     val map = Map(name -> density)
-    IntermediateResult(map)
+    IntermediateResult(leaf,map)
   }
 
 }

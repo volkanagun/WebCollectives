@@ -9,8 +9,5 @@
         <module name="WebCollectives" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="WebCollectives" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

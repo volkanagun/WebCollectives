@@ -8,6 +8,7 @@ import data.crawler.web.WebTemplate;
 import java.io.Serializable;
 
 public class PAN implements Serializable {
+
     public static WebFlow buildForPAN2011Large() {
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.PANLARGESOURCEDIRECTORY, "LargeTrain", LookupOptions.EMPTYDOMAIN);
 

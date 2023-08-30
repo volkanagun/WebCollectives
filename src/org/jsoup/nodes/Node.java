@@ -112,7 +112,7 @@ public abstract class Node implements Cloneable, Serializable {
     protected abstract List<Node> ensureChildNodes();
 
     public Node childNode(int index) {
-        return (Node)this.ensureChildNodes().get(index);
+        return this.ensureChildNodes().get(index);
     }
 
     public List<Node> childNodes() {
@@ -135,7 +135,7 @@ public abstract class Node implements Cloneable, Serializable {
     public abstract int childNodeSize();
 
     protected Node[] childNodesAsArray() {
-        return (Node[])this.ensureChildNodes().toArray(new Node[0]);
+        return this.ensureChildNodes().toArray(new Node[0]);
     }
 
     public Node parent() {
@@ -193,24 +193,24 @@ public abstract class Node implements Cloneable, Serializable {
         Validate.notNull(this.parentNode);
         Element context = this.parent() instanceof Element ? (Element)this.parent() : null;
         List<Node> nodes = NodeUtils.parser(this).parseFragmentInput(html, context, this.baseUri());
-        this.parentNode.addChildren(index, (Node[])nodes.toArray(new Node[0]));
+        this.parentNode.addChildren(index, nodes.toArray(new Node[0]));
     }
 
     public Node wrap(String html) {
         Validate.notEmpty(html);
         Element context = this.parent() instanceof Element ? (Element)this.parent() : null;
         List<Node> wrapChildren = NodeUtils.parser(this).parseFragmentInput(html, context, this.baseUri());
-        Node wrapNode = (Node)wrapChildren.get(0);
+        Node wrapNode = wrapChildren.get(0);
         if (!(wrapNode instanceof Element)) {
             return null;
         } else {
             Element wrap = (Element)wrapNode;
             Element deepest = this.getDeepChild(wrap);
             this.parentNode.replaceChild(this, wrap);
-            deepest.addChildren(new Node[]{this});
+            deepest.addChildren(this);
             if (wrapChildren.size() > 0) {
                 for(int i = 0; i < wrapChildren.size(); ++i) {
-                    Node remainder = (Node)wrapChildren.get(i);
+                    Node remainder = wrapChildren.get(i);
                     remainder.parentNode.removeChild(remainder);
                     wrap.appendChild(remainder);
                 }
@@ -223,7 +223,7 @@ public abstract class Node implements Cloneable, Serializable {
     public Node unwrap() {
         Validate.notNull(this.parentNode);
         List<Node> childNodes = this.ensureChildNodes();
-        Node firstChild = childNodes.size() > 0 ? (Node)childNodes.get(0) : null;
+        Node firstChild = childNodes.size() > 0 ? childNodes.get(0) : null;
         this.parentNode.addChildren(this.siblingIndex, this.childNodesAsArray());
         this.remove();
         return firstChild;
@@ -231,7 +231,7 @@ public abstract class Node implements Cloneable, Serializable {
 
     private Element getDeepChild(Element el) {
         List<Element> children = el.children();
-        return children.size() > 0 ? this.getDeepChild((Element)children.get(0)) : el;
+        return children.size() > 0 ? this.getDeepChild(children.get(0)) : el;
     }
 
     void nodelistChanged() {
@@ -311,7 +311,7 @@ public abstract class Node implements Cloneable, Serializable {
         List<Node> childNodes = this.ensureChildNodes();
 
         for(int i = start; i < childNodes.size(); ++i) {
-            ((Node)childNodes.get(i)).setSiblingIndex(i);
+            childNodes.get(i).setSiblingIndex(i);
         }
 
     }
@@ -341,7 +341,7 @@ public abstract class Node implements Cloneable, Serializable {
         } else {
             List<Node> siblings = this.parentNode.ensureChildNodes();
             int index = this.siblingIndex + 1;
-            return siblings.size() > index ? (Node)siblings.get(index) : null;
+            return siblings.size() > index ? siblings.get(index) : null;
         }
     }
 
@@ -349,7 +349,7 @@ public abstract class Node implements Cloneable, Serializable {
         if (this.parentNode == null) {
             return null;
         } else {
-            return this.siblingIndex > 0 ? (Node)this.parentNode.ensureChildNodes().get(this.siblingIndex - 1) : null;
+            return this.siblingIndex > 0 ? this.parentNode.ensureChildNodes().get(this.siblingIndex - 1) : null;
         }
     }
 
@@ -408,22 +408,22 @@ public abstract class Node implements Cloneable, Serializable {
         if (this == o) {
             return true;
         } else {
-            return o != null && this.getClass() == o.getClass() ? this.outerHtml().equals(((Node)o).outerHtml()) : false;
+            return o != null && this.getClass() == o.getClass() && this.outerHtml().equals(((Node) o).outerHtml());
         }
     }
 
     public Node clone() {
-        Node thisClone = this.doClone((Node)null);
+        Node thisClone = this.doClone(null);
         LinkedList<Node> nodesToProcess = new LinkedList();
         nodesToProcess.add(thisClone);
 
         while(!nodesToProcess.isEmpty()) {
-            Node currParent = (Node)nodesToProcess.remove();
+            Node currParent = nodesToProcess.remove();
             int size = currParent.childNodeSize();
 
             for(int i = 0; i < size; ++i) {
                 List<Node> childNodes = currParent.ensureChildNodes();
-                Node childClone = ((Node)childNodes.get(i)).doClone(currParent);
+                Node childClone = childNodes.get(i).doClone(currParent);
                 childNodes.set(i, childClone);
                 nodesToProcess.add(childClone);
             }
@@ -433,7 +433,7 @@ public abstract class Node implements Cloneable, Serializable {
     }
 
     public Node shallowClone() {
-        return this.doClone((Node)null);
+        return this.doClone(null);
     }
 
     protected Node doClone(Node parent) {
@@ -450,8 +450,8 @@ public abstract class Node implements Cloneable, Serializable {
     }
 
     private static class OuterHtmlVisitor implements NodeVisitor {
-        private Appendable accum;
-        private OutputSettings out;
+        private final Appendable accum;
+        private final OutputSettings out;
 
         OuterHtmlVisitor(Appendable accum, OutputSettings out) {
             this.accum = accum;

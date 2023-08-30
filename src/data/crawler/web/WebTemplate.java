@@ -4,8 +4,6 @@ import org.apache.commons.compress.archivers.ArchiveEntry;
 import org.apache.commons.compress.archivers.ArchiveException;
 import org.apache.commons.compress.archivers.ArchiveOutputStream;
 import org.apache.commons.compress.archivers.ArchiveStreamFactory;
-import org.apache.commons.compress.compressors.CompressorException;
-import org.apache.commons.compress.compressors.CompressorStreamFactory;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,7 +13,6 @@ import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.config.Lookup;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.HttpClientConnectionManager;
@@ -24,36 +21,28 @@ import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.TrustStrategy;
-import org.apache.http.cookie.Cookie;
-import org.apache.http.cookie.CookieSpec;
-import org.apache.http.cookie.CookieSpecProvider;
 import org.apache.http.entity.ContentType;
+import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
 import org.apache.http.ssl.SSLContextBuilder;
 import data.util.TextFile;
 
 import javax.net.ssl.SSLContext;
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.text.DateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 /**
@@ -84,9 +73,9 @@ public class WebTemplate implements Serializable {
         WebSeed seed;
         int index;
         FailCount sharedCount;
-        List<WebDocument> documentList;
+        WebDocumentList documentList;
 
-        public DownloadCallable(List<WebDocument> documentList, FailCount sharedCount, WebSeed seed, int index) {
+        public DownloadCallable(WebDocumentList documentList, FailCount sharedCount, WebSeed seed, int index) {
             super();
             this.index = index;
             this.seed = seed;
@@ -96,7 +85,7 @@ public class WebTemplate implements Serializable {
 
     }
 
-    public abstract class DownloadCallableFast implements Callable<WebDocument> {
+    public abstract class DownloadCallableFast implements Callable<WebDocument[]> {
         WebSeed seed;
         int index;
         FailCount sharedCount;
@@ -116,11 +105,13 @@ public class WebTemplate implements Serializable {
     public static String TEXTPREFIX = "text://";
     private Boolean multipleDocuments = false;
     private String multipleIdentifier = null;
-    private List<WebSeed> seedList;
-    private Map<WebSeed, String> seedMap;
+    private final List<WebSeed> seedList;
+    private final Map<WebSeed, String> seedMap;
 
 
     private LookupPattern mainPattern;
+
+
     private String name;
     private String domain;
     private String folder;
@@ -146,6 +137,10 @@ public class WebTemplate implements Serializable {
     private Boolean doFast = false;
     private Boolean doDeleteStart = false;
 
+    private Boolean doRandomSeed = false;
+    private Boolean doFinal = false;
+    private Integer randomSeedSize = 1;
+
     private Boolean lookComplete = false;
     private Boolean domainSame = false;
     private String linkPattern = null;
@@ -153,7 +148,13 @@ public class WebTemplate implements Serializable {
     private String htmlSaveFolder = null;
 
     private String charset = "UTF-8";
-    private Map<String, WebTemplate> nextMap;
+    private final Map<String, WebTemplate> nextMap;
+    private final Map<String, WebTemplate> extraRecursiveMap;
+
+    private double totalParseTime = 0d;
+    private double totalCount = 1d;
+
+    private Boolean isMainContent = false;
 
 
     public WebTemplate(String folder, String name, String domain) {
@@ -163,6 +164,7 @@ public class WebTemplate implements Serializable {
         this.seedList = new ArrayList<>();
         this.seedMap = new HashMap<>();
         this.nextMap = new HashMap<>();
+        this.extraRecursiveMap = new HashMap<>();
         this.nextPageSize = 2;
         this.nextPageStart = 2;
     }
@@ -184,6 +186,15 @@ public class WebTemplate implements Serializable {
             functionCall.destroy();
             functionCall = null;
         }
+        return this;
+    }
+
+    public Boolean getMainContent() {
+        return isMainContent;
+    }
+
+    public WebTemplate setMainContent(Boolean mainContent) {
+        isMainContent = mainContent;
         return this;
     }
 
@@ -250,12 +261,19 @@ public class WebTemplate implements Serializable {
         return this;
     }
 
+    public WebTemplate setDoRandomSeed(int doRandomCount) {
+        this.randomSeedSize = doRandomCount;
+        this.doRandomSeed = true;
+        return this;
+    }
+
     public Long getSeedSizeLimit() {
         return seedSizeLimit;
     }
 
     public WebTemplate setSeedSizeLimit(Long seedSizeLimit) {
         this.seedSizeLimit = seedSizeLimit;
+
         return this;
     }
 
@@ -281,11 +299,15 @@ public class WebTemplate implements Serializable {
         return linkPattern;
     }
 
+    public WebDocument createDocument(String url) {
+        return new WebDocument(folder, name, url);
+    }
+
     public WebTemplate setLinkPattern(String linkAcceptPattern, String linkRejectPattern) {
         this.linkPattern = linkAcceptPattern;
         this.linkRejectPattern = linkRejectPattern;
-        if(linkPattern!=null) Pattern.compile(linkAcceptPattern);
-        if(linkRejectPattern!=null) Pattern.compile(linkRejectPattern);
+        if (linkPattern != null) Pattern.compile(linkAcceptPattern);
+        if (linkRejectPattern != null) Pattern.compile(linkRejectPattern);
         return this;
     }
 
@@ -398,6 +420,23 @@ public class WebTemplate implements Serializable {
         return this;
     }
 
+    public WebTemplate addNextPattern(LookupPattern nextPattern, String label, Boolean doDelete) {
+
+        this.extraRecursiveMap.put(label,
+                new WebTemplate(folder, label, domain)
+                        .setMainPattern(nextPattern)
+                        .setDoDeleteStart(doDelete));
+        return this;
+    }
+
+    public WebTemplate addExtraTemplate(WebTemplate nextTemplate, String label) {
+
+        this.extraRecursiveMap.put(label, nextTemplate);
+        this.nextMap.put(label, nextTemplate);
+
+        return this;
+    }
+
     public String getDomain() {
         return domain;
     }
@@ -429,6 +468,10 @@ public class WebTemplate implements Serializable {
 
     public boolean nextEmpty() {
         return this.nextMap.isEmpty();
+    }
+
+    public boolean nextExtraEmpty() {
+        return this.extraRecursiveMap.isEmpty();
     }
 
     public WebTemplate addSeed(WebSeed seed) {
@@ -521,6 +564,14 @@ public class WebTemplate implements Serializable {
         return forceWrite;
     }
 
+    public Boolean getDoFinal() {
+        return doFinal;
+    }
+
+    public void setDoFinal(Boolean doFinal) {
+        this.doFinal = doFinal;
+    }
+
     public WebTemplate setForceWrite(Boolean forceWrite) {
         this.forceWrite = forceWrite;
         return this;
@@ -551,7 +602,7 @@ public class WebTemplate implements Serializable {
     public void zipXMLs(List<WebDocument> documentList) {
         saveXML(documentList);
 
-        File files[] = new File(folder).listFiles(new FileFilter() {
+        File[] files = new File(folder).listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {
                 String filename = pathname.getName();
@@ -652,7 +703,6 @@ public class WebTemplate implements Serializable {
     }
 
 
-
     public void goSleep() {
 
         try {
@@ -699,18 +749,23 @@ public class WebTemplate implements Serializable {
         if (new WebDocument(folder, nextTemplate.name, seed.getRequestURL()).filenameExists()) return false;
 
         String templateDomain = nextTemplate.domain;
-        if (domainSame && linkPattern != null && linkRejectPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
-            return !seed.getRequestURL().matches(linkRejectPattern);
-        } else if (domainSame && linkPattern != null && seed.getRequestURL().contains(templateDomain) && seed.getRequestURL().matches(linkPattern)) {
-            return true;
-        } else if (!domainSame && linkPattern != null && linkRejectPattern != null && seed.getRequestURL().matches(linkPattern)) {
-            return !seed.getRequestURL().matches(linkRejectPattern);
-        } else if (!domainSame && linkPattern != null && seed.getRequestURL().matches(linkPattern)) return true;
-        else if (domainSame && linkPattern == null && seed.getRequestURL().contains(templateDomain)) return true;
-        else if (!domainSame && linkPattern == null) return true;
-        else return false;
-    }
+        boolean containsDomain = seed.getRequestURL().contains(templateDomain.replaceAll("http(s?)", ""));
 
+        if (linkPattern != null && linkRejectPattern != null) {
+            return seed.getRequestURL().matches(linkPattern) && !seed.getRequestURL().matches(linkRejectPattern.replaceFirst(templateDomain, ""));
+        } else if (linkPattern != null && linkRejectPattern != null && seed.getRequestURL().matches(linkPattern)) {
+            return !seed.getRequestURL().matches(linkRejectPattern);
+        } else if (containsDomain && linkPattern != null) {
+            return seed.getRequestURL().matches(linkPattern);
+        } else if (containsDomain && linkRejectPattern != null) {
+            return !seed.getRequestURL().matches(linkRejectPattern);
+        } else if (containsDomain && linkPattern != null)
+            return seed.getRequestURL().matches(linkPattern.replaceFirst(templateDomain, ""));
+        else if (!containsDomain && linkRejectPattern != null)
+            return !seed.getRequestURL().matches(linkRejectPattern.replaceFirst(templateDomain, ""));
+        else return containsDomain;
+
+    }
 
     public WebDocument execute() {
         //Download template
@@ -722,23 +777,26 @@ public class WebTemplate implements Serializable {
         goSleep();
 
 
-        List<WebDocument> documentList = doFast ? downloadFast() : download();
+        WebDocumentList documentList = doFast ? downloadFast() : download();
+
         WebDocument mainDocument = new WebDocument(folder, name).setType(type);
 
-
-        if (nextEmpty()) {
+        if (nextEmpty() && nextExtraEmpty()) {
             //Leaf template
-            mainDocument.addWebFlowResult(documentList);
-            saveXML(documentList);
+            mainDocument.addWebFlowResult(documentList.getCurrentDocuments());
+            saveXML(documentList.getCurrentDocuments());
             //zipXMLs(documentList);
         } else {
             //Non leaf template
-            Collections.shuffle(documentList);
+            documentList.shuffle();
             Map<String, Set<String>> nextSeedList = new HashMap<>();
             Map<String, Map<String, Set<String>>> nextSeedMap = new HashMap<>();
+            List<WebDocument> documents = documentList.getNextDocuments();
+            saveXML(documentList.getCurrentDocuments());
+            documentList.clearCurrentDocuments();
 
             //clear existing documents
-            for (WebDocument document : documentList) {
+            for (WebDocument document : documents) {
                 Iterator<String> templateIter = getNextIterator();
                 Map<String, String> properties = document.getProperties();
                 String genre = properties.get(LookupOptions.GENRE);
@@ -750,8 +808,10 @@ public class WebTemplate implements Serializable {
                     List<LookupResult> subResults = document.getLookupFinalList(templateLink);
 
                     for (int k = 0; k < Math.min(subResults.size(), seedSizeLimit); k++) {
+
                         LookupResult result = subResults.get(k);
                         WebSeed newSeed = new WebSeed(document.getUrl(), WebSeed.url(templateDomain, result.getText()), k);
+
                         if (linkControl(newSeed, template)) {
 
                             if (genre != null) {
@@ -765,32 +825,17 @@ public class WebTemplate implements Serializable {
                         }
                     }
 
+
                     WebDocument webFlowResultList = template.execute();
+
+
                     mainDocument.addWebFlowResult(webFlowResultList);
 
                 }
             }
 
-            /*Iterator<String> templateIter = getNextIterator();
-            while (templateIter.hasNext()) {
-                String templateLink = templateIter.next();
-                WebTemplate template = getNextMap(templateLink);
+            //mainDocument.addWebFlowResult(documentList.getCurrentDocuments());
 
-                if (nextSeedMap.containsKey(templateLink)) {
-                    Set<String> genres = nextSeedMap.get(templateLink).keySet();
-                    for (String genre : genres) {
-                        template.addSeeds(genre, nextSeedMap.get(templateLink).get(genre));
-                    }
-                }
-
-                if (nextSeedList.containsKey(templateLink)) template.addSeeds(nextSeedList.get(templateLink));
-
-
-                WebDocument webFlowResultList = template.execute();
-                mainDocument.addWebFlowResult(webFlowResultList);
-            }*/
-
-            saveXML(documentList);
             //zipXMLs(documentList);
         }
 
@@ -856,22 +901,33 @@ public class WebTemplate implements Serializable {
         }
     }
 
-    public List<WebDocument> download() {
-        List<WebDocument> htmlDocumentList = new ArrayList<>();
+    private List<WebSeed> randomSeedList() {
+        if (doRandomSeed) {
+            Collections.shuffle(seedList);
+            return seedList.subList(0, Math.min(randomSeedSize, seedList.size()));
+        } else {
+            Collections.shuffle(seedList);
+            return seedList;
+        }
+    }
+
+    public WebDocumentList download() {
+        WebDocumentList crrDocumentList = new WebDocumentList();
+
         List<WebSeed> nextPageSeeds = new ArrayList<>();
         Map<WebSeed, String> nextPageSeedGenre = new HashMap<>();
         Map<String, Integer> failMap = new HashMap<>();
 
-
         pushGenerateSeeds(nextPageSeeds, nextPageSeedGenre);
 
-        List<Callable<Boolean>> threadList = new ArrayList<>();
+        List<DownloadCallable> threadList = new ArrayList<>();
         final FailCount failCount = new FailCount(0, threadSize);
-        Collections.shuffle(seedList);
-        for (int i = 0; i < seedList.size(); i++) {
+        List<WebSeed> currentSeedList = randomSeedList();
 
-            WebSeed webSeed = seedList.get(i);
-            DownloadCallable thread = new DownloadCallable(htmlDocumentList, failCount, webSeed, i) {
+        for (int i = 0; i < currentSeedList.size(); i++) {
+
+            WebSeed webSeed = currentSeedList.get(i);
+            DownloadCallable thread = new DownloadCallable(crrDocumentList, failCount, webSeed, i) {
                 @Override
                 public Boolean call() {
                     WebDocument document = new WebDocument(folder, name, webSeed.getRequestURL());
@@ -883,11 +939,34 @@ public class WebTemplate implements Serializable {
                         doWait(folder);
                         Integer returnValue = loadHTML(document, webSeed, index);
                         if (returnValue == 1 || returnValue == 0) {
-                            synchronized (documentList) {
-                                documentList.add(document);
+
+                            synchronized (crrDocumentList) {
+                                //Fill the list
+                                if (nextEmpty() || isMainContent)
+                                    crrDocumentList.add(document);
+                                else
+                                    crrDocumentList.addNext(document);
                             }
+
                             if (returnValue == 1) saveHTML(document);
                             returnResult = extract(document);
+
+                            for (String label : extraRecursiveMap.keySet()) {
+                                WebTemplate nextTemplate = extraRecursiveMap.get(label);
+                                WebDocument nextDocument = extractNext(document, nextTemplate);
+                                if (!nextDocument.isEmpty()) {
+                                    synchronized (crrDocumentList) {
+                                        if (nextTemplate.getDoFinal()) {
+                                            crrDocumentList.add(nextDocument);
+                                        } else {
+                                            crrDocumentList.addNext(nextDocument);
+                                        }
+                                    }
+                                }
+
+                            }
+
+
                         } else {
                             synchronized (failMap) {
                                 String seedUrl = webSeed.getMainURL();
@@ -897,7 +976,6 @@ public class WebTemplate implements Serializable {
                                 } else {
                                     failMap.put(seedUrl, webSeed.getSeedNumber());
                                 }
-
                             }
                         }
 
@@ -914,23 +992,19 @@ public class WebTemplate implements Serializable {
             threadList.add(thread);
         }
 
-        ExecutorService executor = Executors.newFixedThreadPool(threadSize);
-        try {
-            List<Future<Boolean>> returnList = executor.invokeAll(threadList);
-
-            while (checkAnyUnfinished(returnList)) {
-                Thread.sleep(20000);
+        for (DownloadCallable callable : threadList) {
+            try {
+                callable.call();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
-            executor.shutdown();
-        } catch (InterruptedException ex) {
-            System.out.println(ex.getMessage());
         }
 
-        return htmlDocumentList;
+        return crrDocumentList;
     }
 
-    public List<WebDocument> downloadFast() {
-        List<WebDocument> htmlDocumentList = new ArrayList<>();
+    public WebDocumentList downloadFast() {
+        WebDocumentList htmlDocumentList = new WebDocumentList();
         List<WebSeed> nextPageSeeds = new ArrayList<>();
         Map<WebSeed, String> nextPageSeedGenre = new HashMap<>();
         Map<String, Integer> failMap = new HashMap<>();
@@ -938,7 +1012,7 @@ public class WebTemplate implements Serializable {
 
         pushGenerateSeeds(nextPageSeeds, nextPageSeedGenre);
 
-        List<Callable<WebDocument>> threadList = new ArrayList<>();
+        List<Callable<WebDocument[]>> threadList = new ArrayList<>();
         final FailCount failCount = new FailCount(0, threadSize);
         Collections.shuffle(seedList);
         for (int i = 0; i < seedList.size(); i++) {
@@ -946,11 +1020,12 @@ public class WebTemplate implements Serializable {
             WebSeed webSeed = seedList.get(i);
             DownloadCallableFast thread = new DownloadCallableFast(failCount, webSeed, i) {
                 @Override
-                public WebDocument call() {
+                public WebDocument[] call() {
 
 
                     doWait(folder);
                     WebDocument document = new WebDocument(folder, name, webSeed.getRequestURL());
+                    WebDocument nextDocument = null;
                     Integer seedNumber = seedNumber(failMap, webSeed.getMainURL());
                     Integer returnValue = loadHTML(document, webSeed, index);
                     Boolean returnResult = false;
@@ -959,14 +1034,21 @@ public class WebTemplate implements Serializable {
                         if (returnValue == 1) saveHTML(document);
                         returnResult = extract(document);
 
+                        for (String label : extraRecursiveMap.keySet()) {
+                            WebTemplate template = extraRecursiveMap.get(label);
+                            WebDocument crrNext = extractNext(document, template);
+                            if (!crrNext.isEmpty()) {
+                                nextDocument = crrNext;
+                            }
+                        }
 
                     }
 
                     if (!forceWrite && document.filenameExists()) {
                         document.deleteOnExit();
                     }
-
-                    return document;
+                    if (nextDocument == null) return new WebDocument[]{document, document};
+                    else return new WebDocument[]{document, document, nextDocument};
                 }
             };
 
@@ -975,12 +1057,15 @@ public class WebTemplate implements Serializable {
 
         ExecutorService executor = Executors.newFixedThreadPool(threadSize);
         try {
-            List<Future<WebDocument>> returnList = executor.invokeAll(threadList);
-            for (Future<WebDocument> fdoc : returnList) {
+            List<Future<WebDocument[]>> returnList = executor.invokeAll(threadList);
+            for (Future<WebDocument[]> fdoc : returnList) {
                 try {
-                    htmlDocumentList.add(fdoc.get(50, TimeUnit.MILLISECONDS));
+                    WebDocument[] array = fdoc.get(500, TimeUnit.MILLISECONDS);
+                    htmlDocumentList.add(array[0]);
+                    htmlDocumentList.addNext(array[1]);
+                    htmlDocumentList.addNext(array[2]);
                 } catch (TimeoutException e) {
-
+                    System.out.println("Timeout....");
                 }
 
             }
@@ -1000,22 +1085,50 @@ public class WebTemplate implements Serializable {
             try {
                 task.get(1000L, TimeUnit.SECONDS);
             } catch (InterruptedException ex) {
-
+                return true;
             } catch (ExecutionException e) {
-
+                return true;
             } catch (TimeoutException e) {
-
+                return true;
             }
         }
 
         return false;
     }
 
-    public Boolean extract(WebDocument html) {
+    private void recordTime(List<LookupResult> results, double time) {
+        if (!results.isEmpty()) {
+            totalParseTime += time;
+            totalCount++;
+        }
+    }
 
+    public synchronized void printTime(){
+        System.out.println("Successful count: "+totalCount);
+        System.out.println("Successful parse average: "+totalParseTime/totalCount);
+    }
+
+    public Boolean extract(WebDocument html) {
+        double measuredNow = System.currentTimeMillis();
         List<LookupResult> results = mainPattern.getResult(html.getProperties(), mainPattern.lowercaseAllTags(html.getText()));
+        double measuredNext = System.currentTimeMillis();
+        recordTime(results, measuredNext-measuredNow);
         html.setLookupResultList(results);
         return !results.isEmpty();
+
+    }
+
+    public WebDocument extractNext(WebDocument html, WebTemplate nextTemplate) {
+
+        boolean isNotEmpty = false;
+
+        WebDocument nextDocument = nextTemplate.createDocument(html.getUrl());
+        LookupPattern nextPattern = nextTemplate.mainPattern;
+
+        List<LookupResult> results = nextPattern.getResult(html.getProperties(), nextPattern.lowercaseAllTags(html.getText()));
+        nextDocument.addLookupResultList(results);
+
+        return nextDocument;
 
     }
 
@@ -1076,11 +1189,11 @@ public class WebTemplate implements Serializable {
             System.out.println("Downloading... '" + address + "'" + " Date: " + currentDate());
             String text = "";
             try {
+
                 if (functionCall == null) {
                     text = downloadPage(address, charset, 0);
                 } else {
                     text = functionCall.returnHTML(address);
-
                 }
 
             } catch (KeyManagementException e) {
@@ -1089,8 +1202,7 @@ public class WebTemplate implements Serializable {
                 e.printStackTrace();
             } catch (KeyStoreException e) {
                 e.printStackTrace();
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return text;
@@ -1131,7 +1243,8 @@ public class WebTemplate implements Serializable {
         }
     }
 
-    private String randomUserAgent(){
+    private String randomUserAgent() {
+
         String userAgent1 = "Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19";
         String userAgent2 = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36";
         String userAgent3 = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/600.7.12 (KHTML, like Gecko) Version/8.0.7 Safari/600.7.12";
@@ -1139,13 +1252,54 @@ public class WebTemplate implements Serializable {
         String userAgent5 = "Mozilla/5.0 (Linux; <Android Version>; <Build Tag etc.>) AppleWebKit/<WebKit Rev>(KHTML, like Gecko) Chrome/<Chrome Rev> Safari/<WebKit Rev>";
         String userAgent6 = "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1";
         String userAgent7 = "Mozilla/5.0 (Linux; Android 5.1.1; Nexus 5 Build/LMY48B; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/43.0.2357.65 Mobile Safari/537.36";
-        Integer i = new Random().nextInt(7);
-        String[] agents = new String[]{userAgent1, userAgent2, userAgent3, userAgent4, userAgent5, userAgent6, userAgent7};
+        String userAgent8 = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36 RuxitSynthetic/1.0 v7506956899 t38550 ath9b965f92 altpub cvcv=2";
+        String userAgent9 = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2)";
+        String userAgent10 = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2)";
+        String userAgent11 = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727; InfoPath.1)";
+        String userAgent12 = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36";
+
+        Integer i = new Random().nextInt(8);
+        String[] agents = new String[]{userAgent1, userAgent2, userAgent3, userAgent4, userAgent5, userAgent6, userAgent7, userAgent8, userAgent9, userAgent10, userAgent11, userAgent12};
 
         return agents[i];
     }
 
-    private String downloadPage(String address, String charset, int tryCount) throws KeyManagementException, NoSuchAlgorithmException, KeyStoreException, Exception {
+    private String fillRequest(HttpGet httpGet, String address) {
+
+        String text = "curl 'https://www.fanfiction.net/book/Pegasus-Kate-O-Hearn/' " +
+                "  -H 'authority: www.fanfiction.net' \\\n" +
+                "  -H 'upgrade-insecure-requests: 1' \\\n" +
+                "  -H 'dnt: 1' \\\n" +
+                "  -H 'user-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36' \\\n" +
+                "  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \\\n" +
+                "  -H 'sec-fetch-site: same-origin' \\\n" +
+                "  -H 'sec-fetch-mode: navigate' \\\n" +
+                "  -H 'sec-fetch-user: ?1' \\\n" +
+                "  -H 'sec-fetch-dest: document' \\\n" +
+                "  -H 'referer: https://www.fanfiction.net/book/' \\\n" +
+                "  -H 'accept-language: en-US,en;q=0.9,tr-TR;q=0.8,tr;q=0.7' \\\n" +
+                "  -H 'cookie: __cfduid=da9ba359db2b9d2a1bf578737bc8df1121609233924; __cf_bm=5a45cbadb20ecc4876b535e676ee7fc37fbffa80-1609233925-1800-ARZQsGJb9a107mXEd3+6AFibYErZoUCsynAYtuz+hpV1yGKTBhoQ9HDR4V+br5VeVkhjcST73I0mvAhq7Zoq0YVuwHyMlFtj5WmenVEP34h3KNibo1yPv429EOhHUf22og==; cookies=yes' \\\n";
+
+        httpGet.addHeader("authority", address);
+        httpGet.addHeader("upgrade-insecure-requests", "1");
+        httpGet.addHeader("dnt", "1");
+        httpGet.addHeader("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
+        httpGet.addHeader("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
+        httpGet.addHeader("sec-fetch-site", "same-origin");
+        httpGet.addHeader("sec-fetch-mode", "navigate");
+        httpGet.addHeader("sec-fetch-user", "?!");
+        httpGet.addHeader("sec-fetch-dest", "document");
+        httpGet.addHeader("referer", "https://www.fanfiction.net/book/");
+        httpGet.addHeader("accept-language", "en-US,en;q=0.9,tr-TR;q=0.8,tr;q=0.7");
+        httpGet.addHeader("cookie", "__cfduid=da9ba359db2b9d2a1bf578737bc8df1121609233924; __cf_bm=5a45cbadb20ecc4876b535e676ee7fc37fbffa80-1609233925-1800-ARZQsGJb9a107mXEd3+6AFibYErZoUCsynAYtuz+hpV1yGKTBhoQ9HDR4V+br5VeVkhjcST73I0mvAhq7Zoq0YVuwHyMlFtj5WmenVEP34h3KNibo1yPv429EOhHUf22og==; cookies=yes");
+        httpGet.addHeader("accept", "image/gif, image/jpg, */*");
+        httpGet.addHeader("connection", "keep-alive");
+        httpGet.addHeader("accept-encoding", "gzip,deflate,sdch");
+        return text;
+    }
+
+
+    private String downloadPage(String address, String charset, int tryCount) throws Exception {
         String text = "";
         if (tryCount > 2) return text;
 
@@ -1163,9 +1317,13 @@ public class WebTemplate implements Serializable {
                 }
             });
 
+
+            CookieStore cookieStore = new BasicCookieStore();
+
             SSLContext sslContext = builder.build();
             SSLConnectionSocketFactory sslsf = new SSLConnectionSocketFactory(sslContext, NoopHostnameVerifier.INSTANCE);
             PlainConnectionSocketFactory plainsf = PlainConnectionSocketFactory.getSocketFactory();
+
 
             Registry<ConnectionSocketFactory> r = RegistryBuilder.<ConnectionSocketFactory>create()
                     .register("http", plainsf)
@@ -1174,68 +1332,73 @@ public class WebTemplate implements Serializable {
 
             HttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(r);
             CloseableHttpClient httpClient = HttpClients.custom()
-                    .disableCookieManagement()
+                    .setSSLContext(sslContext)
                     .setConnectionTimeToLive(5, TimeUnit.SECONDS)
-                    .setConnectionManager(cm).build();
+                    .setConnectionManager(cm)
+                    .setSSLHostnameVerifier(new NoopHostnameVerifier())
+                    .setDefaultCookieStore(cookieStore)
+                    .build();
 
 
-            HttpGet request = new HttpGet(address);
+            try {
+                HttpGet request = new HttpGet(address);
+                fillRequest(request, address);
 
-            //Request request = Request.Get(address);
-            if (request != null) {
-                try {
+                //Request request = Request.Get(address);
+                if (request != null) {
+                    try {
 
-                    //request.addHeader("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36");
-                    request.addHeader("user-agent", randomUserAgent());
-                    request.addHeader("accept", "image/gif, image/jpg, */*");
-                    request.addHeader("connection", "keep-alive");
-                    request.addHeader("accept-encoding", "gzip,deflate,sdch");
 
-                    ResponseHandler<String> rh = new ResponseHandler<String>() {
+                        //request.addHeader("user-agent", randomUserAgent());
 
-                        @Override
-                        public String handleResponse(
-                                final HttpResponse response) throws IOException {
-                            StatusLine statusLine = response.getStatusLine();
-                            HttpEntity entity = response.getEntity();
-                            if (statusLine.getStatusCode() >= 300) {
-                                throw new HttpResponseException(
-                                        statusLine.getStatusCode(),
-                                        statusLine.getReasonPhrase());
+
+                        ResponseHandler<String> rh = new ResponseHandler<String>() {
+
+                            @Override
+                            public String handleResponse(
+                                    final HttpResponse response) throws IOException {
+                                StatusLine statusLine = response.getStatusLine();
+                                HttpEntity entity = response.getEntity();
+                                if (statusLine.getStatusCode() >= 300) {
+                                    throw new HttpResponseException(
+                                            statusLine.getStatusCode(),
+                                            statusLine.getReasonPhrase());
+                                }
+                                if (entity == null) {
+                                    throw new ClientProtocolException("Response contains no content");
+                                }
+                                ContentType contentType = ContentType.getOrDefault(entity);
+                                Charset charset = contentType.getCharset();
+                                charset = charset == null ? StandardCharsets.UTF_8 : charset;
+                                BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
+                                String txt = "";
+                                String line = null;
+                                while ((line = reader.readLine()) != null) {
+                                    txt += line + "\n";
+                                }
+                                return txt;
                             }
-                            if (entity == null) {
-                                throw new ClientProtocolException("Response contains no content");
-                            }
-                            ContentType contentType = ContentType.getOrDefault(entity);
-                            Charset charset = contentType.getCharset();
-                            charset = charset == null ? Charset.forName("UTF-8") : charset;
-                            BufferedReader reader = new BufferedReader(new InputStreamReader(entity.getContent(), charset));
-                            String txt = "";
-                            String line = null;
-                            while ((line = reader.readLine()) != null) {
-                                txt += line + "\n";
-                            }
-                            return txt;
+                        };
+
+                        sleep(100);
+                        text = httpClient.execute(request, rh); //request.execute();
+
+
+                    } catch (Exception ex1) {
+
+                        System.out.println("Error in url retrying... '" + address + "'");
+                        sleep(200);
+
+                        try {
+                            text = downloadPage(address, charset, ++tryCount);
+                        } catch (Exception ex2) {
                         }
-                    };
-
-                    sleep(100);
-                    text = httpClient.execute(request, rh); //request.execute();
-
-
-                } catch (Exception ex1) {
-
-                    System.out.println("Error in url retrying... '" + address + "'");
-                    sleep(200);
-
-                    try { text = downloadPage(address, charset, ++tryCount); }
-                    catch(Exception ex2){}
-
-
+                    }
                 }
+            } catch (Exception ex) {
+
             }
         }
-
         return text;
     }
 

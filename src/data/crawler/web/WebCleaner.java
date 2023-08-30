@@ -9,77 +9,77 @@ import java.util.List;
  */
 public class WebCleaner implements Serializable {
 
-    private static String[] tags = new String[]{"<.*?>", ""};
+    private static final String[] tags = new String[]{"<.*?>", ""};
 
-    private static String[] c = new String[]{"&ccedil;", "ç"};
-    private static String[] C = new String[]{"&Ccedil;", "Ç"};
+    private static final String[] c = new String[]{"&ccedil;", "ç"};
+    private static final String[] C = new String[]{"&Ccedil;", "Ç"};
 
-    private static String[] u = new String[]{"&uuml;", "ü"};
-    private static String[] U = new String[]{"&Uuml;", "Ü"};
-    private static String[] ui = new String[]{"&ucirc;", "ü"};
-    private static String[] UI = new String[]{"&Ucirc;", "Ü"};
-
-
-
-    private static String[] o = new String[]{"&ouml;", "ö"};
-    private static String[] O = new String[]{"&Ouml;", "ö"};
-
-    private static String[] a = new String[]{"&acirc;", "a"};
-    private static String[] A = new String[]{"&Acirc;", "A"};
-    private static String[] i = new String[]{"&icirc;", "i"};
-    private static String[] I = new String[]{"&Icirc;", "İ"};
-
-    private static String[] dot = new String[]{"&hellip;", "..."};
-    private static String[] space = new String[]{"&nbsp;", " "};
-    private static String[] quo1 = new String[]{"&rsquo;", "'"};
-    private static String[] quo2 = new String[]{"&lsquo;", "'"};
-
-    private static String[] quo3 = new String[]{"&#8217;", "'"};
-    private static String[] quo4 = new String[]{"&#8216;", "'"};
-    private static String[] quo5 = new String[]{"&#8220;", "\""};
-    private static String[] quo6 = new String[]{"&#8221;", "\""};
+    private static final String[] u = new String[]{"&uuml;", "ü"};
+    private static final String[] U = new String[]{"&Uuml;", "Ü"};
+    private static final String[] ui = new String[]{"&ucirc;", "ü"};
+    private static final String[] UI = new String[]{"&Ucirc;", "Ü"};
 
 
-    private static String[] quoto1 = new String[]{"&ldquo;", "\""};
-    private static String[] quoto2 = new String[]{"&rdquo;", "\""};
-    private static String[] quoto3 = new String[]{"&quot;", "\""};
-    private static String[] quoto4 = new String[]{"&#39;", "\""};
-    private static String[] hypen = new String[]{"&shy;", "-"};
-    private static String[] euro = new String[]{"&euro;", "€"};
-    private static String[] and = new String[]{"&amp;", "ve"};
-    private static String[] mdash = new String[]{"&mdash;", "—"};
-    private static String[] ndash = new String[]{"&ndash;", "-"};
 
-    private static String[] lsaquo = new String[]{"&lsaquo;", "‹"};
-    private static String[] rsaquo = new String[]{"&rsaquo;", "›"};
-    private static String[] rsquo = new String[]{"&rsquo;", "'"};
-    private static String[] frasl = new String[]{"&frasl;", "/"};
-    private static String[] hellip = new String[]{"&#8230;", "..."};
+    private static final String[] o = new String[]{"&ouml;", "ö"};
+    private static final String[] O = new String[]{"&Ouml;", "ö"};
+
+    private static final String[] a = new String[]{"&acirc;", "a"};
+    private static final String[] A = new String[]{"&Acirc;", "A"};
+    private static final String[] i = new String[]{"&icirc;", "i"};
+    private static final String[] I = new String[]{"&Icirc;", "İ"};
+
+    private static final String[] dot = new String[]{"&hellip;", "..."};
+    private static final String[] space = new String[]{"&nbsp;", " "};
+    private static final String[] quo1 = new String[]{"&rsquo;", "'"};
+    private static final String[] quo2 = new String[]{"&lsquo;", "'"};
+
+    private static final String[] quo3 = new String[]{"&#8217;", "'"};
+    private static final String[] quo4 = new String[]{"&#8216;", "'"};
+    private static final String[] quo5 = new String[]{"&#8220;", "\""};
+    private static final String[] quo6 = new String[]{"&#8221;", "\""};
+
+
+    private static final String[] quoto1 = new String[]{"&ldquo;", "\""};
+    private static final String[] quoto2 = new String[]{"&rdquo;", "\""};
+    private static final String[] quoto3 = new String[]{"&quot;", "\""};
+    private static final String[] quoto4 = new String[]{"&#39;", "\""};
+    private static final String[] hypen = new String[]{"&shy;", "-"};
+    private static final String[] euro = new String[]{"&euro;", "€"};
+    private static final String[] and = new String[]{"&amp;", "ve"};
+    private static final String[] mdash = new String[]{"&mdash;", "—"};
+    private static final String[] ndash = new String[]{"&ndash;", "-"};
+
+    private static final String[] lsaquo = new String[]{"&lsaquo;", "‹"};
+    private static final String[] rsaquo = new String[]{"&rsaquo;", "›"};
+    private static final String[] rsquo = new String[]{"&rsquo;", "'"};
+    private static final String[] frasl = new String[]{"&frasl;", "/"};
+    private static final String[] hellip = new String[]{"&#8230;", "..."};
 
 
     //Foreign
 
-    private static String[] eacute = new String[]{"&eacute;", "é"};
-    private static String[] Eacute = new String[]{"&Eacute;", "É"};
-    private static String[] Oslash = new String[]{"&Oslash;", "Ø"};
-    private static String[] oslash = new String[]{"&oslash;", "ø"};
-    private static String[] ealing = new String[]{"&AElig;", "Æ"};
-    private static String[] Ealing = new String[]{"&aelig;", "æ"};
+    private static final String[] eacute = new String[]{"&eacute;", "é"};
+    private static final String[] Eacute = new String[]{"&Eacute;", "É"};
+    private static final String[] Oslash = new String[]{"&Oslash;", "Ø"};
+    private static final String[] oslash = new String[]{"&oslash;", "ø"};
+    private static final String[] ealing = new String[]{"&AElig;", "Æ"};
+    private static final String[] Ealing = new String[]{"&aelig;", "æ"};
 
-    private static String[] Iacute = new String[]{"&Iacute;", "Í"};
-    private static String[] iacute = new String[]{"&iacute", "í"};
+    private static final String[] Iacute = new String[]{"&Iacute;", "Í"};
+    private static final String[] iacute = new String[]{"&iacute", "í"};
 
-    private static String[] ordm = new String[]{"&ordm;", "º"};
-    private static String[] reg = new String[]{"&reg;", "®"};
-    private static String[] copy = new String[]{"&copy;", "©"};
-    private static String[] trade = new String[]{"&trade;", "™"};
+    private static final String[] ordm = new String[]{"&ordm;", "º"};
+    private static final String[] reg = new String[]{"&reg;", "®"};
+    private static final String[] copy = new String[]{"&copy;", "©"};
+    private static final String[] trade = new String[]{"&trade;", "™"};
 
 
     //Reuters
-    private static String[] three = new String[]{"&#3;"," "};
-    private static String[] unk1 = new String[]{"�&#5;&#30;","I"};
-    private static String[] lt = new String[]{"&lt;"," lt "};
-    private static String[] gt = new String[]{"&gt;"," gt "};
+    private static final String[] three = new String[]{"&#3;"," "};
+    private static final String[] unk1 = new String[]{"�&#5;&#30;","I"};
+    private static final String[] lt = new String[]{"&lt;"," lt "};
+    private static final String[] gt = new String[]{"&gt;"," gt "};
 
 
 
@@ -88,7 +88,7 @@ public class WebCleaner implements Serializable {
 
 
 
-    private static List<String[]> replaceList = new ArrayList<>();
+    private static final List<String[]> replaceList = new ArrayList<>();
 
     static {
         replaceList.add(tags);

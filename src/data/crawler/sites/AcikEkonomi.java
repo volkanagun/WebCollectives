@@ -21,7 +21,6 @@ public class AcikEkonomi implements Serializable {
         mainTemplate.setNextPageStart(2);
         mainTemplate.addSeed("economy", "acikekonomi.com");
 
-
         LookupPattern articlePattern = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div\\sid=\"content\"(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.LOOKUP, LookupOptions.GENRE, LookupOptions.GENRE))

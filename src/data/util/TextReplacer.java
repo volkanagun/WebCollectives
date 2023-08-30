@@ -12,7 +12,7 @@ import java.util.List;
  * @author wolf
  */
 public final class TextReplacer implements Serializable {
-    private List<String[]> replaceList;
+    private final List<String[]> replaceList;
 
     public TextReplacer() {
         replaceList = new LinkedList<>();

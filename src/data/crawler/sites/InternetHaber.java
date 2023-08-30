@@ -4,17 +4,14 @@ import data.crawler.web.LookupOptions;
 import data.crawler.web.LookupPattern;
 import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
-
 import java.io.Serializable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class InternetHaber implements Serializable {
 
     public static WebFlow build(int i) {
-
         int startIndice = 0;
-        int maxSize = 2;
+        int maxSize = 100;
+        int randomSize = 1000;
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
@@ -41,7 +38,8 @@ public class InternetHaber implements Serializable {
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(1);
+                .setDoRandomSeed(randomSize)
+                .setThreadSize(2);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
@@ -82,7 +80,6 @@ public class InternetHaber implements Serializable {
         WebFlow flow = new WebFlow(linkTemplate);
 
         return flow;
-
     }
 
     public static void main(String[] args) {

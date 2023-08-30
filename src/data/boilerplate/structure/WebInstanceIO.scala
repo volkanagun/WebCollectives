@@ -1,13 +1,14 @@
 package data.boilerplate.structure
 
 import java.io.{File, FileInputStream, FileOutputStream, ObjectInputStream, ObjectOutputStream}
-
 import data.boilerplate.learning.LearningParams
 import data.boilerplate.learning.pipes.{PipeOp, PipeResult}
 import org.nd4j.linalg.dataset
 import org.nd4j.linalg.dataset.api.{MultiDataSet, MultiDataSetPreProcessor}
 import org.nd4j.linalg.dataset.api.iterator.MultiDataSetIterator
 import org.nd4j.linalg.factory.Nd4j
+
+import scala.collection.parallel.CollectionConverters.ArrayIsParallelizable
 
 /**
  * @author Volkan Agun
@@ -53,6 +54,7 @@ class WebInstanceIO(val htmlFolder: String, val xmlFolders: Array[String], val v
   def build(): Array[WebInstance] = {
     val htmlFilenames = new File(htmlFolder).list()
     val xmlFilenames = xmlFolders.flatMap(folderName => new File(folderName).list().map(fname => folderName + fname))
+
     htmlFilenames.par.map(htmlName => {
       val isfound = xmlFilenames.find(xmlName => xmlName.contains(htmlName))
       isfound match {

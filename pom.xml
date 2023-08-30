@@ -9,8 +9,8 @@
     <version>1.5</version>
 
     <properties>
-        <scala.major.version>2.11</scala.major.version>
-        <scala.version>2.11.8</scala.version>
+        <scala.major.version>2.13</scala.major.version>
+        <scala.version>2.13.8</scala.version>
         <bigdl.version>0.6.0</bigdl.version>
         <spark.version>2.1.0</spark.version>
         <dl4j.version>1.0.0-beta5</dl4j.version>
@@ -38,12 +38,33 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.10.2</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-server</artifactId>
             <version>3.141.59</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.scala-lang.modules/scala-parallel-collections -->
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-parallel-collections_2.13</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.scala-lang.modules/scala-xml -->
+        <dependency>
+            <groupId>org.scala-lang.modules</groupId>
+            <artifactId>scala-xml_2.13</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.scala-lang.modules</groupId>
@@ -135,7 +156,7 @@
         <dependency>
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
-            <version>2.11.8</version>
+            <version>${scala.version}</version>
         </dependency>
 
 

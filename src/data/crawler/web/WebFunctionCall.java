@@ -10,7 +10,7 @@ import java.io.Serializable;
 
 public abstract class WebFunctionCall implements Serializable {
 
-    private static String OS = System.getProperty("os.name").toLowerCase();
+    private static final String OS = System.getProperty("os.name").toLowerCase();
     protected ChromeDriver chromeDriver;
     protected FirefoxDriver firefoxDriver;
 
@@ -63,6 +63,7 @@ public abstract class WebFunctionCall implements Serializable {
 
     public WebFunctionCall setDoFirefox(Boolean doFirefox) {
         this.doFirefox = doFirefox;
+
         return this;
     }
 
@@ -107,6 +108,7 @@ public abstract class WebFunctionCall implements Serializable {
 
 
     public WebFunctionCall destroy() {
+
         if(doFirefox && firefoxDriver!=null){
             firefoxDriver.close();
             firefoxDriver = null;
@@ -117,6 +119,7 @@ public abstract class WebFunctionCall implements Serializable {
             chromeDriver = null;
             js = null;
         }
+
         return this;
     }
 

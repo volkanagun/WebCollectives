@@ -9,26 +9,51 @@ public class AnadoluAjansi implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.aa.com.tr/tr";
-        Integer pageCount = 5;
+        Integer pageCount = 50;
 
-        WebFunctionCall clickCall = new WebButtonClickCall(1, ".button-daha.text-center").setWaitTime(1500);
+        WebFunctionCall clickCall = new WebButtonClickControl(1, "a.button-daha")
+                .setDoStopOnError(true)
+                .setWaitTime(2000);
+
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(1500);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, clickCall, scrollCall)
-                .setWaitBetweenCalls(2000L)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, clickCall)
+                .setDoFirefox(true)
+                .setWaitBetweenCalls(1000L)
                 .initialize()
                 .setWaitTime(1000);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"konu-alt(.*?)>", "</div>")
-                .setStartEndMarker("<div", "</div>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"konu-alt(.*?)\">","</div>")
+                .setStartEndMarker("<div","</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"row konu-alt-icerik\">", "</div>")
+                        /*.setStartEndMarker("<div", "</div>")*/
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")
+                                .setNth(1)));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy", "https://www.aa.com.tr/tr/ekonomi")
                 .addSeed("world", "https://www.aa.com.tr/tr/dunya")
+                .addSeed("biography", "https://www.aa.com.tr/tr/portre")
                 .addSeed("analysis", "https://www.aa.com.tr/tr/analiz")
+                .addSeed("culture", "https://www.aa.com.tr/tr/yasam")
+                .addSeed("health", "https://www.aa.com.tr/tr/saglik")
                 .addSeed("sports", "https://www.aa.com.tr/tr/spor")
+                .addSeed("sports", "https://www.aa.com.tr/tr/dunyadan-spor")
                 .addSeed("turkey", "https://www.aa.com.tr/tr/turkiye")
+                .addSeed("politics", "https://www.aa.com.tr/tr/politika")
                 .addSeed("covid", "https://www.aa.com.tr/tr/koronavirus")
+                .addSeed("education", "https://www.aa.com.tr/tr/egitim")
+                .addSeed("technology", "https://www.aa.com.tr/tr/bilim-teknoloji")
+                .addSeed("economy", "https://www.aa.com.tr/tr/sirkethaberleri")
+                .addSeed("terror", "https://www.aa.com.tr/tr/feto-ve-inkar-stratejisi")
+                .addSeed("environment", "https://www.aa.com.tr/tr/yesilhat/yesil-ekonomi")
+                .addSeed("environment", "https://www.aa.com.tr/tr/yesilhat/iklim-degisikligi")
+                .addSeed("environment", "https://www.aa.com.tr/tr/yesilhat/sifir-atik")
+                .addSeed("environment", "https://www.aa.com.tr/tr/yesilhat/cevre-hikayeleri")
+                .addSeed("environment", "https://www.aa.com.tr/tr/yesilhat/yesil-sozluk")
+                .addSeed("rights", "https://www.aa.com.tr/tr/ayrimcilikhatti/ayrimcilik")
+                .addSeed("rights", "https://www.aa.com.tr/tr/ayrimcilikhatti/musluman-karsitligi")
+                .addSeed("rights", "https://www.aa.com.tr/tr/ayrimcilikhatti/kadin")
+                .addSeed("rights", "https://www.aa.com.tr/tr/ayrimcilikhatti/insan-hikayeleri")
                 .setDoFast(false)
                 .setSleepTime(2500L)
                 .setDoDeleteStart(true)
@@ -56,7 +81,7 @@ public class AnadoluAjansi implements Serializable {
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
-                .setLookComplete(false).setSleepTime(2500L)
+                .setLookComplete(false).setSleepTime(2500L).setWaitTime(1000L)
                 .setThreadSize(1)
                 .setDoFast(false)
                 .setDomain(domain)
@@ -66,8 +91,8 @@ public class AnadoluAjansi implements Serializable {
 
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);
         WebFlow flow = new WebFlow(linkTemplate);
-        return flow;
 
+        return flow;
     }
 
     public static void main(String[] args) {

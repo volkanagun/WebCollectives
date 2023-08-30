@@ -8,9 +8,10 @@ import java.util.List;
 
 public class WebDateGenerator extends WebSuffixGenerator{
 
-    private String dateFormat;
-    private Date startDate, endDate;
-    private SimpleDateFormat formatting;
+    private final String dateFormat;
+    private final Date startDate;
+    private final Date endDate;
+    private final SimpleDateFormat formatting;
     public WebDateGenerator(String dateFormat, Date startDate, Date endDate) {
         this.dateFormat = dateFormat;
         this.startDate = startDate;

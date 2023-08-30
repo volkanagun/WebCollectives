@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebCountGenerator extends WebSuffixGenerator{
-    private int start, end;
+    private final int start;
+    private final int end;
     private String suffix = "";
 
     public WebCountGenerator(int start, int end) {

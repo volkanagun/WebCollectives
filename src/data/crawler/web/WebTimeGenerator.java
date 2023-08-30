@@ -7,8 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 public class WebTimeGenerator extends WebSuffixGenerator{
-    private String suffix;
-    private Date startDate, endDate;
+    private final String suffix;
+    private final Date startDate;
+    private final Date endDate;
 
     public WebTimeGenerator(String suffix, Date startDate, Date endDate) {
 

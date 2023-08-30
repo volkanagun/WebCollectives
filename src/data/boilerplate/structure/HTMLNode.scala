@@ -1,14 +1,52 @@
 package data.boilerplate.structure
 
-import org.jsoup.nodes.{Node, TextNode}
+import org.jsoup.nodes.{Element, Node, TextNode}
+import org.w3c.dom
+
+import scala.xml.Comment
 
 /**
  * @author Volkan Agun
  */
-class HTMLNode(val node:Node) extends Serializable{
+class HTMLNode(val id:Int, val node:Node) extends Serializable{
 
   var childnodes = Array[HTMLNode]()
+  var previous, next:HTMLNode = null;
   var parent:HTMLNode = null
+
+  def nameID():Int={
+    node.nodeName().hashCode
+  }
+
+  def parentID():Int={
+    if(parent !=null) parent.htmlID()
+    else htmlID()
+  }
+  def childID():Array[Int]={
+    if(childnodes.isEmpty) Array(htmlID())
+    else childnodes.map(_.htmlID())
+  }
+
+  def htmlID():Int={
+    nameID()*7 + id
+  }
+
+  def hasNext():Boolean={
+    next != null
+  }
+
+  def hasPrevious():Boolean={
+    previous !=null
+  }
+
+  def setPrevious(previous:HTMLNode):this.type ={
+    this.previous = previous
+    this
+  }
+  def setNext(next:HTMLNode):this.type ={
+    this.next = next
+    this
+  }
 
   def setParent(p:HTMLNode):HTMLNode={
     this.parent = p;
@@ -39,6 +77,31 @@ class HTMLNode(val node:Node) extends Serializable{
   }
   def isLeaf():Boolean={
     node.isInstanceOf[TextNode] && !node.asInstanceOf[TextNode].isBlank
+  }
+
+  def isElement():Boolean={
+    node !=null && (node.isInstanceOf[Element] || node.isInstanceOf[TextNode])
+  }
+
+  def isComment():Boolean={
+    node!=null && (node.isInstanceOf[org.jsoup.nodes.Comment])
+  }
+
+  def getFullHTML(): String = {
+    if(node!=null && node.isInstanceOf[TextNode]){
+      node.asInstanceOf[TextNode].parent().outerHtml();
+    }
+    else if(node!=null && node.isInstanceOf[Element]){
+      node.asInstanceOf[Element].outerHtml()
+    }
+    else{
+      "NULL"
+    }
+  }
+
+  def hasMatches(pattern:String):Boolean={
+    val html = getFullHTML()
+    pattern.r.findAllMatchIn(html).nonEmpty
   }
 
   def tagText():Option[String]={

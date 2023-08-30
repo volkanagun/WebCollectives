@@ -17,7 +17,7 @@ case class PatternParentRatioOp(regex: String) extends PatternOp(Array(), s"parr
     val parrentPatterns = rpatterns(regex, parent.html())
     val currentPatterns = rpatterns(regex, current.html())
     val density = currentPatterns.length.toDouble / parrentPatterns.length
-    IntermediateResult(Map(name -> density))
+    IntermediateResult(leaf, Map(name -> density))
   }
 
 }

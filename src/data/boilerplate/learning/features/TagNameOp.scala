@@ -12,8 +12,8 @@ case class TagNameOp() extends ExecutableOp(Array(), "tag-name-op") {
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val name = leaf.node.nodeName()
     if (name != null) {
-      IntermediateResult(Map(s"tagName-${name}" -> 1.0))
+      IntermediateResult(leaf, Map(s"tagName-${name}" -> 1.0))
     }
-    else IntermediateResult()
+    else IntermediateResult(leaf)
   }
 }

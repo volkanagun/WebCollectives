@@ -17,18 +17,24 @@ object HTMLParser {
   def parseHTML(filename:String) : HTMLNode = {
     val htmlText = Source.fromFile(filename, "UTF-8").getLines().mkString("\n")
     val htmlDocument  = Jsoup.parse(htmlText)
-    parseNode(htmlDocument)
+    parseNode(1, htmlDocument)
   }
 
-  def parseNode(node:Node):HTMLNode={
+  def parseNode(parentID:Int, node:Node):HTMLNode={
+    val id = parentID * 7 + node.nodeName().hashCode
     val childNodes = node.childNodes()
       .toArray[Node](Array[Node]())
       .filter(cnode=> { !(cnode.isInstanceOf[TextNode] && cnode.asInstanceOf[TextNode].isBlank)})
       .map(cnode=> {
-        parseNode(cnode)
+        parseNode(id, cnode)
       })
 
-    new HTMLNode(node)
+    childNodes.zipWithIndex.foreach{case(node, index)=> {
+      if(index > 0) node.setPrevious(childNodes(index-1))
+      if(index < childNodes.length-1) node.setNext(childNodes(index+1))
+    }}
+
+    new HTMLNode(id, node)
       .setChildNodes(childNodes)
   }
 

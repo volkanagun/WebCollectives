@@ -11,9 +11,12 @@ public class MilliyetBlogList implements Serializable {
 
     public static WebFlow build() {
 
+        int randomCount = 5000;
+
         List<WebSuffixGenerator> suffixGenerators = new ArrayList<>();
-        suffixGenerators.add(new WebCountGenerator(1,300,"&KategoriNo="));
-        suffixGenerators.add(new WebCountGenerator(1,2,"&Page="));
+
+        suffixGenerators.add(new WebCountGenerator(1,354,"&KategoriNo="));
+        suffixGenerators.add(new WebCountGenerator(1,5,"&Page="));
 
         WebTemplate yazarTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "yazar-links", LookupOptions.EMPTYDOMAIN);
         LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a(.*?)href\\=\"/(.*?)/\\?UyeNo\\=", "\"\\s?(target=\"_blank\"|class=\"flt_left\"?)>");
@@ -24,6 +27,7 @@ public class MilliyetBlogList implements Serializable {
                 .setThreadSize(1).setDoFast(false)
                 .setSleepTime(500L).setWaitTimeAfter(50000L).setWaitTime(5000L)
                 .setDoDeleteStart(true)
+                .setDoRandomSeed(randomCount)
                 .setSuffixGenerator(new WebMultiSuffixGenerator(suffixGenerators))
                 .addSeed("http://blog.milliyet.com.tr/BlogListeKategori/?Status=&Sort=");
 
@@ -41,6 +45,7 @@ public class MilliyetBlogList implements Serializable {
                 .setNextPageStart(1)
                 .setDoFast(false).setDoDeleteStart(true)
                 .setSleepTime(1000L)
+                .setWaitTime(1500L)
                 .setNextPageSize(10)
                 .setThreadSize(1);
 
@@ -60,7 +65,6 @@ public class MilliyetBlogList implements Serializable {
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", LookupOptions.EMPTYDOMAIN)
                 .setDomain("http://blog.milliyet.com.tr");
-
         
         articleTemplate.setMainPattern(articlePattern).setForceWrite(true).setLookComplete(false)
                 .setType(LookupOptions.BLOGDOC)
@@ -72,12 +76,9 @@ public class MilliyetBlogList implements Serializable {
         return flow;
     }
 
-
     public static void main(String[] args) {
-
         ExecutorService service = Executors.newFixedThreadPool(1);
         WebFlow.submit(service, build());
         service.shutdown();
-
     }
 }

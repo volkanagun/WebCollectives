@@ -52,6 +52,8 @@ public class LookupOptions implements Serializable {
     public static String LANGUAGE = "LANGUAGE";
     public static String FANFIC = "FANFIC";
     public static String TOPIC = "TOPIC";
+    public static String CATEGORY = "CATEGORY";
+    public static String CATEGORYLIST = "CATEGORYLIST";
 
 
     public static String URLPAGE = "URLPAGE";
@@ -60,6 +62,7 @@ public class LookupOptions implements Serializable {
 
     public static String MAINDIRECTORY = "resources";
     public static String HTMLDIRECTORY = MAINDIRECTORY + "/htmls/";
+    public static String HTMLHURRIYETDIRECTORY = MAINDIRECTORY + "/hurriyet-htmls/";
     public static String POLITICSDIRECTORY = "resources/politics";
     public static String RELIGIONDIRECTORY = "resources/religion";
     public static String TECHDIRECTORY = "resources/technology";
@@ -67,6 +70,8 @@ public class LookupOptions implements Serializable {
     public static String FORUMENDIRECTORY = "resources/forums-english";
 
     public static String FANFICDIRECTORY = "resources/fanfics";
+    public static String COMPAREDIRECTORY = "resources/comparisons/";
+    public static String COMPAREHTMLDIRECTORY = "resources/compare-htmls/";
 
     public static String BLOGENGDIRECTORY = "resources/blogs-english";
     public static String TEXTENGDIRECTORY = "resources/texts-english";
@@ -75,7 +80,15 @@ public class LookupOptions implements Serializable {
     public static String BLOGTRYDIRECTORY = "resources/blogs-trial";
     public static String TESTDIRECTORY = "resources/tests";
     public static String ARTICLEDIRECTORY = "resources/articles";
+    public static String GOOGLEDIR = "resources/googles";
+
+    public static String WIKIDIRECTORY = "resources/wikipedia";
     public static String TURKISHARTICLEDIRECTORY = "resources/articles-turkish";
+    public static String TURKISHSTORYDIRECTORY = "resources/stories-turkish";
+    public static String HURRIYETDIRECTORY = "resources/articles-hurriyet";
+    public static String SOZCUDIRECTORY = "resources/articles-sozcu";
+    public static String CUMHURIYETDIRECTORY = "resources/articles-cumhuriyet";
+    public static String HALKTVDIRECTORY = "resources/articles-halktv";
     public static String TWEETDIRECTORY = "resources/tweets";
     public static String REUTERSDIRECTORY = "resources/reuters";
     public static String REUTERSSOURCEDIRECTORY = "resources/source/";

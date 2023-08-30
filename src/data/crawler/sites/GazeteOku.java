@@ -11,13 +11,17 @@ import java.util.concurrent.Executors;
 public class GazeteOku implements Serializable {
 
     public static WebFlow build() {
+
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2020, 1, 1);
+        calendar.set(2021, 1, 1);
         Date startDate = calendar.getTime();
         Date endDate = new Date();
+
         //Main Download
-        WebTemplate mainTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", "http://www.gazeteoku.com").setSleepTime(2000L).setDoDeleteStart(true)
+        WebTemplate mainTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", "http://www.gazeteoku.com")
+                .setSleepTime(2000L).setDoDeleteStart(true)
                 .setSuffixGenerator(new WebDateGenerator("dd.MM.yyyy",startDate, endDate));
+
         String mainSeed = "http://www.gazeteoku.com/tum-yazarlar.html?site=&date=";
         mainTemplate.addSeed(mainSeed)
                 .setDoDeleteStart(true);
@@ -77,7 +81,7 @@ public class GazeteOku implements Serializable {
 
     public static void main(String[] args)
     {
-        ExecutorService service = Executors.newFixedThreadPool(5);
+        ExecutorService service = Executors.newFixedThreadPool(15);
         WebFlow.submit(service, build());
         service.shutdown();
     }

@@ -14,12 +14,13 @@ import java.util.concurrent.Executors;
  * Should be updated!!!
  */
 public class EngadetList implements Serializable {
+
     public static WebFlow build(String mainFolder) {
 
         WebTemplate authorTemplate = new WebTemplate(mainFolder, "author-links", LookupOptions.EMPTYDOMAIN);
         /*LookupPattern authorPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<span\\sclass\\=\"block@m-\">", "</span>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a\\shref\\=\"", "\"(.*?)>"));
-*/
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.AUTHORLINK, "<a\\shref\\=\"", "\"(.*?)>"));*/
+
         LookupPattern authorPattern = new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHORLINK, null, null)
                 .setSingleRegex("(href\\=\"(/about/editors/(.*?)/))\"")
                 .setSingleGroup(2);

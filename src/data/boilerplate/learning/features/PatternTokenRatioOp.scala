@@ -18,7 +18,7 @@ case class PatternTokenRatioOp(regex: String) extends PatternOp(Array(), s"patte
     val patterns = rpatterns(regex, html)
     val tokenLength = tokenize(element.text()).length
     val density = tokenLength.toDouble / patterns.length
-    IntermediateResult(Map(name -> density))
+    IntermediateResult(leaf, Map(name -> density))
   }
 
   protected def tokenize(text: String): Array[String] = {

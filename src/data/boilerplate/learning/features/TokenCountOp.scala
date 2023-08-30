@@ -19,7 +19,7 @@ case class TokenCountOp() extends ExecutableOp(Array(), s"token-count-op") {
     val element = leaf.node.asInstanceOf[Element]
     val tokenLength = tokenize(element.text()).length
     val count = tokenLength.toDouble
-    IntermediateResult(Map(name -> count))
+    IntermediateResult(leaf, Map(name -> count))
   }
 
   protected def tokenize(text: String): Array[String] = {
