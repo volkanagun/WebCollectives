@@ -1,9 +1,6 @@
 package data.crawler.sites;
 
-import data.crawler.web.LookupOptions;
-import data.crawler.web.LookupPattern;
-import data.crawler.web.WebFlow;
-import data.crawler.web.WebTemplate;
+import data.crawler.web.*;
 
 
 import java.io.Serializable;
@@ -17,28 +14,39 @@ public class SozcuWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.sozcu.com.tr";
-        int pageSize = 50;
+        int pageCount = 3;
+        WebFunctionCall clickCall = new WebButtonClickControl(1, "button.loadmore")
+                .setDoStopOnError(true)
+                .setWaitTime(1000);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\"(.*?)>", "</div>")
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2).setWaitTime(1500);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,scrollCall,  clickCall)
+                .setDoFirefox(true)
+                .setWaitBetweenCalls(1000L)
+                .setDoStopOnError(false)
+                .initialize()
+                .setWaitTime(1000);
+
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.SOZCUDIRECTORY, "article-links", domain)
                 .addSeed("breaking", "https://www.sozcu.com.tr/kategori/gundem/")
+                .addSeed("breaking", "https://www.sozcu.com.tr/gunun-icinden/")
                 .addSeed("health", "https://www.sozcu.com.tr/hayatim/")
                 .addSeed("world", "https://www.sozcu.com.tr/kategori/dunya/")
                 .addSeed("economy", "https://www.sozcu.com.tr/kategori/ekonomi/")
+                .addSeed("economy", "https://www.sozcu.com.tr/finans/")
                 .addSeed("auto", "https://www.sozcu.com.tr/kategori/otomotiv/")
                 .addSeed("education", "https://www.sozcu.com.tr/kategori/egitim/")
                 .addSeed("health", "https://www.sozcu.com.tr/kategori/saglik/")
-                .addSeed("technology", "https://www.sozcu.com.tr/kategori/teknoloji/")
-                .setLinkPattern("(.*?)(/)",null)
-                .setNextPageSuffix("").setNextPageSize(pageSize)
+                .addSeed("technology", "https://www.sozcu.com.tr/bilim-teknoloji/")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)
-                .setThreadSize(1)
                 .setDomain(domain)
+                .setFunctionCall(sequenceCall)
                 .setMainPattern(linkPattern);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
@@ -66,7 +74,6 @@ public class SozcuWeb implements Serializable {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDomain(domain)
-                .setDoRandomSeed(pageSize)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(true);

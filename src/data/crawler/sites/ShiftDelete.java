@@ -7,8 +7,8 @@ public class ShiftDelete {
     public static WebFlow build() {
 
         String domain = "https://shiftdelete.net/";
-        int pageCount = 10;
-        int randomCount = 10;
+        int pageCount = 50;
+        //int randomCount = 10;
 
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<h4>", "</h4>")
@@ -44,7 +44,7 @@ public class ShiftDelete {
                 .setDoFast(Boolean.FALSE)
                 .setDoDeleteStart(Boolean.TRUE)
                 .setSleepTime(2500L)
-                .setDoRandomSeed(randomCount)
+                //.setDoRandomSeed(randomCount)
                 .setNextPageSize(pageCount)
                 .setThreadSize(1)
                 .setDomain(domain)

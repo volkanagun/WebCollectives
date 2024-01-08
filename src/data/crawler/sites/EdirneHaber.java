@@ -16,9 +16,9 @@ public class EdirneHaber implements Serializable {
 
         String domain = "http://www.edirnehaber.org";
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<TD valign=center(.*?)>", "</TD>")
-                .setStartEndMarker("<TD","</TD>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a class=mansetspot2 href=", ">"));
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-span-2\">", "</div>")
+                .setStartEndMarker("<div","</div>")
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a class=(.*?)href=", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy","http://www.edirnehaber.org/haberler/ekonomi/")
@@ -37,7 +37,6 @@ public class EdirneHaber implements Serializable {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(true)
-                .setNextPageSuffix("")
                 .setThreadSize(1)
                 .setDomain(domain).setDomainSame(true)
                 .setMainPattern(linkPattern);

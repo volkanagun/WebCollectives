@@ -8,8 +8,8 @@ public class BBCTurkish {
     public static WebFlow build() {
 
         String domain = "https://www.bbc.com/turkce/";
-        int pageCount = 100;
-        int randomCount = 1;
+        int pageCount = 50;
+        int randomCount = 50;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<main(.*?)>", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
@@ -32,6 +32,7 @@ public class BBCTurkish {
                 .addSeed("world", "https://www.bbc.com/turkce/topics/c95y3wy7842t")
                 .addSeed("world", "https://www.bbc.com/turkce/topics/cy0ryl4pvx6t")
                 .addSeed("world", "https://www.bbc.com/turkce/topics/cg726yxwgygt")
+                .addSeed("war", "https://www.bbc.com/turkce/topics/cy0ryl4pvx6t")
                 .addSeed("health", "https://www.bbc.com/turkce/topics/ck0r47pk362t")
                 .setSuffixGenerator(new WebCountGenerator(1, pageCount, "?page="))
                 //.setLinkPattern("^https\\://(.*?)$","^https://www.bbc.com/\\?page=\\d+$")

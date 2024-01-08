@@ -9,7 +9,7 @@ public class Euronews {
 
         String domain = "https://tr.euronews.com/";
         int pageCount = 20;
-        int randomCount = 100;
+        int randomCount = 10;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<main class=\"o-site-main\" id=\"enw-main-content\">", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a rel=\"bookmark\"(.*?)href=\"", "\""));
@@ -65,7 +65,6 @@ public class Euronews {
                 .addSeed("environment", "https://tr.euronews.com/tag/olum")
                 .addSeed("sports", "https://tr.euronews.com/tag/diger-sporlar")
                 .addSeed("sports", "https://tr.euronews.com/tag/diger-sporlar")
-                //.addSeed("sports", "https://tr.euronews.com/tag/tokyo-2020-olimpiyat-oyunlari")
                 .setSuffixGenerator(new WebCountGenerator(1, pageCount,"?p="))
                 .setDoFast(false)
                 .setDoRandomSeed(randomCount)
@@ -75,7 +74,7 @@ public class Euronews {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<div class=\"o-section o-article", "</div>")
+        /*LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<div class=\"o-section o-article", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.ARTICLERATING, "<div class=\"c-article-meta\">","</div>")
@@ -88,7 +87,19 @@ public class Euronews {
                 .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content(.*>)", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
+                                .setRemoveTags(true)));*/
+
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article class=\"(.*?)\">", "</article>")
+                .setStartEndMarker("<div", "</div>")
+                .setNth(0)
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>"))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors\">","</div>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<a(.*?)>","</a>")))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content(.*?)\">", "</div>")
+                        .setStartEndMarker("<div", "</div>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));
+
 
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)

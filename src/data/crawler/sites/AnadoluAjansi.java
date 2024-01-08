@@ -9,16 +9,17 @@ public class AnadoluAjansi implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.aa.com.tr/tr";
-        Integer pageCount = 50;
+        Integer pageCount = 100;
 
-        WebFunctionCall clickCall = new WebButtonClickControl(1, "a.button-daha")
+        WebFunctionCall clickCall = new WebButtonClickControl(1, "a.button-daha.text-center")
                 .setDoStopOnError(true)
-                .setWaitTime(2000);
+                .setWaitTime(1000);
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(1500);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, clickCall)
                 .setDoFirefox(true)
                 .setWaitBetweenCalls(1000L)
+                .setDoStopOnError(false)
                 .initialize()
                 .setWaitTime(1000);
 

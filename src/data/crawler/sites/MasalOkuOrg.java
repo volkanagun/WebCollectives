@@ -11,8 +11,8 @@ public class MasalOkuOrg {
 
         String domain = "https://www.masaloku.org/";
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"article\">", "</div>")
-                .setStartEndMarker("<div","</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<main class=\"site-main\" id=\"main\">", "</main>")
+                .setStartEndMarker("<main","</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<h2 class=\"title\">", "</h2>")
                         .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\"")));
 
@@ -36,7 +36,7 @@ public class MasalOkuOrg {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(false)
-                .setNextPageSize(50)
+                .setNextPageSize(5)
                 .setNextPageStart(1)
                 .setNextPageJump(1)
                 .setThreadSize(1).setNextPageSuffix("page/")

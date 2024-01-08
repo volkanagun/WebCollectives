@@ -69,7 +69,7 @@ public class LookupPattern implements Serializable {
         if(regex!=null && regex.length>0) for(int i=0; i < regex.length; i++) regex[i] = regex[i].toLowerCase();
 
         for(LookupPattern subLookup:subpatterns){
-            subLookup.lowercaseRegexes();
+            if(subLookup.tagLowercase) subLookup.lowercaseRegexes();
         }
 
         return this;

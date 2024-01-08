@@ -10,15 +10,20 @@ public class BilgiUstam {
     public static WebFlow build() {
 
         String domain = "http://www.bilgiustam.com";
-        int count = 50;
+        int count = 30;
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<h2 class=\"title\">", "</h2>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.MAINPAGE, "<h2 class=\"title\">", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", domain)
-                .addSeed("technology", "https://www.bilgiustam.com/tek/")
-                .addSeed("daily", "https://www.bilgiustam.com/gun/")
-                .addSeed("daily", "https://www.bilgiustam.com/yasam/")
+               .addSeed("technology", "https://www.bilgiustam.com/tek/")
+               .addSeed("daily", "https://www.bilgiustam.com/gun/")
+               .addSeed("people", "https://www.bilgiustam.com/kimdir-2/")
+               .addSeed("science", "https://www.bilgiustam.com/biyoloji-2/")
+               .addSeed("events", "https://www.bilgiustam.com/etkinlikler/")
+               .addSeed("web", "https://www.bilgiustam.com/internet/")
+               .addSeed("travel", "https://www.bilgiustam.com/ulasim/")
+               .addSeed("daily", "https://www.bilgiustam.com/yasam/")
                 .addSeed("science", "https://www.bilgiustam.com/bilim/")
                 .addSeed("web", "https://www.bilgiustam.com/internet/")
                 .addSeed("travel", "https://www.bilgiustam.com/turizm/")
@@ -28,6 +33,7 @@ public class BilgiUstam {
                 .addSeed("auto", "https://www.bilgiustam.com/otomobil/")
                 .addSeed("culture", "https://www.bilgiustam.com/sanat/")
                 .addSeed("economy", "https://www.bilgiustam.com/ekonomi-2/")
+
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)
@@ -54,7 +60,7 @@ public class BilgiUstam {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDomain(domain)
-                .setDoRandomSeed(count)
+                //.setDoRandomSeed(count)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(true);

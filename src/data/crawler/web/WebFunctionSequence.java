@@ -42,19 +42,28 @@ public class WebFunctionSequence extends WebFunctionCall {
     @Override
     public String returnHTML(WebDriver driver) {
         String htmlSource = null;
+        int tryCount = 0;
         for (int i = 0; i < count; i++) {
 
+            isError = false;
             for (WebFunctionCall functionCall : webFunctionCallList) {
                 waitForNext();
-                htmlSource = functionCall.returnHTML(driver);
+                String newSource = functionCall.returnHTML(driver);
                 if (functionCall.isError() && functionCall.isDoStopOnError()) {
                     isError = true;
                     break;
+                }
+                else{
+                    htmlSource = newSource;
                 }
             }
 
             if (isError) {
                 System.out.println("Sequence error occurred...");
+                tryCount++;
+            }
+
+            if(tryCount > 3){
                 break;
             }
         }

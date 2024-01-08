@@ -23,20 +23,24 @@ public class WebButtonClickControl extends WebButtonClickCall {
             mainHTML = newHTML;
 
             for (int i = 1; i <= myCount; i++) {
-                element.click();
-                waitFor();
-                newHTML = existingDriver.getPageSource();
-                if (lengthFilter.isOk(newHTML)) {
-                    mainHTML = newHTML;
-                    continue;
-                } else {
-                    isError = true;
-                    break;
+                try {
+                    element.click();
+                    waitFor();
+                    newHTML = existingDriver.getPageSource();
+                    if (lengthFilter.isOk(newHTML)) {
+                        mainHTML = newHTML;
+                        continue;
+                    } else {
+                        isError = true;
+                        break;
+                    }
+                }
+                catch(Exception ex){
+                    System.out.println("Click error ... " + getCssSelector());
                 }
             }
         } catch (Exception ex) {
             System.out.println("Click error for " + getCssSelector());
-            ex.printStackTrace();
             isError = true;
         }
 

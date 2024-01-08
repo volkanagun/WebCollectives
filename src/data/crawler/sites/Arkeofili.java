@@ -9,7 +9,6 @@ public class Arkeofili {
         String domain = "https://arkeofili.com/";
         int pageCount = 50;
 
-
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<h2>", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 

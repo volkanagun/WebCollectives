@@ -12,8 +12,8 @@ public class DWNews implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.dw.com/";
-        int pageCount = 100;
-        int randomCount = 100;
+        int pageCount = 2;
+        int randomCount = 2;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"content-block\">", "</div>")
                 .setStartEndMarker("<div","</div>")
@@ -43,12 +43,13 @@ public class DWNews implements Serializable {
                 .setMainPattern(linkPattern)
                 .setDomain(domain);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<div class=\"(.*?)content-area\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article class=\"(.*?)\">", "</article>")
                 .setStartEndMarker("<div", "</div>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)title\">","</h1>"))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR,"<div class=\"(.*?)author-details\">","</div>"))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"(.*?)rich-text has-italic\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>"))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors\">","</div>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<a(.*?)>","</a>")))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content(.*?)\">", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));
