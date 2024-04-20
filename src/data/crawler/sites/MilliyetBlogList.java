@@ -11,7 +11,7 @@ public class MilliyetBlogList implements Serializable {
 
     public static WebFlow build() {
 
-        int randomCount = 5000;
+        int randomCount = 50000;
 
         List<WebSuffixGenerator> suffixGenerators = new ArrayList<>();
 

@@ -12,8 +12,8 @@ public class DWNews implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.dw.com/";
-        int pageCount = 2;
-        int randomCount = 2;
+        int pageCount = 20;
+        int randomCount = 20000;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"content-block\">", "</div>")
                 .setStartEndMarker("<div","</div>")

@@ -9,7 +9,7 @@ public class BBCTurkish {
 
         String domain = "https://www.bbc.com/turkce/";
         int pageCount = 50;
-        int randomCount = 50;
+        int randomCount = 50000;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<main(.*?)>", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));

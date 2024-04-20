@@ -86,6 +86,7 @@ public class LookupOptions implements Serializable {
     public static String TURKISHARTICLEDIRECTORY = "resources/articles-turkish";
     public static String TURKISHSTORYDIRECTORY = "resources/stories-turkish";
     public static String HURRIYETDIRECTORY = "resources/articles-hurriyet";
+    public static String INDEPENDENTDIRECTORY = "resources/articles-independent";
     public static String SOZCUDIRECTORY = "resources/articles-sozcu";
     public static String CUMHURIYETDIRECTORY = "resources/articles-cumhuriyet";
     public static String HALKTVDIRECTORY = "resources/articles-halktv";

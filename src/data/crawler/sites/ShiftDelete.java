@@ -7,7 +7,7 @@ public class ShiftDelete {
     public static WebFlow build() {
 
         String domain = "https://shiftdelete.net/";
-        int pageCount = 50;
+        int pageCount = 5;
         //int randomCount = 10;
 
 

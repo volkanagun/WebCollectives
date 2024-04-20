@@ -22,7 +22,7 @@ public class Wikipedia implements Serializable {
                 .addSeed("https://tr.wikipedia.org/wiki/%C3%96zel:Rastgele")
                 .addSeed("https://tr.wikipedia.org/wiki/%C3%96zel:Rastgele");
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE,"<div class=\"mw-parser-output\">","</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE,"<div class=\"mw-content-container\">","</div>")
                 .setStartEndMarker("<div","</div")
                 //.addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<p|li>","</p|li>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\"(((\\s+)(title|class))|(\\>))")

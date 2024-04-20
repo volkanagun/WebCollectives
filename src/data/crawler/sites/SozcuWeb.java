@@ -14,7 +14,7 @@ public class SozcuWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.sozcu.com.tr";
-        int pageCount = 3;
+        int pageCount = 1;
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button.loadmore")
                 .setDoStopOnError(true)
                 .setWaitTime(1000);
@@ -40,6 +40,7 @@ public class SozcuWeb implements Serializable {
                 .addSeed("economy", "https://www.sozcu.com.tr/finans/")
                 .addSeed("auto", "https://www.sozcu.com.tr/kategori/otomotiv/")
                 .addSeed("education", "https://www.sozcu.com.tr/kategori/egitim/")
+                .addSeed("astrology", "https://www.sozcu.com.tr/astroloji/")
                 .addSeed("health", "https://www.sozcu.com.tr/kategori/saglik/")
                 .addSeed("technology", "https://www.sozcu.com.tr/bilim-teknoloji/")
                 .setDoFast(false)

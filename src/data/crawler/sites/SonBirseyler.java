@@ -20,7 +20,7 @@ public class SonBirseyler implements Serializable {
 
         mainTemplate.setMainPattern(linkPattern);
         mainTemplate.setNextPageSuffix("page/");
-        mainTemplate.setNextPageSize(50);
+        mainTemplate.setNextPageSize(5);
         mainTemplate.setNextPageStart(1);
         mainTemplate.addSeed("social", "http://www.sonbisey.com/category/gundem/");
         mainTemplate.addSeed("technology", "http://www.sonbisey.com/category/listeler/teknoloji/");

@@ -18,7 +18,7 @@ public class HurriyetWeb implements Serializable {
     public static WebTemplate articleTemplate;
     public static WebFlow build() {
         String domain = "http://www.hurriyet.com.tr";
-        int randomCount = 50;
+        int randomCount = 500;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\"(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
