@@ -43,6 +43,10 @@ public abstract class WebFunctionCall implements Serializable {
         return isError;
     }
 
+    public void setError(boolean error) {
+        isError = error;
+    }
+
     public boolean isDoStopOnError() {
         return doStopOnError;
     }

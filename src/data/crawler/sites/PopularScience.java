@@ -9,7 +9,7 @@ public class PopularScience {
     public static WebFlow build() {
 
         String domain = "https://popsci.com.tr/";
-        int pageCount = 10;
+        int pageCount = 2;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"td-ss-main-content\">", "</div>")
                 .setStartEndMarker("<div", "</div>")

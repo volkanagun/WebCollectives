@@ -58,7 +58,9 @@ public class WebButtonClickCall extends WebFunctionCall {
     public String returnHTML(WebDriver existingDriver) {
 
         try {
+
             waitFor();
+            isError = false;
             WebElement element = existingDriver.findElement(By.cssSelector(cssSelector));
             System.out.println("Calling click for " + cssSelector + " with "+count + " count");
             for (int i = 0; i < count; i++) {

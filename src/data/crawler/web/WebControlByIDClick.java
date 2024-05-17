@@ -4,20 +4,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class WebButtonClickControl extends WebButtonClickCall {
-    public WebButtonClickControl(Integer count, String cssSelector) {
-        super(count, cssSelector);
+public class WebControlByIDClick extends WebButtonClickControl{
+    public WebControlByIDClick(Integer count, String idSelector) {
+        super(count, idSelector);
     }
 
-    @Override
     public String returnHTML(WebDriver existingDriver) {
         String mainHTML = null;
         try {
 
-            WebElement element = existingDriver.findElement(By.cssSelector(getCssSelector()));
+            WebElement element = existingDriver.findElement(By.id(getCssSelector()));
             System.out.println("Calling click for " + getCssSelector() + " with " + getCount() + " count");
             int myCount = getCount();
-            isError  = false;
 
             String newHTML = existingDriver.getPageSource();
             WebPageLengthFilter lengthFilter = new WebPageLengthFilter(newHTML.length());
@@ -37,7 +35,6 @@ public class WebButtonClickControl extends WebButtonClickCall {
                     }
                 }
                 catch(Exception ex){
-                    isError = true;
                     System.out.println("Click error ... " + getCssSelector());
                 }
             }
@@ -49,4 +46,5 @@ public class WebButtonClickControl extends WebButtonClickCall {
 
         return mainHTML;
     }
+
 }

@@ -38,8 +38,14 @@ public class WebExecuteJS extends WebFunctionCall{
 
     @Override
     public String returnHTML(WebDriver driver) {
-        ((JavascriptExecutor) driver).executeScript(executeJS);
-        waitFor();
-        return driver.getPageSource();
+        try {
+            waitFor();
+            ((JavascriptExecutor) driver).executeScript(executeJS);
+            return driver.getPageSource();
+        }
+        catch(Exception ex){
+            System.out.println("Function call error in "+executeJS);
+            return driver.getPageSource();
+        }
     }
 }

@@ -8,34 +8,37 @@ public class TRMashable implements Serializable {
     public static WebFlow build() {
 
         String domain = "http://tr.mashable.com";
-        int count = 30;
+        int count = 3;
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button#showmore")
                 .setDoStopOnError(true)
-                .setWaitTime(150);
+                .setWaitTime(500);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(500);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1)
+                .setWaitTime(500)
+                .setDoStopOnError(false);
         WebFunctionCall sequenceCall = new WebFunctionSequence(count,  scrollCall, clickCall)
+                .setTryOnError(10)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(500L)
+                .setWaitBetweenCalls(1000L)
                 .initialize()
-                .setWaitTime(200);
+                .setWaitTime(500);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div id=\"content\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", domain)
-                .addSeed("life", "https://tr.mashable.com/life/")
+                .addSeed("technology", "https://tr.mashable.com/tech/")
+                /*.addSeed("life", "https://tr.mashable.com/life/")
                 .addSeed("entertainment", "https://tr.mashable.com/entertainment/")
                 .addSeed("science", "https://tr.mashable.com/science/")
-                .addSeed("technology", "https://tr.mashable.com/tech/")
                 .addSeed("trends", "https://tr.mashable.com/social-good/")
                 .addSeed("shopping", "https://tr.mashable.com/deals/")
                 .addSeed("shopping", "https://tr.mashable.com/roundups/")
                 .addSeed("science", "https://tr.mashable.com/uzay/")
                 .addSeed("entertainment", "https://tr.mashable.com/tv-shows/")
-                .addSeed("transportation", "https://tr.mashable.com/transportation/")
+                .addSeed("transportation", "https://tr.mashable.com/transportation/")*/
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setFunctionCall(sequenceCall)

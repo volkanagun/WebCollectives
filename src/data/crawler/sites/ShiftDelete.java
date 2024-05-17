@@ -7,7 +7,9 @@ public class ShiftDelete {
     public static WebFlow build() {
 
         String domain = "https://shiftdelete.net/";
-        int pageCount = 5;
+        int pageStart = 10;
+        int pageCount = 0;
+
         //int randomCount = 10;
 
 
@@ -44,8 +46,8 @@ public class ShiftDelete {
                 .setDoFast(Boolean.FALSE)
                 .setDoDeleteStart(Boolean.TRUE)
                 .setSleepTime(2500L)
-                //.setDoRandomSeed(randomCount)
                 .setNextPageSize(pageCount)
+                .setNextPageStart(pageStart)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern)

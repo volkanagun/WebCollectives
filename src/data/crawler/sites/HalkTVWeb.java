@@ -16,7 +16,8 @@ public class HalkTVWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://halktv.com.tr";
-        int pageCount = 50;
+        int pageCount = 5;
+        int pageStart = 0;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\"(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -40,9 +41,11 @@ public class HalkTVWeb implements Serializable {
                 .addSeed("education", "https://halktv.com.tr/egitim")
                 .addSeed("music", "https://halktv.com.tr/muzik")
                 .addSeed("sports", "https://halktv.com.tr/futbol")
-                .setDoFast(false).setNextPageSuffix("?page=").setNextPageSize(pageCount)
+                .setDoFast(false).setNextPageSuffix("?page=")
+                .setNextPageSize(pageCount)
+                .setNextPageStart(pageStart)
                 .setDoDeleteStart(true)
-                .setSleepTime(1000L)
+                .setSleepTime(50L)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);

@@ -10,7 +10,7 @@ public class BilgiUstam {
     public static WebFlow build() {
 
         String domain = "http://www.bilgiustam.com";
-        int count = 50;
+        int count = 3;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.MAINPAGE, "<h2 class=\"title\">", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));

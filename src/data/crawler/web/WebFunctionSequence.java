@@ -10,6 +10,7 @@ public class WebFunctionSequence extends WebFunctionCall {
     private Long waitBetweenCalls = 1500L;
 
     private Integer count = 1;
+    private Integer tryOnError = 3;
 
     public WebFunctionSequence(Integer count, WebFunctionCall... webFunctionCalls) {
         this(webFunctionCalls);
@@ -22,6 +23,11 @@ public class WebFunctionSequence extends WebFunctionCall {
         for(WebFunctionCall call:webFunctionCallList){
             call.setDoFirefox(doFirefox);
         }
+        return this;
+    }
+
+    public WebFunctionSequence setTryOnError(Integer tryOnError) {
+        this.tryOnError = tryOnError;
         return this;
     }
 
@@ -42,12 +48,15 @@ public class WebFunctionSequence extends WebFunctionCall {
     @Override
     public String returnHTML(WebDriver driver) {
         String htmlSource = null;
+        int i = 0;
         int tryCount = 0;
-        for (int i = 0; i < count; i++) {
+        while(i < count) {
 
             isError = false;
+
             for (WebFunctionCall functionCall : webFunctionCallList) {
                 waitForNext();
+
                 String newSource = functionCall.returnHTML(driver);
                 if (functionCall.isError() && functionCall.isDoStopOnError()) {
                     isError = true;
@@ -62,8 +71,12 @@ public class WebFunctionSequence extends WebFunctionCall {
                 System.out.println("Sequence error occurred...");
                 tryCount++;
             }
+            else {
+                tryCount = 0;
+                i++;
+            }
 
-            if(tryCount > 3){
+            if(tryCount > tryOnError){
                 break;
             }
         }

@@ -18,6 +18,7 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
     var mtext = text;
     mtext = mtext.replaceAll("\\{(\\\\(\\p{L}+)\\s)+\\}", "")
     mtext = mtext.replaceAll("Kaynak\\: Hürriyet", "")
+    mtext = mtext.replaceAll("ý","ı")
     mtext = mtext.trim
     var lines = mtext.split("\n").map(line=> {
       val wordCount = "\\p{L}+".r.findAllIn(line).size + 1
@@ -58,26 +59,30 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
 
 object XMLExtractor {
   def extractStories(): Unit = {
-    new XMLExtractor(Array("resources/stories-turkish/"), 10000)
+    new XMLExtractor(Array("resources/stories-turkish/"), 100000)
       .extractDocument("resources/story-texts/")
   }
 
   def extractWikipedia(): Unit = {
-    new XMLExtractor(Array("resources/wikipedia/"), 10000)
+    new XMLExtractor(Array("resources/wikipedia/"), 100000)
       .extractDocument("resources/wiki-texts/")
   }
 
   def extractArticles(): Unit = {
-    new XMLExtractor(Array("resources/articles-turkish/", "resources/articles/", "resources/articles-hurriyet/",
+    new XMLExtractor(Array(
+      "resources/articles/",
+      "resources/articles-turkish/",
+      "resources/articles-hurriyet/",
       "resources/articles-cumhuriyet/",
+      "resources/articles-independent/",
       "resources/articles-sozcu/",
-      "resources/articles-halktv/"), 10000000)
+      "resources/articles-halktv/"), 100000000)
       .extractDocument("resources/txt/")
   }
 
   def extractBlogs(): Unit = {
 
-    new XMLExtractor(Array("resources/blogs-turkish/"), 10000000)
+    new XMLExtractor(Array("resources/blogs-turkish/"), 100000000)
       .extractDocument("resources/txt/")
 
   }
@@ -95,7 +100,7 @@ object XMLExtractor {
   }
 
   def extractSentences(filenames: Array[String], targetFilename: String): Unit = {
-    val pw = new PrintWriter(s"resources/sentences/${targetFilename}.txt");
+    val pw = new PrintWriter(s"resources/sentences/${targetFilename}");
     filenames.foreach(filename => new File(filename).listFiles().foreach(f => {
       Source.fromFile(f).getLines().foreach(line => {
         pw.println(line)
@@ -113,7 +118,7 @@ object XMLExtractor {
     extractStories()
     extractWikipedia()
 
-    val filenames = Array("resources/txt/")
-    extractSentences(filenames, "sentences-may-v1-tr.txt")
+    val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
+    extractSentences(filenames, "sentences-april-v2-tr.txt")
   }
 }

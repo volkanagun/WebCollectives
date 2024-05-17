@@ -19,8 +19,8 @@ public class GezenlerKulubu implements Serializable {
         mainTemplate.setMainPattern(linkPattern);
 
         mainTemplate.setNextPageSuffix("?page=")
-                .setNextPageSize(57)
-                .setNextPageStart(2)
+                .setNextPageSize(5)
+                .setNextPageStart(1)
                 .addSeed("http://www.cokgezenlerkulubu.com/");
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div\\sclass=\"postdetail\">", "</div>")

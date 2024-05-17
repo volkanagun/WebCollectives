@@ -9,7 +9,7 @@ public class AnadoluAjansi implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.aa.com.tr/tr";
-        Integer pageCount = 20;
+        Integer pageCount = 5;
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "a.button-daha.text-center")
                 .setDoStopOnError(true)
@@ -37,11 +37,14 @@ public class AnadoluAjansi implements Serializable {
                 .addSeed("analysis", "https://www.aa.com.tr/tr/analiz")
                 .addSeed("culture", "https://www.aa.com.tr/tr/yasam")
                 .addSeed("health", "https://www.aa.com.tr/tr/saglik")
+                .addSeed("culture", "https://www.aa.com.tr/tr/kultur")
                 .addSeed("sports", "https://www.aa.com.tr/tr/spor")
                 .addSeed("sports", "https://www.aa.com.tr/tr/dunyadan-spor")
-                .addSeed("turkey", "https://www.aa.com.tr/tr/turkiye")
+                .addSeed("sports", "https://www.aa.com.tr/tr/basketbol")
+                .addSeed("breaking", "https://www.aa.com.tr/tr/gundem")
                 .addSeed("politics", "https://www.aa.com.tr/tr/politika")
                 .addSeed("covid", "https://www.aa.com.tr/tr/koronavirus")
+                .addSeed("news", "https://www.aa.com.tr/tr/kurumsal-haberler")
                 .addSeed("education", "https://www.aa.com.tr/tr/egitim")
                 .addSeed("technology", "https://www.aa.com.tr/tr/bilim-teknoloji")
                 .addSeed("economy", "https://www.aa.com.tr/tr/sirkethaberleri")

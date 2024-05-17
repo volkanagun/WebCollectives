@@ -8,8 +8,8 @@ public class BBCTurkish {
     public static WebFlow build() {
 
         String domain = "https://www.bbc.com/turkce/";
-        int pageCount = 50;
-        int randomCount = 50000;
+        int pageCount = 3;
+
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<main(.*?)>", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
@@ -39,7 +39,6 @@ public class BBCTurkish {
                 .setDoFast(Boolean.FALSE)
                 .setDoDeleteStart(Boolean.TRUE)
                 .setSleepTime(2500L)
-                .setDoRandomSeed(randomCount)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern)

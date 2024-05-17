@@ -14,13 +14,16 @@ public class SozcuWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.sozcu.com.tr";
-        int pageCount = 1;
+        int pageCount = 3;
+
+        WebFunctionCall jsCall = new WebControlByIDClick(1, "javascript::").setWaitTime(10000);
+
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button.loadmore")
-                .setDoStopOnError(true)
+                .setDoStopOnError(false)
                 .setWaitTime(1000);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(2).setWaitTime(1500);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,scrollCall,  clickCall)
+        WebFunctionCall scrollCall = new WebFunctionScroll(1,"button.loadmore").setWaitTime(1500);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,jsCall, scrollCall,  clickCall)
                 .setDoFirefox(true)
                 .setWaitBetweenCalls(1000L)
                 .setDoStopOnError(false)

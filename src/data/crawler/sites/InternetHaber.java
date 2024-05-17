@@ -1,17 +1,16 @@
 package data.crawler.sites;
 
-import data.crawler.web.LookupOptions;
-import data.crawler.web.LookupPattern;
-import data.crawler.web.WebFlow;
-import data.crawler.web.WebTemplate;
+import data.crawler.web.*;
+
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 public class InternetHaber implements Serializable {
 
     public static WebFlow build(int i) {
         int startIndice = 0;
-        int maxSize = 100;
-        int randomSize = 10000;
+        int maxSize = 5;
+
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
@@ -38,22 +37,32 @@ public class InternetHaber implements Serializable {
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setNextPageSuffix("?page=")
-                .setDoRandomSeed(randomSize)
                 .setThreadSize(2);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
                         .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\"")
                                 .setNth(0)));*/
+/*
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container\">", "</div>")
-                .setStartEndMarker("<div","</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<main class=\"(.*?)\">", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"row\">", "</div>")
                         .setStartEndMarker("<div","</div>")
-                        .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\"")));
+                        .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")));
+*/
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")
+                .setLookupFilter(new LookupFilter() {
+                    Pattern pattern = Pattern.compile("(.*?)\\-\\d+\\p{L}\\.htm");
+                    @Override
+                    public String accept(String text) {
+                        if(pattern.matcher(text).find()) return text;
+                        else return null;
+                    }
+                });
 
         linkTemplate.setMainPattern(linkPattern);
         linkTemplate.setDomainSame(true);
+
         linkTemplate.setLinkPattern("(.*?)\\-\\d+\\p{L}\\.htm","(.*?)(foto|video)-galerisi\\-\\d+\\.htm");
 
         //Article Download

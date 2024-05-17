@@ -8,8 +8,20 @@ public class Euronews {
     public static WebFlow build() {
 
         String domain = "https://tr.euronews.com/";
-        int pageCount = 50;
-        int randomCount = 3000;
+        int pageCount = 5;
+
+
+        WebFunctionCall functionCall = new WebButtonClickCall(1, "button.c-link-chevron--load")
+                .setDoStopOnError(true)
+                .setWaitTime(100);
+
+        WebFunctionCall scrollCall = new WebFunctionScroll(1,"button.c-link-chevron--load").setWaitTime(500);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, functionCall)
+                .setDoFirefox(true)
+                .setWaitBetweenCalls(500L)
+                .setTryOnError(7)
+                .initialize()
+                .setWaitTime(500);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<main class=\"o-site-main\" id=\"enw-main-content\">", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a rel=\"bookmark\"(.*?)href=\"", "\""));
@@ -36,7 +48,10 @@ public class Euronews {
                 .addSeed("world", "https://tr.euronews.com/haber/amerika/kolombiya")
                 .addSeed("world", "https://tr.euronews.com/haber/asya/japonya")
                 .addSeed("world", "https://tr.euronews.com/haber/amerika/abd")
-                .addSeed("politics", "https://tr.euronews.com/tag/turk-siyaseti")
+                .addSeed("world", "https://tr.euronews.com/tag/gazze")
+                .addSeed("world", "https://tr.euronews.com/tag/islam-kars-tl-g-")
+                .addSeed("world", "https://tr.euronews.com/my-europe/avrupa-haberleri")
+
                 .addSeed("politics", "https://tr.euronews.com/tag/turk-siyaseti")
                 .addSeed("economy", "https://tr.euronews.com/haber/ekonomi")
                 .addSeed("economy", "https://tr.euronews.com/programlar/realeconomy")
@@ -58,16 +73,19 @@ public class Euronews {
                 .addSeed("culture", "https://tr.euronews.com/programlar/taste")
                 .addSeed("culture", "https://tr.euronews.com/programlar/cult")
                 .addSeed("culture", "https://tr.euronews.com/programlar/musica")
+                .addSeed("culture", "https://tr.euronews.com/kultur/art")
+                .addSeed("culture", "https://tr.euronews.com/kultur/culture-news")
+                .addSeed("culture", "https://tr.euronews.com/kultur/yiyecek-ve-i%C3%A7ecek")
+
                 .addSeed("environment", "https://tr.euronews.com/programlar/focus")
                 .addSeed("environment", "https://tr.euronews.com/programlar/ocean")
                 .addSeed("environment", "https://tr.euronews.com/programlar/climate-now")
                 .addSeed("environment", "https://tr.euronews.com/special/climate")
                 .addSeed("environment", "https://tr.euronews.com/tag/olum")
                 .addSeed("sports", "https://tr.euronews.com/tag/diger-sporlar")
-                .addSeed("sports", "https://tr.euronews.com/tag/diger-sporlar")
-                .setSuffixGenerator(new WebCountGenerator(1, pageCount,"?p="))
+                //.setSuffixGenerator(new WebCountGenerator(1, 1,"?p="))
+                .setFunctionCall(sequenceCall)
                 .setDoFast(false)
-                .setDoRandomSeed(randomCount)
                 .setDoDeleteStart(true)
                 .setSleepTime(2500L)
                 .setThreadSize(4)
@@ -89,8 +107,8 @@ public class Euronews {
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));*/
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "(<div class=\"\">|<article class=\"(.*?)\">", "(</div>|</article>)")
-                .setStartEndMarker("<div", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
+                .setStartEndMarker("<article", "</article>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>"))
                 .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors\">","</div>")

@@ -9,7 +9,7 @@ public class Haber7 {
     public static WebFlow build(){
 
         String domain = "https://www.haber7.com/";
-        int pageCount = 1;
+        int pageCount = 5;
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\">", "</div>")
                 .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));

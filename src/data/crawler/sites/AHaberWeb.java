@@ -10,13 +10,13 @@ public class AHaberWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 1;
-        int randomCount = 100;
+        int pageCount = 500;
+
 
         WebFunctionCall clickCall = new WebButtonClickCall(1, "a.tag-more").setDoFirefox(true)
                 .setWaitTime(1000);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1)
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 1500)
                 .setWaitTime(1000);
 
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/)
@@ -43,7 +43,6 @@ public class AHaberWeb implements Serializable {
                 .setSleepTime(3500L)
                 .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
-                .setDoRandomSeed(randomCount)
                 .setDomain(domain)
                 .setLinkPattern(null,"^https://www.ahaber.com.tr/galeri(.*?)$")
                 .setMainPattern(linkPattern);

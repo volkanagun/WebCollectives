@@ -6,7 +6,7 @@ public class GZTBlog {
 
     public static WebFlow build() {
 
-        int pageCount = 200;
+        int pageCount = 20;
         String domain = "https://www.gzt.com/";
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 20)

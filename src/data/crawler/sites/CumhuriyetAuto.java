@@ -13,33 +13,33 @@ public class CumhuriyetAuto implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.cumhuriyet.com.tr";
-        int pageCount = 20;
+        int pageCount = 5;
 
         WebFunctionCall functionCall = new WebExecuteJS("loadMoreNews()")
                 .setDoStopOnError(true)
-                .setWaitTime(1000);
+                .setWaitTime(100);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(1500);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(500);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, functionCall)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(1000L)
+                .setWaitBetweenCalls(500L)
                 .initialize()
-                .setWaitTime(1000);
+                .setWaitTime(500);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"content\"(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.CUMHURIYETDIRECTORY, "article-links", domain)
-                .addSeed("breaking", "http://www.cumhuriyet.com.tr/gundem/")
-                .addSeed("world", "http://www.cumhuriyet.com.tr/dunya/")
+                //.addSeed("breaking", "http://www.cumhuriyet.com.tr/gundem/")
+                //.addSeed("world", "http://www.cumhuriyet.com.tr/dunya/")
                 .addSeed("tukey", "http://www.cumhuriyet.com.tr/turkiye/")
-                .addSeed("sports", "http://www.cumhuriyet.com.tr/spor/")
+                /*.addSeed("sports", "http://www.cumhuriyet.com.tr/spor/")
                 .addSeed("economy", "http://www.cumhuriyet.com.tr/ekonomi/")
                 .addSeed("politics", "http://www.cumhuriyet.com.tr/siyaset/")
                 .addSeed("health", "http://www.cumhuriyet.com.tr/yasam/")
                 .addSeed("science", "https://www.cumhuriyet.com.tr/bilim-teknoloji/")
-                .addSeed("culture", "https://www.cumhuriyet.com.tr/kultur-sanat/")
+                .addSeed("culture", "https://www.cumhuriyet.com.tr/kultur-sanat/")*/
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)

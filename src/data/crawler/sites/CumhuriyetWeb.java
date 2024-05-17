@@ -16,7 +16,7 @@ public class CumhuriyetWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.cumhuriyet.com.tr";
-        int randomCount = 150;
+
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"content\"(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -35,7 +35,6 @@ public class CumhuriyetWeb implements Serializable {
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)
-                .setDoRandomSeed(randomCount)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
@@ -66,7 +65,6 @@ public class CumhuriyetWeb implements Serializable {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDomain(domain)
-                .setDoRandomSeed(randomCount)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(true);

@@ -311,9 +311,13 @@ public class WebTemplate implements Serializable {
         return this;
     }
 
+
+
     public WebSuffixGenerator getSuffixGenerator() {
         return suffixGenerator;
     }
+
+
 
     public WebTemplate setSuffixGenerator(WebSuffixGenerator suffixGenerator) {
         this.suffixGenerator = suffixGenerator;
@@ -486,6 +490,11 @@ public class WebTemplate implements Serializable {
         if (!seedList.contains(seed))
             seedList.add(seed);
 
+        return this;
+    }
+    public WebTemplate addSeedDuplicate(String mainURL) {
+        WebSeed seed = new WebSeed(mainURL, mainURL, seedList.size());
+        seedList.add(seed);
         return this;
     }
 

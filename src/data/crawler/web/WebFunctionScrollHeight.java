@@ -8,7 +8,7 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
 
     private Integer count = 1;
     private Integer minusHeight = 60;
-
+    //protected boolean isError = false;
     public WebFunctionScrollHeight(Integer count) {
         this.count = count;
     }
@@ -39,7 +39,9 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
     public String returnHTML(String url) {
         try {
 
+            isError = false;
             log();
+
             if(chromeDriver !=null) {
                 chromeDriver.get(url);
                 chromeDriver.wait(waitTime);
@@ -49,7 +51,9 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
                 firefoxDriver.wait(waitTime);
             }
         }
-        catch(InterruptedException ex){}
+        catch(InterruptedException ex){
+            isError = true;
+        }
 
         return returnHTML(chromeDriver);
     }
@@ -59,6 +63,10 @@ public class WebFunctionScrollHeight extends WebFunctionCall {
         return this;
     }
 
+    @Override
+    public boolean isError() {
+        return isError;
+    }
 
     @Override
     public String returnHTML(WebDriver existingDriver) {
