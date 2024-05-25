@@ -14,11 +14,18 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
     bool
   }
 
+
   def reportFix(text:String, minCharLength:Int = 100):String={
     var mtext = text;
-    mtext = mtext.replaceAll("\\{(\\\\(\\p{L}+)\\s)+\\}", "")
+
+    mtext = mtext.replaceAll("\\{(\\\\(\\p{L}+)\\s)+\\}", " ")
     mtext = mtext.replaceAll("Kaynak\\: Hürriyet", "")
+
     mtext = mtext.replaceAll("ý","ı")
+    mtext = mtext.replaceAll("\\s+"," ")
+    mtext = text.replaceAll("\\'\\'","'")
+    mtext = text.replaceAll(" "," ")
+
     mtext = mtext.trim
     var lines = mtext.split("\n").map(line=> {
       val wordCount = "\\p{L}+".r.findAllIn(line).size + 1

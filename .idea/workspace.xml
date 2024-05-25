@@ -8,46 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Adds">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnkaHaber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/HaberGlobal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/IhlasAjansi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRTHaber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/TurkiyeHaberAjansi.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebControlByIDClick.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScroll.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Arkeofili.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Arkeofili.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BBCTurkish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BBCTurkish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BilgiUstam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BilgiUstam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Euronews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Euronews.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GZTBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GZTBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GezenlerKulubu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GezenlerKulubu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Haber7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Haber7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HaberGlobal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HaberGlobal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HalkTVWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HalkTVWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/IhlasAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/IhlasAjansi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Kocaeli724.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MilliyetBlogList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/PopularScience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/PopularScience.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/ShiftDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/ShiftDelete.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SozcuWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SozcuWeb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Wikipedia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Wikipedia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebExecuteJS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebExecuteJS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionScrollHeight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,48 +141,9 @@
       <recent name="data.crawler.sites" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.IhlasAjansi">
-    <configuration name="AnadoluAjansi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.AnadoluAjansi" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BBCTurkish" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BBCTurkish" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.TRTHaber">
     <configuration name="GZTBlog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="data.crawler.sites.GZTBlog" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HaberGlobal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.HaberGlobal" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -236,20 +168,59 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SozcuWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.SozcuWeb" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TRMashable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.TRMashable" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TRTHaber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.TRTHaber" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.crawler.sites.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.AnadoluAjansi" />
-      <item itemvalue="Application.BBCTurkish" />
       <item itemvalue="Application.GZTBlog" />
-      <item itemvalue="Application.HaberGlobal" />
       <item itemvalue="Application.IhlasAjansi" />
+      <item itemvalue="Application.SozcuWeb" />
+      <item itemvalue="Application.TRTHaber" />
+      <item itemvalue="Application.TRMashable" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.IhlasAjansi" />
+        <item itemvalue="Application.TRTHaber" />
+        <item itemvalue="Application.TRMashable" />
+        <item itemvalue="Application.SozcuWeb" />
         <item itemvalue="Application.GZTBlog" />
-        <item itemvalue="Application.BBCTurkish" />
-        <item itemvalue="Application.AnadoluAjansi" />
-        <item itemvalue="Application.HaberGlobal" />
+        <item itemvalue="Application.IhlasAjansi" />
       </list>
     </recent_temporary>
   </component>
@@ -294,7 +265,23 @@
       <option name="project" value="LOCAL" />
       <updated>1713641843644</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Adds">
+      <option name="closed" value="true" />
+      <created>1715973505395</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1715973505396</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Adds">
+      <option name="closed" value="true" />
+      <created>1716666458314</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1716666458314</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -353,9 +340,14 @@
           <line>40</line>
           <option name="timeStamp" value="162" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java</url>
+          <line>331</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala</url>
-          <line>121</line>
+          <line>128</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
