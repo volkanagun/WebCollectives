@@ -11,7 +11,7 @@ public class HaberGlobal {
     public static WebFlow build() {
         String domain = "https://haberglobal.com.tr";
         int size = 10;
-        int start = 10;
+        int start = 1;
                                                       //Type of pattern  //XML tag in the result           //start regex               //end regex
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\">", "</div>")
                  //same marker of start and end regex definitions

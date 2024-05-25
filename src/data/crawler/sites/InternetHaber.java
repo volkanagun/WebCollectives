@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 public class InternetHaber implements Serializable {
 
     public static WebFlow build(int i) {
-        int startIndice = 0;
-        int maxSize = 5;
+        int startIndice = 1;
+        int maxSize = 10;
 
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)

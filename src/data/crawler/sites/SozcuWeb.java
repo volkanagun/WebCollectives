@@ -14,7 +14,7 @@ public class SozcuWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.sozcu.com.tr";
-        int pageCount = 3;
+        int pageCount = 5;
 
         WebFunctionCall jsCall = new WebControlByIDClick(1, "javascript::").setWaitTime(10000);
 
