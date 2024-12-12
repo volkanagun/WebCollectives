@@ -29,12 +29,15 @@ public class Webrazzi implements Serializable {
                 .addSeed("https://webrazzi.com/kategori/teknoloji/")
                 .addSeed("https://webrazzi.com/kategori/girisimler/");
 
-        LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"post(.*?)>", "</div>")
-                .setStartEndMarker("<div", "</div>")
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<header class=\"post-title\">", "</header>"))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "<a href=(.*?)rel=\"category\">", "</a>"))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHORNAME, "<span class=\"post-info-author\">", "</span>"))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"post-content\">", "</div>")
+        LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<article(.*?)>", "</article>")
+                .setStartEndMarker("<article", "</article>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">", "</h1>"))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"single-post-category(.*?)>", "</div>")
+                        .setStartEndMarker("<div", "</div")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.GENRE, "<a (.*?)>", "</a>").setNth(0)))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<span class=\"single-post-meta-text\">", "</span>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<strong>","</strong>")))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"single-post-content\">", "</div>")
                         .setStartEndMarker("<div", "</div")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")));
 

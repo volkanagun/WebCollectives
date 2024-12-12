@@ -3,6 +3,9 @@ package data.boilerplate.structure
 import data.util.TextFile
 
 import java.io.{File, PrintWriter}
+import java.text.BreakIterator
+import java.util.Locale
+import scala.collection.parallel.CollectionConverters.ArrayIsParallelizable
 import scala.io.Source
 
 class XMLExtractor(val folderNames: Array[String], val count: Int) extends Serializable {
@@ -40,17 +43,27 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
 
 
 
-  def extractDocument(extractFolder: String): XMLExtractor = {
+  def extractDocument(extractFolder: String, minTextLength:Int = 200): XMLExtractor = {
     new File(extractFolder).mkdir()
     folderNames.foreach(folderName => {
-      new File(folderName).listFiles().take(count).foreach(f => {
+      new File(folderName).listFiles().par.foreach(f => {
         val fout = new File(extractFolder + f.getName)
         try {
           if(!fout.exists()) {
-            val text = XMLParser.parse(f.getPath).get(XMLParser.paragraphLabel)
-            if (text.isDefined && reportCharacters(text.get)) {
-              val fixText = reportFix(text.get, 80);
-              new TextFile(fout).writeFullText(fixText)
+            val textList = XMLParser.parseList(f.getPath).get(XMLParser.paragraphLabel)
+            if (textList.isDefined) {
+              val textArray = textList.get
+              val file = new TextFile(fout)
+              file.openBufferWrite()
+              textArray.foreach(text=>{
+                val fixText = reportFix(text, 80);
+                if(fixText.length > minTextLength) {
+                  file.writeNextLine(fixText)
+                }
+              })
+
+              file.closeBufferWrite()
+
             }
           }
         }
@@ -65,14 +78,17 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
 }
 
 object XMLExtractor {
+
+  val locale = new Locale("tr")
+
   def extractStories(): Unit = {
     new XMLExtractor(Array("resources/stories-turkish/"), 100000)
       .extractDocument("resources/story-texts/")
   }
 
   def extractWikipedia(): Unit = {
-    new XMLExtractor(Array("resources/wikipedia/"), 100000)
-      .extractDocument("resources/wiki-texts/")
+    new XMLExtractor(Array("resources/wikipedia/"), 1000000)
+      .extractDocument("resources/wiki-texts/", 300)
   }
 
   def extractArticles(): Unit = {
@@ -94,12 +110,22 @@ object XMLExtractor {
 
   }
 
+
   def extractSentences(filename: String, targetFilename: String): Unit = {
     val pw = new PrintWriter(s"resources/sentences/${targetFilename}.txt");
     new File(filename).listFiles().foreach(f => {
       Source.fromFile(f).getLines().foreach(line => {
-        pw.println(line)
-        pw.flush()
+        val sentenceIter = BreakIterator.getSentenceInstance(locale)
+        sentenceIter.setText(line)
+        var start = 0
+        var end = sentenceIter.next()
+        while(end != BreakIterator.DONE){
+          pw.println(line.substring(start, end))
+          pw.flush()
+          start = end
+          end = sentenceIter.next()
+        }
+
       })
     })
 
@@ -110,8 +136,16 @@ object XMLExtractor {
     val pw = new PrintWriter(s"resources/sentences/${targetFilename}");
     filenames.foreach(filename => new File(filename).listFiles().foreach(f => {
       Source.fromFile(f).getLines().foreach(line => {
-        pw.println(line)
-        pw.flush()
+        val sentenceIter = BreakIterator.getSentenceInstance(locale)
+        sentenceIter.setText(line)
+        var start = 0
+        var end = sentenceIter.next()
+        while(end != BreakIterator.DONE){
+          pw.println(line.substring(start, end))
+          pw.flush()
+          start = end
+          end = sentenceIter.next()
+        }
       })
     }))
 
@@ -119,13 +153,15 @@ object XMLExtractor {
   }
 
   def main(args: Array[String]): Unit = {
-
+/*
     extractArticles()
     extractBlogs()
     extractStories()
+    extractWikipedia()*/
+
     extractWikipedia()
 
-    val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
-    extractSentences(filenames, "sentences-april-v2-tr.txt")
+    /*val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
+    extractSentences(filenames, "sentences-august-v2-tr.txt")*/
   }
 }

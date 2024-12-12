@@ -5,10 +5,11 @@ import data.crawler.web.*;
 import java.io.Serializable;
 
 public class TRMashable implements Serializable {
+
     public static WebFlow build() {
 
         String domain = "http://tr.mashable.com";
-        int count = 5;
+        int count = 100;
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button#showmore")
                 .setDoStopOnError(true)
@@ -30,7 +31,7 @@ public class TRMashable implements Serializable {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", domain)
                 .addSeed("technology", "https://tr.mashable.com/tech/")
-                /*.addSeed("life", "https://tr.mashable.com/life/")
+                .addSeed("life", "https://tr.mashable.com/life/")
                 .addSeed("entertainment", "https://tr.mashable.com/entertainment/")
                 .addSeed("science", "https://tr.mashable.com/science/")
                 .addSeed("trends", "https://tr.mashable.com/social-good/")
@@ -38,7 +39,7 @@ public class TRMashable implements Serializable {
                 .addSeed("shopping", "https://tr.mashable.com/roundups/")
                 .addSeed("science", "https://tr.mashable.com/uzay/")
                 .addSeed("entertainment", "https://tr.mashable.com/tv-shows/")
-                .addSeed("transportation", "https://tr.mashable.com/transportation/")*/
+                .addSeed("transportation", "https://tr.mashable.com/transportation/")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setFunctionCall(sequenceCall)

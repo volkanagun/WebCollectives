@@ -5,10 +5,11 @@ import data.crawler.web.*;
 public class TurkiyeHaberAjansi {
 
     public static WebFlow build() {
+
         String domain = "https://www.turkiyehaberajansi.com/";
         int pageCount = 100;
 
-        WebFunctionCall functionCall = new WebButtonClickCall(1,"a.get_ajax_data")
+        WebFunctionCall functionCall = new WebButtonClickCall(1, "a.get_ajax_data")
                 .setDoStopOnError(false)
                 .setWaitTime(500);
 
@@ -33,6 +34,8 @@ public class TurkiyeHaberAjansi {
                 .addSeed("world", "https://www.turkiyehaberajansi.com/dunya/")
                 .addSeed("sports", "https://www.turkiyehaberajansi.com/spor/")
                 .addSeed("media", "https://www.turkiyehaberajansi.com/medya/")
+                .addSeed("istanbul", "https://www.turkiyehaberajansi.com/istanbul/")
+
                 .setLinkPattern("(.*?\\d+/)", null)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
@@ -45,16 +48,17 @@ public class TurkiyeHaberAjansi {
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)\">", "</article>")
                 .setStartEndMarker("<article", "</article>")
                 .setNth(1)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div class=\"text-12 text-fade\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div class=\"(.*?)text-12 text-fade\">", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .setNth(0)
                         .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"detay\" property=\"articleBody\">", "</div>")
-                        .setStartEndMarker("<div", "</div>").setNth(0)
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "(<(p|b|em)>|\")", "(</(b|p|em)>|\")")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"post-body(.*?)>", "</div>")
+                        .setStartEndMarker("<div", "</div")
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<div class=\"detay\" property=\"articleBody\">", "</div>")
+                                .setStartEndMarker("<div", "</div>")
                                 .setRemoveTags(true)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", domain)

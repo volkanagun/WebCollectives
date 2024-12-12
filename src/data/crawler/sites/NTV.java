@@ -9,13 +9,13 @@ public class NTV implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.ntv.com.tr";
-        Integer pageCount = 500;
+        Integer pageCount = 50;
 
-        WebFunctionCall closeCall = new WebButtonClickCall(5, "#ins_desktop_dfp_ad")
+        WebFunctionCall closeCall = new WebButtonClickCall(3, "#ins_desktop_dfp_close")
                 .setDoStopOnError(false);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setMinusHeight(5).setWaitTime(500);
-        WebFunctionCall clickCall = new WebButtonClickCall(1, "a.infinite-link").setWaitTime(500);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setMinusHeight(0).setWaitTime(500);
+        WebFunctionCall clickCall = new WebButtonClickCall(3, "a.infinite-link").setWaitTime(500);
 
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, closeCall, scrollCall, clickCall)
                 .setTryOnError(3)

@@ -36,7 +36,7 @@ public class MasalOkuOrg {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(false)
-                .setNextPageSize(5)
+                .setNextPageSize(10)
                 .setNextPageStart(1)
                 .setNextPageJump(1)
                 .setThreadSize(1).setNextPageSuffix("page/")

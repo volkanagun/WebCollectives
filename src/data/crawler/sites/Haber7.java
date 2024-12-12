@@ -9,7 +9,7 @@ public class Haber7 {
     public static WebFlow build(){
 
         String domain = "https://www.haber7.com/";
-        int pageCount = 5;
+        int pageCount = 20;
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\">", "</div>")
                 .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
@@ -18,6 +18,8 @@ public class Haber7 {
                 .addSeed("politics","https://www.haber7.com/siyaset/")
                 .addSeed("breaking","https://www.haber7.com/guncel/")
                 .addSeed("world","https://www.haber7.com/dunya/")
+                .addSeed("economy","https://ekonomi.haber7.com/finans/")
+
                 .setDoFast(false)
                 .setNextPageSuffix("p")
                 .setNextPageSize(pageCount)

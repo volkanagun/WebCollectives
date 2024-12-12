@@ -55,6 +55,50 @@ object XMLParser {
     map
   }
 
+  def parseList(filename: String): Map[String, Array[String]] = {
+
+    val text = Source.fromFile(filename, "UTF-8").getLines().mkString("\n")
+    val cleanedText = cleanText(text)
+    val xmlMain = scala.xml.XML.loadString(cleanedText);
+    val xmlRoot = (xmlMain \\ "ROOT")
+    var map = Map[String, Array[String]]()
+
+    (xmlRoot \\ "RESULT").foreach(node => {
+      val value = (node \ "@LABEL").text
+      if (value.equals(authorLabel)) {
+        var authorName = node.text.trim
+        if (authorName != null && !authorName.isEmpty) {
+          val index: Int = authorName.indexOf("|")
+          if (index > 0) {
+            authorName = authorName.substring(0, index).trim.replaceAll("\n", "")
+          }
+          map = map.updated(authorLabel, Array(authorName))
+        }
+      }
+      else if (value.equals(titleLabel)) {
+        map = map.updated(titleLabel, Array(node.text.trim))
+      }
+      else if (value.equals(genreLabel)) {
+        var genre: String = node.text.trim
+        if (genre != null && !genre.isEmpty) {
+          map = map.updated(genreLabel, Array(genre))
+        }
+      }
+      else if (value.equals(articleLabel)) {
+        val content = cleanText(node.text)
+        map = map.updated(articleLabel, Array(content))
+      }
+      else if (value.equals(paragraphLabel)) {
+        val paragraph = cleanText(node.text)
+        var array = map.getOrElse(paragraphLabel, Array[String]())
+        array = array :+ paragraph
+        map = map.updated(paragraph, array)
+      }
+    })
+
+    map
+  }
+
 
   def cleanText(text: String): String = {
     //rewrite here vice versa text replace

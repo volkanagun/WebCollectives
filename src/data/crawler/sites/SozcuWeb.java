@@ -16,7 +16,7 @@ public class SozcuWeb implements Serializable {
         String domain = "http://www.sozcu.com.tr";
         int pageCount = 5;
 
-        WebFunctionCall jsCall = new WebControlByIDClick(1, "javascript::").setWaitTime(10000);
+        WebFunctionCall jsCall = new WebExecuteJS("document.querySelector('dfp-modal-popup').remove();").setWaitTime(10000);
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button.loadmore")
                 .setDoStopOnError(false)

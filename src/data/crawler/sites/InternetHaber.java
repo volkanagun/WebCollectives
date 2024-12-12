@@ -9,7 +9,7 @@ public class InternetHaber implements Serializable {
 
     public static WebFlow build(int i) {
         int startIndice = 1;
-        int maxSize = 10;
+        int maxSize = 50;
 
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)

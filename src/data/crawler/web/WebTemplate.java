@@ -150,6 +150,7 @@ public class WebTemplate implements Serializable {
     private String charset = "UTF-8";
     private final Map<String, WebTemplate> nextMap;
     private final Map<String, WebTemplate> extraRecursiveMap;
+    private WebTemplate parent;
 
     private double totalParseTime = 0d;
     private double totalCount = 1d;
@@ -183,8 +184,16 @@ public class WebTemplate implements Serializable {
     public WebTemplate destroy() {
 
         if (functionCall != null) {
+            System.out.println("Destroying Selenium browser.");
             functionCall.destroy();
             functionCall = null;
+            for(String key:nextMap.keySet()){
+                nextMap.get(key).destroy();
+            }
+
+            for(String key:extraRecursiveMap.keySet()){
+                extraRecursiveMap.get(key).destroy();
+            }
         }
         return this;
     }
@@ -196,6 +205,14 @@ public class WebTemplate implements Serializable {
     public WebTemplate setMainContent(Boolean mainContent) {
         isMainContent = mainContent;
         return this;
+    }
+
+    public WebTemplate getParent() {
+        return parent;
+    }
+
+    public void setParent(WebTemplate parent) {
+        this.parent = parent;
     }
 
     public WebLuceneSink getWebSink() {
@@ -425,11 +442,14 @@ public class WebTemplate implements Serializable {
     }
 
     public WebTemplate addNextPattern(LookupPattern nextPattern, String label, Boolean doDelete) {
+        WebTemplate nextTemplate = new WebTemplate(folder, label, domain)
+                .setMainPattern(nextPattern)
+                .setDoDeleteStart(doDelete);
 
         this.extraRecursiveMap.put(label,
-                new WebTemplate(folder, label, domain)
-                        .setMainPattern(nextPattern)
-                        .setDoDeleteStart(doDelete));
+                nextTemplate);
+
+        nextTemplate.setParent(this);
         return this;
     }
 
@@ -465,7 +485,7 @@ public class WebTemplate implements Serializable {
 
     public WebTemplate addNext(WebTemplate nextTemplate, String label) {
         this.nextMap.put(label, nextTemplate);
-
+        nextTemplate.setParent(this);
         return this;
     }
 
@@ -1119,6 +1139,7 @@ public class WebTemplate implements Serializable {
 
     public Boolean extract(WebDocument html) {
         double measuredNow = System.currentTimeMillis();
+        String utf = new String(html.getText().getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_16);
         List<LookupResult> results = mainPattern.getResult(html.getProperties(), mainPattern.lowercaseAllTags(html.getText()));
         double measuredNext = System.currentTimeMillis();
         recordTime(results, measuredNext-measuredNow);

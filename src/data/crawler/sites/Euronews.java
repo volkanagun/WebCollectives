@@ -8,8 +8,7 @@ public class Euronews {
     public static WebFlow build() {
 
         String domain = "https://tr.euronews.com/";
-        int pageCount = 5;
-
+        int pageCount = 20;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "button.c-link-chevron--load")
                 .setDoStopOnError(true)
@@ -51,7 +50,6 @@ public class Euronews {
                 .addSeed("world", "https://tr.euronews.com/tag/gazze")
                 .addSeed("world", "https://tr.euronews.com/tag/islam-kars-tl-g-")
                 .addSeed("world", "https://tr.euronews.com/my-europe/avrupa-haberleri")
-
                 .addSeed("politics", "https://tr.euronews.com/tag/turk-siyaseti")
                 .addSeed("economy", "https://tr.euronews.com/haber/ekonomi")
                 .addSeed("economy", "https://tr.euronews.com/programlar/realeconomy")
@@ -76,9 +74,7 @@ public class Euronews {
                 .addSeed("culture", "https://tr.euronews.com/kultur/art")
                 .addSeed("culture", "https://tr.euronews.com/kultur/culture-news")
                 .addSeed("culture", "https://tr.euronews.com/kultur/yiyecek-ve-i%C3%A7ecek")
-
                 .addSeed("environment", "https://tr.euronews.com/programlar/focus")
-                .addSeed("environment", "https://tr.euronews.com/programlar/ocean")
                 .addSeed("environment", "https://tr.euronews.com/programlar/climate-now")
                 .addSeed("environment", "https://tr.euronews.com/special/climate")
                 .addSeed("environment", "https://tr.euronews.com/tag/olum")
@@ -107,18 +103,24 @@ public class Euronews {
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));*/
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article class=\"o-article(.*?)\">", "</article>")
                 .setStartEndMarker("<article", "</article>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>"))
-                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors\">","</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<a(.*?)>","</a>")))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<(h1|h3) class=\"(.*?)\">","</(h1|h3)>")
+                        .setNth(0))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors(.*?)\">","</div>")
+                        .setStartEndMarker("<div", "</div")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<(a|b)(.*?)>","</(a|b)>").setRemoveTags(true)))
                 .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content(.*?)\">", "</div>")
                         .setStartEndMarker("<div", "</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2)(.*?)>", "</(p|h2)>")
                                 .setRemoveTags(true)));
 
 
+        WebFunctionCall emptyCall = new WebEmptyFunctionCall()
+                .setDoFirefox(true)
+                .initialize()
+                .setWaitTime(500);
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
@@ -127,6 +129,7 @@ public class Euronews {
                 .setDoFast(false)
                 .setSleepTime(2000L)
                 .setDomain(domain)
+                .setFunctionCall(emptyCall)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(false);

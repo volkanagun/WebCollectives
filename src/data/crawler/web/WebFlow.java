@@ -102,11 +102,8 @@ public class WebFlow implements Serializable, Callable<Boolean> {
     }
 
     public WebDocument execute() {
-
-
-        //doDeleteStart(2);
         WebDocument mainDocument = mainTemplate.execute();
-
+        mainTemplate.destroy();
         return mainDocument;
     }
 

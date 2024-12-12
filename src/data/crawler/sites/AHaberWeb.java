@@ -10,16 +10,22 @@ public class AHaberWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 5;
+        int pageCount = 10;
 
+        WebFunctionCall clickAdvertisementCall = new WebButtonClickCall(1, "div.gravityMasterSkip").setDoFirefox(true)
+                .setWaitTime(1000);
 
-        WebFunctionCall clickCall = new WebButtonClickCall(1, "a.tag-more").setDoFirefox(true)
+        WebFunctionCall clickCall = new WebButtonClickCall(1, "div.id_d_po_close").setDoFirefox(true)
                 .setWaitTime(1000);
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 1500)
                 .setWaitTime(1000);
 
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall/*, clickCall*/)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall)
+                .setWaitBetweenCalls(2000L).setDoFirefox(true)
+                .initialize();
+
+        WebFunctionCall mainCall = new WebFunctionSequence(1,clickAdvertisementCall, clickCall, sequenceCall)
                 .setWaitBetweenCalls(2000L).setDoFirefox(true)
                 .initialize();
 
@@ -41,7 +47,7 @@ public class AHaberWeb implements Serializable {
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(3500L)
-                .setFunctionCall(sequenceCall)
+                .setFunctionCall(mainCall)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setLinkPattern(null,"^https://www.ahaber.com.tr/galeri(.*?)$")
@@ -58,7 +64,7 @@ public class AHaberWeb implements Serializable {
                         .setNth(0).addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span>","</span>").setNth(0)
                                 .setRemoveTags(true).setReplaces(new String[]{"\"\\s", "Giri(.*?)\\:\\s?"}, new String[]{"",""})))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "AHABER"))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<div class=\"textFrame\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<div class=\"textFrame(.*?)\">", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));
