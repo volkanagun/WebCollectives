@@ -11,7 +11,7 @@ public class IhlasAjansi {
     public static WebFlow build() {
 
         String domain = "https://www.iha.com.tr";
-        int start = 0, size = 10;
+        int start = 0, size = 5;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container mx-auto\">", "</div>")
                 .setStartEndMarker("<div", "</div>")

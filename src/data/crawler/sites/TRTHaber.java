@@ -17,7 +17,7 @@ public class TRTHaber {
                         .setStartEndMarker("<div","</div")
                         .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")));
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", domain)
+        WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("millitary", "https://www.trthaber.com/haber/savunma")
                 .addSeed("science", "https://www.trthaber.com/haber/dunya-disi")
                 .addSeed("culture", "https://www.trthaber.com/haber/kultur-sanat")
@@ -67,7 +67,7 @@ public class TRTHaber {
                         .setStartEndMarker("<div", "</div>").setNth(0)
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")));
 
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", domain)
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setMainContent(true)
                 .setLookComplete(true).setDoDeleteStart(false)

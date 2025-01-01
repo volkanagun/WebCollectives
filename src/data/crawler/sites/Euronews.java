@@ -8,7 +8,7 @@ public class Euronews {
     public static WebFlow build() {
 
         String domain = "https://tr.euronews.com/";
-        int pageCount = 20;
+        int pageCount = 5;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "button.c-link-chevron--load")
                 .setDoStopOnError(true)

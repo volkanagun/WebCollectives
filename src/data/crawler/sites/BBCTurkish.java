@@ -8,7 +8,7 @@ public class BBCTurkish {
     public static WebFlow build() {
 
         String domain = "https://www.bbc.com/turkce/";
-        int pageCount = 10;
+        int pageCount = 5;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<main(.*?)>", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));

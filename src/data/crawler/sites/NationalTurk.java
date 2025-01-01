@@ -5,7 +5,7 @@ import data.crawler.web.*;
 public class NationalTurk {
     public static WebFlow build() {
         String domain = "https://www.nationalturk.com";
-        int pageCount = 20;
+        int pageCount = 5;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1,"a.show-more-button")
                 .setDoStopOnError(false)
@@ -24,7 +24,7 @@ public class NationalTurk {
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", domain)
+        WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy", "https://www.nationalturk.com/ekonomi/")
                 .addSeed("culture", "https://www.nationalturk.com/kultur/")
                 .addSeed("technology", "https://www.nationalturk.com/gelecek/")
@@ -56,7 +56,7 @@ public class NationalTurk {
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2)>", "</(p|h2)>")
                                 .setRemoveTags(true)));
 
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", domain)
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setMainContent(true)
                 .setLookComplete(true).setDoDeleteStart(false)

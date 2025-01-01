@@ -1,5 +1,6 @@
 package data.boilerplate.structure
 
+import data.crawler.web.LookupOptions
 import data.util.TextFile
 
 import java.io.{File, PrintWriter}
@@ -47,10 +48,12 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
     new File(extractFolder).mkdir()
     folderNames.foreach(folderName => {
       new File(folderName).listFiles().par.foreach(f => {
+        println(s"Filename ${f.getName}")
         val fout = new File(extractFolder + f.getName)
         try {
           if(!fout.exists()) {
-            val textList = XMLParser.parseList(f.getPath).get(XMLParser.paragraphLabel)
+            val map = XMLParser.parseList(f.getPath)
+            val textList = map.get(XMLParser.paragraphLabel)
             if (textList.isDefined) {
               val textArray = textList.get
               val file = new TextFile(fout)
@@ -68,7 +71,9 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
           }
         }
         catch {
-          case _: Throwable => {}
+          case e : Throwable => {
+            val d = 0
+          }
         }
       })
     })
@@ -105,7 +110,7 @@ object XMLExtractor {
 
   def extractBlogs(): Unit = {
 
-    new XMLExtractor(Array("resources/blogs-turkish/"), 100000000)
+    new XMLExtractor(Array("resources/blogs-turkish/", LookupOptions.BLOGTRYDIRECTORY), 100000000)
       .extractDocument("resources/txt/")
 
   }
@@ -157,11 +162,10 @@ object XMLExtractor {
     extractArticles()
     extractBlogs()
     extractStories()
-    extractWikipedia()*/
-
     extractWikipedia()
+*/
 
-    /*val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
-    extractSentences(filenames, "sentences-august-v2-tr.txt")*/
+    val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
+    extractSentences(filenames, "sentences-december-v1-tr.txt")
   }
 }

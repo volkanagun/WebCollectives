@@ -92,7 +92,7 @@ object XMLParser {
         val paragraph = cleanText(node.text)
         var array = map.getOrElse(paragraphLabel, Array[String]())
         array = array :+ paragraph
-        map = map.updated(paragraph, array)
+        map = map.updated(paragraphLabel, array)
       }
     })
 
@@ -107,6 +107,14 @@ object XMLParser {
       .foldLeft[String](ntext)((txt, replacement) => replacement.replaceAll(txt))
     ntext = ntext.replaceAll("&", "&amp;")
     ntext = Pattern.compile("(<a\\s(.*?)>)", Pattern.DOTALL).matcher(ntext).replaceAll("")
+    ntext = Pattern.compile("(<img\\s(.*?)>)", Pattern.DOTALL).matcher(ntext).replaceAll("")
+    ntext = Pattern.compile("(<div\\s(.*?))", Pattern.DOTALL).matcher(ntext).replaceAll("")
+    ntext = Pattern.compile("(font\\-size(.*?))", Pattern.DOTALL).matcher(ntext).replaceAll("")
+    ntext = Pattern.compile("(width(.*?))", Pattern.DOTALL).matcher(ntext).replaceAll("")
+    ntext = Pattern.compile("(height(.*?))", Pattern.DOTALL).matcher(ntext).replaceAll("")
+    ntext = Pattern.compile("(https(.*?))", Pattern.DOTALL).matcher(ntext).replaceAll("")
+
+
     ntext = cleanHTMLCodes(ntext)
     //ntext = normalizeCases(ntext)
     ntext

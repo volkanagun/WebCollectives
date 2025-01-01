@@ -13,7 +13,7 @@ public class CumhuriyetAuto implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.cumhuriyet.com.tr";
-        int pageCount = 200;
+        int pageCount = 20;
 
         WebFunctionCall functionCall = new WebExecuteJS("loadMoreNews()")
                 .setDoStopOnError(true)
@@ -31,15 +31,15 @@ public class CumhuriyetAuto implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.CUMHURIYETDIRECTORY, "article-links", domain)
-                //.addSeed("breaking", "http://www.cumhuriyet.com.tr/gundem/")
-                //.addSeed("world", "http://www.cumhuriyet.com.tr/dunya/")
+                .addSeed("breaking", "http://www.cumhuriyet.com.tr/gundem/")
+                .addSeed("world", "http://www.cumhuriyet.com.tr/dunya/")
                 .addSeed("tukey", "http://www.cumhuriyet.com.tr/turkiye/")
-                /*.addSeed("sports", "http://www.cumhuriyet.com.tr/spor/")
+                .addSeed("sports", "http://www.cumhuriyet.com.tr/spor/")
                 .addSeed("economy", "http://www.cumhuriyet.com.tr/ekonomi/")
                 .addSeed("politics", "http://www.cumhuriyet.com.tr/siyaset/")
                 .addSeed("health", "http://www.cumhuriyet.com.tr/yasam/")
                 .addSeed("science", "https://www.cumhuriyet.com.tr/bilim-teknoloji/")
-                .addSeed("culture", "https://www.cumhuriyet.com.tr/kultur-sanat/")*/
+                .addSeed("culture", "https://www.cumhuriyet.com.tr/kultur-sanat/")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)

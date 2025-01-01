@@ -24,7 +24,7 @@ public class TurkiyeHaberAjansi {
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", domain)
+        WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("health", "https://www.turkiyehaberajansi.com/saglik/")
                 .addSeed("politics", "https://www.turkiyehaberajansi.com/siyaset/")
                 .addSeed("breaking", "https://www.turkiyehaberajansi.com/guncel/")
@@ -61,7 +61,7 @@ public class TurkiyeHaberAjansi {
                                 .setStartEndMarker("<div", "</div>")
                                 .setRemoveTags(true)));
 
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", domain)
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setMainContent(true)
                 .setLookComplete(true).setDoDeleteStart(false)
