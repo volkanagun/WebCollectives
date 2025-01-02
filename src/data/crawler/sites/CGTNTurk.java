@@ -5,18 +5,23 @@ import data.crawler.web.*;
 public class CGTNTurk {
     public static WebFlow build() {
         String domain = "https://www.cgtnturk.com";
-        int pageCount = 50;
+        int pageCount = 20;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "a[rel=\"next\"]")
                 .setDoStopOnError(false)
                 .setWaitTime(100);
 
         WebFunctionCall scrollCall = new WebFunctionScroll(1, "a.page-link");
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(1, scrollCall, functionCall)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(500L)
-                .initialize()
                 .setWaitTime(1500);
+
+        WebFunctionCall aggregateCall = new WebFunctionAggregate(sequenceCall, pageCount)
+                .setWaitBetweenCalls(500L)
+                .setDoFirefox(true)
+                .initialize()
+                .setDoStopOnError(true);
+
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-lg-8 mb-3\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -37,7 +42,7 @@ public class CGTNTurk {
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)
-                .setFunctionCall(sequenceCall)
+                .setFunctionCall(aggregateCall)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
