@@ -11,6 +11,9 @@ public class BesHarfliler implements Serializable {
 
 
     public static WebFlow build() {
+
+        int pageCount = 5;
+
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div\\sclass=\"grid_8\\somega\">", "</div>")
@@ -19,8 +22,8 @@ public class BesHarfliler implements Serializable {
 
         mainTemplate.setMainPattern(linkPattern)
                 .setNextPageSuffix("page/")
-                .setNextPageSize(5)
-                .setNextPageStart(2)
+                .setNextPageSize(pageCount)
+                .setNextPageStart(1)
                 .addSeed("culture", "http://www.5harfliler.com/category/kultur/")
                 .addSeed("history", "http://www.5harfliler.com/category/tarih/")
                 .addSeed("art", "http://www.5harfliler.com/category/sanat/")
@@ -50,5 +53,9 @@ public class BesHarfliler implements Serializable {
 
         WebFlow webFlow = new WebFlow(mainTemplate);
         return webFlow;
+    }
+
+    public static void main(String[] args) {
+        build().execute();
     }
 }

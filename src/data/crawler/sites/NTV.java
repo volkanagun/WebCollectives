@@ -9,7 +9,7 @@ public class NTV implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.ntv.com.tr";
-        Integer pageCount = 50;
+        Integer pageCount = 1;
 
         WebFunctionCall closeCall = new WebButtonClickCall(3, "#ins_desktop_dfp_close")
                 .setDoStopOnError(false);

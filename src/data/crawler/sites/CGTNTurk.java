@@ -5,7 +5,7 @@ import data.crawler.web.*;
 public class CGTNTurk {
     public static WebFlow build() {
         String domain = "https://www.cgtnturk.com";
-        int pageCount = 20;
+        int pageCount = 1;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "a[rel=\"next\"]")
                 .setDoStopOnError(false)

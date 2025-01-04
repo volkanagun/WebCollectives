@@ -8,7 +8,7 @@ public class ShiftDelete {
 
         String domain = "https://shiftdelete.net/";
         int pageStart = 1;
-        int pageCount = 10;
+        int pageCount = 5;
 
         //int randomCount = 10;
 
