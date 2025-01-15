@@ -13,7 +13,7 @@ public class DWNews implements Serializable {
 
         String domain = "https://www.dw.com/";
         int pageCount = 20;
-        int randomCount = 20000;
+        int randomCount = 100;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"content-block\">", "</div>")
                 .setStartEndMarker("<div","</div>")

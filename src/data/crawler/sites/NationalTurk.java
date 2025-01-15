@@ -5,18 +5,20 @@ import data.crawler.web.*;
 public class NationalTurk {
     public static WebFlow build() {
         String domain = "https://www.nationalturk.com";
-        int pageCount = 1;
+        int pageCount = 20;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1,"a.show-more-button")
-                .setDoStopOnError(false)
+                .setDoStopOnError(true)
                 .setWaitTime(500);
 
         WebFunctionCall scrollCall = new WebFunctionScroll(1,"a.show-more-button")
+                .setDoStopOnError(false)
                 .setWaitTime(500);
 
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
                 .setDoFirefox(true)
                 .setWaitBetweenCalls(500L)
+                .setDoStopOnError(true)
                 .initialize()
                 .setWaitTime(500);
 

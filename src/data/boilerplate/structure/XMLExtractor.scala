@@ -137,6 +137,23 @@ object XMLExtractor {
     pw.close()
   }
 
+  def extractSentences(text:String):Array[String]={
+    val sentenceIter = BreakIterator.getSentenceInstance(locale)
+    sentenceIter.setText(text)
+    var start = 0
+    var end = sentenceIter.next()
+    var array = Array[String]()
+    while(end != BreakIterator.DONE){
+      val sentence = text.substring(start, end)
+      if (sentence.length > 70) {
+        array :+= sentence
+      }
+      start = end
+      end = sentenceIter.next()
+    }
+    array
+  }
+
   def extractSentences(filenames: Array[String], targetFilename: String): Unit = {
     val pw = new PrintWriter(s"resources/sentences/${targetFilename}");
     filenames.foreach(filename => new File(filename).listFiles().foreach(f => {

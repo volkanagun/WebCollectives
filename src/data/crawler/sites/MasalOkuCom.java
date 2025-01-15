@@ -10,6 +10,7 @@ public class MasalOkuCom {
     public static WebFlow build(){
 
         String domain = "https://masaloku.com.tr/";
+        int pageCount = 3;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=entry>", "</div>")
                 .setStartEndMarker("<div","</div>")
@@ -17,10 +18,11 @@ public class MasalOkuCom {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHSTORYDIRECTORY, "story-links", domain)
                 .addSeed("masal","https://masaloku.com.tr/turkce-masallar/")
+                .addSeed("masal","https://masaloku.com.tr/yasa-gore/")
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(false)
-                .setNextPageSize(30)
+                .setNextPageSize(pageCount)
                 .setNextPageStart(1)
                 .setNextPageJump(1)
                 .setThreadSize(1).setNextPageSuffix("page/")

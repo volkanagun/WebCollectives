@@ -9,7 +9,7 @@ public class AnadoluAjansi implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.aa.com.tr/tr";
-        Integer pageCount = 1;
+        Integer pageCount = 5;
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "a.button-daha.text-center")
                 .setDoStopOnError(true)

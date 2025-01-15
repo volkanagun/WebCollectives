@@ -6,16 +6,16 @@ public class T24Haber {
     public static WebFlow build() {
 
         String domain = "https://t24.com.tr";
-        int pageCount = 1;
+        int pageCount = 200;
 
-        WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(5000);
-        WebFunctionCall scrollCall2 = new WebFunctionScrollHeight(1, 100).setWaitTime(500);
+        WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(1500);
+        WebFunctionCall scrollCall2 = new WebFunctionScrollHeight(1, 800).setWaitTime(500);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall1, scrollCall2)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(10000L)
+                .setWaitBetweenCalls(1000L)
                 .setTryOnError(2)
                 .initialize()
-                .setWaitTime(5500);
+                .setWaitTime(500);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-md-6(.*?)\"", "</div>")
                 .setStartEndMarker("<div", "</div>")

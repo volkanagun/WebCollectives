@@ -1091,8 +1091,13 @@ public class WebTemplate implements Serializable {
                 try {
                     WebDocument[] array = fdoc.get(500, TimeUnit.MILLISECONDS);
                     htmlDocumentList.add(array[0]);
-                    htmlDocumentList.addNext(array[1]);
-                    htmlDocumentList.addNext(array[2]);
+                    if (array.length == 2){
+                        htmlDocumentList.addNext(array[1]);
+                    }
+                    else if(array.length == 3) {
+                        htmlDocumentList.addNext(array[1]);
+                        htmlDocumentList.addNext(array[2]);
+                    }
                 } catch (TimeoutException e) {
                     System.out.println("Timeout....");
                 }

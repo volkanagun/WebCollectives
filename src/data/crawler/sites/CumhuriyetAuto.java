@@ -13,7 +13,7 @@ public class CumhuriyetAuto implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.cumhuriyet.com.tr";
-        int pageCount = 20;
+        int pageCount = 10;
 
         WebFunctionCall functionCall = new WebExecuteJS("loadMoreNews()")
                 .setDoStopOnError(true)

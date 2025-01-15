@@ -9,7 +9,7 @@ public class TRMashable implements Serializable {
     public static WebFlow build() {
 
         String domain = "http://tr.mashable.com";
-        int count = 10;
+        int count = 5;
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button#showmore")
                 .setDoStopOnError(true)
