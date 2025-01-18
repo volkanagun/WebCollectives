@@ -27,9 +27,39 @@ public class TextPattern {
                 result = indexOfRegex(from, regex, text);
                 from = result[0] + result[1];
             }
+            else{
+                break;
+            }
 
         }
         return result;
+    }
+
+    public static int[] indexOfRegex(int from, int fromLength, String regex, String text, int nth) {
+        int[] result = new int[]{from, fromLength};
+        for (int i = 0; i < nth; i++) {
+            if (from != -1) {
+                result = indexOfRegex(from, regex, text);
+                from = result[0] + result[1];
+            }
+
+        }
+        return result;
+    }
+
+
+    public static int countOfRegexUntil(int from, int until, String regex, String text){
+        int count = 0;
+        int[] crrIndex = indexOfRegex(from, regex, text);
+        int startIndex = crrIndex[0] + crrIndex[1];
+
+        while(until >= startIndex && startIndex!=-1){
+            crrIndex = indexOfRegex(startIndex, regex, text);
+            startIndex = crrIndex[0] + crrIndex[1];
+            count+=1;
+        }
+
+        return count;
     }
 
     public static int[] indexOfRegex(int from, String regex, String text) {
@@ -69,36 +99,35 @@ public class TextPattern {
 
     public static int[] indexOfStartEnd(int index, String start, String end, String markerStart, String markerEnd, String text) {
         int[] startIndex = indexOfRegex(index, start, text);
-        int[] endIndex = indexOfRegex(startIndex[0], markerEnd, text);
+        int[] endIndex = indexOfRegex(startIndex[0], end, text);
         int[] markerStartIndex = startIndex;
-        int[] markerNextStartIndex = null;
-
         int[] markerEndIndex = endIndex;
         int count = 0;
-        Stack<Integer> startStack = new Stack<>();
-        //While(start exists) after last end
         while (startIndex[0] != -1 && endIndex[0] != -1) {
 
-
-            count = 0;
-            //Count starts to the first close
-            while ((markerStartIndex = indexOfRegex(markerStartIndex[0] + markerStartIndex[1], markerStart, text)) != null
-                    && markerStartIndex[0] != -1
-                    && markerEndIndex[0] > markerStartIndex[0]) {
-                count++;
-
+            count = countOfRegexUntil(markerStartIndex[0] + markerStartIndex[1], markerEndIndex[0], markerStart, text);
+            if (count > 0) {
+                markerStartIndex = markerEndIndex;
+                markerEndIndex = indexOfRegex(markerEndIndex[0] + markerEndIndex[1],0, markerEnd, text, count);
+                //markerEndIndex = indexOfRegex(markerStartIndex[0] + markerStartIndex[1], markerEnd, text);
             }
+            else{
+                break;
+            }
+            /*count--;
+            if(count > 0){
+                markerStartIndex = indexOfRegex(markerEndIndex[0] + markerEndIndex[1], markerEnd, text, count);
+                markerEndIndex = indexOfRegex(markerStartIndex[0] + markerStartIndex[1], markerEnd, text);
+            }
+            else if(count == 0){
+                int startLook = markerEndIndex[0] + markerEndIndex[1];
+                markerStartIndex = markerEndIndex;
+                markerEndIndex = indexOfRegex(startLook, markerEnd, text);
 
-
-            markerEndIndex = indexOfRegex(markerEndIndex[0] + markerEndIndex[1], markerEnd, text, count);
-            if (markerEndIndex[0] == -1 || count == 0) break;
-
+            }*/
             endIndex = markerEndIndex;
-            markerEndIndex = indexOfRegex(markerEndIndex[0] + markerEndIndex[1], markerEnd, text);
-
 
         }
-
 
         return new int[]{startIndex[0] + startIndex[1], endIndex[0]};
 
@@ -953,10 +982,11 @@ public class TextPattern {
     ///////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        String text = "<open id=5>" +
-                "<open>" + "<open></close>" + "</close>" +
-                "<open>" + "<open></close>" + "</close>" +
-                "<open>" + "<open></close>" + "</close>"
+        String text = "<open>" +
+                "<open id=5>" + "<open></close><open></close>" + "</close>" +
+                "<open id=5>" + "<open></close>" + "</close>" +
+                "<open></close><open></close>" +
+                "<open id=5>" + "<open></close>" + "</close>"
                 + "</close><open><close>";
 
         List<String> obtainedList = new ArrayList<>();

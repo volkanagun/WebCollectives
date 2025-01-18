@@ -51,7 +51,7 @@ public class M5Dergi {
     }
 
     public static void main(String[] args) {
-        for(int start=310; start<500; start+=5) {
+        for(int start=850; start<1000; start+=5) {
             build(start, 5).execute();
         }
     }

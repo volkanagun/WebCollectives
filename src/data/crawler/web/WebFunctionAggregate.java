@@ -51,7 +51,7 @@ public class WebFunctionAggregate extends WebFunctionCall {
 
     @Override
     public String returnHTML(WebDriver driver) {
-        String htmlSource = "";
+        String htmlSource = driver.getPageSource()+"\n";
         int i = 0;
         isError = false;
         while (i < count) {
