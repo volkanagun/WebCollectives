@@ -7,25 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Latest modifications in regex rules.">
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/PDFExtractor.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/M5Dergi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Latest modifications and small bug fixes in parsing.">
+      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/WebTekno.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BBCTurkish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BBCTurkish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CGTNTurk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CGTNTurk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/DWNews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/DWNews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MasalOkuCom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MasalOkuCom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NationalTurk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NationalTurk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/T24Haber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/T24Haber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TRTHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRTHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Fizikist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Fizikist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Yesilist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Yesilist.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +89,7 @@
     "Application.Ergonomic.executor": "Run",
     "Application.EskSonHaber.executor": "Run",
     "Application.Euronews.executor": "Run",
+    "Application.Fizikist.executor": "Run",
     "Application.GZTBlog.executor": "Run",
     "Application.GazeteOku.executor": "Run",
     "Application.GezenlerKulubu.executor": "Run",
@@ -130,11 +117,14 @@
     "Application.T24Haber.executor": "Run",
     "Application.TRMashable.executor": "Run",
     "Application.TRTHaber.executor": "Run",
+    "Application.TextPattern.executor": "Debug",
     "Application.TurkiyeHaberAjansi.executor": "Run",
+    "Application.WebTekno.executor": "Run",
     "Application.Webrazzi.executor": "Run",
     "Application.Wikipedia.executor": "Run",
     "Application.XMLExtractor.executor": "Debug",
     "Application.XMLParser.executor": "Run",
+    "Application.Yesilist.executor": "Run",
     "Maven.WebCollectives [clean].executor": "Run",
     "Maven.WebCollectives [compile].executor": "Run",
     "Maven.WebCollectives [install].executor": "Run",
@@ -164,9 +154,9 @@
       <recent name="data.crawler.sites" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.M5Dergi">
-    <configuration name="CGTNTurk" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.CGTNTurk" />
+  <component name="RunManager" selected="Application.WebTekno">
+    <configuration name="Fizikist" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Fizikist" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -178,8 +168,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CNNTurkWeb" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.CNNTurkWeb" />
+    <configuration name="PDFExtractor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.boilerplate.structure.PDFExtractor" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.boilerplate.structure.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TextPattern" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.util.TextPattern" />
+      <module name="WebCollectives" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="data.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebTekno" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.WebTekno" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -191,34 +207,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CumhuriyetAuto" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.CumhuriyetAuto" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Ergonomic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Ergonomic" />
-      <module name="WebCollectives" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="data.crawler.sites.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="M5Dergi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.M5Dergi" />
+    <configuration name="Yesilist" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Yesilist" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -231,19 +221,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.M5Dergi" />
-      <item itemvalue="Application.CGTNTurk" />
-      <item itemvalue="Application.CNNTurkWeb" />
-      <item itemvalue="Application.CumhuriyetAuto" />
-      <item itemvalue="Application.Ergonomic" />
+      <item itemvalue="Application.Fizikist" />
+      <item itemvalue="Application.PDFExtractor" />
+      <item itemvalue="Application.TextPattern" />
+      <item itemvalue="Application.WebTekno" />
+      <item itemvalue="Application.Yesilist" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.M5Dergi" />
-        <item itemvalue="Application.CGTNTurk" />
-        <item itemvalue="Application.Ergonomic" />
-        <item itemvalue="Application.CumhuriyetAuto" />
-        <item itemvalue="Application.CNNTurkWeb" />
+        <item itemvalue="Application.WebTekno" />
+        <item itemvalue="Application.Yesilist" />
+        <item itemvalue="Application.Fizikist" />
+        <item itemvalue="Application.TextPattern" />
+        <item itemvalue="Application.PDFExtractor" />
       </list>
     </recent_temporary>
   </component>
@@ -352,7 +342,23 @@
       <option name="project" value="LOCAL" />
       <updated>1736012997232</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Latest modifications rules.">
+      <option name="closed" value="true" />
+      <created>1736951070088</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1736951070088</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Latest modifications and small bug fixes in parsing.">
+      <option name="closed" value="true" />
+      <created>1737240646542</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737240646542</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -373,7 +379,9 @@
     <MESSAGE value="Jsoup comparison" />
     <MESSAGE value="Adds" />
     <MESSAGE value="Latest modifications in regex rules." />
-    <option name="LAST_COMMIT_MESSAGE" value="Latest modifications in regex rules." />
+    <MESSAGE value="Latest modifications rules." />
+    <MESSAGE value="Latest modifications and small bug fixes in parsing." />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest modifications and small bug fixes in parsing." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -403,6 +411,16 @@
           <line>1097</line>
           <option name="timeStamp" value="151" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/util/TextPattern.java</url>
+          <line>992</line>
+          <option name="timeStamp" value="209" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/util/TextPattern.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="224" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala</url>
           <line>185</line>
@@ -425,26 +443,40 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/PDFExtractor.scala</url>
-          <line>87</line>
+          <line>250</line>
           <option name="timeStamp" value="141" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala</url>
-          <line>153</line>
-          <option name="timeStamp" value="144" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/PDFExtractor.scala</url>
-          <line>78</line>
+          <line>241</line>
           <option name="timeStamp" value="147" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/PDFExtractor.scala</url>
-          <line>82</line>
+          <line>245</line>
           <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/PDFExtractor.scala</url>
+          <line>137</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/PDFExtractor.scala</url>
+          <line>129</line>
+          <option name="timeStamp" value="160" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="text.substring(startIndex[0]+startIndex[1], markerEndIndex[0])" language="JAVA" />
+        <watch expression="text.substring(markerStartIndex[0]+markerStartIndex[1], markerEndIndex[0])" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

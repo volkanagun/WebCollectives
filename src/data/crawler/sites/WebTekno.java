@@ -2,36 +2,33 @@ package data.crawler.sites;
 
 import data.crawler.web.*;
 
-public class Yesilist {
+public class WebTekno {
+
     public static WebFlow build() {
 
-        String domain = "https://www.yesilist.com";
-        Integer pageCount = 500;
+        String domain = "https://www.webtekno.com/";
+        Integer pageCount = 50;
 
-        WebFunctionCall clickCall = new WebButtonClickCall(1, "li.previous > a")
-                .setDoStopOnError(true)
+
+
+        WebFunctionCall clickCall = new WebButtonClickCall(1, "span.content-timeline__more__text")
+                .setDoStopOnError(false)
                 .setWaitTime(1000);
-
-        WebFunctionCall sequenceCall = new WebFunctionAggregate(clickCall,pageCount)
+        WebFunctionCall scrollCall = new WebFunctionScroll(1, 20, "span.content-timeline__more__text").setWaitTime(1500);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall)
                 .setDoFirefox(true)
                 .setWaitBetweenCalls(1000L)
                 .setDoStopOnError(false)
                 .initialize()
                 .setWaitTime(1000);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<h2 class=\"entry-title\">", "</h2>")
-                .setStartEndMarker("<h2","</h2>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"content-timeline__detail__container\">", "</div>")
+                .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")
-                        .setNth(0));
+                        .setNth(1));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("trends", "https://www.yesilist.com/kategori/hayat/moda/")
-               .addSeed("child", "https://www.yesilist.com/kategori/anne-ve-cocuk/")
-                .addSeed("environment", "https://www.yesilist.com/kategori/ekoloji/")
-                .addSeed("environment", "https://www.yesilist.com/kategori/gida/")
-                .addSeed("city", "https://www.yesilist.com/kategori/kent/")
-                .addSeed("health", "https://www.yesilist.com/kategori/hayat/")
-                .addSeed("health", "https://www.yesilist.com/kategori/kendinyap-2/")
+                .addSeed("technology", "https://www.webtekno.com/")
                 .setDoFast(false)
                 .setSleepTime(2500L)
                 .setDoDeleteStart(true)
@@ -40,18 +37,17 @@ public class Yesilist {
                 .setFunctionCall(sequenceCall)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"content\">", "</div>")
+                .setStartEndMarker("<div","</div>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<span class=\"author vcard\">", "</span>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<span itemprop=\"name\">", "</span>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<span class=\"posted-on\">", "</span>")
-                        .setNth(1).addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time(.*?)>", "</time>")
-                                .setNth(0)
-                                .setRemoveTags(true)))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"entry-content clearfix\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time class=\"content-info__date\"(.*?)>", "</time>")
+                        .setNth(0))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"content-body__detail\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")
                                 .setRemoveTags(true)));
