@@ -7,9 +7,7 @@ public class WebTekno {
     public static WebFlow build() {
 
         String domain = "https://www.webtekno.com/";
-        Integer pageCount = 50;
-
-
+        Integer pageCount = 5;
 
         WebFunctionCall clickCall = new WebButtonClickCall(1, "span.content-timeline__more__text")
                 .setDoStopOnError(false)

@@ -5,7 +5,7 @@ import data.crawler.web.*;
 public class NationalTurk {
     public static WebFlow build() {
         String domain = "https://www.nationalturk.com";
-        int pageCount = 20;
+        int pageCount = 5;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1,"a.show-more-button")
                 .setDoStopOnError(true)

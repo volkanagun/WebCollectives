@@ -7,7 +7,7 @@ public class Arkeofili {
     public static WebFlow build() {
 
         String domain = "https://arkeofili.com/";
-        int pageCount = 1;
+        int pageCount = 25;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<h2>", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));

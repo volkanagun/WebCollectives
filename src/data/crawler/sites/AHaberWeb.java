@@ -10,7 +10,7 @@ public class AHaberWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 20;
+        int pageCount = 5;
 
         WebFunctionCall clickAdvertisementCall = new WebButtonClickCall(1, "div.gravityMasterSkip").setDoFirefox(true)
                 .setWaitTime(1000);

@@ -148,7 +148,6 @@ public class WebFlow implements Serializable, Callable<Boolean> {
         WebFlow flowHayrola = Hayrola.build();
         WebFlow flowSonBirseyler = SonBirseyler.build();
         WebFlow flowEgonomic = Ergonomic.build();
-        WebFlow flowAcikEconomy = AcikEkonomi.build();
         WebFlow flowAvaz = AvazAvaz.build();
         WebFlow flowMilliyet = MilliyetBlog.build();
         WebFlow flowMilliyetBlogListe = MilliyetBlogList.build();

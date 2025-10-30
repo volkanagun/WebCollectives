@@ -16,7 +16,7 @@ import scala.collection.parallel.CollectionConverters.ArrayIsParallelizable
 class WebInstanceIO(val htmlFolder: String, val xmlFolders: Array[String], val validTags: Array[String]) extends Serializable {
 
   var binaryID = "resources/binary/instance-" + buildID().toString + ".bin"
-
+  var readFile = false
   def buildID(): Int = {
     var r = 7
     r = 3 * r + htmlFolder.hashCode
@@ -36,17 +36,29 @@ class WebInstanceIO(val htmlFolder: String, val xmlFolders: Array[String], val v
 
   def loadInstances(): Array[WebInstance] = {
     val f = new File(binaryID)
-    if (f.exists()) {
+    if (f.exists() && readFile) {
       val reader = new ObjectInputStream(new FileInputStream(f));
-      val instances = reader.readObject().asInstanceOf[Array[WebInstance]]
+      val count = reader.readInt()
+      var instances = Array[WebInstance]()
+
+      for (i<-0 until count){
+        val webInstance = new WebInstance(null, null, Array()).read(reader)
+        instances :+= webInstance
+      }
+
       reader.close()
       instances
     }
-    else {
+    else if(!f.exists() && readFile){
       val instances = build()
       val writer = new ObjectOutputStream(new FileOutputStream(f, false))
-      writer.writeObject(instances)
+      writer.writeInt(instances.length)
+      instances.foreach(instance=> instance.write(writer))
       writer.close()
+      instances
+    }
+    else{
+      val instances = build()
       instances
     }
   }

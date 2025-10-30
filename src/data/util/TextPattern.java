@@ -736,7 +736,7 @@ public class TextPattern {
         int startIndex = theIndex[0];
         int endIndex = theIndex[1];
 
-        while (startIndex != -1 && endIndex != -1) {
+        while (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
             String subText = text.substring(startIndex, endIndex);
             patternList.add(subText);
             startIndex = endIndex;

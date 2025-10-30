@@ -23,7 +23,7 @@ class WordRanker(val lemmatizer: WordLemmatizer) extends Tagger {
   def add(srcID: Int, dstID: Int, catID: Int): Unit = {
     synchronized {
       val link = Link(srcID, dstID, catID)
-      var array = srcLinks.getOrElse(srcID, Array())
+      var array = srcLinks.getOrElse(srcID, Array[Link]())
       val index = array.indexOf(link)
       if (index == -1) {
         array = array :+ link
@@ -177,7 +177,7 @@ class WordRanker(val lemmatizer: WordLemmatizer) extends Tagger {
 
   def merge(wordRanker: WordRanker): this.type = {
     wordRanker.srcLinks.foreach { case (id, dstArray) => {
-      var srcArray = srcLinks.getOrElse(id, Array())
+      var srcArray = srcLinks.getOrElse(id, Array[Link]())
       dstArray.foreach(dstLink => {
         val index = srcArray.indexOf(dstLink)
         if (index == -1) {

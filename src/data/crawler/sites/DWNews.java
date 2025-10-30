@@ -12,15 +12,16 @@ public class DWNews implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.dw.com/";
-        int pageCount = 20;
+        int pageCount = 1;
         int randomCount = 100;
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"content-block\">", "</div>")
-                .setStartEndMarker("<div","</div>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a class(.*?)href=\"", "\""));
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<section id=\"atp-all-items-list\"(.*?)>", "</section>")
+                .setStartEndMarker("<section","</section>")
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed( "https://www.dw.com/tr/g%C3%BCndem/s-10201")
+                .addSeed( "https://www.dw.com/tr/ukrayna/t-19044408")
+                /*.addSeed( "https://www.dw.com/tr/g%C3%BCndem/s-10201")
                 .addSeed( "https://www.dw.com/tr/ekonomi/t-18993647")
                 .addSeed( "https://www.dw.com/tr/t%C3%BCrkiye/t-18753375")
                 .addSeed( "https://www.dw.com/tr/ankara/t-18986975")
@@ -34,24 +35,23 @@ public class DWNews implements Serializable {
                 .addSeed( "https://www.dw.com/tr/euro/t-18989135")
                 .addSeed( "https://www.dw.com/tr/euro-b%C3%B6lgesi/t-18989113")
                 .addSeed( "https://www.dw.com/tr/avrupa-birli%C4%9Fi-ab/t-18582993")
-                .addSeed( "https://www.dw.com/tr/ab-komisyonu/t-19060982")
+                .addSeed( "https://www.dw.com/tr/ab-komisyonu/t-19060982")*/
                 .setDoFast(false)
-                .setDoRandomSeed(randomCount)
-                .setDoDeleteStart(true)
+                .setNextPageSize(pageCount)
+                .setNextPageSuffix("/page-")
+                 .setDoDeleteStart(true)
                 .setSleepTime(2500L)
                 .setThreadSize(4)
                 .setMainPattern(linkPattern)
                 .setDomain(domain);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article class=\"(.*?)\">", "</article>")
-                .setStartEndMarker("<div", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
+                .setStartEndMarker("<article", "</article>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>"))
-                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors\">","</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<a(.*?)>","</a>")))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content(.*?)\">", "</div>")
-                        .setStartEndMarker("<div", "</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time(.*?)>","</time>"))
+                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLETEXT, LookupOptions.EMPTY)
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")
                                 .setRemoveTags(true)));
 
 

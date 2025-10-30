@@ -6,7 +6,7 @@ public class Fizikist {
     public static WebFlow build() {
 
         String domain = "https://www.fizikist.com";
-        Integer pageCount = 500;
+        Integer pageCount = 5;
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button.btn-load-more-posts")
                 .setDoStopOnError(true)

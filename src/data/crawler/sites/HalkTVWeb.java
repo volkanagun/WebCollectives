@@ -17,7 +17,7 @@ public class HalkTVWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "http://halktv.com.tr";
-        int pageCount = 20;
+        int pageCount = 10;
         int pageStart = 1;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\"(.*?)>", "</div>")

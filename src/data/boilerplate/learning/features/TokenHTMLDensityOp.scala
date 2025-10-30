@@ -16,9 +16,9 @@ case class TokenHTMLDensityOp() extends ExecutableOp(Array(), s"token-html-densi
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
-    val element = leaf.node.asInstanceOf[Element]
-    val html = element.html()
-    val tokenLength = tokenize(element.text()).length
+    val element = leaf.text
+    val html = leaf.html
+    val tokenLength = tokenize(element).length
     val density = tokenLength.toDouble / html.length
     IntermediateResult(leaf, Map(name -> density))
   }
@@ -30,7 +30,6 @@ case class TokenHTMLDensityOp() extends ExecutableOp(Array(), s"token-html-densi
     var array = Array[String]()
     while (tokenStream.incrementToken)
       array :+= attr.toString
-
     array
   }
 

@@ -3,16 +3,52 @@ package data.boilerplate.structure
 import org.jsoup.nodes.{Element, Node, TextNode}
 import org.w3c.dom
 
+import java.io.{ObjectInputStream, ObjectOutputStream}
 import scala.xml.Comment
 
 /**
  * @author Volkan Agun
  */
-class HTMLNode(val id:Int, val node:Node) extends Serializable{
+class HTMLNode(var id:Int, var node:Node) extends Serializable{
 
   var childnodes = Array[HTMLNode]()
   var previous, next:HTMLNode = null;
   var parent:HTMLNode = null
+  var html:String = null
+  var text:String = null
+
+  def build():this.type = {
+    html =  node.outerHtml()
+    if (node.isInstanceOf[Element]){
+      text = node.asInstanceOf[Element].text()
+    }
+    else if(node.isInstanceOf[TextNode]){
+      text = node.asInstanceOf[TextNode].text()
+    }
+    this
+  }
+
+  def read(stream:ObjectInputStream):this.type={
+    id = stream.readInt()
+    html = stream.readObject().asInstanceOf[String]
+    text = stream.readObject().asInstanceOf[String]
+
+    val count = stream.readInt()
+    for (i<-0 until count) {
+      childnodes:+= new HTMLNode(-1, null).read(stream)
+    }
+    this
+  }
+
+  def write(stream:ObjectOutputStream):this.type={
+    stream.writeInt(id)
+    stream.writeObject(html)
+    stream.writeObject(text)
+
+    stream.writeInt(childnodes.length)
+    childnodes.foreach(subNode=> subNode.write(stream))
+    this
+  }
 
   def nameID():Int={
     node.nodeName().hashCode

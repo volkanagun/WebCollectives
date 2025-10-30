@@ -3,7 +3,7 @@ package data.boilerplate.learning.pipes
 
 import data.boilerplate.learning.features._
 import data.boilerplate.structure.{HTMLNode, HTMLParser, HTMLPath}
-import org.jsoup.nodes.{Comment, DataNode, Element, Node}
+import org.jsoup.nodes.{Comment, DataNode, Element, Node, TextNode}
 
 import scala.jdk.CollectionConverters.ListHasAsScala
 
@@ -362,6 +362,22 @@ class PatternOp(subpipes: Array[PipeOp], name: String) extends ExecutableOp(subp
     isElement(htmlNode)
   }
 
+  def getParentHtml(leaf:HTMLNode):String = {
+    leaf.getParent().html
+  }
+
+  def getParentText(leaf:HTMLNode):String = {
+    leaf.getParent().text
+  }
+
+  def getText(leaf:HTMLNode):String = {
+    leaf.text
+  }
+
+  def getHtml(leaf:HTMLNode):String = {
+    leaf.html
+  }
+
   def exists(leaf: HTMLNode): Double = {
     val boolean = subpipes.map(pipe => pipe match {
       case e: PatternOp => (pipe.name, e.exists(leaf))
@@ -490,7 +506,7 @@ object OpTester {
     val node = HTMLParser.parseHTML("resources/demo/html.html")
     val paths = node.visit()
 
-    println(model2().execute(paths).mkString("\n\n--------------------------------------\n"))
+    println(model1().execute(paths).mkString("\n\n--------------------------------------\n"))
 
   }
 }

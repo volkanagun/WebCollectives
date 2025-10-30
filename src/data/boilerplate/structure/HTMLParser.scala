@@ -35,7 +35,7 @@ object HTMLParser {
     }}
 
     new HTMLNode(id, node)
-      .setChildNodes(childNodes)
+      .setChildNodes(childNodes).build()
   }
 
   def main(args: Array[String]): Unit = {

@@ -6,7 +6,7 @@ public class Yesilist {
     public static WebFlow build() {
 
         String domain = "https://www.yesilist.com";
-        Integer pageCount = 500;
+        Integer pageCount = 5;
 
         WebFunctionCall clickCall = new WebButtonClickCall(1, "li.previous > a")
                 .setDoStopOnError(true)

@@ -8,10 +8,7 @@ public class ShiftDelete {
 
         String domain = "https://shiftdelete.net/";
         int pageStart = 1;
-        int pageCount = 5;
-
-        //int randomCount = 10;
-
+        int pageCount = 10;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<h4>", "</h4>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));

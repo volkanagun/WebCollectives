@@ -7,7 +7,7 @@ public class TurkiyeHaberAjansi {
     public static WebFlow build() {
 
         String domain = "https://www.turkiyehaberajansi.com/";
-        int pageCount = 10;
+        int pageCount = 5;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "a.get_ajax_data")
                 .setDoStopOnError(false)

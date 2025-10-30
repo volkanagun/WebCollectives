@@ -5,7 +5,7 @@ import data.crawler.web.*;
 public class AnkaHaber {
     public static WebFlow build() {
         String domain = "https://ankahaber.net";
-        int pageCount = 10;
+        int pageCount = 15;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1,"a.btn")
                 .setDoStopOnError(false)

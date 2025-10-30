@@ -8,7 +8,6 @@ public class M5Dergi {
 
         String domain = "https://m5dergi.com/";
 
-
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<div class=\"post-details\">", "</div>")
                 .setStartEndMarker("<div","</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a class=\"more-link button\" href=\"", "\""));
@@ -28,9 +27,9 @@ public class M5Dergi {
                 .setMainPattern(shortArticle);
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                //.addSeed("defence", "https://m5dergi.com/kategori/son-sayi/makaleler/")
-                //.addSeed("defence", "https://m5dergi.com/kategori/infografik/")
-                //.addSeed("defence", "https://m5dergi.com/kategori/strateji-analiz/")
+                .addSeed("defence", "https://m5dergi.com/kategori/son-sayi/makaleler/")
+                .addSeed("defence", "https://m5dergi.com/kategori/infografik/")
+                .addSeed("defence", "https://m5dergi.com/kategori/strateji-analiz/")
                 .addSeed("defence", "https://m5dergi.com/kategori/dunya/")
                 .addSeed("news", "https://m5dergi.com/kategori/savunma-haberleri/")
                 .setNextPageStart(start)
@@ -51,8 +50,8 @@ public class M5Dergi {
     }
 
     public static void main(String[] args) {
-        for(int start=850; start<1000; start+=5) {
-            build(start, 5).execute();
+        for(int start=0; start<10; start+=50) {
+            build(start, 50).execute();
         }
     }
 }

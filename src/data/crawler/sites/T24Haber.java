@@ -6,7 +6,7 @@ public class T24Haber {
     public static WebFlow build() {
 
         String domain = "https://t24.com.tr";
-        int pageCount = 200;
+        int pageCount = 10;
 
         WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(1500);
         WebFunctionCall scrollCall2 = new WebFunctionScrollHeight(1, 800).setWaitTime(500);
