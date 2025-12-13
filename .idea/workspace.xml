@@ -7,25 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Latest modifications and small bug fixes in parsing.">
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/SavunmaSanayist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sbt.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
+    <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Latest modifications and small bug fixes in DWnews and others.">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/scala_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/ParentTextDensityOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/ParentTextDensityOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PatternTextDensityOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PatternTextDensityOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/RecursivePatternOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/RecursivePatternOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenCountOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenCountOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenHTMLDensityOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenHTMLDensityOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/partitioning/lemmatizer/WordRanker.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/partitioning/lemmatizer/WordRanker.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLParser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLParser.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLPath.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLPath.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AcikEkonomi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnkaHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnkaHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Arkeofili.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Arkeofili.java" afterDir="false" />
@@ -33,22 +19,30 @@
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BilgiUstam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BilgiUstam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CGTNTurk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CGTNTurk.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/DWNews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/DWNews.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Euronews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Euronews.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Fizikist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Fizikist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Haber7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Haber7.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HaberGlobal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HaberGlobal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HalkTVWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HalkTVWeb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/IhlasAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/IhlasAjansi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/M5Dergi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/M5Dergi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NationalTurk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NationalTurk.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/PopularScience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/PopularScience.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/ShiftDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/ShiftDelete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SavunmaSanayist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SavunmaSanayist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/T24Haber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/T24Haber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TRTHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRTHaber.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TurkiyeHaberAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TurkiyeHaberAjansi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/WebTekno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/WebTekno.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Yesilist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Yesilist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFlow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/util/TextPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/util/TextPattern.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +157,7 @@
     "Application.WebTekno.executor": "Run",
     "Application.Webrazzi.executor": "Run",
     "Application.Wikipedia.executor": "Run",
-    "Application.XMLExtractor.executor": "Debug",
+    "Application.XMLExtractor.executor": "Run",
     "Application.XMLParser.executor": "Run",
     "Application.Yesilist.executor": "Run",
     "Maven.WebCollectives [clean].executor": "Run",
@@ -177,7 +171,7 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/media/wolf/Corsair/java-projects/Transducers",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.44066238",
     "run.code.analysis.last.selected.profile": "pProject Default",
@@ -195,9 +189,9 @@
       <recent name="data.crawler.sites" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DWNews">
-    <configuration name="Arkeofili" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Arkeofili" />
+  <component name="RunManager" selected="Application.Webrazzi">
+    <configuration name="Fizikist" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Fizikist" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -209,8 +203,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BBCTurkish" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BBCTurkish" />
+    <configuration name="NationalTurk" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.NationalTurk" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -222,8 +216,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BesHarfliler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BesHarfliler" />
+    <configuration name="SavunmaSanayist" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.SavunmaSanayist" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -235,8 +229,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BilgiUstam" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.BilgiUstam" />
+    <configuration name="WebTekno" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.WebTekno" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -248,8 +242,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DWNews" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.DWNews" />
+    <configuration name="Webrazzi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="data.crawler.sites.Webrazzi" />
       <module name="WebCollectives" />
       <extension name="coverage">
         <pattern>
@@ -262,19 +256,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Arkeofili" />
-      <item itemvalue="Application.BBCTurkish" />
-      <item itemvalue="Application.BesHarfliler" />
-      <item itemvalue="Application.BilgiUstam" />
-      <item itemvalue="Application.DWNews" />
+      <item itemvalue="Application.Fizikist" />
+      <item itemvalue="Application.SavunmaSanayist" />
+      <item itemvalue="Application.WebTekno" />
+      <item itemvalue="Application.Webrazzi" />
+      <item itemvalue="Application.NationalTurk" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DWNews" />
-        <item itemvalue="Application.BilgiUstam" />
-        <item itemvalue="Application.BesHarfliler" />
-        <item itemvalue="Application.BBCTurkish" />
-        <item itemvalue="Application.Arkeofili" />
+        <item itemvalue="Application.Webrazzi" />
+        <item itemvalue="Application.WebTekno" />
+        <item itemvalue="Application.SavunmaSanayist" />
+        <item itemvalue="Application.NationalTurk" />
+        <item itemvalue="Application.Fizikist" />
       </list>
     </recent_temporary>
   </component>
@@ -285,6 +279,7 @@
         <entry key="xml" value="XML" />
       </map>
     </option>
+    <option name="scala3DisclaimerShown" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -407,8 +402,20 @@
       <option name="project" value="LOCAL" />
       <updated>1737318305984</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Latest modifications and small bug fixes in DWnews and others.">
+      <option name="closed" value="true" />
+      <created>1761854337405</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1761854337405</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="java:org.openjfx:javafx-base" />
+    <option featureType="dependencySupport" implementationName="java:org.seleniumhq.selenium:selenium-java" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -430,20 +437,16 @@
     <MESSAGE value="Latest modifications in regex rules." />
     <MESSAGE value="Latest modifications rules." />
     <MESSAGE value="Latest modifications and small bug fixes in parsing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Latest modifications and small bug fixes in parsing." />
+    <MESSAGE value="Latest modifications and small bug fixes in DWnews and others." />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest modifications and small bug fixes in DWnews and others." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>1129</line>
+          <line>1130</line>
           <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>1113</line>
-          <option name="timeStamp" value="120" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebFlow.java</url>
@@ -452,22 +455,32 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>1098</line>
+          <line>1099</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
-          <line>1097</line>
+          <line>1098</line>
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/data/util/TextPattern.java</url>
-          <line>992</line>
+          <line>998</line>
           <option name="timeStamp" value="209" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java</url>
+          <line>985</line>
+          <option name="timeStamp" value="237" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java</url>
+          <line>331</line>
+          <option name="timeStamp" value="261" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala</url>
-          <line>185</line>
+          <line>210</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
@@ -477,7 +490,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala</url>
-          <line>74</line>
+          <line>73</line>
           <option name="timeStamp" value="138" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">

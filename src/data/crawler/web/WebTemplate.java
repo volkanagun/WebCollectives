@@ -778,7 +778,8 @@ public class WebTemplate implements Serializable {
         if (new WebDocument(folder, nextTemplate.name, seed.getRequestURL()).filenameExists()) return false;
 
         String templateDomain = nextTemplate.domain;
-        boolean containsDomain = seed.getRequestURL().contains(templateDomain.replaceAll("http(s?)", ""));
+        String replacedDomain = templateDomain.replaceAll("http(s?)", "");
+        boolean containsDomain = seed.getRequestURL().contains(replacedDomain);
 
         if (linkPattern != null && linkRejectPattern != null) {
             return seed.getRequestURL().matches(linkPattern) && !seed.getRequestURL().matches(linkRejectPattern.replaceFirst(templateDomain, ""));
@@ -1144,27 +1145,35 @@ public class WebTemplate implements Serializable {
 
     public Boolean extract(WebDocument html) {
         double measuredNow = System.currentTimeMillis();
-        String utf = new String(html.getText().getBytes(StandardCharsets.UTF_8), StandardCharsets.UTF_16);
-        List<LookupResult> results = mainPattern.getResult(html.getProperties(), mainPattern.lowercaseAllTags(html.getText()));
-        double measuredNext = System.currentTimeMillis();
-        recordTime(results, measuredNext-measuredNow);
-        html.setLookupResultList(results);
-        return !results.isEmpty();
+        try {
+            List<LookupResult> results = mainPattern.getResult(html.getProperties(), mainPattern.lowercaseAllTags(html.getText()));
+            double measuredNext = System.currentTimeMillis();
+            recordTime(results, measuredNext - measuredNow);
+            html.setLookupResultList(results);
+            return !results.isEmpty();
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
+            return false;
+        }
+
 
     }
 
     public WebDocument extractNext(WebDocument html, WebTemplate nextTemplate) {
 
-        boolean isNotEmpty = false;
-
         WebDocument nextDocument = nextTemplate.createDocument(html.getUrl());
         LookupPattern nextPattern = nextTemplate.mainPattern;
 
-        List<LookupResult> results = nextPattern.getResult(html.getProperties(), nextPattern.lowercaseAllTags(html.getText()));
-        nextDocument.addLookupResultList(results);
+        try {
+            List<LookupResult> results = nextPattern.getResult(html.getProperties(), nextPattern.lowercaseAllTags(html.getText()));
+            nextDocument.addLookupResultList(results);
+        }
+        catch(Exception ex){
+            System.out.println("Exception: " + ex.getMessage());
+        }
 
         return nextDocument;
-
     }
 
     public Boolean saveHTML(WebDocument html) {

@@ -9,7 +9,7 @@ public class PopularScience {
     public static WebFlow build() {
 
         String domain = "https://popsci.com.tr/";
-        int pageCount = 10;
+        int pageCount = 1;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"td-ss-main-content\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -39,15 +39,14 @@ public class PopularScience {
                 .setDomain(domain).setDomainSame(true)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"td-pb-row\">", "</div>")
-                .setStartEndMarker("<div", "</div")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
                 .setTagLowercase(true).setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"entry-title\">", "</h1>")
                         .setRemoveTags(true)).setRequiredNotEmpty(true)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time class=\"(.*?)\" datetime=\"", "\">")
                         .setRemoveTags(true)
                         .setRequiredNotEmpty(false))
-                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"td-ss-main-content\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"td-post-content tagdiv-type\">", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .setTagLowercase(false)
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<p><em>(Yazar|Kaynak): ", "(</em>)")

@@ -8,26 +8,42 @@ public class Euronews {
     public static WebFlow build() {
 
         String domain = "https://tr.euronews.com/";
-        int pageCount = 10;
+        int pageCount = 5;
 
-        WebFunctionCall functionCall = new WebButtonClickCall(1, "button.c-link-chevron--load")
+        WebFunctionCall closeCall = new WebButtonClickCall(1, "button#didomi-notice-agree-button")
+                .setDoFirefox(false)
                 .setDoStopOnError(true)
                 .setWaitTime(100);
 
-        WebFunctionCall scrollCall = new WebFunctionScroll(1,"button.c-link-chevron--load").setWaitTime(500);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, functionCall)
-                .setDoFirefox(true)
+
+        WebFunctionCall functionCall = new WebButtonClickCall(1, "label.c-loadmore-articles__label")
+                .setDoFirefox(false)
+                .setDoStopOnError(true)
+                .setWaitTime(100);
+
+        WebFunctionCall scrollCall = new WebFunctionScroll(1,"label.c-loadmore-articles__label").setWaitTime(500)
+                .setDoFirefox(false);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,closeCall, scrollCall, functionCall)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(500L)
-                .setTryOnError(7)
+                .setTryOnError(1)
                 .initialize()
                 .setWaitTime(500);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<main class=\"o-site-main\" id=\"enw-main-content\">", "</main>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a rel=\"bookmark\"(.*?)href=\"", "\""));
+        WebFunctionCall sequenceClose = new WebFunctionSequence(1, closeCall)
+                .setDoFirefox(false)
+                .setWaitBetweenCalls(500L)
+                .setTryOnError(0)
+                .initialize()
+                .setWaitTime(500);
+
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"h-grid b-listing__main\">", "</div>")
+                .setStartEndMarker("<div","</div>")
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("smart-regions", "https://tr.euronews.com/programlar/smart-regions")
-                .addSeed("european-news", "https://tr.euronews.com/european-affairs/avrupa-haber")
+                .addSeed("european-news", "https://tr.euronews.com/my-europe")
                 .addSeed("european-news", "https://tr.euronews.com/programlar/state-of-the-union")
                 .addSeed("european-news", "https://tr.euronews.com/programlar/bruksel-burosu")
                 .addSeed("world", "https://tr.euronews.com/tag/filistin")
@@ -56,6 +72,7 @@ public class Euronews {
                 .addSeed("economy", "https://tr.euronews.com/programlar/target")
                 .addSeed("economy", "https://tr.euronews.com/programlar/business-planet")
                 .addSeed("economy", "https://tr.euronews.com/programlar/business-line")
+                .addSeed("economy", "https://tr.euronews.com/programlar/business")
                 .addSeed("rop", "https://tr.euronews.com/programlar/rop")
                 .addSeed("science", "https://tr.euronews.com/knowledge/sci-tech")
                 .addSeed("science", "https://tr.euronews.com/programlar/sci-tech")
@@ -67,6 +84,7 @@ public class Euronews {
                 .addSeed("travel", "https://tr.euronews.com/programlar/european-lens")
                 .addSeed("travel", "https://tr.euronews.com/programlar/adventures")
                 .addSeed("travel", "https://tr.euronews.com/programlar/explore")
+                .addSeed("travel", "https://tr.euronews.com/programlar/gezi")
                 .addSeed("global-japan", "https://tr.euronews.com/programlar/global-japan")
                 .addSeed("culture", "https://tr.euronews.com/programlar/taste")
                 .addSeed("culture", "https://tr.euronews.com/programlar/cult")
@@ -74,13 +92,15 @@ public class Euronews {
                 .addSeed("culture", "https://tr.euronews.com/kultur/art")
                 .addSeed("culture", "https://tr.euronews.com/kultur/culture-news")
                 .addSeed("culture", "https://tr.euronews.com/kultur/yiyecek-ve-i%C3%A7ecek")
+                .addSeed("culture", "https://tr.euronews.com/kultur/kultur")
                 .addSeed("environment", "https://tr.euronews.com/programlar/focus")
                 .addSeed("environment", "https://tr.euronews.com/programlar/climate-now")
                 .addSeed("environment", "https://tr.euronews.com/special/climate")
                 .addSeed("environment", "https://tr.euronews.com/tag/olum")
                 .addSeed("sports", "https://tr.euronews.com/tag/diger-sporlar")
-                //.setSuffixGenerator(new WebCountGenerator(1, 1,"?p="))
-                .setFunctionCall(sequenceCall)
+                .addSeed("news", "https://tr.euronews.com/son-haberler")
+                .setSuffixGenerator(new WebCountGenerator(1, pageCount,"?p="))
+                //.setFunctionCall(sequenceCall)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(2500L)
@@ -103,24 +123,20 @@ public class Euronews {
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));*/
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article class=\"o-article(.*?)\">", "</article>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article class=\"helper-site-row o-article-newsy\">", "</article>")
                 .setStartEndMarker("<article", "</article>")
-                .setNth(0)
+
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<(h1|h3) class=\"(.*?)\">","</(h1|h3)>")
                         .setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors(.*?)\">","</div>")
                         .setStartEndMarker("<div", "</div")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<(a|b)(.*?)>","</(a|b)>").setRemoveTags(true)))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content(.*?)\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content js-article-content\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2)(.*?)>", "</(p|h2)>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")
                                 .setRemoveTags(true)));
 
 
-        WebFunctionCall emptyCall = new WebEmptyFunctionCall()
-                .setDoFirefox(true)
-                .initialize()
-                .setWaitTime(500);
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
@@ -129,7 +145,7 @@ public class Euronews {
                 .setDoFast(false)
                 .setSleepTime(2000L)
                 .setDomain(domain)
-                .setFunctionCall(emptyCall)
+                .setFunctionCall(sequenceClose)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(false);

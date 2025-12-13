@@ -12,8 +12,7 @@ public class DWNews implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.dw.com/";
-        int pageCount = 1;
-        int randomCount = 100;
+        int pageCount = 20;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<section id=\"atp-all-items-list\"(.*?)>", "</section>")
                 .setStartEndMarker("<section","</section>")
@@ -21,13 +20,13 @@ public class DWNews implements Serializable {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed( "https://www.dw.com/tr/ukrayna/t-19044408")
-                /*.addSeed( "https://www.dw.com/tr/g%C3%BCndem/s-10201")
+                .addSeed( "https://www.dw.com/tr/g%C3%BCndem/s-10201")
                 .addSeed( "https://www.dw.com/tr/ekonomi/t-18993647")
                 .addSeed( "https://www.dw.com/tr/t%C3%BCrkiye/t-18753375")
                 .addSeed( "https://www.dw.com/tr/ankara/t-18986975")
                 .addSeed( "https://www.dw.com/tr/ilo/t-18998507")
                 .addSeed( "https://www.dw.com/tr/birle%C5%9Fmi%C5%9F-milletler-bm/t-18583106")
-                .addSeed( "https://www.dw.com/tr/avrupa/t-19053726")
+                .addSeed( "https://www.dw.com/tr/avrupa/s-12256")
                 .addSeed( "https://www.dw.com/tr/nato-t%C3%BCrkiye-krizi/t-61917410")
                 .addSeed( "https://www.dw.com/tr/ukrayna-sava%C5%9F%C4%B1/t-60933976")
                 .addSeed( "https://www.dw.com/tr/anayasa-mahkemesi/t-38539650")
@@ -35,7 +34,11 @@ public class DWNews implements Serializable {
                 .addSeed( "https://www.dw.com/tr/euro/t-18989135")
                 .addSeed( "https://www.dw.com/tr/euro-b%C3%B6lgesi/t-18989113")
                 .addSeed( "https://www.dw.com/tr/avrupa-birli%C4%9Fi-ab/t-18582993")
-                .addSeed( "https://www.dw.com/tr/ab-komisyonu/t-19060982")*/
+                .addSeed( "https://www.dw.com/tr/ab-komisyonu/t-19060982")
+                .addSeed( "https://www.dw.com/tr/cumhuriyet-halk-partisi-chp/t-19049615")
+                .addSeed( "https://www.dw.com/tr/bilim-ve-%C3%A7evre/s-10204")
+                .addSeed( "https://www.dw.com/tr/politika/s-57554982")
+                .addSeed( "https://www.dw.com/tr/ortado%C4%9Fu/t-67036590")
                 .setDoFast(false)
                 .setNextPageSize(pageCount)
                 .setNextPageSuffix("/page-")
@@ -48,7 +51,7 @@ public class DWNews implements Serializable {
         LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
                 .setStartEndMarker("<article", "</article>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">","</h1>"))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>","</h1>"))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time(.*?)>","</time>"))
                 .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLETEXT, LookupOptions.EMPTY)
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")

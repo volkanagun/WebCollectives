@@ -50,8 +50,8 @@ public class M5Dergi {
     }
 
     public static void main(String[] args) {
-        for(int start=0; start<10; start+=50) {
-            build(start, 50).execute();
-        }
+
+        build(0, 10).execute();
+
     }
 }

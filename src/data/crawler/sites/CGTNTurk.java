@@ -5,13 +5,13 @@ import data.crawler.web.*;
 public class CGTNTurk {
     public static WebFlow build() {
         String domain = "https://www.cgtnturk.com";
-        int pageCount = 10;
+        int pageCount = 5;
 
-        WebFunctionCall functionCall = new WebButtonClickCall(1, "a[rel=\"next\"]")
+        WebFunctionCall functionCall = new WebButtonClickCall(1, "a.btn-more")
                 .setDoStopOnError(false)
                 .setWaitTime(100);
 
-        WebFunctionCall scrollCall = new WebFunctionScroll(1, "a.page-link");
+        WebFunctionCall scrollCall = new WebFunctionScroll(1, "a.btn-more");
         WebFunctionCall sequenceCall = new WebFunctionSequence(1, scrollCall, functionCall)
                 .setDoFirefox(true)
                 .setWaitTime(1500);
@@ -23,7 +23,7 @@ public class CGTNTurk {
                 .setDoStopOnError(true);
 
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-lg-8 mb-3\">", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-lg-\\d\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
@@ -47,7 +47,7 @@ public class CGTNTurk {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<main class=\"single\">", "</main>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<main(.*?)>", "</main>")
                 .setStartEndMarker("<main", "</main>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "cgtnturk"))

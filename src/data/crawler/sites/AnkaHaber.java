@@ -5,25 +5,26 @@ import data.crawler.web.*;
 public class AnkaHaber {
     public static WebFlow build() {
         String domain = "https://ankahaber.net";
-        int pageCount = 15;
+        int pageCount = 5;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1,"a.btn")
                 .setDoStopOnError(false)
-                .setWaitTime(500);
+                .setWaitTime(5000);
 
-        WebFunctionCall scrollCall = new WebFunctionScroll(1,"a.btn").setWaitTime(500);
+        WebFunctionCall scrollCall = new WebFunctionScroll(1,"a.btn").setWaitTime(5000);
 
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(100L)
+                .setWaitBetweenCalls(1000L)
                 .initialize()
                 .setWaitTime(100);
 
-        WebFunctionCall scrollJS = new WebFunctionScroll(1,"a.btn").setWaitTime(500);
+        WebFunctionCall scrollJS = new WebFunctionScroll(1,"a.btn").setWaitTime(1500);
 
         WebFunctionCall sequenceScrollCall = new WebFunctionSequence(1, scrollJS)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(100L)
+                .setTryOnError(3)
+                .setWaitBetweenCalls(1000L)
                 .initialize()
                 .setWaitTime(100);
 
@@ -32,24 +33,25 @@ public class AnkaHaber {
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("economy", "https://ankahaber.net/haber/kategori/Ekonomi")
-                .addSeed("culture", "https://ankahaber.net/haber/kategori/Bulten")
-                .addSeed("turkey", "https://ankahaber.net/haber/kategori/Yurt")
-                .addSeed("world", "https://ankahaber.net/haber/kategori/Dis")
-                .addSeed("breaking", "https://ankahaber.net/haber/kategori/Gundem")
+                .addSeed("economy", "https://ankahaber.net/haber/kategori/Ekonomi/")
+                .addSeed("culture", "https://ankahaber.net/haber/kategori/Bulten/")
+                .addSeed("turkey", "https://ankahaber.net/haber/kategori/Yurt/")
+                .addSeed("world", "https://ankahaber.net/haber/kategori/Dis/")
+                .addSeed("breaking", "https://ankahaber.net/haber/kategori/Gundem/")
                 .setLinkPattern("(.*?\\d+)", null)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)
+                .setWaitTime(2000L)
                 .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-lg-12 col-md-12(.*?)\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-lg-\\d+ col-md-12\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
-                .setNth(1)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div(.*?)id=\"HaberTarihi\">", "</div>")
+                .setNth(0)
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div(.*?)id=\"HaberTarihi\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .setNth(0)
                         .setRemoveTags(true))

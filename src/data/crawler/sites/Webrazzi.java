@@ -1,9 +1,6 @@
 package data.crawler.sites;
 
-import data.crawler.web.LookupOptions;
-import data.crawler.web.LookupPattern;
-import data.crawler.web.WebFlow;
-import data.crawler.web.WebTemplate;
+import data.crawler.web.*;
 
 import java.io.Serializable;
 
@@ -11,8 +8,16 @@ public class Webrazzi implements Serializable {
 
     public static WebFlow build() {
 
+        int pageCount = 10;
+
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGTRYDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN)
                 .setDoDeleteStart(true);
+
+        WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn-load-more-posts");
+        WebFunctionCall sequence = new WebFunctionSequence(pageCount, clickCall)
+                .setDoFirefox(false)
+                .setWaitBetweenCalls(500L)
+                .initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLE, "<div class=\"post(.*?)\">", "</div>")
                 .setStartMarker("<div")
@@ -20,6 +25,7 @@ public class Webrazzi implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
 
         linkTemplate.setMainPattern(linkPattern)
+                .setFunctionCall(sequence)
                 .setSleepTime(1500L)
                 .addSeed("https://webrazzi.com/haberler/")
                 .addSeed("https://webrazzi.com/kategori/dijital/")

@@ -6,14 +6,12 @@ public class T24Haber {
     public static WebFlow build() {
 
         String domain = "https://t24.com.tr";
-        int pageCount = 10;
+        int pageCount = 1;
 
         WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(1500);
-        WebFunctionCall scrollCall2 = new WebFunctionScrollHeight(1, 800).setWaitTime(500);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall1, scrollCall2)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall1)
                 .setDoFirefox(true)
                 .setWaitBetweenCalls(1000L)
-                .setTryOnError(2)
                 .initialize()
                 .setWaitTime(500);
 
@@ -22,9 +20,7 @@ public class T24Haber {
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("breaking", "https://t24.com.tr/haber/gundem/")
-                .addSeed("world", "https://t24.com.tr/haber/dunya/")
-                .addSeed("news", "https://t24.com.tr/haftalik/")
+                .addSeed("news", "https://t24.com.tr/haber/")
                 .setFunctionCall(sequenceCall)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
@@ -44,7 +40,7 @@ public class T24Haber {
                                 .setStartEndMarker("<div", "</div>")
                                 .setNth(0)
                                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<p>", "</p>").setNth(0)))
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"_3QVZl\"(.*?)>", "</div>")
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"_392lz\"(.*?)>", "</div>")
                                 .setStartEndMarker("<div", "</div>")
                                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")
                                         .setRemoveTags(true)));

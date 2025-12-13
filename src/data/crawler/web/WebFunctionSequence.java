@@ -101,10 +101,12 @@ public class WebFunctionSequence extends WebFunctionCall {
             if(chromeDriver != null) {
                 chromeDriver.getSessionId();
                 chromeDriver.get(url);
+                chromeDriver.getPageSource();
             }
             else{
                 firefoxDriver.getSessionId();
                 firefoxDriver.get(url);
+                firefoxDriver.getPageSource();
             }
             Thread.sleep(waitTime);
             //chromeDriver.wait(waitTime);

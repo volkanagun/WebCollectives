@@ -19,23 +19,23 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
   }
 
 
-  def reportFix(text:String, minCharLength:Int = 100):String={
+  def reportFix(text: String, minCharLength: Int = 100): String = {
     var mtext = text;
 
     mtext = mtext.replaceAll("\\{(\\\\(\\p{L}+)\\s)+\\}", " ")
     mtext = mtext.replaceAll("Kaynak\\: Hürriyet", "")
 
-    mtext = mtext.replaceAll("ý","ı")
-    mtext = mtext.replaceAll("\\s+"," ")
-    mtext = text.replaceAll("\\'\\'","'")
-    mtext = text.replaceAll(" "," ")
+    mtext = mtext.replaceAll("ý", "ı")
+    mtext = mtext.replaceAll("\\s+", " ")
+    mtext = text.replaceAll("\\'\\'", "'")
+    mtext = text.replaceAll(" ", " ")
 
     mtext = mtext.trim
-    var lines = mtext.split("\n").map(line=> {
-      val wordCount = "\\p{L}+".r.findAllIn(line).size + 1
-      val symCount = "[\\{\\}\\[\\]\\&\\-\\*\\+\\/\\p{Punct}\\p{Digit}]+".r.findAllIn(line).size + 1
-      (line, wordCount.toFloat/symCount)
-    }).filter(pair => pair._2 > 3 && pair._1.length >= minCharLength)
+    var lines = mtext.split("\n").map(line => {
+        val wordCount = "\\p{L}+".r.findAllIn(line).size + 1
+        val symCount = "[\\{\\}\\[\\]\\&\\-\\*\\+\\/\\p{Punct}\\p{Digit}]+".r.findAllIn(line).size + 1
+        (line, wordCount.toFloat / symCount)
+      }).filter(pair => pair._2 > 3 && pair._1.length >= minCharLength)
       .filter(pair => pair._1.matches("(.*?)[\\.\\?\\!\"\\'\\]\\}\\)]$"))
       .map(pair => pair._1.trim)
 
@@ -43,24 +43,23 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
   }
 
 
-
-  def extractDocument(extractFolder: String, minTextLength:Int = 200): XMLExtractor = {
+  def extractDocument(extractFolder: String, minTextLength: Int = 200): XMLExtractor = {
     new File(extractFolder).mkdir()
     folderNames.foreach(folderName => {
       new File(folderName).listFiles().par.foreach(f => {
         println(s"Filename ${f.getName}")
         val fout = new File(extractFolder + f.getName)
         try {
-          if(!fout.exists()) {
+          if (!fout.exists()) {
             val map = XMLParser.parseList(f.getPath)
             val textList = map.get(XMLParser.paragraphLabel)
             if (textList.isDefined) {
               val textArray = textList.get
               val file = new TextFile(fout)
               file.openBufferWrite()
-              textArray.foreach(text=>{
+              textArray.foreach(text => {
                 val fixText = reportFix(text, 80);
-                if(fixText.length > minTextLength) {
+                if (fixText.length > minTextLength) {
                   file.writeNextLine(fixText)
                 }
               })
@@ -71,7 +70,7 @@ class XMLExtractor(val folderNames: Array[String], val count: Int) extends Seria
           }
         }
         catch {
-          case e : Throwable => {
+          case e: Throwable => {
             val d = 0
           }
         }
@@ -124,7 +123,7 @@ object XMLExtractor {
         sentenceIter.setText(line)
         var start = 0
         var end = sentenceIter.next()
-        while(end != BreakIterator.DONE){
+        while (end != BreakIterator.DONE) {
           pw.println(line.substring(start, end))
           pw.flush()
           start = end
@@ -137,13 +136,13 @@ object XMLExtractor {
     pw.close()
   }
 
-  def extractSentences(text:String):Array[String]={
+  def extractSentences(text: String): Array[String] = {
     val sentenceIter = BreakIterator.getSentenceInstance(locale)
     sentenceIter.setText(text)
     var start = 0
     var end = sentenceIter.next()
     var array = Array[String]()
-    while(end != BreakIterator.DONE){
+    while (end != BreakIterator.DONE) {
       val sentence = text.substring(start, end)
       if (sentence.length > 70) {
         array :+= sentence
@@ -154,6 +153,33 @@ object XMLExtractor {
     array
   }
 
+  def mergeSentences(folder: String, outFilename: String): Unit = {
+    val filenames = new File(folder).listFiles().map(_.getPath)
+    mergeSentences(filenames, outFilename)
+  }
+
+  def mergeSentences(filenames: Array[String], outFilename: String): Unit = {
+    val pw = new PrintWriter(outFilename)
+    filenames.foreach(filename => {
+      println(s"Processing filename: ${filename}")
+      Source.fromFile(filename).getLines().foreach(line => {
+        val sentenceIter = BreakIterator.getSentenceInstance(locale)
+        sentenceIter.setText(line)
+        var start = 0
+        var end = sentenceIter.next()
+
+        while (end != BreakIterator.DONE) {
+          pw.println(line.substring(start, end))
+          pw.flush()
+          start = end
+          end = sentenceIter.next()
+        }
+
+      })
+    })
+    pw.close()
+  }
+
   def extractSentences(filenames: Array[String], targetFilename: String): Unit = {
     val pw = new PrintWriter(s"resources/sentences/${targetFilename}");
     filenames.foreach(filename => new File(filename).listFiles().foreach(f => {
@@ -162,7 +188,7 @@ object XMLExtractor {
         sentenceIter.setText(line)
         var start = 0
         var end = sentenceIter.next()
-        while(end != BreakIterator.DONE){
+        while (end != BreakIterator.DONE) {
           pw.println(line.substring(start, end))
           pw.flush()
           start = end
@@ -175,14 +201,14 @@ object XMLExtractor {
   }
 
   def main(args: Array[String]): Unit = {
-/*
-    extractArticles()
+
+    /*extractArticles()
     extractBlogs()
     extractStories()
-    extractWikipedia()
-*/
+    extractWikipedia()*/
 
-    val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
-    extractSentences(filenames, "sentences-december-v1-tr.txt")
+    //val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
+    //extractSentences(filenames, "sentences-november-25-tr.txt")
+    mergeSentences("resources/sentences/", "resources/sentences/merge-nov-25.txt")
   }
 }

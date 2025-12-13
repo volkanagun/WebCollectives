@@ -16,6 +16,8 @@ import java.util.regex.Pattern;
  */
 public class TextPattern {
 
+    private static final int stackSafeCount = 100000;
+
     /////////////////////////////////////////////////////////
     //<editor-fold defaultstate="collapsed" desc="Matching">
 
@@ -53,7 +55,7 @@ public class TextPattern {
         int[] crrIndex = indexOfRegex(from, regex, text);
         int startIndex = crrIndex[0] + crrIndex[1];
 
-        while(until >= startIndex && startIndex!=-1){
+        while(until >= startIndex && startIndex!=-1 && count < stackSafeCount){
             crrIndex = indexOfRegex(startIndex, regex, text);
             startIndex = crrIndex[0] + crrIndex[1];
             count+=1;
@@ -65,11 +67,16 @@ public class TextPattern {
     public static int[] indexOfRegex(int from, String regex, String text) {
         int index = -1;
         int len = 0;
-        Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
-        Matcher matcher = pattern.matcher(text);
-        if (from < text.length() && from != -1 && matcher.find(from)) {
-            index = matcher.start();
-            len = matcher.group().length();
+        try {
+            Pattern pattern = Pattern.compile(regex, Pattern.DOTALL);
+            Matcher matcher = pattern.matcher(text);
+            if (from < text.length() && from != -1 && matcher.find(from)) {
+                index = matcher.start();
+                len = matcher.group().length();
+            }
+        }
+        catch (Exception ex){
+            System.out.println(ex.getMessage());
         }
         return new int[]{index, len};
     }
@@ -103,28 +110,20 @@ public class TextPattern {
         int[] markerStartIndex = startIndex;
         int[] markerEndIndex = endIndex;
         int count = 0;
-        while (startIndex[0] != -1 && endIndex[0] != -1) {
+        int whileCount = 0;
+        while (startIndex[0] != -1 && endIndex[0] != -1 && whileCount < stackSafeCount) {
 
             count = countOfRegexUntil(markerStartIndex[0] + markerStartIndex[1], markerEndIndex[0], markerStart, text);
             if (count > 0) {
                 markerStartIndex = markerEndIndex;
                 markerEndIndex = indexOfRegex(markerEndIndex[0] + markerEndIndex[1],0, markerEnd, text, count);
+                whileCount++;
                 //markerEndIndex = indexOfRegex(markerStartIndex[0] + markerStartIndex[1], markerEnd, text);
             }
             else{
                 break;
             }
-            /*count--;
-            if(count > 0){
-                markerStartIndex = indexOfRegex(markerEndIndex[0] + markerEndIndex[1], markerEnd, text, count);
-                markerEndIndex = indexOfRegex(markerStartIndex[0] + markerStartIndex[1], markerEnd, text);
-            }
-            else if(count == 0){
-                int startLook = markerEndIndex[0] + markerEndIndex[1];
-                markerStartIndex = markerEndIndex;
-                markerEndIndex = indexOfRegex(startLook, markerEnd, text);
 
-            }*/
             endIndex = markerEndIndex;
 
         }
@@ -222,12 +221,17 @@ public class TextPattern {
     public static int[] indexOfFirst(int from, String regex, String text, StringBuffer buffer) {
         int index = -1;
         int len = 0;
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(text);
-        if (matcher.find(from)) {
-            index = matcher.start();
-            len = matcher.group().length();
-            buffer.append(matcher.group());
+        try {
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(text);
+            if (matcher.find(from)) {
+                index = matcher.start();
+                len = matcher.group().length();
+                buffer.append(matcher.group());
+            }
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
         }
         return new int[]{index, len};
     }
@@ -235,18 +239,21 @@ public class TextPattern {
     public static int[] indexOfLast(int from, String regex, String text, StringBuffer buffer) {
         int index = -1;
         int len = 0;
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(text);
-        String group = "";
-        while (matcher.find(from)) {
+        try {
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(text);
+            String group = "";
+            while (matcher.find(from)) {
 
-            index = matcher.start();
-            len = matcher.group().length();
-            group = matcher.group();
-            from = ++index;
+                index = matcher.start();
+                len = matcher.group().length();
+                group = matcher.group();
+                from = ++index;
+            }
+            buffer.append(group);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
-        buffer.append(group);
         return new int[]{index, len};
     }
 
@@ -716,8 +723,6 @@ public class TextPattern {
                     }
 
                     patternList.add(group.trim());
-                } else {
-                    int debug = 0;
                 }
             } else {
                 endIndex = text.length();
@@ -735,14 +740,15 @@ public class TextPattern {
         int[] theIndex = indexOfStartEnd(0, start, end, startMarker, endMarker, text);
         int startIndex = theIndex[0];
         int endIndex = theIndex[1];
-
-        while (startIndex != -1 && endIndex != -1 && startIndex < endIndex) {
+        int whileCount = 0;
+        while (startIndex != -1 && endIndex != -1 && startIndex < endIndex && whileCount < stackSafeCount) {
             String subText = text.substring(startIndex, endIndex);
             patternList.add(subText);
             startIndex = endIndex;
             theIndex = indexOfStartEnd(startIndex, start, end, startMarker, endMarker, text);
             startIndex = theIndex[0];
             endIndex = theIndex[1];
+            whileCount++;
         }
     }
 

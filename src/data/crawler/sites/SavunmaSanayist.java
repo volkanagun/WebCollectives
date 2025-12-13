@@ -6,8 +6,11 @@ import data.crawler.web.WebFlow;
 import data.crawler.web.WebTemplate;
 
 public class SavunmaSanayist {
-    public static WebFlow build(int start, int pageCount) {
+    public static WebFlow build() {
 
+
+        int start =0;
+        int pageCount = 20;
         String domain = "https://www.savunmasanayist.com/";
 
 
@@ -22,12 +25,11 @@ public class SavunmaSanayist {
                         .setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span class=\"date meta-item tie-icon\">", "</span>")
                         .setNth(0))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"post-title entry-title\">", "</h1>")
                         .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"entry-content entry clearfix\">","</div")
                         .setStartEndMarker("<div","</div>")
-                        .setNth(0)
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<(p|h4)(.*?)>", "</(p|h4)>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<p>", "</p>")
                                 .setRemoveTags(true)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
@@ -58,8 +60,8 @@ public class SavunmaSanayist {
     }
 
     public static void main(String[] args) {
-        for(int start=0; start<50; start+=10) {
-            build(start, 10).execute();
-        }
+
+        build().execute();
+
     }
 }

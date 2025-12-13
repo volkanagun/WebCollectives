@@ -12,9 +12,9 @@ public class Gizmodo {
     public static WebFlow build(String mainFolder){
 
         Calendar calendarStart = Calendar.getInstance();
-        calendarStart.set(2019, 1, 1);
+        calendarStart.set(2025, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2020, 4, 1);
+        calendarEnd.set(2025, 12, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();
