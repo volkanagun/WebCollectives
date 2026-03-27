@@ -6,14 +6,14 @@ public class Yesilist {
     public static WebFlow build() {
 
         String domain = "https://www.yesilist.com";
-        Integer pageCount = 5;
+        Integer pageCount = 2;
 
         WebFunctionCall clickCall = new WebButtonClickCall(1, "li.previous > a")
                 .setDoStopOnError(true)
                 .setWaitTime(1000);
 
         WebFunctionCall sequenceCall = new WebFunctionAggregate(clickCall,pageCount)
-                .setDoFirefox(false)
+                .setDoFirefox(true)
                 .setWaitBetweenCalls(1000L)
                 .setDoStopOnError(false)
                 .initialize()

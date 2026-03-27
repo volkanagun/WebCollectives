@@ -8,14 +8,14 @@ public class Webrazzi implements Serializable {
 
     public static WebFlow build() {
 
-        int pageCount = 10;
+        int pageCount = 30;
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.BLOGTRYDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN)
                 .setDoDeleteStart(true);
 
         WebButtonClickCall clickCall = new WebButtonClickCall(1, "button.btn-load-more-posts");
         WebFunctionCall sequence = new WebFunctionSequence(pageCount, clickCall)
-                .setDoFirefox(false)
+                .setDoFirefox(true)
                 .setWaitBetweenCalls(500L)
                 .initialize();
 

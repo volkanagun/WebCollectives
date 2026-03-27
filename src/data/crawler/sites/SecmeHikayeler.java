@@ -32,7 +32,7 @@ public class SecmeHikayeler {
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(false)
-                .setNextPageSize(1)
+                .setNextPageSize(2)
                 .setNextPageStart(1)
                 .setNextPageJump(1)
                 .setThreadSize(1).setNextPageSuffix("page/")

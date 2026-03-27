@@ -8,30 +8,30 @@ public class Euronews {
     public static WebFlow build() {
 
         String domain = "https://tr.euronews.com/";
-        int pageCount = 5;
+        int pageCount = 3;
 
         WebFunctionCall closeCall = new WebButtonClickCall(1, "button#didomi-notice-agree-button")
-                .setDoFirefox(false)
+                .setDoFirefox(true)
                 .setDoStopOnError(true)
                 .setWaitTime(100);
 
 
-        WebFunctionCall functionCall = new WebButtonClickCall(1, "label.c-loadmore-articles__label")
-                .setDoFirefox(false)
-                .setDoStopOnError(true)
-                .setWaitTime(100);
+        WebFunctionCall functionCall = new WebButtonClickCall(1, "label.c-cta")
+                .setDoFirefox(true)
+                .setDoStopOnError(false)
+                .setWaitTime(1000);
 
-        WebFunctionCall scrollCall = new WebFunctionScroll(1,"label.c-loadmore-articles__label").setWaitTime(500)
-                .setDoFirefox(false);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,closeCall, scrollCall, functionCall)
-                .setDoFirefox(false)
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1,200).setWaitTime(1500)
+                .setDoFirefox(true);
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
+                .setDoFirefox(true)
                 .setWaitBetweenCalls(500L)
-                .setTryOnError(1)
+                .setTryOnError(2)
                 .initialize()
                 .setWaitTime(500);
 
         WebFunctionCall sequenceClose = new WebFunctionSequence(1, closeCall)
-                .setDoFirefox(false)
+                .setDoFirefox(true)
                 .setWaitBetweenCalls(500L)
                 .setTryOnError(0)
                 .initialize()
@@ -39,7 +39,7 @@ public class Euronews {
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"h-grid b-listing__main\">", "</div>")
                 .setStartEndMarker("<div","</div>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
+                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"/", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("smart-regions", "https://tr.euronews.com/programlar/smart-regions")
@@ -96,11 +96,11 @@ public class Euronews {
                 .addSeed("environment", "https://tr.euronews.com/programlar/focus")
                 .addSeed("environment", "https://tr.euronews.com/programlar/climate-now")
                 .addSeed("environment", "https://tr.euronews.com/special/climate")
-                .addSeed("environment", "https://tr.euronews.com/tag/olum")
-                .addSeed("sports", "https://tr.euronews.com/tag/diger-sporlar")
-                .addSeed("news", "https://tr.euronews.com/son-haberler")
-                .setSuffixGenerator(new WebCountGenerator(1, pageCount,"?p="))
-                //.setFunctionCall(sequenceCall)
+                //.addSeed("environment", "https://tr.euronews.com/tag/olum")
+                //.addSeed("sports", "https://tr.euronews.com/tag/diger-sporlar")
+                //.addSeed("news", "https://tr.euronews.com/tag/davos")
+                //.setSuffixGenerator(new WebCountGenerator(1, pageCount,"?p="))
+                .setFunctionCall(sequenceCall)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(2500L)

@@ -5,7 +5,7 @@ import data.crawler.web.*;
 public class M5Dergi {
 
     public static WebFlow build(int start, int pageCount) {
-
+        long seedLimit = 100;
         String domain = "https://m5dergi.com/";
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<div class=\"post-details\">", "</div>")
@@ -34,6 +34,7 @@ public class M5Dergi {
                 .addSeed("news", "https://m5dergi.com/kategori/savunma-haberleri/")
                 .setNextPageStart(start)
                 .setNextPageSize(pageCount)
+                .setSeedSizeLimit(seedLimit)
                 .setNextPageSuffix("page/")
                 .setDoFast(Boolean.TRUE)
                 .setDoDeleteStart(Boolean.TRUE)
@@ -50,8 +51,8 @@ public class M5Dergi {
     }
 
     public static void main(String[] args) {
-
-        build(0, 10).execute();
-
+        for(int epoc=1; epoc < 100; epoc++) {
+            build(0, 5000).execute();
+        }
     }
 }

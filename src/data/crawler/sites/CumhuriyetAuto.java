@@ -13,31 +13,33 @@ public class CumhuriyetAuto implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.cumhuriyet.com.tr";
-        int pageCount = 5;
+        int pageCount = 200;
 
-        WebFunctionCall functionCall = new WebExecuteJS("loadMoreNews()")
-                .setDoStopOnError(true)
-                .setWaitTime(100);
+        WebFunctionCall functionCall = new WebButtonClickCall(1, "#load-more-news")
+                .setDoStopOnError(false)
+                .setWaitTime(10);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(500);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(50);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, functionCall)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(500L)
+                .setWaitBetweenCalls(10L)
                 .initialize()
-                .setWaitTime(500);
+                .setWaitTime(10);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"content\"(.*?)>", "</div>")
-                .setStartEndMarker("<div", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<main id=\"main\"(.*?)>", "</main>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.CUMHURIYETDIRECTORY, "article-links", domain)
-                .addSeed("breaking", "http://www.cumhuriyet.com.tr/gundem/")
+
                 .addSeed("world", "http://www.cumhuriyet.com.tr/dunya/")
                 .addSeed("tukey", "http://www.cumhuriyet.com.tr/turkiye/")
+                .addSeed("tukey", "https://www.cumhuriyet.com.tr/yerel-yonetimler/")
+                .addSeed("tukey", "https://www.cumhuriyet.com.tr/cumhuriyetin-egesi/")
                 .addSeed("sports", "http://www.cumhuriyet.com.tr/spor/")
                 .addSeed("economy", "http://www.cumhuriyet.com.tr/ekonomi/")
                 .addSeed("politics", "http://www.cumhuriyet.com.tr/siyaset/")
                 .addSeed("health", "http://www.cumhuriyet.com.tr/yasam/")
+                .addSeed("health", "https://www.cumhuriyet.com.tr/gurme")
                 .addSeed("science", "https://www.cumhuriyet.com.tr/bilim-teknoloji/")
                 .addSeed("culture", "https://www.cumhuriyet.com.tr/kultur-sanat/")
                 .setDoFast(false)
@@ -48,23 +50,19 @@ public class CumhuriyetAuto implements Serializable {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"row main-row\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div id=\"next-news-container-0\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<div class=\"haberKaynagi\">", "</div>")
-                        .setStartEndMarker("<div","/div")
-                        .setNth(0)
-                        .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div class=\"yayin-tarihi\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div class=\"flex items-center gap-2\">", "</div>")
                         .setStartEndMarker("<div","</div>")
                         .setNth(0)
                         .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<(h1|h2)(.*?)>", "</(h1|h2)>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"haberMetni(.*?)>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"text-content articleDetails\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")));
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.CUMHURIYETDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)

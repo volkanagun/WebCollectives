@@ -1045,7 +1045,8 @@ public class WebTemplate implements Serializable {
         List<Callable<WebDocument[]>> threadList = new ArrayList<>();
         final FailCount failCount = new FailCount(0, threadSize);
         Collections.shuffle(seedList);
-        for (int i = 0; i < seedList.size(); i++) {
+        long limit = Math.min(seedSizeLimit, seedList.size());
+        for (int i = 0; i < limit; i++) {
 
             WebSeed webSeed = seedList.get(i);
             DownloadCallableFast thread = new DownloadCallableFast(failCount, webSeed, i) {

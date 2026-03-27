@@ -10,7 +10,7 @@ public class AHaberWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 5;
+        int pageCount = 10;
 
         WebFunctionCall clickAdvertisementCall = new WebButtonClickCall(1, "div.gravityMasterSkip").setDoFirefox(true)
                 .setWaitTime(1000);
@@ -25,25 +25,25 @@ public class AHaberWeb implements Serializable {
                 .setWaitBetweenCalls(2000L).setDoFirefox(true)
                 .initialize();
 
-        WebFunctionCall mainCall = new WebFunctionSequence(1,clickAdvertisementCall, clickCall, sequenceCall)
+        WebFunctionCall mainCall = new WebFunctionSequence(1,/*clickAdvertisementCall, clickCall, */sequenceCall)
                 .setWaitBetweenCalls(2000L).setDoFirefox(true)
                 .initialize();
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div data-search-item(.*?)>", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"news-card(.*?)\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("economy", "https://www.ahaber.com.tr/arama?category=ekonomi")
-                .addSeed("world", "https://www.ahaber.com.tr/arama?category=dunya")
-                .addSeed("trending", "https://www.ahaber.com.tr/arama?category=gundem")
-                .addSeed("sports", "https://www.ahaber.com.tr/arama?category=spor")
-                .addSeed("magazine", "https://www.ahaber.com.tr/arama?category=magazin")
-                .addSeed("technology", "https://www.ahaber.com.tr/arama?category=teknoloji")
-                .addSeed("general", "https://www.ahaber.com.tr/arama?category=yasam")
-                .addSeed("health", "https://www.ahaber.com.tr/arama?category=saglik")
-                .addSeed("local-news", "https://www.ahaber.com.tr/arama?category=ozel-haberler")
-                .addSeed("auto", "https://www.ahaber.com.tr/arama?category=otomobil")
+                .addSeed("economy", "https://www.ahaber.com.tr/ekonomi/")
+                .addSeed("world", "https://www.ahaber.com.tr/dunya/")
+                .addSeed("trending", "https://www.ahaber.com.tr/gundem/")
+                .addSeed("sports", "https://www.ahaber.com.tr/spor")
+                .addSeed("magazine", "https://www.ahaber.com.tr/magazin")
+                .addSeed("technology", "https://www.ahaber.com.tr/teknoloji")
+                .addSeed("general", "https://www.ahaber.com.tr/yasam")
+                .addSeed("health", "https://www.ahaber.com.tr/saglik")
+                .addSeed("local-news", "https://www.ahaber.com.tr/ozel-haberler")
+                .addSeed("auto", "https://www.ahaber.com.tr/otomobil")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(3500L)
@@ -53,19 +53,17 @@ public class AHaberWeb implements Serializable {
                 .setLinkPattern(null,"^https://www.ahaber.com.tr/galeri(.*?)$")
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<section class=\"item\">", "</section>")
-                .setStartEndMarker("<section", "</section>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
+                .setStartEndMarker("<article", "</article>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"(.*?)\">", "</h1>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"detailSpot(.*?)\">", "</div>")
-                        .setStartEndMarker("<div", "</div>")
-                        .setNth(0).addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span>","</span>").setNth(0)
-                                .setRemoveTags(true).setReplaces(new String[]{"\"\\s", "Giri(.*?)\\:\\s?"}, new String[]{"",""})))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time(.*?)>","</time>").setNth(0)
+                                .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "AHABER"))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<div class=\"textFrame(.*?)\">", "</div>")
-                        .setStartEndMarker("<div", "</div>").setNth(0)
+                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLETEXT, "<div(.*?)class=\"(.*?)article-detail-content-body(.*?)\"(.*?)>", "</div>")
+                        .setStartEndMarker("<div", "</div>")/*.setNth(0)*/
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));
 

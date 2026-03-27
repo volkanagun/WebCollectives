@@ -14,21 +14,21 @@ public class SozcuWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.sozcu.com.tr";
-        int pageCount = 5;
+        int pageCount = 1;
 
-        WebFunctionCall jsCall = new WebExecuteJS("document.querySelector('dfp-modal-popup').remove();").setWaitTime(10000);
+        WebFunctionCall jsCall = new WebExecuteJS("document.querySelector('dfp-modal-popup').remove();").setWaitTime(100);
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "button.loadmore")
                 .setDoStopOnError(false)
-                .setWaitTime(1000);
+                .setWaitTime(100);
 
-        WebFunctionCall scrollCall = new WebFunctionScroll(1,"button.loadmore").setWaitTime(1500);
+        WebFunctionCall scrollCall = new WebFunctionScroll(1,"button.loadmore").setWaitTime(10);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,jsCall, scrollCall,  clickCall)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(1000L)
+                .setWaitBetweenCalls(100L)
                 .setDoStopOnError(false)
                 .initialize()
-                .setWaitTime(1000);
+                .setWaitTime(10);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -48,7 +48,7 @@ public class SozcuWeb implements Serializable {
                 .addSeed("technology", "https://www.sozcu.com.tr/bilim-teknoloji/")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setSleepTime(1000L)
+                .setSleepTime(100L)
                 .setDomain(domain)
                 .setFunctionCall(sequenceCall)
                 .setMainPattern(linkPattern);

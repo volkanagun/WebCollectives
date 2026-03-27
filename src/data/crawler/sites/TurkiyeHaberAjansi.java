@@ -7,18 +7,18 @@ public class TurkiyeHaberAjansi {
     public static WebFlow build() {
 
         String domain = "https://www.turkiyehaberajansi.com/";
-        int pageCount = 3;
+        int pageCount = 5000;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "a.get_ajax_data")
                 .setDoStopOnError(false)
-                .setWaitTime(500);
+                .setWaitTime(50);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(500);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(50);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
-                .setDoFirefox(false)
-                .setWaitBetweenCalls(1000L)
+                .setDoFirefox(true)
+                .setWaitBetweenCalls(100L)
                 .initialize()
-                .setWaitTime(1000);
+                .setWaitTime(100);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-md-6\">", "</div>")
                 .setStartEndMarker("<div", "</div>")

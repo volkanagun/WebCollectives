@@ -12,20 +12,9 @@ public class CNNTurkWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.cnnturk.com";
-        int pageCount = 5;
 
-        WebFunctionCall clickCall = new WebButtonClickCall(1, "button.btn.btn-load-more")
-                .setWaitTime(500);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 85)
-                .setWaitTime(200);
-
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickCall)
-                .setWaitBetweenCalls(1500L)
-                .setDoFirefox(true)
-                .initialize();
-
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class(.*?)>", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row slide-md-down\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
@@ -47,27 +36,21 @@ public class CNNTurkWeb implements Serializable {
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setSleepTime(1500L)
-                .setFunctionCall(sequenceCall)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"container section-container\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"detail-middle\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"detail-title\">", "</h1>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"row(.*?)\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span class=\"created-date\">", "</span>")
+                        .setNth(0)
+                        .setRemoveTags(true))
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"col-12 col-lg-8\" property=\"articleBody\">", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
-                        .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"detail-meta(.*?)\">", "</div>")
-                                .setNth(0)
-                                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time(.*?)>", "</time>")
-                                        .setNth(0)
-                                        .setRemoveTags(true))
-                                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<b>", "</b>")
-                                        .setNth(0)
-                                        .setRemoveTags(true)))
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));
 

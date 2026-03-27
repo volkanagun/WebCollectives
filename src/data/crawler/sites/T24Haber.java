@@ -8,19 +8,25 @@ public class T24Haber {
         String domain = "https://t24.com.tr";
         int pageCount = 1;
 
-        WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(1500);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall1)
+        WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(500);
+        WebButtonClickCall clickcall = new WebButtonClickCall(1, "div.adh-close-1000073");
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, clickcall, scrollCall1)
                 .setDoFirefox(true)
-                .setWaitBetweenCalls(1000L)
+                .setWaitBetweenCalls(5000L)
                 .initialize()
-                .setWaitTime(500);
+                .setWaitTime(100);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-md-6(.*?)\"", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container\"", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("news", "https://t24.com.tr/haber/")
+                .addSeed("news", "https://t24.com.tr/politika/")
+                /*.addSeed("news", "https://t24.com.tr/gundem/")
+                .addSeed("sports", "https://t24.com.tr/spor/")
+                .addSeed("economy", "https://t24.com.tr/ekonomi/")
+                .addSeed("world", "https://t24.com.tr/dunya/")
+                .addSeed("culture", "https://t24.com.tr/kultur-sanat/")*/
                 .setFunctionCall(sequenceCall)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
@@ -52,6 +58,7 @@ public class T24Haber {
                 .setDoFast(false)
                 .setSleepTime(2000L)
                 .setDomain(domain)
+                .setFunctionCall(scrollCall1.initialize())
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(false);

@@ -10,7 +10,7 @@ public class SavunmaSanayist {
 
 
         int start =0;
-        int pageCount = 20;
+        int pageCount = 10;
         String domain = "https://www.savunmasanayist.com/";
 
 
@@ -26,6 +26,7 @@ public class SavunmaSanayist {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span class=\"date meta-item tie-icon\">", "</span>")
                         .setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"post-title entry-title\">", "</h1>")
+                        .setNth(0)
                         .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"entry-content entry clearfix\">","</div")
                         .setStartEndMarker("<div","</div>")

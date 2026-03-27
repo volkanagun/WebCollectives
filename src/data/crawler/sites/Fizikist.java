@@ -6,9 +6,9 @@ public class Fizikist {
     public static WebFlow build() {
 
         String domain = "https://www.fizikist.com";
-        Integer pageCount = 1;
+        Integer pageCount = 5;
 
-        WebFunctionCall clickCall = new WebButtonClickControl(1, "button.btn-load-more-posts")
+/*        WebFunctionCall clickCall = new WebButtonClickControl(1, "button.btn-load-more-posts")
                 .setDoStopOnError(true)
                 .setWaitTime(1000);
 
@@ -18,20 +18,31 @@ public class Fizikist {
                 .setWaitBetweenCalls(1000L)
                 .setDoStopOnError(false)
                 .initialize()
-                .setWaitTime(1000);
+                .setWaitTime(1000);*/
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<h4 class=\"title\"(.*?)>", "</h4>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")
                         .setNth(1));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("science", "https://www.fizikist.com/")
+                .addSeed("biology", "https://www.fizikist.com/kategori/biyoloji/")
+                .addSeed("technology", "https://www.fizikist.com/kategori/teknoloji/")
+                .addSeed("space", "https://www.fizikist.com/kategori/uzay/")
+                .addSeed("space", "https://www.fizikist.com/kategori/uzay/")
+                .addSeed("science", "https://www.fizikist.com/kategori/haberler/")
+                .addSeed("books", "https://www.fizikist.com/kategori/kitap-onerileri/")
+                .addSeed("science", "https://www.fizikist.com/kategori/soru-cevap/")
+                .addSeed("magazine", "https://www.fizikist.com/kategori/roportaj/")
+                .addSeed("physics", "https://www.fizikist.com/kategori/fizik/")
+                
                 .setDoFast(false)
                 .setSleepTime(2500L)
                 .setDoDeleteStart(true)
                 .setThreadSize(1)
                 .setDomain(domain)
-                .setFunctionCall(sequenceCall)
+                .setNextPageSuffix("?page=")
+                .setNextPageSize(pageCount)
+                //.setFunctionCall(sequenceCall)
                 .setMainPattern(linkPattern);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-lg-8\">", "</div>")

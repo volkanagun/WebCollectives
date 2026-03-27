@@ -12,7 +12,7 @@ public class Fotomac implements Serializable {
 
 
     public static WebFlow build() {
-        WebTemplate mainTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "fotomac", "http://www.fotomac.com.tr");
+        WebTemplate mainTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "fotomac", "http://www.fotomac.com.tr");
         String mainSeed = "http://www.fotomac.com.tr/yazarlar/tumyazarlar";
         mainTemplate.addSeed(mainSeed);
         mainTemplate.setNextPageSuffix("?tc=107&page=");
@@ -33,7 +33,7 @@ public class Fotomac implements Serializable {
 
         linkTemplate.setMainPattern(linkPattern);
 
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", "http://www.fotomac.com.tr")
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", "http://www.fotomac.com.tr")
                 .setCharset("Windows-1254")
                 .setType(LookupOptions.ARTICLEDOC);
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"detail news\">", "</div>")

@@ -11,13 +11,14 @@ public class IhlasAjansi {
     public static WebFlow build() {
 
         String domain = "https://www.iha.com.tr";
-        int start = 0, size = 3;
+        int start = 0, size = 2000;
+        long seedSize = 100;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container mx-auto\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", domain)
+        WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy", "https://www.iha.com.tr/ekonomi")
                 .addSeed("news", "https://www.iha.com.tr/dunya")
                 .addSeed("breaking", "https://www.iha.com.tr/gundem")
@@ -31,14 +32,15 @@ public class IhlasAjansi {
                 .addSeed("environment", "https://www.iha.com.tr/cevre")
                 .addSeed("tv-shows", "https://www.iha.com.tr/magazin")
                 .setLinkPattern("(.*?)\\d+",null)
-                .setDoFast(false)
+                .setDoFast(true)
                 .setDoDeleteStart(true)
-                .setSleepTime(1000L)
+                .setSleepTime(1L)
                 .setThreadSize(1)
                 .setDomain(domain)
                 .setNextPageSuffix("?p=")
                 .setNextPageStart(start)
                 .setNextPageSize(size)
+                .setSeedSizeLimit(seedSize)
                 .setMainPattern(linkPattern);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"column__left\">", "</div>")
@@ -54,7 +56,7 @@ public class IhlasAjansi {
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")));
 
 
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", domain)
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setMainContent(true)
                 .setLookComplete(true).setDoDeleteStart(false)

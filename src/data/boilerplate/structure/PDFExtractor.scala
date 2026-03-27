@@ -188,13 +188,15 @@ class PDFExtractor(val sourceFolder: String, val destinationFile: String) {
     val subFiles = crrFolder.listFiles()
     if (subFiles.isEmpty) crrFolder.delete()
     else {
-      val files = subFiles.filter(f => f.isFile);
+      val files = subFiles.filter(f => f.isFile).sortBy(_.getName);
 
       var count = 0
-      files.sliding(24, 24).foreach(fileSeq => {
+      files.sliding(96, 96).foreach(fileSeq => {
         val sentences = fileSeq.par.flatMap(file => {
+          println(s"Extracting file: ${file.getName}")
           val fpdf = file.getName.endsWith(".pdf")
           if (!fpdf) {
+            println("Deleting file")
             file.delete()
             Seq[String]()
           }
@@ -254,18 +256,20 @@ class PDFExtractor(val sourceFolder: String, val destinationFile: String) {
 }
 
 object PDFExtractor {
+  val folder = "/media/wolf/My Book Duo/Documents/Okuma Kitaplari"
   val existingExtraction = "resources/sentences/novel-sentences-tr.txt"
   val fixExtraction = "resources/sentences/novel-fix-sentences-tr.txt"
 
   def test(): Unit = {
-    val extractor = new PDFExtractor("/home/wolf/Downloads/Okuma Kitaplari/", existingExtraction)
+    val extractor = new PDFExtractor(folder, existingExtraction)
     println(extractor.sentenceClean("\"Leydim\" F'lar isminin söylenmesini bekleye\u00AD rek duraksadı. 27 Kadın endişelice Lorduna göz attı."))
     println(extractor.sentenceClean("\"Hızlı büyüyorsun,\" diye alaycı ve hassas bir yıl\u00AD gıyla ekledi. 161 Ramoth felaket kaşındığını tekrar söyledi."))
   }
 
   def main(args: Array[String]): Unit = {
-    val extractor = new PDFExtractor("/home/wolf/Downloads/Okuma Kitaplari/", existingExtraction)
-    //extractor.fix(fixExtraction)
-    test()
+    val extractor = new PDFExtractor(folder, existingExtraction)
+    //extractor.extract()
+    extractor.fix(fixExtraction)
+
   }
 }

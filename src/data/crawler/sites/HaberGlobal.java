@@ -10,7 +10,8 @@ public class HaberGlobal {
 
     public static WebFlow build() {
         String domain = "https://haberglobal.com";
-        int size = 10;
+        int size = 5000;
+        long seedLimit = 100;
         int start = 1;
                                                       //Type of pattern  //XML tag in the result           //start regex               //end regex
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"post-item-row\">", "</div>")
@@ -19,7 +20,7 @@ public class HaberGlobal {
                 //Sub pattern linkPattern must contains this subpattern
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
 
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", domain)
+        WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("news", "https://haberglobal.com.tr/gundem")
                 .addSeed("news", "https://haberglobal.com.tr/dunya")
                 .addSeed("breaking", "https://haberglobal.com.tr/son-dakika-haberler")
@@ -32,10 +33,11 @@ public class HaberGlobal {
                 .addSeed("culture", "https://haberglobal.com.tr/kultur-sanat")
                 .addSeed("auto", "https://haberglobal.com.tr/otomobil")
                 //.setLinkPattern("(.*?)\\d+",null)
-                .setDoFast(false)
+                .setDoFast(true)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)
                 .setThreadSize(1)
+                .setSeedSizeLimit(seedLimit)
                 .setDomain(domain)
                 .setNextPageSuffix("/")
                 .setNextPageStart(start)
@@ -55,7 +57,7 @@ public class HaberGlobal {
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")));
 
 
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", domain)
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setMainContent(true)
                 .setLookComplete(true).setDoDeleteStart(false)

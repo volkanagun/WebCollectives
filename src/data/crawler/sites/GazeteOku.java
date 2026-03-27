@@ -13,12 +13,12 @@ public class GazeteOku implements Serializable {
     public static WebFlow build() {
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2025, 10, 1);
+        calendar.set(2026, 2, 1);
         Date startDate = calendar.getTime();
         Date endDate = new Date();
 
         //Main Download
-        WebTemplate mainTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-links", "http://www.gazeteoku.com")
+        WebTemplate mainTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", "http://www.gazeteoku.com")
                 .setSleepTime(2000L).setDoDeleteStart(true)
                 .setSuffixGenerator(new WebDateGenerator("dd.MM.yyyy",startDate, endDate));
 
@@ -32,7 +32,7 @@ public class GazeteOku implements Serializable {
         mainTemplate.setMainPattern(yazarPattern).setDoDeleteStart(true);
 
         //Link Download
-        WebTemplate linkTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
+        WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "author-links", "http://www.gazeteoku.com", "?page=")
                 .setNextPageStart(1)
                 .setNextPageSize(10).setSleepTime(2000L)
                 .setDoDeleteStart(true);
@@ -44,7 +44,7 @@ public class GazeteOku implements Serializable {
         linkTemplate.setMainPattern(patternLinkArticle);
 
         //Article Download
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", "http://www.gazeteoku.com")
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", "http://www.gazeteoku.com")
                 .setSleepTime(2000L)
                 .setType(LookupOptions.ARTICLEDOC);
         LookupPattern nameLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"widget-author\">", "</div>")
@@ -60,9 +60,9 @@ public class GazeteOku implements Serializable {
                 .setEndMarker("</div>")
                 .addPattern(paragraphLookup);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article class=\"news-detail\">", "</div>")
-                .setStartMarker("<div")
-                .setEndMarker("</div")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article class=\"news-detail\">", "</article>")
+                .setStartMarker("<article")
+                .setEndMarker("</article")
                 .addPattern(nameLookup)
                 .addPattern(titleLookup)
                 .addPattern(genreeLookup)

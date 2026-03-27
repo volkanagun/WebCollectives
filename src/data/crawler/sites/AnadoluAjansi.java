@@ -9,7 +9,7 @@ public class AnadoluAjansi implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.aa.com.tr/tr";
-        Integer pageCount = 10;
+        Integer pageCount = 5;
 
         WebFunctionCall clickCall = new WebButtonClickControl(1, "a.button-daha.text-center")
                 .setDoStopOnError(true)
@@ -17,18 +17,16 @@ public class AnadoluAjansi implements Serializable {
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(1500);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, clickCall)
-                .setDoFirefox(false)
+                .setDoFirefox(true)
                 .setWaitBetweenCalls(1000L)
                 .setDoStopOnError(false)
                 .initialize()
                 .setWaitTime(1000);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"konu-alt(.*?)\">","</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"row konu-alt-icerik\">","</div>")
                 .setStartEndMarker("<div","</div>")
-                .addPattern(new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"row(.*?)\">", "</div>")
-                        .setStartEndMarker("<div", "</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\"")
-                                .setNth(1)));
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a href=\"", "\"")
+                                .setNth(0));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("economy", "https://www.aa.com.tr/tr/ekonomi")

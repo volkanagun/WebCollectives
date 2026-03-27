@@ -8,7 +8,8 @@ import data.crawler.web.WebTemplate;
 public class TRTHaber {
     public static WebFlow build() {
         String domain = "http://www.trthaber.com";
-        int pageCount = 5;
+        int pageCount = 5000;
+        long limitSize = 100;
         int pageStart = 1;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"left\"(.*?)>", "</div>")
@@ -39,13 +40,14 @@ public class TRTHaber {
                 .addSeed("news", "https://www.trthaber.com/ozel-haberler")
                 .addSeed("news", "https://www.trthaber.com/dosya-haberler")
                 .addSeed("kids", "https://www.trthaber.com/haber/cocuk")
-                .setDoFast(false)
+                .setDoFast(true)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L).setNextPageSuffixAddition(".sayfa.html")
                 .setNextPageSuffix("/")
                 .setNextPageSize(pageCount)
                 .setNextPageStart(pageStart)
-                .setThreadSize(1)
+                .setThreadSize(8)
+                .setSeedSizeLimit(limitSize)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 

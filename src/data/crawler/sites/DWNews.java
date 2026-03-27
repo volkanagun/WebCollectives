@@ -12,10 +12,9 @@ public class DWNews implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.dw.com/";
-        int pageCount = 20;
+        int pageCount = 5;
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<section id=\"atp-all-items-list\"(.*?)>", "</section>")
-                .setStartEndMarker("<section","</section>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<h3(.*?)>", "</h3>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
@@ -39,7 +38,10 @@ public class DWNews implements Serializable {
                 .addSeed( "https://www.dw.com/tr/bilim-ve-%C3%A7evre/s-10204")
                 .addSeed( "https://www.dw.com/tr/politika/s-57554982")
                 .addSeed( "https://www.dw.com/tr/ortado%C4%9Fu/t-67036590")
-                .setDoFast(false)
+                .addSeed( "https://www.dw.com/tr/jeffrey-epstein/t-75778146")
+                .addSeed("https://www.dw.com/tr/i%CC%87ran/t-18987835")
+                .addSeed("https://www.dw.com/tr/bas%C4%B1n-%C3%B6zg%C3%BCrl%C3%BC%C4%9F%C3%BC/t-37533123")
+                .setDoFast(true)
                 .setNextPageSize(pageCount)
                 .setNextPageSuffix("/page-")
                  .setDoDeleteStart(true)

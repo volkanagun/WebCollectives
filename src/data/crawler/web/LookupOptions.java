@@ -77,7 +77,7 @@ public class LookupOptions implements Serializable {
     public static String TEXTENGDIRECTORY = "resources/texts-english";
     public static String SIKAYETVARGDIRECTORY = "resources/sikayet-var";
 
-    public static String BLOGTRYDIRECTORY = "resources/blogs-trial";
+    public static String BLOGTRYDIRECTORY = "resources/blogs-turkish";
     public static String TESTDIRECTORY = "resources/tests";
     public static String ARTICLEDIRECTORY = "resources/articles";
     public static String GOOGLEDIR = "resources/googles";

@@ -3,7 +3,9 @@ package data.crawler.web;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.Serializable;
@@ -100,11 +102,22 @@ public abstract class WebFunctionCall implements Serializable {
         }
         else if (isUnix()) {
             System.setProperty("webdriver.chrome.driver", new File("resources/selenium/chromedriver").getPath());
-            this.chromeDriver = new ChromeDriver();
+            ChromeOptions options  = new ChromeOptions();
+            //options.addArguments("incognito");
+            options.addArguments("--disable-popup-blocking");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+
+            this.chromeDriver = new ChromeDriver(capabilities);
             this.js = chromeDriver;
         } else {
             System.setProperty("webdriver.chrome.driver", new File("resources/selenium/chromedriver.exe").getPath());
-            this.chromeDriver = new ChromeDriver();
+            ChromeOptions options  = new ChromeOptions();
+            //options.addArguments("incognito");
+            options.addArguments("--disable-popup-blocking");
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+            this.chromeDriver = new ChromeDriver(capabilities);
             this.js = chromeDriver;
         }
         return this;

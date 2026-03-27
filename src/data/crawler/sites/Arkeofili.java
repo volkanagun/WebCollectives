@@ -7,7 +7,7 @@ public class Arkeofili {
     public static WebFlow build() {
 
         String domain = "https://arkeofili.com/";
-        int pageCount = 5;
+        int pageCount = 150;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<h2>", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
@@ -32,7 +32,7 @@ public class Arkeofili {
                 .addSeed("science", "https://arkeofili.com/category/ozel-dosya/")
                 .addSeed("science", "https://arkeofili.com/category/liste/")
                 .addSeed("herritage", "https://arkeofili.com/category/kulturel-miras/")
-                .setSuffixGenerator(new WebCountGenerator(1, pageCount, "page/"))
+                .setSuffixGenerator(new WebCountGenerator(0, pageCount, "page/"))
                 .setDoFast(Boolean.FALSE)
                 .setDoDeleteStart(Boolean.TRUE)
                 .setSleepTime(2500L)

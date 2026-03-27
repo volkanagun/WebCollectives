@@ -12,17 +12,17 @@ import java.util.concurrent.Executors;
 public class Ergonomic implements Serializable {
 
     public static WebFlow build() {
-
+        int pageCount = 5;
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.CONTAINER, "<div\\sclass\\=\"thumbnail\\soverlay\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a\\shref\\=\"", "\"").setNth(0));
 
-        mainTemplate.setMainPattern(linkPattern);
-        mainTemplate.setNextPageSuffix("/page/");
-        mainTemplate.setNextPageSize(8);
-        mainTemplate.setNextPageStart(2);
+        mainTemplate.setMainPattern(linkPattern)
+                .setNextPageSuffix("/page/")
+                .setNextPageSize(pageCount)
+                .setNextPageStart(1);
 
         mainTemplate.addSeed("cinema", "http://www.egonomik.com/category/sinema");
         mainTemplate.addSeed("pc-games", "http://www.egonomik.com/category/oyunlar/");

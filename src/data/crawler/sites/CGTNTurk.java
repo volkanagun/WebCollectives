@@ -5,13 +5,14 @@ import data.crawler.web.*;
 public class CGTNTurk {
     public static WebFlow build() {
         String domain = "https://www.cgtnturk.com";
-        int pageCount = 5;
+        int pageCount = 10;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "a.btn-more")
                 .setDoStopOnError(false)
                 .setWaitTime(100);
 
         WebFunctionCall scrollCall = new WebFunctionScroll(1, "a.btn-more");
+        //WebFunctionCall scrollHeightCall = new WebFunctionScrollHeight(1, 5);
         WebFunctionCall sequenceCall = new WebFunctionSequence(1, scrollCall, functionCall)
                 .setDoFirefox(true)
                 .setWaitTime(1500);
@@ -61,7 +62,7 @@ public class CGTNTurk {
                         .setStartEndMarker("<div", "</div>").setNth(0)
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>").setRemoveTags(true)));
 
-        WebTemplate articleTemplate = new WebTemplate(LookupOptions.ARTICLEDIRECTORY, "article-text", domain)
+        WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setMainContent(true)
                 .setLookComplete(true).setDoDeleteStart(false)

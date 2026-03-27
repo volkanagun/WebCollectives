@@ -7,9 +7,10 @@ import java.util.regex.Pattern;
 
 public class InternetHaber implements Serializable {
 
-    public static WebFlow build(int i) {
+    public static WebFlow build() {
         int startIndice = 1;
-        int maxSize = 5;
+        int maxSize = 5000;
+        long seedLimit = 500;
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
@@ -28,15 +29,16 @@ public class InternetHaber implements Serializable {
                 .addSeed("technology","http://www.internethaber.com/bilim-teknoloji")
                 .addSeed("magazine","http://www.internethaber.com/magazin")
                 .addSeed("culture","http://www.internethaber.com/kultur-ve-sanat")
-                .setNextPageStart(startIndice+i*maxSize)
+                .setNextPageStart(startIndice)
                 .setNextPageSize(maxSize)
                 .setWaitTimeAfter(100000L)
                 .setWaitTime(1500L)
                 .setSleepTime(500L)
-                .setDoFast(false)
+                .setDoFast(true)
+                .setSeedSizeLimit(seedLimit)
                 .setDoDeleteStart(true)
                 .setNextPageSuffix("?page=")
-                .setThreadSize(2);
+                .setThreadSize(4);
 
         /*LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<ul class=\"list\">", "</ul>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINKCONTAINER, "<li>", "</li>")
@@ -91,8 +93,8 @@ public class InternetHaber implements Serializable {
     }
 
     public static void main(String[] args) {
-        for(int i=0; i< 1; i++) {
-            build(i).execute();
-        }
+        
+        build().execute();
+        
     }
 }

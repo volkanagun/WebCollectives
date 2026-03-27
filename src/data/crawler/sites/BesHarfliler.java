@@ -12,12 +12,11 @@ public class BesHarfliler implements Serializable {
 
     public static WebFlow build() {
 
-        int pageCount = 5;
+        int pageCount = 1;
 
         WebTemplate mainTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-links", LookupOptions.EMPTYDOMAIN);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<div\\sclass=\"grid_8\\somega\">", "</div>")
-                .setStartEndMarker("<div", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLE, "<h2>", "</h2>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a\\shref=\"", "\">").setNth(0));
 
         mainTemplate.setMainPattern(linkPattern)
@@ -31,7 +30,7 @@ public class BesHarfliler implements Serializable {
 
 
         LookupPattern articlePattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<section>", "</section>")
-                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORNAME, "<div\\sclass=\"grid_4\\sauthor.*?>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORNAME, "<div class=\"grid_4 author pull_right\">", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHORNAME, "<h5>", "</h5>").setNth(0)))
                 .addPattern(new LookupPattern(LookupOptions.LOOKUP, LookupOptions.GENRE, LookupOptions.GENRE))
@@ -41,7 +40,7 @@ public class BesHarfliler implements Serializable {
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1>", "</h1>").setNth(0))
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div\\sclass=\"post_content\">", "</div>")
                                 .setStartEndMarker("<div", "</div")
-                                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>"))));
+                                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p(.*?)>", "</p>"))));
 
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.BLOGDIRECTORY, "blog-text", "http://www.5harfliler.com/");

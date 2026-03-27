@@ -86,12 +86,12 @@ object XMLExtractor {
   val locale = new Locale("tr")
 
   def extractStories(): Unit = {
-    new XMLExtractor(Array("resources/stories-turkish/"), 100000)
-      .extractDocument("resources/story-texts/")
+    new XMLExtractor(Array(LookupOptions.TURKISHSTORYDIRECTORY), 100000000)
+      .extractDocument("resources/story-texts/", 300)
   }
 
   def extractWikipedia(): Unit = {
-    new XMLExtractor(Array("resources/wikipedia/"), 1000000)
+    new XMLExtractor(Array("resources/wikipedia/"), 100000000)
       .extractDocument("resources/wiki-texts/", 300)
   }
 
@@ -103,7 +103,7 @@ object XMLExtractor {
       "resources/articles-cumhuriyet/",
       "resources/articles-independent/",
       "resources/articles-sozcu/",
-      "resources/articles-halktv/"), 100000000)
+      "resources/articles-halktv/"), 1000000000)
       .extractDocument("resources/txt/")
   }
 
@@ -202,13 +202,13 @@ object XMLExtractor {
 
   def main(args: Array[String]): Unit = {
 
-    /*extractArticles()
-    extractBlogs()
-    extractStories()
-    extractWikipedia()*/
+    //extractArticles()
+    //extractBlogs()
+    //extractStories()
+    //extractWikipedia()
 
     //val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
-    //extractSentences(filenames, "sentences-november-25-tr.txt")
-    mergeSentences("resources/sentences/", "resources/sentences/merge-nov-25.txt")
+    //extractSentences(filenames, "sentences-feb-11-tr.txt")
+    mergeSentences("resources/sentences/merge-folder/", "resources/sentences/merge-feb-11.txt")
   }
 }

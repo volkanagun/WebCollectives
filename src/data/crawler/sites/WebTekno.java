@@ -7,7 +7,8 @@ public class WebTekno {
     public static WebFlow build() {
 
         String domain = "https://www.webtekno.com/";
-        Integer pageCount = 20;
+        Integer pageCount = 5000;
+        long seedLimit = 100;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<h3(.*?)>", "</h3>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")
@@ -22,6 +23,7 @@ public class WebTekno {
                 .setDomain(domain)
                 .setNextPageSuffix("?s=")
                 .setNextPageSize(pageCount)
+                .setSeedSizeLimit(seedLimit)
                 .setMainPattern(linkPattern);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"container\">", "</div>")

@@ -17,10 +17,11 @@ public class HalkTVWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "http://halktv.com.tr";
-        int pageCount = 5;
+        int pageCount = 2000;
         int pageStart = 1;
+        long seedSizeLimit = 500;
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"row\"(.*?)>", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"post-item ia\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
@@ -28,30 +29,25 @@ public class HalkTVWeb implements Serializable {
                 .addSeed("sports", "https://halktv.com.tr/spor")
                 .addSeed("world", "https://halktv.com.tr/dunya")
                .addSeed("culture", "https://halktv.com.tr/kultur-sanat")
-                .addSeed("culture", "https://halktv.com.tr/tiyatro")
-                .addSeed("culture", "https://halktv.com.tr/kitap")
                 .addSeed("culture", "https://halktv.com.tr/sinema")
                 .addSeed("health", "https://halktv.com.tr/yasam")
                 .addSeed("health", "https://halktv.com.tr/saglik")
-                .addSeed("health", "https://halktv.com.tr/guzellik")
                 .addSeed("economy", "https://halktv.com.tr/finans")
-                .addSeed("economy", "https://halktv.com.tr/borsa")
-                .addSeed("economy", "https://halktv.com.tr/kripto")
                 .addSeed("breaking", "https://halktv.com.tr/gundem")
-                .addSeed("trends", "https://halktv.com.tr/moda")
                 .addSeed("education", "https://halktv.com.tr/egitim")
-                .addSeed("music", "https://halktv.com.tr/muzik")
                 .addSeed("sports", "https://halktv.com.tr/futbol")
-                .setDoFast(false).setNextPageSuffix("?page=")
+                .setDoFast(true)
+                .setSeedSizeLimit(seedSizeLimit)
+                .setNextPageSuffix("?page=")
                 .setNextPageSize(pageCount)
                 .setNextPageStart(pageStart)
                 .setDoDeleteStart(true)
-                .setSleepTime(50L)
-                .setThreadSize(1)
+                .setSleepTime(5L)
+                .setThreadSize(4)
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-12 col-lg-8 article-detail news-detail\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-12 col-lg-8 article-detail(.*?)\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time datetime=\"", "\">")
                         .setNth(0)
