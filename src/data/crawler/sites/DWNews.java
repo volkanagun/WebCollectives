@@ -12,7 +12,7 @@ public class DWNews implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://www.dw.com/";
-        int pageCount = 5;
+        int pageCount = 20;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<h3(.*?)>", "</h3>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
@@ -26,6 +26,7 @@ public class DWNews implements Serializable {
                 .addSeed( "https://www.dw.com/tr/ilo/t-18998507")
                 .addSeed( "https://www.dw.com/tr/birle%C5%9Fmi%C5%9F-milletler-bm/t-18583106")
                 .addSeed( "https://www.dw.com/tr/avrupa/s-12256")
+                .addSeed( "https://www.dw.com/tr/ortado%C4%9Fu/s-57378055")
                 .addSeed( "https://www.dw.com/tr/nato-t%C3%BCrkiye-krizi/t-61917410")
                 .addSeed( "https://www.dw.com/tr/ukrayna-sava%C5%9F%C4%B1/t-60933976")
                 .addSeed( "https://www.dw.com/tr/anayasa-mahkemesi/t-38539650")
@@ -41,6 +42,7 @@ public class DWNews implements Serializable {
                 .addSeed( "https://www.dw.com/tr/jeffrey-epstein/t-75778146")
                 .addSeed("https://www.dw.com/tr/i%CC%87ran/t-18987835")
                 .addSeed("https://www.dw.com/tr/bas%C4%B1n-%C3%B6zg%C3%BCrl%C3%BC%C4%9F%C3%BC/t-37533123")
+                .addSeed("https://www.dw.com/tr/fon-soru%C5%9Fturmas%C4%B1/t-79497684")
                 .setDoFast(true)
                 .setNextPageSize(pageCount)
                 .setNextPageSuffix("/page-")

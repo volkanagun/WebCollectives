@@ -168,6 +168,7 @@ public class LookupPattern implements Serializable {
 
     public LookupPattern setSingleRegex(String singleRegex) {
         this.singleRegex = singleRegex;
+        this.containsRegex = true;
         return this;
     }
 

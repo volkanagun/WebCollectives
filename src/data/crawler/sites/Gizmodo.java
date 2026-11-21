@@ -14,7 +14,7 @@ public class Gizmodo {
         Calendar calendarStart = Calendar.getInstance();
         calendarStart.set(2025, 1, 1);
         Calendar calendarEnd = Calendar.getInstance();
-        calendarEnd.set(2025, 12, 1);
+        calendarEnd.set(2026, 11, 1);
 
         Date startDate = calendarStart.getTime();
         Date endDate = calendarEnd.getTime();

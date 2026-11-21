@@ -11,6 +11,4 @@ case class ChildTagCountOp(tagName:String) extends PipeOp(Array(), "child-tag-"+
   override def execute(leaf: HTMLNode): IntermediateResult = {
     IntermediateResult(leaf, Map(name -> depthFirst(leaf.node, tagName)))
   }
-
-
 }

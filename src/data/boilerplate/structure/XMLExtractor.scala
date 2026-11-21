@@ -202,13 +202,13 @@ object XMLExtractor {
 
   def main(args: Array[String]): Unit = {
 
-    //extractArticles()
-    //extractBlogs()
+    extractArticles()
+    extractBlogs()
     //extractStories()
     //extractWikipedia()
 
     //val filenames = Array("resources/txt/", "resources/wiki-texts/", "resources/story-texts/")
     //extractSentences(filenames, "sentences-feb-11-tr.txt")
-    mergeSentences("resources/sentences/merge-folder/", "resources/sentences/merge-feb-11.txt")
+    //mergeSentences("resources/sentences/merge-folder/", "resources/sentences/merge-feb-11.txt")
   }
 }

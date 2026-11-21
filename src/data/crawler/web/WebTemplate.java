@@ -1404,10 +1404,14 @@ public class WebTemplate implements Serializable {
                                     final HttpResponse response) throws IOException {
                                 StatusLine statusLine = response.getStatusLine();
                                 HttpEntity entity = response.getEntity();
-                                if (statusLine.getStatusCode() >= 300) {
+                                if (statusLine.getStatusCode() >= 300 && statusLine.getStatusCode() < 500) {
+                                    String body = entity != null
+                                            ? new BufferedReader(new InputStreamReader(entity.getContent()))
+                                            .lines().reduce("", (a, b) -> a + b + "\n")
+                                            : "";
                                     throw new HttpResponseException(
                                             statusLine.getStatusCode(),
-                                            statusLine.getReasonPhrase());
+                                            statusLine.getReasonPhrase() + "\nBODY:\n" + body);
                                 }
                                 if (entity == null) {
                                     throw new ClientProtocolException("Response contains no content");

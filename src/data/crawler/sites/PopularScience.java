@@ -1,61 +1,48 @@
 package data.crawler.sites;
 
-import data.crawler.web.LookupOptions;
-import data.crawler.web.LookupPattern;
-import data.crawler.web.WebFlow;
-import data.crawler.web.WebTemplate;
+import data.crawler.web.*;
 
 public class PopularScience {
     public static WebFlow build() {
-
-        String domain = "https://popsci.com.tr/";
-        int pageCount = 5;
-
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"td-ss-main-content\">", "</div>")
-                .setStartEndMarker("<div", "</div>")
-                .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
+        Integer pageCount = 50;
+        String domain = "https://bmag.com.tr/";
+        
+        WebFunctionCall scroller = new WebFunctionScrollHeight(1, 20).setWaitTime(500);
+        WebFunctionCall seq = new WebFunctionSequence(pageCount, scroller).setWaitBetweenCalls(500L).setWaitTime(1000).initialize();
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.MAINPAGE, "<div class=\"relative mb-4 md:mb-6\"(.*?)>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLELINK,LookupOptions.ARTICLELINK,"<a(.*?)href=\"","\"")
+                        .setNth(0));
+                
+                
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("millitary", "https://popsci.com.tr/kategori/konular/askeri/")
-                .addSeed("science", "https://popsci.com.tr/kategori/konular/bilim/")
-                .addSeed("environment", "https://popsci.com.tr/kategori/konular/cevre/")
-                .addSeed("entertainment", "https://popsci.com.tr/kategori/konular/eglence/")
-                .addSeed("technology", "https://popsci.com.tr/kategori/konular/elektronik/")
-                .addSeed("physics", "https://popsci.com.tr/kategori/konular/enerji/")
-                .addSeed("air", "https://popsci.com.tr/kategori/konular/havacilik/")
-                .addSeed("nature", "https://popsci.com.tr/kategori/konular/doga/")
-                .addSeed("culture", "https://popsci.com.tr/kategori/kendin-yap/")
-                .addSeed("auto", "https://popsci.com.tr/kategori/konular/otomobil/")
-                .addSeed("health", "https://popsci.com.tr/kategori/konular/saglik/")
-                .addSeed("technology", "https://popsci.com.tr/kategori/konular/teknoloji/")
-                .addSeed("physics", "https://popsci.com.tr/kategori/konular/uzay/")
-                .setDoFast(false)
+                .addSeed("auto", "https://bmag.com.tr/otomobil")
+                .addSeed("travel", "https://bmag.com.tr/doga-seyahat")
+                .addSeed("science", "https://bmag.com.tr/bilim")
+                .addSeed("history", "https://bmag.com.tr/tarih")
+                .addSeed("economy", "https://bmag.com.tr/ekonomi")
+                .addSeed("culture", "https://bmag.com.tr/yasam")
+                .addSeed("culture", "https://bmag.com.tr/mutfak-lezzet")
+                .addSeed("technology", "https://bmag.com.tr/oyun-teknoloji")                
+                .setDoFast(true)
                 .setSleepTime(1000L)
                 .setDoDeleteStart(false)
-                .setNextPageSize(pageCount)
-                .setNextPageStart(1)
-                .setNextPageJump(1)
-                .setThreadSize(1).setNextPageSuffix("page/")
-                .setDomain(domain).setDomainSame(true)
+                .setFunctionCall(seq)
+                .setThreadSize(12)
+                .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
-                .setTagLowercase(true).setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"entry-title\">", "</h1>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-span-12 md:col-span-8 md:col-start-3\"(.*?)>", "</div>")
+                .setStartEndMarker("<div","</div>")
+                .setTagLowercase(true)
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setRemoveTags(true)).setRequiredNotEmpty(true)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time class=\"(.*?)\" datetime=\"", "\">")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span data-v-a8fe0a61=\"\">Oluşturma Tarihi\\:\\s", "</span>")
                         .setRemoveTags(true)
                         .setRequiredNotEmpty(false))
-                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"td-post-content tagdiv-type\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"news-content\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")
-                        .setTagLowercase(false)
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<p><em>(Yazar|Kaynak): ", "(</em>)")
-                                .setTagLowercase(false)
-                                .setRequiredNotEmpty(false)
-                                .setRemoveTags(true)))
-                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"td-post-content tagdiv-type\">", "</div>")
-                        .setStartEndMarker("<div", "</div>")
-                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(b|p)>", "</(p|b)>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "\n", "\n")
                                 .setRemoveTags(true)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
@@ -63,7 +50,7 @@ public class PopularScience {
                 .setLookComplete(true)
                 .setThreadSize(1).setSleepTime(2500L)
                 .setDoFast(false)
-                .setDomain(domain)
+                .setDomain(domain).setFunctionCall(new WebEmptyFunctionCall().setWaitTime(5000).initialize())
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(false);

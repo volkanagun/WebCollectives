@@ -9,8 +9,8 @@ public class InternetHaber implements Serializable {
 
     public static WebFlow build() {
         int startIndice = 1;
-        int maxSize = 5000;
-        long seedLimit = 500;
+        int maxSize = 10;
+        long seedLimit = 50000000;
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", LookupOptions.EMPTY)
                 .addSeed("magazine","http://www.internethaber.com/haber")
@@ -76,14 +76,13 @@ public class InternetHaber implements Serializable {
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setForceWrite(false);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail(.*?)\">", "</div>")
-                .setNth(0)
-                .setStartEndMarker("<div","</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
+                .setStartEndMarker("<article","</article>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>","</h1>").setNth(0))
-                .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<time datetime=\"","\">"))
+                .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<div class=\"post__published-at\">","</div>").setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT,"<div class=\"content-text(.*?)\">","</div>")
                         .setStartEndMarker("<div", "</div>")
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"(<p>|\")","(</p>|\")")));
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH,"(<p>)","(</p>)")));
 
         articleTemplate.setMainPattern(articleLookup);
         linkTemplate.addNext(articleTemplate, LookupOptions.ARTICLELINK);

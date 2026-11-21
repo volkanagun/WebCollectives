@@ -105,7 +105,7 @@ class WebInstance(var htmlFile: String, var xmlFile: String, var xmlLabels: Arra
   }
 
   protected def matching(): this.type = {
-    paths = HTMLParser.parseHTML(htmlFile).visit().map(path=> path.build())
+    paths = HTMLParser.parseHTML(htmlFile).all().map(path=> path.build())
     pathLabels = paths.map(path => (path, labelMatch(path.toTextString())))
       .filter(pair => pair._2.isDefined).map(pair => (pair._1, pair._2.get))
     this

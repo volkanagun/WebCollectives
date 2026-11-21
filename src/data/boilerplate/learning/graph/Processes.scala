@@ -35,8 +35,8 @@ case class Processes(val label: String, val model: PipeOp) {
     add(CHILD, pipeOp)
   }
 
-  def build(paths: Array[HTMLPath]): Map[HTMLPath, IntermediateResult] = {
-    paths.par.map(htmlPath => (htmlPath -> model.execute(htmlPath)))
+  def execute(paths: Array[HTMLPath]): Map[HTMLPath, IntermediateResult] = {
+    paths.sortBy(_.pathNodes.length).map(htmlPath => (htmlPath -> model.execute(htmlPath)))
       .toArray
       .toMap
   }

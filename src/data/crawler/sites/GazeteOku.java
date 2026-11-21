@@ -13,7 +13,7 @@ public class GazeteOku implements Serializable {
     public static WebFlow build() {
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(2026, 2, 1);
+        calendar.set(2026, 5, 1);
         Date startDate = calendar.getTime();
         Date endDate = new Date();
 

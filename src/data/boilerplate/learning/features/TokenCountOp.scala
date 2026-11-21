@@ -9,9 +9,6 @@ import org.jsoup.nodes.Element
 
 case class TokenCountOp() extends ExecutableOp(Array(), s"token-count-op") {
 
-
-
-
   override def canApply(htmlNode: HTMLNode): Boolean = isElement(htmlNode)
 
   //count the frequency

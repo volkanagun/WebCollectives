@@ -40,16 +40,16 @@ public class CNNTurkWeb implements Serializable {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"detail-middle\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"detail__content\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span class=\"created-date\">", "</span>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time(.*?)>", "</time>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"col-12 col-lg-8\" property=\"articleBody\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<section class=\"news-content \">", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));

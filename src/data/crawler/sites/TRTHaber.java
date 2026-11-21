@@ -8,8 +8,8 @@ import data.crawler.web.WebTemplate;
 public class TRTHaber {
     public static WebFlow build() {
         String domain = "http://www.trthaber.com";
-        int pageCount = 5000;
-        long limitSize = 100;
+        int pageCount = 200;
+        long limitSize = 5000;
         int pageStart = 1;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"left\"(.*?)>", "</div>")

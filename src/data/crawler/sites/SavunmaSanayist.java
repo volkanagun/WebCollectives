@@ -10,7 +10,7 @@ public class SavunmaSanayist {
 
 
         int start =0;
-        int pageCount = 10;
+        int pageCount = 100;
         String domain = "https://www.savunmasanayist.com/";
 
 

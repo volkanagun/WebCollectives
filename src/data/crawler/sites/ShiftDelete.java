@@ -8,31 +8,34 @@ public class ShiftDelete {
 
         String domain = "https://shiftdelete.net/";
         int pageStart = 1;
-        int pageEnd = 5000;
-        long seedSize = 100;
+        int pageEnd = 20;
+
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<h[34](.*?)>", "</h[34]>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
-        LookupPattern shortArticle = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<article(.*?)>", "</article>")
-                .setStartEndMarker("<article","</article>")
+        LookupPattern shortArticle = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<div class=\"sd-w g\">", "</div>")
+                .setStartEndMarker("<div","</div>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<div class=\"tdb-author-name-wrap\">", "</div>")
-                        .setRemoveTags(true))
+                .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"by\">", "</div>")
+                        .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.AUTHOR, "<a(.*?)>","</a>")
+                                .setNth(0).setRemoveTags(true))
+                        .addPattern(new LookupPattern(LookupOptions.TEXT,LookupOptions.DATE, "<time(.*?)>","</time>")
+                                .setNth(0).setRemoveTags(true)))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>"))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"wpb_wrapper\"(.*?)>","</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"bd sd-prose\">","</div>")
                         .setStartEndMarker("<div","</div")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETEXT, "<p(.*?)", "</p>")));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setMainPattern(shortArticle)
                 .setDoFast(true)
-                .setThreadSize(12)
-                .setSleepTime(200L);
+                .setThreadSize(24)
+                .setSleepTime(20L);
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("military", "https://shiftdelete.net/savunma-sanayi/")
-               .addSeed("science", "https://shiftdelete.net/populer-bilim/")
+                .addSeed("science", "https://shiftdelete.net/populer-bilim/")
                 .addSeed("gaming", "https://shiftdelete.net/oyun/")
                 .addSeed("web", "https://shiftdelete.net/sosyal-medya/")
                 .addSeed("web", "https://shiftdelete.net/internet/")
@@ -45,13 +48,12 @@ public class ShiftDelete {
                 .addSeed("hardware", "https://shiftdelete.net/donanim/")
                 .addSeed("shopping", "https://shiftdelete.net/rehber/")
                 .setSuffixGenerator(new WebCountGenerator(1, pageEnd, "page/"))
-                .setSeedSizeLimit(seedSize)
                 .setDoFast(Boolean.TRUE)
                 .setDoDeleteStart(Boolean.TRUE)
-                .setSleepTime(100L)
+                .setSleepTime(10L)
                 .setNextPageSize(pageEnd)
                 .setNextPageStart(pageStart)
-                .setThreadSize(1)
+                .setThreadSize(24)
                 .setDomain(domain)
                 .setMainPattern(linkPattern)
                 .addExtraTemplate(articleTemplate, articleTemplate.getName());

@@ -5,7 +5,7 @@ import data.crawler.web.*;
 public class M5Dergi {
 
     public static WebFlow build(int start, int pageCount) {
-        long seedLimit = 100;
+        long seedLimit = 20000;
         String domain = "https://m5dergi.com/";
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.TEXT, "<div class=\"post-details\">", "</div>")
@@ -51,8 +51,8 @@ public class M5Dergi {
     }
 
     public static void main(String[] args) {
-        for(int epoc=1; epoc < 100; epoc++) {
-            build(0, 5000).execute();
+        for(int epoc=1; epoc < 10; epoc++) {
+            build(0, 500).execute();
         }
     }
 }

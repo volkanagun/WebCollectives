@@ -21,6 +21,10 @@ case class Node(val features: Array[String], val label: String, var node: HTMLNo
     })
   }
 
+  def z_score(threshold: Double): Boolean = {
+    stats.forall(i => i > threshold)
+  }
+
   def process(result: IntermediateResult): Node = {
     count += 1
     add(get(result))

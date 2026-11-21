@@ -13,7 +13,7 @@ public class CumhuriyetAuto implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.cumhuriyet.com.tr";
-        int pageCount = 200;
+        int pageCount = 10;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "#load-more-news")
                 .setDoStopOnError(false)
@@ -21,7 +21,7 @@ public class CumhuriyetAuto implements Serializable {
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(50);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,  scrollCall, functionCall)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(10L)
                 .initialize()
                 .setWaitTime(10);

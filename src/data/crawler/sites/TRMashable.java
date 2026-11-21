@@ -20,7 +20,7 @@ public class TRMashable implements Serializable {
                 .setDoStopOnError(false);
         WebFunctionCall sequenceCall = new WebFunctionSequence(count,  scrollCall, clickCall)
                 .setTryOnError(10)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(1000L)
                 .initialize()
                 .setWaitTime(500);

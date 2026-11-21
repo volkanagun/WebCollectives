@@ -14,7 +14,7 @@ public class SozcuWeb implements Serializable {
 
     public static WebFlow build() {
         String domain = "http://www.sozcu.com.tr";
-        int pageCount = 1;
+        int pageCount = 10;
 
         WebFunctionCall jsCall = new WebExecuteJS("document.querySelector('dfp-modal-popup').remove();").setWaitTime(100);
 
@@ -24,7 +24,7 @@ public class SozcuWeb implements Serializable {
 
         WebFunctionCall scrollCall = new WebFunctionScroll(1,"button.loadmore").setWaitTime(10);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount,jsCall, scrollCall,  clickCall)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(100L)
                 .setDoStopOnError(false)
                 .initialize()

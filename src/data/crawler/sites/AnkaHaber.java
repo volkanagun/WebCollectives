@@ -5,39 +5,36 @@ import data.crawler.web.*;
 public class AnkaHaber {
     public static WebFlow build() {
         String domain = "https://ankahaber.net";
-        int pageCount = 5;
+        int pageCount = 200;
 
-        WebFunctionCall functionCall = new WebButtonClickCall(1,"a.btn")
+        WebFunctionCall functionCall = new WebButtonClickCall(1,"button.px-4.py-2.font-sans.text-black.border")
                 .setDoStopOnError(false)
-                .setWaitTime(5000);
-
-        WebFunctionCall scrollCall = new WebFunctionScroll(1,"a.btn").setWaitTime(5000);
-
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
-                .setDoFirefox(true)
-                .setWaitBetweenCalls(1000L)
-                .initialize()
+                .setWaitTime(1500);
+       
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, functionCall)
+                .setDoFirefox(false)
+                .setWaitBetweenCalls(1000L).initialize()
                 .setWaitTime(100);
 
-        WebFunctionCall scrollJS = new WebFunctionScroll(1,"a.btn").setWaitTime(1500);
+        WebFunctionCall scrollJS = new WebFunctionScroll(1,"a.btn").setWaitTime(150);
 
-        WebFunctionCall sequenceScrollCall = new WebFunctionSequence(1, scrollJS)
+        /*WebFunctionCall sequenceScrollCall = new WebFunctionSequence(1, scrollJS)
                 .setDoFirefox(true)
                 .setTryOnError(3)
-                .setWaitBetweenCalls(1000L)
+                .setWaitBetweenCalls(100L)
                 .initialize()
-                .setWaitTime(100);
+                .setWaitTime(100);*/
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container\">", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"space-y-4 sm:space-y-5 w-full\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("economy", "https://ankahaber.net/haber/kategori/Ekonomi/")
-                .addSeed("culture", "https://ankahaber.net/haber/kategori/Bulten/")
-                .addSeed("turkey", "https://ankahaber.net/haber/kategori/Yurt/")
-                .addSeed("world", "https://ankahaber.net/haber/kategori/Dis/")
-                .addSeed("breaking", "https://ankahaber.net/haber/kategori/Gundem/")
+                .addSeed("economy", "https://ankahaber.net/kategori/ekonomi/")
+                .addSeed("culture", "https://ankahaber.net/kategori/bulten/")
+                .addSeed("turkey", "https://ankahaber.net/kategori/yurt/")
+                .addSeed("world", "https://ankahaber.net/kategori/dunya/")
+                .addSeed("breaking", "https://ankahaber.net/kategori/gundem/")
                 .setLinkPattern("(.*?\\d+)", null)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
@@ -48,19 +45,16 @@ public class AnkaHaber {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-lg-\\d+ col-md-12\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div data-news-entry-article=\"true\"(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div(.*?)id=\"HaberTarihi\"(.*?)>", "</div>")
-                        .setStartEndMarker("<div", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div class=\"text-\\[12px\\] font-bold text-white\">","\\<"))
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h3(.*?)>", "</h3>")
-                        .setNth(0)
-                        .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<p id=\"HaberDetay\">", "</p>")
-                        .setStartEndMarker("<p", "</p>").setNth(0)
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p(.*?))>", "</(p|h2)>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "div class=\"leading-relaxed text-article-body whitespace-normal\">", "</div>")
+                        .setStartEndMarker("<div", "</div>").setNth(0)
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p(.*?))>", "</(p)>")
                                 .setRemoveTags(true)));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
@@ -68,7 +62,8 @@ public class AnkaHaber {
                 .setMainContent(true)
                 .setLookComplete(true).setDoDeleteStart(false)
                 .setThreadSize(1)
-                .setFunctionCall(sequenceScrollCall)
+                .setFunctionCall(new WebEmptyFunctionCall().setDoFirefox(false).initialize())
+                //.setFunctionCall(sequenceScrollCall)
                 .setDoFast(false)
                 .setSleepTime(1000L)
                 .setDomain(domain)

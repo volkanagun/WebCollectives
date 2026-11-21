@@ -9,6 +9,7 @@ public class LookupOptions implements Serializable {
 
     public static String EMPTYDOMAIN = "";
     public static String EMPTY = "";
+    public static String NULL = null;
 
     public static String URL = "URL";
     public static String CONTAINER = "CONTAINER";

@@ -9,21 +9,15 @@ public class HaberSitesi implements Serializable {
 
     public static WebFlow build() {
         int startIndice = 1;
-        int pageCount = 100;
+        int pageCount = 200;
+        long seedSize = 10000;
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", "https://www.habersitesi.com")
-                .addSeed("ekonomi","https://www.habersitesi.com/ekonomi-haberleri-14hk")
-                .addSeed("sports","https://www.habersitesi.com/spor-haberleri-13hk")
-                .addSeed("breaking","https://www.habersitesi.com/gundem-haberleri-12hk")
-                .addSeed("world","https://www.habersitesi.com/dunya-haberleri-15hk")
-                .addSeed("politics","https://www.habersitesi.com/politika-haberleri-17hk")
-                .addSeed("education","https://www.habersitesi.com/egitim-haberleri-16hk")
-                .addSeed("security","https://www.habersitesi.com/asayis-haberleri-87hk")
-                .addSeed("technology","https://www.habersitesi.com/teknoloji-haberleri-19hk")
-                .addSeed("health","https://www.habersitesi.com/saglik-haberleri-20hk")
-                .addSeed("arts","https://www.habersitesi.com/kultur-sanat-haberleri-22hk")
-                .addSeed("turkey","https://www.habersitesi.com/ulke-haberleri-85hk")
-                .addSeed("news","https://www.habersitesi.com/yerel-haberler-haberleri-18hk")
+                .addSeed("politics","https://www.habersitesi.com/politika-haberleri-2hk.htm")
+                .addSeed("economy","https://www.habersitesi.com/ekonomi-haberleri-3hk.htm")
+                .addSeed("world","https://www.habersitesi.com/dunya-haberleri-4hk.htm")
+                .addSeed("sports","https://www.habersitesi.com/spor-haberleri-6hk.htm")
+                .addSeed("tech","https://www.habersitesi.com/teknoloji-haberleri-11hk.htm")
                 .setNextPageStart(startIndice)
                 .setNextPageSize(pageCount)
                 .setWaitTimeAfter(100000L)
@@ -33,6 +27,7 @@ public class HaberSitesi implements Serializable {
                 .setDoDeleteStart(true)
                 .setNextPageSuffix("-p")
                 .setNextPageSize(pageCount)
+                .setSeedSizeLimit(seedSize)
                 .setNextPageSuffixAddition(".htm")
                 .setThreadSize(8);
 

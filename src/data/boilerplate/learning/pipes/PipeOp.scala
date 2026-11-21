@@ -131,9 +131,9 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
   def depthFirst(node:Node, nameRegex:String): Double = {
     if(node.childNodes().isEmpty) 0d
     else{
-      val count = node.childNodes().asScala.filter(subnode=> subnode.nodeName().matches(name)).length
-      val others = node.childNodes().asScala.filter(subnode=> !subnode.nodeName().matches(name))
-        .map(subnode=> depthFirst(subnode, name)).sum
+      val count = node.childNodes().asScala.filter(subnode=> subnode.nodeName().matches(nameRegex)).length
+      val others = node.childNodes().asScala.filter(subnode=> !subnode.nodeName().matches(nameRegex))
+        .map(subnode=> depthFirst(subnode, nameRegex)).sum
       count + others
     }
   }

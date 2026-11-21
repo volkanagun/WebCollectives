@@ -8,34 +8,26 @@ public class Euronews {
     public static WebFlow build() {
 
         String domain = "https://tr.euronews.com/";
-        int pageCount = 3;
-
-        WebFunctionCall closeCall = new WebButtonClickCall(1, "button#didomi-notice-agree-button")
-                .setDoFirefox(true)
-                .setDoStopOnError(true)
-                .setWaitTime(100);
-
+        int pageCount = 10;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "label.c-cta")
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setDoStopOnError(false)
                 .setWaitTime(1000);
 
-        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1,200).setWaitTime(1500)
-                .setDoFirefox(true);
+        WebFunctionCall scrollCall = new WebFunctionScrollHeight(1,200).setWaitTime(1500);
+                
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(500L)
                 .setTryOnError(2)
                 .initialize()
                 .setWaitTime(500);
 
-        WebFunctionCall sequenceClose = new WebFunctionSequence(1, closeCall)
-                .setDoFirefox(true)
-                .setWaitBetweenCalls(500L)
-                .setTryOnError(0)
+        WebFunctionCall sequenceClose = new WebEmptyFunctionCall()
+                .setDoFirefox(false)
                 .initialize()
-                .setWaitTime(500);
+                .setWaitTime(100);
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"h-grid b-listing__main\">", "</div>")
                 .setStartEndMarker("<div","</div>")
@@ -123,15 +115,15 @@ public class Euronews {
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));*/
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.TEXT, LookupOptions.CONTAINER, "<article class=\"helper-site-row o-article-newsy\">", "</article>")
-                .setStartEndMarker("<article", "</article>")
-
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"o-article-newsy__main\">", "</div>")
+                .setNth(0)
+                .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<(h1|h3) class=\"(.*?)\">","</(h1|h3)>")
                         .setNth(0))
                 .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.AUTHORLINK,"<div class=\"c-article-contributors(.*?)\">","</div>")
                         .setStartEndMarker("<div", "</div")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "<(a|b)(.*?)>","</(a|b)>").setRemoveTags(true)))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"c-article-content js-article-content\"(.*?)>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"h-grid o-article-newsy__main__body u-article-content\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")
                                 .setRemoveTags(true)));
@@ -141,6 +133,7 @@ public class Euronews {
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(false)
+                .setLinkPattern(".*?","https://tr.euronews.com/video(.*?)")
                 .setThreadSize(1)
                 .setDoFast(false)
                 .setSleepTime(2000L)

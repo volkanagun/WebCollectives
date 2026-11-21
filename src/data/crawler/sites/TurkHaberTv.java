@@ -6,31 +6,31 @@ public class TurkHaberTv {
     public static WebFlow build() {
 
         String domain = "https://www.turkhabertv.com/";
-        int count = 500;
+        int count = 100;
 
-        WebFunctionCall clickCall = new WebButtonClickControl(1, "a.categoryLoadMore")
+        /*WebFunctionCall clickCall = new WebButtonClickControl(1, "a.categoryLoadMore")
                 .setDoStopOnError(false)
-                .setWaitTime(500);
+                .setWaitTime(500);*/
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1)
-                .setWaitTime(500)
+                .setWaitTime(1500)
                 .setDoStopOnError(false);
-        WebFunctionCall sequenceCall = new WebFunctionSequence(count,  scrollCall, clickCall)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(count,  scrollCall)
                 .setTryOnError(10)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(1000L)
                 .initialize()
                 .setWaitTime(500);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"left\">", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"grid-list-container post-detail-page sb-kat-kartlar\" id=\"post-list\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
-                .addSeed("economy", "https://www.turkhabertv.com/ekonomi/")
-                .addSeed("sports", "https://www.turkhabertv.com/spor/")
-                .addSeed("world", "https://www.turkhabertv.com/dunya/")
-                .addSeed("news", "https://www.turkhabertv.com/gundem/")
+                .addSeed("economy", "https://www.turkhabertv.com/category/ekonomi/")
+                .addSeed("sports", "https://www.turkhabertv.com/category/spor/")
+                .addSeed("world", "https://www.turkhabertv.com/category/dunya/")
+                .addSeed("news", "https://www.turkhabertv.com/category/gundem/")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
                 .setFunctionCall(sequenceCall)
@@ -38,18 +38,15 @@ public class TurkHaberTv {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"haberSingle\">", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"news-detail-inner\">", "</div>")
                 .setStartEndMarker("<div","</div>")
                 .setNth(0)
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "turkhabertv")
-                        .setNth(0)
-                        .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"detail\"(.*?)>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"news-detail-content(.*?)\">", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")));
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<p(.*?)>", "</p>")));
 
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)

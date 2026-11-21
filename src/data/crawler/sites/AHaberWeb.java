@@ -10,27 +10,30 @@ public class AHaberWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "https://ahaber.com.tr";
-        int pageCount = 10;
+        int pageCount = 5;
 
-        WebFunctionCall clickAdvertisementCall = new WebButtonClickCall(1, "div.gravityMasterSkip").setDoFirefox(true)
-                .setWaitTime(1000);
+        WebFunctionCall clickAdvertisementCall = new WebButtonClickCall(1, "div#gravityMasterSkip")
+                .setDoFirefox(false)
+                .setWaitTime(100);
 
-        WebFunctionCall clickCall = new WebButtonClickCall(1, "div.id_d_po_close").setDoFirefox(true)
-                .setWaitTime(1000);
+        WebFunctionCall clickCall = new WebButtonClickCall(1, "div#id_d_po_close")
+                .setDoFirefox(false)
+                .setWaitTime(200);
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 1500)
-                .setWaitTime(1000);
+                .setDoFirefox(false)
+                .setWaitTime(200);
 
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall)
-                .setWaitBetweenCalls(2000L).setDoFirefox(true)
+/*        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, clickAdvertisementCall, clickCall)
+                .setWaitBetweenCalls(2000L)
+                .initialize();*/
+
+        WebFunctionCall mainCall = new WebFunctionSequence(pageCount, scrollCall, clickAdvertisementCall, clickCall)
+                .setWaitBetweenCalls(100L).setDoFirefox(false)
                 .initialize();
 
-        WebFunctionCall mainCall = new WebFunctionSequence(1,/*clickAdvertisementCall, clickCall, */sequenceCall)
-                .setWaitBetweenCalls(2000L).setDoFirefox(true)
-                .initialize();
-
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"news-card(.*?)\">", "</div>")
-                .setStartEndMarker("<div", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<article class=\"tmd-newsCard(.*?)\">", "</article>")
+                .setStartEndMarker("<article", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
@@ -46,7 +49,7 @@ public class AHaberWeb implements Serializable {
                 .addSeed("auto", "https://www.ahaber.com.tr/otomobil")
                 .setDoFast(false)
                 .setDoDeleteStart(true)
-                .setSleepTime(3500L)
+                .setSleepTime(500L)
                 .setFunctionCall(mainCall)
                 .setThreadSize(1)
                 .setDomain(domain)
@@ -62,7 +65,7 @@ public class AHaberWeb implements Serializable {
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time(.*?)>","</time>").setNth(0)
                                 .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.AUTHOR, "AHABER"))
-                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLETEXT, "<div(.*?)class=\"(.*?)article-detail-content-body(.*?)\"(.*?)>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLETEXT, "<div class=\"cntTp-pages tmd-articleDetailContent__body\"(.*?)>", "</div>")
                         .setStartEndMarker("<div", "</div>")/*.setNth(0)*/
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")
                                 .setRemoveTags(true)));

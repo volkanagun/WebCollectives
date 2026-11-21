@@ -8,6 +8,7 @@ import java.util.List;
 public class WebFunctionSequence extends WebFunctionCall {
     private final List<WebFunctionCall> webFunctionCallList;
     private Long waitBetweenCalls = 1500L;
+    private boolean doRepetitiveInit = false;
 
     private Integer count = 1;
     private Integer tryOnError = 3;
@@ -15,6 +16,15 @@ public class WebFunctionSequence extends WebFunctionCall {
     public WebFunctionSequence(Integer count, WebFunctionCall... webFunctionCalls) {
         this(webFunctionCalls);
         this.count = count;
+    }
+
+    public boolean isDoRepetitiveInit() {
+        return doRepetitiveInit;
+    }
+
+    public WebFunctionSequence setDoRepetitiveInit(boolean doRepetitiveInit) {
+        this.doRepetitiveInit = doRepetitiveInit;
+        return this;
     }
 
     @Override
@@ -50,9 +60,18 @@ public class WebFunctionSequence extends WebFunctionCall {
         String htmlSource = null;
         int i = 0;
         int tryCount = 0;
+
+/*        if (doRepetitiveInit) {
+            destroy();
+            initialize();
+        }*/
+
+
         while(i < count) {
 
             isError = false;
+
+
 
             for (WebFunctionCall functionCall : webFunctionCallList) {
                 waitForNext();
@@ -98,6 +117,12 @@ public class WebFunctionSequence extends WebFunctionCall {
     @Override
     public String returnHTML(String url) {
         try {
+
+            if(doRepetitiveInit){
+                destroy();
+                initialize();
+            }
+
             if(chromeDriver != null) {
                 chromeDriver.getSessionId();
                 chromeDriver.get(url);

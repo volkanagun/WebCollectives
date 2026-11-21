@@ -2,7 +2,7 @@ package data.boilerplate.learning
 
 import java.io.File
 import data.boilerplate.learning.features.{CSSAttributeOp, TagNameOp, TextDensityOp, TokenCountOp, TokenHTMLDensityOp}
-import data.boilerplate.learning.pipes.PipeOp
+import data.boilerplate.learning.pipes.{PipeOp, PipeResult}
 import data.boilerplate.structure.WebInstanceIO
 import org.deeplearning4j.nn.conf.{ComputationGraphConfiguration, NeuralNetConfiguration, layers}
 import org.deeplearning4j.nn.conf.layers.recurrent.Bidirectional
@@ -16,69 +16,17 @@ import org.nd4j.linalg.dataset.api.iterator.MultiDataSetIterator
 import org.nd4j.linalg.learning.config.{AdaGrad, Adam}
 import org.nd4j.linalg.lossfunctions.LossFunctions
 
-object LearningModel extends Serializable {
+object ExtractionModel extends Serializable {
 
   val featureModel = FeatureParams.buildPipeOp()
-  val iterator: MultiDataSetIterator = new WebInstanceIO(DirectoryParams.htmlFolder, Array[String](DirectoryParams.blogsTRFolder), Array[String]())
-    .iterator(featureModel)
+  val model = new WebInstanceIO(DirectoryParams.htmlFolder, Array[String](DirectoryParams.articleTRFolder), Array[String]())
 
-  def loadGraph(): ComputationGraph = {
-    val modelFilename = UniqueParams.modelFilename()
-    println(s"Loading graph model from ${modelFilename}")
-    if (new File(modelFilename).exists())
-      ModelSerializer.restoreComputationGraph(new File(modelFilename))
-    else null
-  }
-
-  def saveGraph(model: ComputationGraph): this.type = {
-    val modelFilename = UniqueParams.modelFilename()
-    val modelFile = new File(modelFilename)
-    println(s"Saving graph model to ${modelFilename}")
-    modelFile.getParentFile.mkdirs()
-    modelFile.delete()
-    ModelSerializer.writeModel(model, new File(modelFilename), true)
-    this
-  }
-
-  def loadGraphModel(typ:String)={
-    val modelGraph = loadGraph()
-    if (modelGraph == null) {
-      val modelGraphConf = computationalModel(typ)
-      modelGraphConf.setEpochCount(LearningParams.epocs)
-
-      val c = new ComputationGraph(modelGraphConf)
-      c.init()
-
-      c
-    }
-    else {
-      modelGraph
-    }
-  }
-
-  def computationalModel(typex:String):ComputationGraphConfiguration={
-    val conf = new NeuralNetConfiguration.Builder().seed(12345)
-      .l2(0.001) //l2 regularization on all layers
-      .updater(new Adam.Builder().learningRate(0.004).build())
-      .graphBuilder()
-      .addInputs("input")
-      .layer("0", new Bidirectional(Bidirectional.Mode.AVERAGE, new LSTM.Builder().name("lstm").weightInit(WeightInit.XAVIER).nIn(LearningParams.vocabSize)
-        .nOut(LearningParams.hiddenSize).activation(Activation.TANH).build()), "input")
-      .layer("1", new RnnOutputLayer.Builder(LossFunctions.LossFunction.MCXENT).nIn(LearningParams.hiddenSize).nOut(LearningParams.labelSize)
-        .activation(Activation.SOFTMAX).build(), "0")
-      .setOutputs("1")
-
-    conf.build()
-  }
 
   def train(): Unit ={
-    val learningModel = loadGraphModel("")
-    learningModel.addListeners(new PerformanceListener(1, true))
+
     for(epoci <- 1 to LearningParams.epocs) {
       println(s"Epoc: ${epoci}")
-      learningModel.fit(iterator)
-      saveGraph(learningModel)
-      iterator.reset()
+      model.fit()
     }
   }
 

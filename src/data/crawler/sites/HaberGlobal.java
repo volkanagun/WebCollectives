@@ -10,8 +10,8 @@ public class HaberGlobal {
 
     public static WebFlow build() {
         String domain = "https://haberglobal.com";
-        int size = 5000;
-        long seedLimit = 100;
+        int size = 2000;
+        long seedLimit = 2000000;
         int start = 1;
                                                       //Type of pattern  //XML tag in the result           //start regex               //end regex
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"post-item-row\">", "</div>")

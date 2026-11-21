@@ -7,7 +7,7 @@ public class WebTekno {
     public static WebFlow build() {
 
         String domain = "https://www.webtekno.com/";
-        Integer pageCount = 5000;
+        Integer pageCount = 20;
         long seedLimit = 100;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.ARTICLELINKCONTAINER, LookupOptions.ARTICLELINKCONTAINER, "<h3(.*?)>", "</h3>")
@@ -16,6 +16,11 @@ public class WebTekno {
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("technology", "https://www.webtekno.com/")
+                .addSeed("hardware", "https://www.webtekno.com/donanim")
+                .addSeed("software", "https://www.webtekno.com/uygulama-yazilim")
+                .addSeed("game", "https://www.webtekno.com/oyun")
+                .addSeed("product", "https://www.webtekno.com/urun")
+                .addSeed("movies", "https://www.webtekno.com/sinema")
                 .setDoFast(true)
                 .setSleepTime(500L)
                 .setDoDeleteStart(true)

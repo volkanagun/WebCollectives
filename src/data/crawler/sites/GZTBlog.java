@@ -6,17 +6,17 @@ public class GZTBlog {
 
     public static WebFlow build() {
 
-        int pageCount = 2;
+        int pageCount = 1;
         String domain = "https://www.gzt.com";
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1, 40)
                 .setWaitTime(1000);
 
-        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall).setDoFirefox(true)
+        WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall).setDoFirefox(false)
                 .setWaitBetweenCalls(1000L)
                 .initialize();
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"main-content\">", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.SKIP, LookupOptions.ARTICLELINKCONTAINER, "<div class=\"feed-card-content\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"").setRemoveTags(true));
 
@@ -45,7 +45,7 @@ public class GZTBlog {
                 .addSeed("sports", "https://www.gzt.com/spor")
                 .addSeed("architecture", "https://www.gzt.com/mimari")
                 .addSeed("technology", "https://www.gzt.com/teknoloji")
-                .addSeed("culture", "https://www.gzt.com/eglence")                
+                .addSeed("culture", "https://www.gzt.com/eglence")
                 .setDoFast(true)
                 .setDoDeleteStart(true)
                 .setSleepTime(1000L)
@@ -54,18 +54,18 @@ public class GZTBlog {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<article>", "</article>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, "<div class=\"detail-layout\" data-pr-detail-page>", "</div>")
+                .setStartEndMarker("<div", "</div>")
                 .setNth(0)
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRequiredNotEmpty(true)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<div(.*?)class=\"(.*?)_date_ytfi6_147(.*?)\">", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span class=\"detail-head-text\">", "</span>")
                         .setNth(0)
-                        .setStartEndMarker("<div","</div")
                         .setRequiredNotEmpty(false)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLETEXT, "<div class=\"detailContentSpacing\">","</div>")
+                .addPattern(new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLETEXT, "<div class=\"node-renderer detail-node-renderer\">","</div>")
                         .setStartEndMarker("<div","</div>")
                         .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2)(.*?)>", "</(p|h2)>")
                                 .setRemoveTags(true)));

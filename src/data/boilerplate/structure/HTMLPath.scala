@@ -10,6 +10,8 @@ case class HTMLPath(var pathNodes : Array[HTMLNode]) extends Serializable{
   def id():Int={
     pathNodes.foldRight[Int](7){case(node, main) => node.nameID() + 7 * main}
   }
+  
+  def depth() = pathNodes.length
 
   def build():this.type = {
     pathNodes.foreach(node=> node.build())

@@ -160,4 +160,14 @@ class HTMLNode(var id:Int, var node:Node) extends Serializable{
   def visit():Array[HTMLPath]={
     visit(this)
   }
+
+  def all():Array[HTMLPath] = {
+    val allPaths = visit()
+    val parents = allPaths.flatMap(path=> {
+      Range(1, path.depth())
+        .map(size=> path.pathNodes.take(size))
+    }).map(item=> HTMLPath(item)).distinctBy(_.id())
+
+    parents
+  }
 }

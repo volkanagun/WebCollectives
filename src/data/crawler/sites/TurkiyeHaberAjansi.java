@@ -7,7 +7,7 @@ public class TurkiyeHaberAjansi {
     public static WebFlow build() {
 
         String domain = "https://www.turkiyehaberajansi.com/";
-        int pageCount = 5000;
+        int pageCount = 50;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "a.get_ajax_data")
                 .setDoStopOnError(false)
@@ -15,7 +15,7 @@ public class TurkiyeHaberAjansi {
 
         WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setWaitTime(50);
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, scrollCall, functionCall)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(100L)
                 .initialize()
                 .setWaitTime(100);

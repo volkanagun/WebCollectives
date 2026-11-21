@@ -17,11 +17,11 @@ public class HalkTVWeb implements Serializable {
     public static WebFlow build() {
 
         String domain = "http://halktv.com.tr";
-        int pageCount = 2000;
+        int pageCount = 100;
         int pageStart = 1;
-        long seedSizeLimit = 500;
+        long seedSizeLimit = 100000;
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"post-item ia\">", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-span-6 sm:col-span-3 md:col-span-2\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\""));
 
@@ -47,15 +47,15 @@ public class HalkTVWeb implements Serializable {
                 .setDomain(domain)
                 .setMainPattern(linkPattern);
 
-        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"col-12 col-lg-8 article-detail(.*?)\">", "</div>")
-                .setStartEndMarker("<div", "</div>")
+        LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<article(.*?)>", "</article>")
+                .setStartEndMarker("<article", "</article>")
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<time datetime=\"", "\">")
                         .setNth(0)
                         .setRemoveTags(true))
                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"article-content\"(.*?)>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"content-text\">", "</div>")
                         .setStartEndMarker("<div","</div")
                         .setNth(0)
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")

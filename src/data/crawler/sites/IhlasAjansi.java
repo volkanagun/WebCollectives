@@ -1,9 +1,6 @@
 package data.crawler.sites;
 
-import data.crawler.web.LookupOptions;
-import data.crawler.web.LookupPattern;
-import data.crawler.web.WebFlow;
-import data.crawler.web.WebTemplate;
+import data.crawler.web.*;
 
 public class IhlasAjansi {
 
@@ -11,8 +8,11 @@ public class IhlasAjansi {
     public static WebFlow build() {
 
         String domain = "https://www.iha.com.tr";
-        int start = 0, size = 2000;
-        long seedSize = 100;
+        int start = 1, size = 5;
+        long seedSize = 100000;
+        WebFunctionCall click = new WebActionClickCall(1, "a.inline-flex").setWaitTime(1000);
+        //WebFunctionCall scrollCall = new WebFunctionScrollHeight(1).setMinusHeight(0).setWaitTime(500);
+        WebFunctionCall sequence = new WebFunctionSequence(size, click).setDoRepetitiveInit(true).setDoFirefox(false).setWaitTime(300).initialize();
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container mx-auto\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
@@ -32,15 +32,13 @@ public class IhlasAjansi {
                 .addSeed("environment", "https://www.iha.com.tr/cevre")
                 .addSeed("tv-shows", "https://www.iha.com.tr/magazin")
                 .setLinkPattern("(.*?)\\d+",null)
-                .setDoFast(true)
+                .setDoFast(false)
                 .setDoDeleteStart(true)
+                .setFunctionCall(sequence)
+
                 .setSleepTime(1L)
                 .setThreadSize(1)
                 .setDomain(domain)
-                .setNextPageSuffix("?p=")
-                .setNextPageStart(start)
-                .setNextPageSize(size)
-                .setSeedSizeLimit(seedSize)
                 .setMainPattern(linkPattern);
 
         LookupPattern articleLookup = new LookupPattern(LookupOptions.ARTICLE, LookupOptions.CONTAINER, "<div class=\"column__left\">", "</div>")
@@ -63,7 +61,7 @@ public class IhlasAjansi {
                 .setThreadSize(1)
                 .setDoFast(false)
                 .setSleepTime(1000L)
-                .setDomain(domain)
+                .setDomain(domain).setFunctionCall(new WebEmptyFunctionCall(true).setDoFirefox(false).initialize())
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(true);

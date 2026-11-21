@@ -5,7 +5,7 @@ import data.crawler.web.*;
 public class CGTNTurk {
     public static WebFlow build() {
         String domain = "https://www.cgtnturk.com";
-        int pageCount = 10;
+        int pageCount = 100;
 
         WebFunctionCall functionCall = new WebButtonClickCall(1, "a.btn-more")
                 .setDoStopOnError(false)
@@ -14,12 +14,12 @@ public class CGTNTurk {
         WebFunctionCall scrollCall = new WebFunctionScroll(1, "a.btn-more");
         //WebFunctionCall scrollHeightCall = new WebFunctionScrollHeight(1, 5);
         WebFunctionCall sequenceCall = new WebFunctionSequence(1, scrollCall, functionCall)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitTime(1500);
 
         WebFunctionCall aggregateCall = new WebFunctionAggregate(sequenceCall, pageCount)
                 .setWaitBetweenCalls(500L)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .initialize()
                 .setDoStopOnError(true);
 

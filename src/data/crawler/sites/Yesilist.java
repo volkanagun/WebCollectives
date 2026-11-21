@@ -13,7 +13,7 @@ public class Yesilist {
                 .setWaitTime(1000);
 
         WebFunctionCall sequenceCall = new WebFunctionAggregate(clickCall,pageCount)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(1000L)
                 .setDoStopOnError(false)
                 .initialize()

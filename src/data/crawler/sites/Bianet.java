@@ -8,15 +8,15 @@ import data.crawler.web.WebTemplate;
 public class Bianet {
     public static WebFlow build() {
         String domain = "https://bianet.org";
-        int pageCount = 1000;
-        long limitSize = 100;
-        int pageStart = 1;
+        int pageCount = 20;
+        long limitSize = 5000;
+        int pageStart = 0;
 
         LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"col-12 col-lg-8\">", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER,"<div class=\"col-12 col-sm-6\">","</div>")
                         .setStartEndMarker("<div","</div")
-                        .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=", "\\s")));
+                        .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a(.*?)href=\"", "\"")));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("news", "https://bianet.org/haberler")
@@ -37,13 +37,13 @@ public class Bianet {
                         .setNth(0)
                         .setRemoveTags(true)
                         .setRequiredNotEmpty(false))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span class=value-desktop>", "</span>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<span class=\"value-desktop\">", "</span>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=headline(.*?)>", "</h1>")
+                .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1 class=\"headline(.*?)\">", "</h1>")
                         .setNth(0)
                         .setRemoveTags(true))
-                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=content-wrapper>", "</div>")
+                .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLETEXT, "<div class=\"content-wrapper\">", "</div>")
                         .setStartEndMarker("<div", "</div>").setNth(0)
                         .addPattern(new LookupPattern(LookupOptions.ARTICLE, LookupOptions.ARTICLEPARAGRAPH, "<(p|h2(.*?))>", "</(p|h2)>")));
 

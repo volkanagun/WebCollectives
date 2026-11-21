@@ -3,7 +3,7 @@ package data.boilerplate.learning.features
 import data.boilerplate.learning.pipes.{IntermediateResult, PatternOp}
 import data.boilerplate.structure.{HTMLNode, HTMLPath}
 
-case class NextHasTagOp(strname:String, val tagNameRegex:String) extends PatternOp(Array(), "next-has-"+strname) {
+case class NextHasTagOp(val tagNameRegex:String) extends PatternOp(Array(), "next-has-"+tagNameRegex) {
 
   override def execute(leaf: HTMLNode): IntermediateResult = {
     val crrName = leaf.node.nodeName()

@@ -6,27 +6,28 @@ public class T24Haber {
     public static WebFlow build() {
 
         String domain = "https://t24.com.tr";
-        int pageCount = 1;
+        int pageCount = 5;
 
-        WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(500);
+        WebFunctionCall scrollCall1 = new WebFunctionScrollHeight(1, 2500).setWaitTime(1500);
+        //WebFunctionCall scrollCall2 = new WebFunctionScrollHeight(1, 2500).setWaitTime(1500);
         WebButtonClickCall clickcall = new WebButtonClickCall(1, "div.adh-close-1000073");
         WebFunctionCall sequenceCall = new WebFunctionSequence(pageCount, clickcall, scrollCall1)
-                .setDoFirefox(true)
+                .setDoFirefox(false)
                 .setWaitBetweenCalls(5000L)
                 .initialize()
-                .setWaitTime(100);
+                .setWaitTime(1000);
 
-        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"container\"", "</div>")
+        LookupPattern linkPattern = new LookupPattern(LookupOptions.URL, LookupOptions.MAINPAGE, "<div class=\"gencards fade-in-item\"(.*?)>", "</div>")
                 .setStartEndMarker("<div", "</div>")
                 .addPattern(new LookupPattern(LookupOptions.URL, LookupOptions.ARTICLELINK, "<a href=\"", "\""));
 
         WebTemplate linkTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-links", domain)
                 .addSeed("news", "https://t24.com.tr/politika/")
-                /*.addSeed("news", "https://t24.com.tr/gundem/")
+                .addSeed("news", "https://t24.com.tr/gundem/")
                 .addSeed("sports", "https://t24.com.tr/spor/")
                 .addSeed("economy", "https://t24.com.tr/ekonomi/")
                 .addSeed("world", "https://t24.com.tr/dunya/")
-                .addSeed("culture", "https://t24.com.tr/kultur-sanat/")*/
+                .addSeed("culture", "https://t24.com.tr/kultur-sanat/")
                 .setFunctionCall(sequenceCall)
                 .setDoFast(false)
                 .setDoDeleteStart(true)
@@ -37,20 +38,21 @@ public class T24Haber {
 
         LookupPattern articleLookup =
                 new LookupPattern(LookupOptions.CONTAINER, LookupOptions.ARTICLE, LookupOptions.EMPTY)
-                        .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"col-md-8 col-xs-12\">", "</div>")
+                        .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<section class=\"haberdetay\">", "</div>")
                                 .setStartEndMarker("<div", "</div>")
                                 .setNth(0)
                                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLETITLE, "<h1(.*?)>", "</h1>")
                                         .setNth(0)))
-                        .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"_392lz\">", "</div>")
+                        .addPattern(new LookupPattern(LookupOptions.SKIP, LookupOptions.CONTAINER, "<div class=\"mobil-haber-detay-card-content-published-date\">", "</div>")
                                 .setStartEndMarker("<div", "</div>")
                                 .setNth(0)
                                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.DATE, "<p>", "</p>").setNth(0)))
-                        .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"_392lz\"(.*?)>", "</div>")
+                        .addPattern(new LookupPattern(LookupOptions.ARTICLEDOC, LookupOptions.CONTAINER, "<div class=\"story-content mb-5\" property=\"articleBody\" id=\"story-content-wrapper\">", "</div>")
                                 .setStartEndMarker("<div", "</div>")
                                 .addPattern(new LookupPattern(LookupOptions.TEXT, LookupOptions.ARTICLEPARAGRAPH, "<p>", "</p>")
                                         .setRemoveTags(true)));
 
+        WebFunctionCall callDownload = new WebEmptyFunctionCall().setDoFirefox(false).initialize();
         WebTemplate articleTemplate = new WebTemplate(LookupOptions.TURKISHARTICLEDIRECTORY, "article-text", domain)
                 .setType(LookupOptions.ARTICLEDOC)
                 .setLookComplete(false)
@@ -58,7 +60,7 @@ public class T24Haber {
                 .setDoFast(false)
                 .setSleepTime(2000L)
                 .setDomain(domain)
-                .setFunctionCall(scrollCall1.initialize())
+                .setFunctionCall(callDownload)
                 .setHtmlSaveFolder(LookupOptions.HTMLDIRECTORY)
                 .setMainPattern(articleLookup)
                 .setForceWrite(false);
