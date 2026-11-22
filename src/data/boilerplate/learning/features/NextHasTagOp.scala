@@ -11,7 +11,7 @@ case class NextHasTagOp(val tagNameRegex:String) extends PatternOp(Array(), "nex
     val ndo = leaf
 
     if (leaf.hasNext()) {
-      val nextcheck = leaf.next.node.nodeName().matches(tagNameRegex)
+      val nextcheck = leaf.getPreviousSiblings().exists(node => node.tagName().matches(tagNameRegex))
       val nextHas = leaf.next.childnodes.exists(subnode => subnode.node.nodeName().matches(tagNameRegex))
       if (nextcheck || nextHas) {
         IntermediateResult(ndo, Map(name -> 1d))

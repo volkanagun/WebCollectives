@@ -8,73 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Latest modifications and new sites">
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/AvgTokenLengthOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/CombineOrGateOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityAboveOp.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/sites/WannartBlog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/crawler/web/WebActionClickCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebCollectives.iml" beforeDir="false" afterPath="$PROJECT_DIR$/WebCollectives.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/LearningModel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/ExtractionModel.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/ChildTagCountOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/ChildTagCountOp.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/NextHasTagOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/NextHasTagOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenCountOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TokenCountOp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PreviousHasTagOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PreviousHasTagOp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TagNameByPattern.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TagExistsByPattern.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityAboveOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityAboveOp.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Node.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Node.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLPath.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLPath.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/XMLExtractor.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AHaberWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnadoluAjansi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/AnkaHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/AnkaHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Arkeofili.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Arkeofili.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BBCTurkish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BBCTurkish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Balkangunlugu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Balkangunlugu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Bianet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Bianet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/BilgiUstam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/BilgiUstam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CGTNTurk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CGTNTurk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CNNTurkWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/CumhuriyetAuto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/DWNews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/DWNews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Euronews.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Euronews.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Fizikist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Fizikist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GZTBlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GZTBlog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/GazeteOku.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Gizmodo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Haber7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Haber7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HaberGlobal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HaberGlobal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HaberSitesi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HaberSitesi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HalkTVWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HalkTVWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/HurriyetWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/IhlasAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/IhlasAjansi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/InternetHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/M5Dergi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/M5Dergi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/MasalOkuOrg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/MasalOkuOrg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NTV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/NationalTurk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/NationalTurk.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/PopularScience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/PopularScience.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SavunmaSanayist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SavunmaSanayist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/ShiftDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/ShiftDelete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/SozcuWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/SozcuWeb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/T24Haber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/T24Haber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRMashable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TRTHaber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TRTHaber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TurkHaberTv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TurkHaberTv.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/TurkiyeHaberAjansi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/TurkiyeHaberAjansi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/WebTekno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/WebTekno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Webrazzi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/sites/Yesilist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/sites/Yesilist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/LookupPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebButtonClickCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebEmptyFunctionCall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebEmptyFunctionCall.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebFunctionSequence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/crawler/web/WebTemplate.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,60 +70,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000002148977" />
-      <entry key="S2" value="1.007389492065285" />
-      <entry key="S5" value="1.3679679332175003" />
-      <entry key="S10" value="2.618733163835201" />
-      <entry key="S30" value="6.693968516937917" />
-      <entry key="S60" value="11.801117237247988" />
-      <entry key="M2" value="21.441290135849904" />
-      <entry key="M5" value="42.2834969441632" />
-      <entry key="M10" value="57.835985723155915" />
-      <entry key="M15" value="64.89072651964027" />
-      <entry key="M30" value="73.19673368263294" />
-      <entry key="H1" value="78.21256881445461" />
-      <entry key="H2" value="86.63384523578348" />
-      <entry key="H4" value="112.41618591333844" />
-      <entry key="D1" value="250.58577840027934" />
-      <entry key="W1" value="388.1505268362086" />
+      <entry key="MS500" value="1.00018765048712" />
+      <entry key="S2" value="1.203165905037275" />
+      <entry key="S5" value="2.1446705132220583" />
+      <entry key="S10" value="3.2941447784132207" />
+      <entry key="S30" value="4.848242722826976" />
+      <entry key="S60" value="5.970653631254663" />
+      <entry key="M2" value="8.733503539178614" />
+      <entry key="M5" value="15.272582171344514" />
+      <entry key="M10" value="20.55954455798222" />
+      <entry key="M15" value="23.094285067116513" />
+      <entry key="M30" value="26.1914181586213" />
+      <entry key="H1" value="28.578314243743613" />
+      <entry key="H2" value="45.34238960993916" />
+      <entry key="H4" value="131.3308040793938" />
+      <entry key="D1" value="639.0542831146615" />
+      <entry key="W1" value="988.7989507494843" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="5.516017872791688E-33" />
-      <entry key="MS500" value="3.569721993051409E-7" />
-      <entry key="S2" value="0.03274067297144421" />
-      <entry key="S5" value="0.4225025500377836" />
-      <entry key="S10" value="1.0984015982912854" />
-      <entry key="S30" value="2.751862414314493" />
-      <entry key="S60" value="4.831836277445538" />
-      <entry key="M2" value="8.193289661444425" />
-      <entry key="M5" value="14.111579688754196" />
-      <entry key="M10" value="18.047600485067022" />
-      <entry key="M15" value="19.75840161297105" />
-      <entry key="M30" value="21.728447656323027" />
-      <entry key="H1" value="23.093303348492093" />
-      <entry key="H2" value="28.237824473072365" />
-      <entry key="H4" value="45.52206846119085" />
-      <entry key="D1" value="130.1609389797404" />
-      <entry key="W1" value="249.60690666929366" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="7.766438330018082E-131" />
+      <entry key="S2" value="3.5149594432995826E-33" />
+      <entry key="S5" value="1.8283255346193362E-13" />
+      <entry key="S10" value="8.591655889932265E-7" />
+      <entry key="S30" value="0.029694681737698167" />
+      <entry key="S60" value="0.45366069406299697" />
+      <entry key="M2" value="1.9136720208938613" />
+      <entry key="M5" value="5.15798575975139" />
+      <entry key="M10" value="7.652089009497024" />
+      <entry key="M15" value="8.828800474490121" />
+      <entry key="M30" value="10.256091422216446" />
+      <entry key="H1" value="11.359757952817557" />
+      <entry key="H2" value="19.470545323334367" />
+      <entry key="H4" value="61.45247834580355" />
+      <entry key="D1" value="318.5149668408335" />
+      <entry key="W1" value="542.3014098028817" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.0915053559966016" />
-      <entry key="MS500" value="0.6198539443907795" />
-      <entry key="S2" value="0.9167048705722108" />
-      <entry key="S5" value="1.6545306877267267" />
-      <entry key="S10" value="3.5400539909876585" />
-      <entry key="S30" value="9.27727394252172" />
-      <entry key="S60" value="16.47610928108977" />
-      <entry key="M2" value="29.48212973793343" />
-      <entry key="M5" value="56.25700264157266" />
-      <entry key="M10" value="75.78201066540812" />
-      <entry key="M15" value="84.5710928607681" />
-      <entry key="M30" value="94.87993425904105" />
-      <entry key="H1" value="101.2812739667812" />
-      <entry key="H2" value="114.85732704061259" />
-      <entry key="H4" value="157.92799454372" />
-      <entry key="D1" value="380.74254934421816" />
-      <entry key="W1" value="637.7563879668786" />
+      <entry key="MS100" value="0.03396046445393932" />
+      <entry key="MS500" value="0.5085609422370051" />
+      <entry key="S2" value="1.034762176497479" />
+      <entry key="S5" value="1.9953825105840255" />
+      <entry key="S10" value="3.1280790709822455" />
+      <entry key="S30" value="4.765460862261329" />
+      <entry key="S60" value="6.345572342432465" />
+      <entry key="M2" value="10.582599930346836" />
+      <entry key="M5" value="20.383301578909624" />
+      <entry key="M10" value="28.180061180196148" />
+      <entry key="M15" value="31.899593991031804" />
+      <entry key="M30" value="36.4343010712594" />
+      <entry key="H1" value="39.93083748818075" />
+      <entry key="H2" value="64.80628936694556" />
+      <entry key="H4" value="192.77194019467797" />
+      <entry key="D1" value="957.5591998632556" />
+      <entry key="W1" value="1531.0979926289222" />
     </decayedShown>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -680,17 +623,45 @@
           <option name="timeStamp" value="291" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala</url>
-          <line>103</line>
-          <option name="timeStamp" value="315" />
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
+          <line>59</line>
+          <option name="timeStamp" value="317" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala</url>
+          <line>83</line>
+          <option name="timeStamp" value="358" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityAboveOp.scala</url>
+          <line>12</line>
+          <option name="timeStamp" value="367" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/Node.scala</url>
+          <line>45</line>
+          <option name="timeStamp" value="376" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
-          <line>44</line>
-          <option name="timeStamp" value="317" />
+          <line>52</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="379" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="data.boilerplate.learning.graph.Node" memberName="map" />
+      </pinned-members>
+    </pin-to-top-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="new_nodes.flatMap(node=&gt; node.map.map((k, v)=&gt; v.map(n=&gt; n.stats)))" language="Scala" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand>

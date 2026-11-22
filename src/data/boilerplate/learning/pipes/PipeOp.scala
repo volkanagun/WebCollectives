@@ -16,6 +16,14 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
   def this() = {
     this(Array(), "ROOT")
   }
+  
+  def this(name:String) = {
+    this(Array(), name)
+  }
+  
+  def id():Int = {
+    subpipes.foldRight(name.hashCode){(item, main)=> item.id() + 7 * main}
+  }
 
   def canApply(htmlNode: HTMLNode): Boolean = {
     true
@@ -189,6 +197,10 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
 object PipeOp extends PipeOp() {
   def apply(): PipeOp = {
     new PipeOp()
+  }
+  
+  def apply(name:String): PipeOp = {
+    new PipeOp(name)
   }
 
   override def sum(items: PipeOp): PipeOp = {

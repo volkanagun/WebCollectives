@@ -107,6 +107,16 @@ class HTMLNode(var id:Int, var node:Node) extends Serializable{
   def getChildNodes():Array[HTMLNode]={
     childnodes
   }
+  def getAllChildNodes():Array[HTMLNode]={
+    childnodes ++ childnodes.flatMap(child=> child.getAllChildNodes())
+  }
+  
+  def getNextSiblings():Array[HTMLNode]={
+    parent.childnodes.reverse.takeWhile(node=> node.id!=id)
+  }
+  def getPreviousSiblings():Array[HTMLNode]={
+    parent.childnodes.takeWhile(node=> node.id!=id)
+  }
 
   def tagName():String={
     node.nodeName()
@@ -160,6 +170,8 @@ class HTMLNode(var id:Int, var node:Node) extends Serializable{
   def visit():Array[HTMLPath]={
     visit(this)
   }
+  
+  
 
   def all():Array[HTMLPath] = {
     val allPaths = visit()

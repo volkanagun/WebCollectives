@@ -1,7 +1,7 @@
 package data.boilerplate.learning.graph
 
 import data.boilerplate.learning.pipes.{IntermediateResult, PipeOp}
-import data.boilerplate.structure.HTMLPath
+import data.boilerplate.structure.{HTMLNode, HTMLPath}
 
 import scala.collection.parallel.CollectionConverters.ArrayIsParallelizable
 
@@ -13,9 +13,15 @@ case class Processes(val label: String, val model: PipeOp) {
   val CHILD = "CHILD"
 
   var labelMap = Map[String, Processes]()
+  val id = label.hashCode * 7 + model.id()
 
   def add(label: String, pipeOp: PipeOp): this.type = {
     labelMap = labelMap.updated(label, Processes(label, pipeOp))
+    this
+  }
+
+  def add(label: String, process: Processes): this.type = {
+    labelMap = labelMap.updated(label, process)
     this
   }
 
@@ -35,62 +41,83 @@ case class Processes(val label: String, val model: PipeOp) {
     add(CHILD, pipeOp)
   }
 
-  def execute(paths: Array[HTMLPath]): Map[HTMLPath, IntermediateResult] = {
-    paths.sortBy(_.pathNodes.length).map(htmlPath => (htmlPath -> model.execute(htmlPath)))
-      .toArray
-      .toMap
+  def child(processes: Processes): this.type = {
+    add(CHILD, processes)
   }
+
+  override def toString: String = {
+    label + ":[" + model.toString() + "]" + s"{${labelMap.mkString(",")}}"
+  }
+
+  def execute(paths: Array[HTMLPath]): Array[IntermediateResult] = {
+    paths.map(htmlPath => (model.execute(htmlPath))) ++ labelMap.toArray.flatMap { (label, process) => {
+      process.execute(paths)
+    }
+    }
+  }
+
+  def execute(node: HTMLNode): Array[IntermediateResult] = {
+    model.execute(node) +: labelMap.toArray.flatMap { (label, process) => {
+      process.execute(node)
+    }}
+  }
+
 
   def process(array: Array[IntermediateResult]): Array[Node] = {
 
-    val nodeMap = array.map { result => {
-      result.node -> Node(result.map.keys.toArray, label, result.node)
-        .process(result)
+    val nodeArray = array.map { result => {
+      Node(result.map.keys.toArray, label, result.node)
+        .process(id, result)
     }
-    }.toMap
+    }
 
-    val idMap = nodeMap.map(pair => pair._1.htmlID() -> pair._2)
+    val idMap = nodeArray.map(item => {
+      item.htmlId() -> item
+    }).toMap
 
-    nodeMap.map { case (htmlNode, mainNode) => {
-      labelMap.foreach { case (label, pipeop) => {
+    nodeArray.foreach { case (mainNode) => {
+      val htmlNode = mainNode.node
+      labelMap.foreach { case (label, subprocess) => {
 
         if (PARENT == label) {
           //go parent
           val nodeNode = idMap(htmlNode.parentID())
-          val nodeResult = pipeop.model.execute(nodeNode.node)
-          nodeNode.process(nodeResult)
+          val nodeResult = subprocess.execute(nodeNode.node)
+          nodeNode.process(subprocess.id, nodeResult)
           mainNode.addNeigbour(label, nodeNode)
         }
         else if (CHILD == label) {
           //go child
-          htmlNode.childnodes.foreach(childNode => {
+
+          htmlNode.getAllChildNodes().filter(node => idMap.contains(node.htmlID())).foreach(childNode => {
             val nodeNode = idMap(childNode.htmlID())
-            val nodeResult = pipeop.model.execute(childNode)
-            nodeNode.process(nodeResult)
+            val nodeResult = subprocess.execute(childNode)
+            nodeNode.process(subprocess.id, nodeResult)
             mainNode.addNeigbour(label, nodeNode)
           })
         }
-        else if (NEXT == label) {
-          //go sibling
-          val nodeNode = idMap(htmlNode.next.htmlID())
-          val nodeResult = pipeop.model.execute(htmlNode.next)
-          nodeNode.process(nodeResult)
-          mainNode.addNeigbour(label, nodeNode)
+        else if (NEXT == label && idMap.contains(htmlNode.next.htmlID())) {
+          //go next
+          htmlNode.getNextSiblings().filter(node => idMap.contains(node.htmlID())).foreach(childNode => {
+            val nodeNode = idMap(childNode.htmlID())
+            val nodeResult = subprocess.model.execute(childNode)
+            nodeNode.process(subprocess.id,  nodeResult)
+            mainNode.addNeigbour(label, nodeNode)
+          })
         }
-        else if (PREVIOUS == label) {
+        else if (PREVIOUS == label && idMap.contains(htmlNode.previous.htmlID())) {
           //go previous
-          val nodeNode = idMap(htmlNode.previous.htmlID())
-          val nodeResult = pipeop.model.execute(htmlNode.previous)
-          nodeNode.process(nodeResult)
-          mainNode.addNeigbour(label, nodeNode)
+          htmlNode.getPreviousSiblings().filter(node => idMap.contains(node.htmlID())).foreach(childNode => {
+            val nodeNode = idMap(childNode.htmlID())
+            val nodeResult = subprocess.model.execute(childNode)
+            nodeNode.process(subprocess.id, nodeResult).normalize()
+            mainNode.addNeigbour(label, nodeNode)
+          })
         }
       }
       }
+    }}
 
-      mainNode
-
-    }
-    }.toArray
-
+    nodeArray
   }
 }

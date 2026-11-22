@@ -9,7 +9,7 @@ case class PreviousHasTagOp(tagNameRegex:String) extends PatternOp(Array(), "pre
     val count = 0
     val ndo = leaf
     if (leaf.hasPrevious()) {
-      val precheck = leaf.previous.node.nodeName().matches(tagNameRegex)
+      val precheck = leaf.getPreviousSiblings().exists(node => node.tagName().matches(tagNameRegex))
       val previousHas = leaf.previous.childnodes.exists(subnode=> subnode.node.nodeName().matches(tagNameRegex))
       if (precheck || previousHas) {
         IntermediateResult(ndo, Map(name -> 1d))
