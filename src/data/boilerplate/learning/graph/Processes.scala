@@ -50,7 +50,7 @@ case class Processes(val label: String, val model: PipeOp) {
   }
 
   def execute(paths: Array[HTMLPath]): Array[IntermediateResult] = {
-    paths.map(htmlPath => (model.execute(htmlPath))) ++ labelMap.toArray.flatMap { (label, process) => {
+    paths.map(htmlPath => (model.execute(htmlPath).setProcessId(id))) ++ labelMap.toArray.flatMap { (label, process) => {
       process.execute(paths)
     }
     }
@@ -66,10 +66,9 @@ case class Processes(val label: String, val model: PipeOp) {
   def process(array: Array[IntermediateResult]): Array[Node] = {
 
     val nodeArray = array.map { result => {
-      Node(result.map.keys.toArray, label, result.node)
-        .process(id, result)
-    }
-    }
+      Node(result.processId, result.map.keys.toArray, label, result.node)
+        .process(result)
+    }}
 
     val idMap = nodeArray.map(item => {
       item.htmlId() -> item
@@ -83,7 +82,7 @@ case class Processes(val label: String, val model: PipeOp) {
           //go parent
           val nodeNode = idMap(htmlNode.parentID())
           val nodeResult = subprocess.execute(nodeNode.node)
-          nodeNode.process(subprocess.id, nodeResult)
+          nodeNode.process(nodeResult)
           mainNode.addNeigbour(label, nodeNode)
         }
         else if (CHILD == label) {
@@ -92,7 +91,7 @@ case class Processes(val label: String, val model: PipeOp) {
           htmlNode.getAllChildNodes().filter(node => idMap.contains(node.htmlID())).foreach(childNode => {
             val nodeNode = idMap(childNode.htmlID())
             val nodeResult = subprocess.execute(childNode)
-            nodeNode.process(subprocess.id, nodeResult)
+            nodeNode.process(nodeResult)
             mainNode.addNeigbour(label, nodeNode)
           })
         }
@@ -101,7 +100,7 @@ case class Processes(val label: String, val model: PipeOp) {
           htmlNode.getNextSiblings().filter(node => idMap.contains(node.htmlID())).foreach(childNode => {
             val nodeNode = idMap(childNode.htmlID())
             val nodeResult = subprocess.model.execute(childNode)
-            nodeNode.process(subprocess.id,  nodeResult)
+            nodeNode.process(nodeResult)
             mainNode.addNeigbour(label, nodeNode)
           })
         }
@@ -110,10 +109,12 @@ case class Processes(val label: String, val model: PipeOp) {
           htmlNode.getPreviousSiblings().filter(node => idMap.contains(node.htmlID())).foreach(childNode => {
             val nodeNode = idMap(childNode.htmlID())
             val nodeResult = subprocess.model.execute(childNode)
-            nodeNode.process(subprocess.id, nodeResult).normalize()
+            nodeNode.process(nodeResult).normalize()
             mainNode.addNeigbour(label, nodeNode)
           })
         }
+
+        mainNode
       }
       }
     }}

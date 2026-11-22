@@ -9,15 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Latest modifications and new sites">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/NextHasTagOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/NextHasTagOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PreviousHasTagOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PreviousHasTagOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TagNameByPattern.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TagExistsByPattern.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityAboveOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityAboveOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Node.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Node.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,61 +63,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.00018765048712" />
-      <entry key="S2" value="1.203165905037275" />
-      <entry key="S5" value="2.1446705132220583" />
-      <entry key="S10" value="3.2941447784132207" />
-      <entry key="S30" value="4.848242722826976" />
-      <entry key="S60" value="5.970653631254663" />
-      <entry key="M2" value="8.733503539178614" />
-      <entry key="M5" value="15.272582171344514" />
-      <entry key="M10" value="20.55954455798222" />
-      <entry key="M15" value="23.094285067116513" />
-      <entry key="M30" value="26.1914181586213" />
-      <entry key="H1" value="28.578314243743613" />
-      <entry key="H2" value="45.34238960993916" />
-      <entry key="H4" value="131.3308040793938" />
-      <entry key="D1" value="639.0542831146615" />
-      <entry key="W1" value="988.7989507494843" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="3.6882912094479857E-224" />
+      <entry key="S2" value="2.284381897046512E-56" />
+      <entry key="S5" value="9.403174174436275E-23" />
+      <entry key="S10" value="1.8651419509546692E-11" />
+      <entry key="S30" value="9.266049929996417E-4" />
+      <entry key="S60" value="0.10148087664942054" />
+      <entry key="M2" value="1.2350997592810484" />
+      <entry key="M5" value="6.333718077129278" />
+      <entry key="M10" value="13.37907409382563" />
+      <entry key="M15" value="18.836133197246646" />
+      <entry key="M30" value="28.62109522239228" />
+      <entry key="H1" value="37.99709960517828" />
+      <entry key="H2" value="52.85389855580632" />
+      <entry key="H4" value="108.85810396404229" />
+      <entry key="D1" value="616.2382475880063" />
+      <entry key="W1" value="1026.5353449482654" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="7.766438330018082E-131" />
-      <entry key="S2" value="3.5149594432995826E-33" />
-      <entry key="S5" value="1.8283255346193362E-13" />
-      <entry key="S10" value="8.591655889932265E-7" />
-      <entry key="S30" value="0.029694681737698167" />
-      <entry key="S60" value="0.45366069406299697" />
-      <entry key="M2" value="1.9136720208938613" />
-      <entry key="M5" value="5.15798575975139" />
-      <entry key="M10" value="7.652089009497024" />
-      <entry key="M15" value="8.828800474490121" />
-      <entry key="M30" value="10.256091422216446" />
-      <entry key="H1" value="11.359757952817557" />
-      <entry key="H2" value="19.470545323334367" />
-      <entry key="H4" value="61.45247834580355" />
-      <entry key="D1" value="318.5149668408335" />
-      <entry key="W1" value="542.3014098028817" />
+      <entry key="MS100" value="1.000000000065487" />
+      <entry key="MS500" value="1.0092246558612537" />
+      <entry key="S2" value="1.3873017092903421" />
+      <entry key="S5" value="1.98552101472277" />
+      <entry key="S10" value="2.3908753271856993" />
+      <entry key="S30" value="2.768272134984512" />
+      <entry key="S60" value="2.8973604195494036" />
+      <entry key="M2" value="3.2717644995268063" />
+      <entry key="M5" value="5.385322029788839" />
+      <entry key="M10" value="9.121619111762925" />
+      <entry key="M15" value="12.24596478777208" />
+      <entry key="M30" value="17.996488056820372" />
+      <entry key="H1" value="23.511497256540913" />
+      <entry key="H2" value="31.664735368297965" />
+      <entry key="H4" value="59.80829334351972" />
+      <entry key="D1" value="316.6495400793696" />
+      <entry key="W1" value="570.2092370631606" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.03396046445393932" />
-      <entry key="MS500" value="0.5085609422370051" />
-      <entry key="S2" value="1.034762176497479" />
-      <entry key="S5" value="1.9953825105840255" />
-      <entry key="S10" value="3.1280790709822455" />
-      <entry key="S30" value="4.765460862261329" />
-      <entry key="S60" value="6.345572342432465" />
-      <entry key="M2" value="10.582599930346836" />
-      <entry key="M5" value="20.383301578909624" />
-      <entry key="M10" value="28.180061180196148" />
-      <entry key="M15" value="31.899593991031804" />
-      <entry key="M30" value="36.4343010712594" />
-      <entry key="H1" value="39.93083748818075" />
-      <entry key="H2" value="64.80628936694556" />
-      <entry key="H4" value="192.77194019467797" />
-      <entry key="D1" value="957.5591998632556" />
-      <entry key="W1" value="1531.0979926289222" />
+      <entry key="MS100" value="0.004128976720942891" />
+      <entry key="MS500" value="0.33368303934763804" />
+      <entry key="S2" value="0.9176728635867198" />
+      <entry key="S5" value="1.6105144418425907" />
+      <entry key="S10" value="2.1392830501200897" />
+      <entry key="S30" value="2.665434600146278" />
+      <entry key="S60" value="2.942774560621012" />
+      <entry key="M2" value="4.469580965579721" />
+      <entry key="M5" value="11.685787840727876" />
+      <entry key="M10" value="22.47011242458432" />
+      <entry key="M15" value="31.054236139022418" />
+      <entry key="M30" value="46.59680140594896" />
+      <entry key="H1" value="61.49490236780382" />
+      <entry key="H2" value="84.50920268912948" />
+      <entry key="H4" value="168.65658142310733" />
+      <entry key="D1" value="932.8780635884264" />
+      <entry key="W1" value="1596.742126304245" />
     </decayedShown>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -628,11 +622,6 @@
           <option name="timeStamp" value="317" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala</url>
-          <line>83</line>
-          <option name="timeStamp" value="358" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityAboveOp.scala</url>
           <line>12</line>
           <option name="timeStamp" value="367" />
@@ -644,11 +633,24 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
+          <line>53</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="383" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
+          <line>51</line>
+          <option name="timeStamp" value="387" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
           <line>52</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
-          <option name="timeStamp" value="379" />
+          <option name="timeStamp" value="393" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -660,6 +662,7 @@
     <watches-manager>
       <configuration name="Application">
         <watch expression="new_nodes.flatMap(node=&gt; node.map.map((k, v)=&gt; v.map(n=&gt; n.stats)))" language="Scala" />
+        <watch expression="new_nodes.filter(node=&gt;  {node.map.nonEmpty &amp;&amp; node.map(&quot;CHILD&quot;).exists(node=&gt; node.getStats().forall(_&gt;0.0))})" language="Scala" />
       </configuration>
     </watches-manager>
   </component>

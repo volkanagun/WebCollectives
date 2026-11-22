@@ -249,9 +249,19 @@ class PipeResult(val vocabSize: Int = 1000, val labelSize:Int=100) extends Seria
 }
 
 case class IntermediateResult(var node:HTMLNode, var map: Map[String, Double] = Map()) extends PipeResult() {
-
+  var processId :Int = 0
+  
   def id = node.htmlID()
 
+  def setProcessId(processId:Int):this.type = {
+    this.processId = processId
+    this
+  }
+
+  def getProcessId():Int = {
+    this.processId
+  }
+  
   def get(name:String):Double={
     map.getOrElse(name, 0d)
   }

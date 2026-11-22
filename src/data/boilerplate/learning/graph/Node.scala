@@ -3,27 +3,27 @@ package data.boilerplate.learning.graph
 import data.boilerplate.learning.pipes.IntermediateResult
 import data.boilerplate.structure.HTMLNode
 
-case class Node(val features: Array[String], val label: String, var node: HTMLNode) {
+case class Node(val processId:Int,  val features: Array[String], val label: String, var node: HTMLNode) {
 
   private var stats = Array.fill[Double](features.length)(0d)
   var count = 0d
   var map = Map[String, Array[Node]]()
-  var processId = 1
-  
+  var id = processId
+
   def addNeigbour(label: String, node: Node): Node = {
     map = map.updated(label, map.getOrElse(label, Array[Node]()) :+ node)
     this
   }
 
   def getStats() = stats
-  
+
   def equals(process:Processes):Boolean = {
-      process.id == processId
+      process.id == id
   }
 
   def newNode(stats:Array[Double], map:Map[String, Array[Node]]):Node={
-    Node(features, label, node).setStats(stats)
-      .setMap(map).setProcessId(processId)
+    Node(id, features, label, node).setStats(stats)
+      .setMap(map)
   }
 
   def featureId() = features.foldRight[Int](7){(item, main)=> main * 7 + item.hashCode}
@@ -37,7 +37,7 @@ case class Node(val features: Array[String], val label: String, var node: HTMLNo
     this
   }
   def setProcessId(id: Int): this.type = {
-    this.processId = id
+    this.id = id
     this
   }
 
@@ -49,9 +49,8 @@ case class Node(val features: Array[String], val label: String, var node: HTMLNo
     this
   }
 
-  def process(id:Int, htmlPaths: Array[IntermediateResult]): Array[Node] = {
+  def process(htmlPaths: Array[IntermediateResult]): Array[Node] = {
     count += 1
-    processId = id
     htmlPaths.map(result => {
       add(get(result))
     })
@@ -66,19 +65,18 @@ case class Node(val features: Array[String], val label: String, var node: HTMLNo
     val crrPositives = map.map((name, nodes) => name -> nodes.flatMap(node => node.z_score_filter(threshold)))
       .filter(_._2.nonEmpty)
     if checkCurrent && crrPositives.nonEmpty then {
-      Some(Node(features, label, node).setMap(crrPositives).setStats(stats))
+      Some(Node(id, features, label, node).setMap(crrPositives).setStats(stats))
     }
     else if checkCurrent && map.isEmpty then{
-      Some(Node(features, label, node).setStats(stats))
+      Some(Node(id, features, label, node).setStats(stats))
     }
     else{
       None
     }
   }
 
-  def process(processId:Int, result: IntermediateResult): Node = {
+  def process(result: IntermediateResult): Node = {
     count += 1
-    this.processId = processId
     add(get(result))
   }
 
