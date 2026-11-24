@@ -9,7 +9,8 @@ case class TextDensityOp() extends PatternOp(Array(), s"text-density-op") {
 
   //count the frequency
   override def execute(leaf: HTMLNode): IntermediateResult = {
-    val html = getParentHtml(leaf)
+
+    val html = leaf.getParent().html
     val text = getText(leaf)
     val density = (text.length.toDouble + 1E-12) / (html.length + 1E-12)
     val map = Map(name -> density)

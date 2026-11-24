@@ -113,7 +113,7 @@ class WebInstance(var htmlFile: String, var xmlFile: String, var xmlLabels: Arra
 
   def build(): this.type = {
     try {
-      parseXML()
+      //parseXML()
       matching()
     }
     catch {

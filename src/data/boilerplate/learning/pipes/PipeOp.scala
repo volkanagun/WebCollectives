@@ -135,6 +135,10 @@ class PipeOp(var subpipes: Array[PipeOp], var name: String) extends Serializable
     this.subpipes = this.subpipes.map(subPipe => subPipe.newName(this))
     this
   }
+  
+  def depthAll(node:Node):Double = {
+    node.childNodes().size() + node.childNodes().asScala.map(depthAll).sum
+  }
 
   def depthFirst(node:Node, nameRegex:String): Double = {
     if(node.childNodes().isEmpty) 0d

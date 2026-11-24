@@ -8,7 +8,8 @@ import java.io.{ObjectInputStream, ObjectOutputStream}
 case class HTMLPath(var pathNodes : Array[HTMLNode]) extends Serializable{
 
   def id():Int={
-    pathNodes.foldRight[Int](7){case(node, main) => node.nameID() + 7 * main}
+    //pathNodes.foldRight[Int](7){case(node, main) => node.nameID() + 7 * main}
+    pathNodes.last.id
   }
   
   def depth() = pathNodes.length

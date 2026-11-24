@@ -67,6 +67,10 @@ class HTMLNode(var id:Int, var node:Node) extends Serializable{
     nameID()*7 + id
   }
 
+  def hasTag(tagRegex:String):Boolean={
+    tagName().matches(tagRegex) || getAllChildNodes().exists(node=> node.tagName().matches(tagRegex))
+  }
+
   def hasNext():Boolean={
     next != null
   }
@@ -110,7 +114,7 @@ class HTMLNode(var id:Int, var node:Node) extends Serializable{
   def getAllChildNodes():Array[HTMLNode]={
     childnodes ++ childnodes.flatMap(child=> child.getAllChildNodes())
   }
-  
+
   def getNextSiblings():Array[HTMLNode]={
     parent.childnodes.reverse.takeWhile(node=> node.id!=id)
   }
@@ -170,8 +174,8 @@ class HTMLNode(var id:Int, var node:Node) extends Serializable{
   def visit():Array[HTMLPath]={
     visit(this)
   }
-  
-  
+
+
 
   def all():Array[HTMLPath] = {
     val allPaths = visit()

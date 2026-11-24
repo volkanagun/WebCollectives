@@ -8,10 +8,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a184bc13-1b89-4211-8f62-60ff019305fa" name="Default Changelist" comment="Latest modifications and new sites">
+      <change afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/ChildTagAverageOp.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Node.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Node.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/Processes.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/NextHasTagOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/NextHasTagOp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PreviousHasTagOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/PreviousHasTagOp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityOp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/learning/pipes/PipeOp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLParser.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLParser.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLPath.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/HTMLPath.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/boilerplate/structure/WebInstance.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,61 +70,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="3.6882912094479857E-224" />
-      <entry key="S2" value="2.284381897046512E-56" />
-      <entry key="S5" value="9.403174174436275E-23" />
-      <entry key="S10" value="1.8651419509546692E-11" />
-      <entry key="S30" value="9.266049929996417E-4" />
-      <entry key="S60" value="0.10148087664942054" />
-      <entry key="M2" value="1.2350997592810484" />
-      <entry key="M5" value="6.333718077129278" />
-      <entry key="M10" value="13.37907409382563" />
-      <entry key="M15" value="18.836133197246646" />
-      <entry key="M30" value="28.62109522239228" />
-      <entry key="H1" value="37.99709960517828" />
-      <entry key="H2" value="52.85389855580632" />
-      <entry key="H4" value="108.85810396404229" />
-      <entry key="D1" value="616.2382475880063" />
-      <entry key="W1" value="1026.5353449482654" />
+      <entry key="MS100" value="2.0116296387263029E-134" />
+      <entry key="MS500" value="1.8268694866080694E-27" />
+      <entry key="S2" value="2.8636032363258886E-7" />
+      <entry key="S5" value="0.004837876189034007" />
+      <entry key="S10" value="0.1359138141245862" />
+      <entry key="S30" value="1.2892196590061404" />
+      <entry key="S60" value="2.3011003697615426" />
+      <entry key="M2" value="3.835025337902653" />
+      <entry key="M5" value="9.896928186163885" />
+      <entry key="M10" value="20.74896403493449" />
+      <entry key="M15" value="32.21964493857851" />
+      <entry key="M30" value="58.87107927164786" />
+      <entry key="H1" value="87.7120100812295" />
+      <entry key="H2" value="120.79673845835258" />
+      <entry key="H4" value="175.52547279287768" />
+      <entry key="D1" value="684.4044147332468" />
+      <entry key="W1" value="1177.2150419126365" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.000000000065487" />
-      <entry key="MS500" value="1.0092246558612537" />
-      <entry key="S2" value="1.3873017092903421" />
-      <entry key="S5" value="1.98552101472277" />
-      <entry key="S10" value="2.3908753271856993" />
-      <entry key="S30" value="2.768272134984512" />
-      <entry key="S60" value="2.8973604195494036" />
-      <entry key="M2" value="3.2717644995268063" />
-      <entry key="M5" value="5.385322029788839" />
-      <entry key="M10" value="9.121619111762925" />
-      <entry key="M15" value="12.24596478777208" />
-      <entry key="M30" value="17.996488056820372" />
-      <entry key="H1" value="23.511497256540913" />
-      <entry key="H2" value="31.664735368297965" />
-      <entry key="H4" value="59.80829334351972" />
-      <entry key="D1" value="316.6495400793696" />
-      <entry key="W1" value="570.2092370631606" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.000000141718294" />
+      <entry key="S5" value="1.0027796390512111" />
+      <entry key="S10" value="1.0870092405362886" />
+      <entry key="S30" value="1.912121270880148" />
+      <entry key="S60" value="2.688063053843826" />
+      <entry key="M2" value="3.944806644507207" />
+      <entry key="M5" value="8.367806435712215" />
+      <entry key="M10" value="14.243999695079758" />
+      <entry key="M15" value="19.108228975008974" />
+      <entry key="M30" value="29.42452623931359" />
+      <entry key="H1" value="41.44980682760636" />
+      <entry key="H2" value="59.04006960206133" />
+      <entry key="H4" value="90.3462275558472" />
+      <entry key="D1" value="355.6289909589073" />
+      <entry key="W1" value="651.843354985776" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.004128976720942891" />
-      <entry key="MS500" value="0.33368303934763804" />
-      <entry key="S2" value="0.9176728635867198" />
-      <entry key="S5" value="1.6105144418425907" />
-      <entry key="S10" value="2.1392830501200897" />
-      <entry key="S30" value="2.665434600146278" />
-      <entry key="S60" value="2.942774560621012" />
-      <entry key="M2" value="4.469580965579721" />
-      <entry key="M5" value="11.685787840727876" />
-      <entry key="M10" value="22.47011242458432" />
-      <entry key="M15" value="31.054236139022418" />
-      <entry key="M30" value="46.59680140594896" />
-      <entry key="H1" value="61.49490236780382" />
-      <entry key="H2" value="84.50920268912948" />
-      <entry key="H4" value="168.65658142310733" />
-      <entry key="D1" value="932.8780635884264" />
-      <entry key="W1" value="1596.742126304245" />
+      <entry key="MS100" value="0.0011063319192341778" />
+      <entry key="MS500" value="0.25631680947214847" />
+      <entry key="S2" value="0.7115319969095246" />
+      <entry key="S5" value="0.8789751358918206" />
+      <entry key="S10" value="1.136341582823942" />
+      <entry key="S30" value="3.1090772741448154" />
+      <entry key="S60" value="4.914510549869285" />
+      <entry key="M2" value="7.722350471727052" />
+      <entry key="M5" value="18.214313002779594" />
+      <entry key="M10" value="34.950175666770456" />
+      <entry key="M15" value="51.289877108729904" />
+      <entry key="M30" value="88.26630691660209" />
+      <entry key="H1" value="129.14071512215565" />
+      <entry key="H2" value="179.82116773474218" />
+      <entry key="H4" value="265.85893003899287" />
+      <entry key="D1" value="1040.0231872851055" />
+      <entry key="W1" value="1829.055686365721" />
     </decayedShown>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
@@ -607,18 +614,13 @@
           <option name="timeStamp" value="160" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/features/TextDensityOp.scala</url>
-          <line>10</line>
-          <option name="timeStamp" value="229" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/WebInstanceIO.scala</url>
           <line>53</line>
           <option name="timeStamp" value="291" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
-          <line>59</line>
+          <line>61</line>
           <option name="timeStamp" value="317" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
@@ -631,38 +633,34 @@
           <line>45</line>
           <option name="timeStamp" value="376" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
-          <line>53</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="383" />
+        <line-breakpoint enabled="true" suspend="NONE" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/data/boilerplate/structure/HTMLNode.scala</url>
+          <line>187</line>
+          <placement>INTER_LINE</placement>
+          <option name="timeStamp" value="404" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
-          <line>51</line>
-          <option name="timeStamp" value="387" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/data/boilerplate/learning/graph/GraphBuilder.scala</url>
-          <line>52</line>
+          <line>55</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
-          <option name="timeStamp" value="393" />
+          <option name="timeStamp" value="417" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="data.boilerplate.learning.graph.Node" memberName="map" />
+        <PinnedItemInfo parentTag="data.boilerplate.structure.HTMLNode" memberName="node" />
       </pinned-members>
     </pin-to-top-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="new_nodes.flatMap(node=&gt; node.map.map((k, v)=&gt; v.map(n=&gt; n.stats)))" language="Scala" />
         <watch expression="new_nodes.filter(node=&gt;  {node.map.nonEmpty &amp;&amp; node.map(&quot;CHILD&quot;).exists(node=&gt; node.getStats().forall(_&gt;0.0))})" language="Scala" />
+        <watch expression="executionResults.filter(node=&gt; node.node.id == -656273574)" language="Scala" />
+        <watch expression="structurals.filter(node=&gt; node.node.id== -656273574)" language="Scala" />
+        <watch expression="structurals.filter(node=&gt; node.node.id == -1999628384)" language="Scala" />
       </configuration>
     </watches-manager>
   </component>
