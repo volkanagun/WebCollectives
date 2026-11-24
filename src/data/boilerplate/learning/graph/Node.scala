@@ -7,9 +7,9 @@ case class Node(val processId:Int,  val features: Array[String], val label: Stri
 
   private var stats = Array.fill[Double](features.length)(0d)
   var count = 0d
-  var map = Map[String, Array[Node]]()
+  var map:Map[String, Array[Node]] = Map[String, Array[Node]]()
   var id = processId
-
+  var rank_score = 0d
   def addNeigbour(label: String, node: Node): Node = {
     map = map.updated(label, map.getOrElse(label, Array[Node]()) :+ node)
     this
@@ -26,11 +26,41 @@ case class Node(val processId:Int,  val features: Array[String], val label: Stri
       .setMap(map)
   }
 
+  def score():Double = {
+  stats.sum/stats.length
+  }
   def featureId() = features.foldRight[Int](7){(item, main)=> main * 7 + item.hashCode}
-
   def htmlId() = node.htmlID()
-
   def childNodes() = node.childnodes
+
+  def depth():Int = {
+    if map.isEmpty then 1;
+    else{
+      val sub = map.toArray.flatMap(_._2).map(node=> node.depth()).max
+      sub + 1
+    }
+  }
+
+  def rank(rankMap:Map[Int, Double]):Double = {
+    //tree negative log average sum
+    val c_id = htmlId()
+    if map.isEmpty && rankMap.contains(c_id) then {
+      rankMap(c_id)
+    }
+    else if map.isEmpty then {
+      rank_score = score();
+    }
+    else {
+      val crr_score = rankMap.getOrElse(c_id, 0d)
+      val scores = map.toArray.map((label, array)=>{
+        val total = array.map(node=> node.score()).sum
+        total
+      })
+      rank_score = crr_score + score() + scores.sum/scores.length
+    }
+
+    rank_score
+  }
 
   def setMap(map: Map[String, Array[Node]]): this.type = {
     this.map = map

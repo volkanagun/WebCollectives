@@ -53,14 +53,23 @@ class GraphBuilder {
     val nodes = main.process(executionResults).map(node => node.normalize())
     val new_nodes = z_scores(nodes)
     val structurals = new_nodes.filter(node => node.equals(main))
-    val filteredNodes = structurals.flatMap(node => node.z_score_filter(0.000001))
+    val filteredNodes = structurals.flatMap(node => node.z_score_filter(0.1))
 
-    filteredNodes.foreach(node => {
-      println(node.node.text)
-    })
 
-    filteredNodes
 
+    val maximum = rank(filteredNodes)
+    println(maximum.head.node.text)
+
+  }
+
+  def rank(nodes:Array[Node]):Array[Node] = {
+    val rankMap = nodes.map(node=> (node.htmlId() -> node.rank(Map()))).toMap
+
+    val nodeMap = nodes.groupBy(_.htmlId())
+    val rankNodes = nodeMap.view.mapValues(nodes=>  nodes.map(node => node.rank(rankMap)).sum/nodes.length)
+
+    val maximum = rankNodes.maxBy(_._2)._1
+    nodeMap(maximum)
   }
 
   def z_scores(nodes: Array[Node]): Array[Node] = {

@@ -4,10 +4,7 @@ import java.io.{File, FileInputStream, FileOutputStream, ObjectInputStream, Obje
 import data.boilerplate.learning.LearningParams
 import data.boilerplate.learning.graph.{GraphBuilder, Node}
 import data.boilerplate.learning.pipes.{PipeOp, PipeResult}
-import org.nd4j.linalg.dataset
-import org.nd4j.linalg.dataset.api.{MultiDataSet, MultiDataSetPreProcessor}
-import org.nd4j.linalg.dataset.api.iterator.MultiDataSetIterator
-import org.nd4j.linalg.factory.Nd4j
+
 
 import scala.collection.parallel.CollectionConverters.ArrayIsParallelizable
 

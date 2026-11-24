@@ -1,7 +1,6 @@
 package data.crawler.sites;
 
 import data.crawler.web.*;
-import net.bytebuddy.description.type.TypeList;
 
 import java.io.Serializable;
 
